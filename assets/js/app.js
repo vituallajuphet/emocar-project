@@ -1,0 +1,141 @@
+$(document).ready(function(){
+
+var months = ['January','February','March','April','May','June','July',
+'August','September','October','November','December'];
+var date = new Date();
+var curr_day = date.getDate();
+var curr_month = date.getMonth();
+var curr_year = date.getFullYear();
+var next_curr_year = curr_year + 1;
+
+$('#date_final_get').val(months[curr_month] + " " + curr_day + ", " + curr_year);
+$('#date_nn').val(months[curr_month] + " " + curr_day + ", " + curr_year);
+$('#date_end').val(months[curr_month] + " " + curr_day + ", " + next_curr_year);
+$('#or_curr_date').val(months[curr_month] + " " + curr_day + ", " + curr_year);
+
+$('#pol_date').val(curr_day);
+$('#pol_months').val(months[curr_month]);
+$('#pol_year').val(curr_year);
+
+$('.date_issued').change(function(){
+    var string = $(this).val();
+    var sp_strong = string.split('-');
+    var sp_date = sp_strong[1];
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    $('.dummy_date_text').val(months[sp_date - 1] + ' ' + sp_strong[2] + ', ' + sp_strong[0]);
+    // $('.dummy_date_text1').val(months[sp_date - 1] + ' ' + sp_strong[2] + ', ' + sp_strong[0]);
+});
+
+
+$('.date_issued1').change(function(){
+    var string = $(this).val();
+    var sp_strong = string.split('-');
+    var sp_date = sp_strong[1];
+    var sp_year = sp_strong[0];
+    var sponeyear = parseInt(sp_year) + 1;
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    $('.dummy_date_text1').val(months[sp_date - 1] + ' ' + sp_strong[2] + ', ' + sp_strong[0]);
+    $('.dummy_date_text2').val(months[sp_date - 1] + ' ' + sp_strong[2] + ', ' + sponeyear);
+});
+
+// $('.date_issued2').change(function(){
+//     var string = $(this).val();
+//     var sp_strong = string.split('-');
+//     var sp_date = sp_strong[1];
+//     var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+//     $('.dummy_date_text2').val(months[sp_date - 1] + ' ' + sp_strong[2] + ', ' + sp_strong[0]);
+// });
+
+$('.mn_heading_tabs ul li').click(function(){
+    $('.mn_heading_tabs ul li').removeClass('active');
+    $(this).addClass('active');
+
+    var textline = $(this).html();
+
+    if(textline == 'TRICYCLE (TC-Hire)') {
+        $('#docs_or_vat').text('VAT');
+        $('#docs_or_vat').siblings('input').attr({'name':'pol_vat', 'value':'100'});
+        $('#pol_lgt').val('100');
+        $('#pol_others').val('200');
+        $('#pol_docs_stamp').val('100');
+        $('#pol_lgt').val('100');
+        $('#or_prem_sales').val('250');
+        $('#or_docs_stamp').val('100');
+        $('#or_lg_tax').val('100');
+        $('#or_misc').val('200');
+        $('#or_total').val('650');
+        $('#or_total_text').text('SIX HUNDRED FIFTY PESOS ONLY');
+
+        $(".trans_type").val("tricycle");
+    } else {
+        $('#docs_or_vat').text('DOCS. STAMP');
+        $('#docs_or_vat').siblings('input').attr('name','pol_docs_stamp');
+    }
+
+    if(textline == "MOTORCYCLE (MC)"){
+        $(".trans_type").val("motorcycle");
+    }
+
+    if(textline == 'PRIVATE CAR (UV - CAR)') {
+        $(".trans_type").val("private");
+        $('#or_prem_sales').val('560');
+        $('#or_docs_stamp').val('200');
+        $('#or_lg_tax').val('200');
+        $('#or_misc').val('290');
+        $('#or_total').val('1250');
+        $('#or_total_text').text('ONE THOUSAND TWO HUNDRED FIFTY PESOS ONLY');
+        $('#pol_others').val('290');
+        $('#pol_docs_stamp').val('200');
+        $('#pol_lgt').val('200');
+    } 
+
+    if(textline == 'COMMERCIAL VEHICLE (TRUCK)') {
+        $(".trans_type").val("commercial");
+        $('#or_prem_sales').val('1200');
+        $('#or_docs_stamp').val('100');
+        $('#or_lg_tax').val('50');
+        $('#or_misc').val('200');
+        $('#or_total').val('1550');
+        $('#or_total_text').text('ONE THOUSAND FIVE HUNDRED FIFTY ONLY');
+        $('#pol_others').val('300');
+        $('#pol_docs_stamp').val('50');
+        $('#pol_lgt').val('50');
+    }
+
+    if(textline == 'TRAILER') {
+        $(".trans_type").val("trialer");
+        $('#or_prem_sales').val('250');
+        $('#or_docs_stamp').val('250');
+        $('#or_lg_tax').val('250');
+        $('#or_misc').val('500');
+        $('#or_total').val('1250');
+        $('#or_total_text').text('ONE THOUSAND TWO HUNDRED FIFTY PESOS ONLY');
+        $('#pol_others').val('500');
+        $('#pol_docs_stamp').val('250');
+        $('#pol_lgt').val('250');
+    }
+
+});
+
+$(".addemp_button").on("click", function(){
+    $(".pop_app_add_Emp").addClass("active_popup"); 
+    });
+
+$(".close_pop_up").on("click", function(){
+    $(".pop_app_add_Emp").removeClass("active_popup"); 
+});
+
+$(".form_field_emocar").submit(function(e){
+    let con = confirm("Are you sure to save this transaction?")
+    
+    if(!con){
+        e.preventDefault()
+    }
+
+
+})
+
+});

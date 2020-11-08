@@ -1,0 +1,312 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+    if(!function_exists('_user_css')){
+        function _user_css($user_css){
+            if(file_exists('assets/css/users_css/'.$user_css.'.css')){
+                return 'users_css/'.$user_css.'.css';
+            }
+            return null;
+        }
+    }
+
+    if(!function_exists('_user_script')){
+        function _user_script($user_js){
+            if(file_exists('assets/js/users_script/'.$user_js.'.js')){
+                return 'users_script/'.$user_js.'.js';
+            }
+            return null;
+        }
+    }
+
+    function ajax_response($message, $type){
+        $data = array(
+            'message' => $message,
+            'type' => $type
+        );
+        echo json_encode($data);
+        exit;
+    }
+
+    function get_user_type() {
+      
+        $ci = & get_instance();
+
+         return $ci->session->userdata("user_type");
+        
+    }
+
+    function get_user_data($par = "user_id"){
+        $ci = & get_instance();
+
+        return $ci->session->userdata($par);
+    }
+
+    function get_user_id(){
+        $ci = & get_instance();
+        if($ci->session->has_userdata("user_id")){
+            return $ci->session->userdata("user_id");
+        }
+        exit;
+    }
+
+    function get_post(){
+        $ci = & get_instance();
+        return $ci->input->post();
+    }
+
+    function swal_data($msg, $err = "success"){
+        $ci = & get_instance();
+        $ci->session->set_flashdata("flash_data", array( "err"=>$err, "message" => $msg));
+    }
+
+    function get_logged_user($typ = "array"){
+        $ci = & get_instance();
+        if($typ== "array"){
+            return $ci->session->userdata();
+        }
+        else if($typ== "obj"){
+            return (object) $ci->session->userdata();
+        }
+        else if($typ== "json"){
+            return json_encode($ci->session->userdata());
+        }
+        exit;
+    }
+
+    function getData($tbl ="", $par = array(), $r = "array"){
+        $ci = & get_instance();
+        $res=  $ci->MY_Model->getRows($tbl, $par, $r);
+        return $res;
+    }
+
+    function insertData($tbl ="", $data = array()){
+        $ci = & get_instance();
+        $res=  $ci->MY_Model->insert($tbl, $data);
+        return $res;
+    }
+
+    function getDataTables($table, $column_order, $select = "*", $where = "", $join = array(), $limit, $offset, $search, $order,$group = ''){
+        $ci = & get_instance();
+        $ci->db->from($table);
+	  	if($select){
+	  		$ci->db->select($select);
+	  	}
+	  	if($where){
+	  		$ci->db->where($where);
+	  	}
+        if(!empty($join)){
+            foreach($join as $key => $value){
+                if(strpos($value,':') !== false){
+                    $_join = explode(":",$value);
+                    $ci->db->join($key,$_join[0],$_join[1]);
+                } else {
+                    $ci->db->join($key,$value);
+                }
+            }
+        }
+	  	if($search){
+	  		$ci->db->group_start();
+	  		foreach ($column_order as $item)
+	  		{
+	  			$ci->db->or_like($item, $search['value']);
+	  		}
+	  		$ci->db->group_end();
+	  	}
+	  	if($group)
+	  		$ci->db->group_by($group);
+
+	  	if($order)
+	  		$ci->db->order_by($column_order[$order['0']['column']], $order['0']['dir']);
+	    	$temp = clone $ci->db;
+	    	$data['count'] = $temp->count_all_results();
+
+	  	if($limit != -1)
+	  		$ci->db->limit($limit, $offset);
+
+	  	$query = $ci->db->get();
+	  	$data['data'] = $query->result();
+
+	  	$ci->db->from($table);
+	  	$data['count_all'] = $ci->db->count_all_results();
+	  	return $data;
+	}
+
+
+    function updateData($tbl ="", $set, $where = array()){
+        $ci = & get_instance();
+        $res=  $ci->MY_Model->update($tbl, $set, $where);
+        return $res;
+    }
+
+    function deleteData($tbl ="", $where = array()){
+        $ci = & get_instance();
+        $res=  $ci->MY_Model->delete($tbl, $where);
+        return $res;
+    }
+
+    function batchInsertData($tbl ="", $set = array()){
+        $ci = & get_instance();
+        $res=  $ci->MY_Model->batch_insert($tbl, $set);
+        return $res;
+    }
+
+    function upload_file($files, $setting){
+        $ci = & get_instance();
+        $config['upload_path']     = "./assets/file_uploads/";
+        $config['allowed_types']   = 'gif|jpg|png|pdf|docx|doc|zip|xlsx|xlsm|xltx|xltm|txt';
+        $config['max_size']        = 9999999999;
+        if(!empty($setting)){
+            if(!empty($setting["upload_path"])){
+                $config['upload_path'] = $setting["upload_path"];
+            }
+            if(!empty($setting["allowed_types"])){
+                $config['allowed_types']     = $setting["allowed_types"];
+            }
+            if(!empty($setting["max_size"])){
+                $config['max_size']     = $setting["max_size"];
+            }
+            if(!empty($setting["file_name"])){
+                $config['file_name']     = $setting["file_name"];
+            }
+        }
+        $ci->load->library('upload', $config);
+        $filename = "file";
+        if(empty($files["file"])){
+            foreach ($files as $file => $value) {
+                $filename = $file;
+            }
+        }
+        if ( ! $ci->upload->do_upload("file")){
+                return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    function get_logged_name(){
+        $ci = & get_instance();
+        return $ci->session->userdata("first_name") . " " . $ci->session->userdata("last_name");
+        
+    }
+
+    function sendemail_notification($to_email="", $message ="", $from_name="", $subject="", $type="", $from_email="noreply@system.com", $attachments =""){
+        $ci = & get_instance();
+        if(empty($to_email)){
+            $to_email = "prospteam@gmail.com";
+        }
+        if(empty($from_name)){
+            $from_name = "Compassionate Academy";
+        }
+        if(empty($subject)){
+            $subject = "Email Notification";
+        }
+        if(empty($message)){
+            $message = "This is a message";
+        }
+        if(empty($type)){
+            $type = "html";
+        }
+
+        if(!empty($attachments)){
+            $settings["attach"] = $attachments;
+        }
+
+        $settings["mail_type"] = $type;
+        $settings["to_email"] = $to_email;
+        $settings["from_name"] = $from_name;
+        $settings["from_email"] = $from_email;
+        $settings["subject"] = $subject;
+        
+
+        $data["content"] = $message;
+        $data["title"] = $from_name;
+        $data["from_email"] = "noreply@system.com";
+        $ci->email_library->initialize($settings);
+        if($ci->email_library->sendmail($data)){
+            return 1;
+        }else{
+            return 2;
+        }
+        exit;
+
+    }
+
+    if(!function_exists('verify_tab_access')){
+        function verify_tab_access(){
+            $ci = & get_instance();
+            $route = $ci->router->fetch_class();
+            $tabs_admin = array( 
+                "admin", 
+                "manage_employee", 
+                "home", 
+                "global_api",
+                "register",
+                "admin_policies",
+                "logout");
+
+            $tabs_student = array( 
+                "home", 
+                "employee",
+                "logout",
+                "register",
+                "global_api",
+                "process_register",
+            );
+
+       
+
+            $response = false;
+            if ( !empty($ci->session->userdata("user_type"))){
+                if ($ci->session->userdata("user_type") == 1 ){
+                    if (in_array(strtolower($route), $tabs_admin)) {
+                         $response = true;
+                    }
+                }
+                else{
+                    if (in_array(strtolower($route), $tabs_student)) {
+                        $response = true;
+                    }
+                }
+            }
+
+            return $response;
+        } 
+    }
+
+    if(!function_exists('_get_course')){
+        function _get_course(){
+            $ci = & get_instance();
+            $par["select"] = "*";
+            $data = getData("ca_courses", $par, "obj");
+            return $data;
+        }
+    }
+
+    if(!function_exists('check_my_payment')){
+        function check_my_payment($return = "json"){
+
+            $response = array(  "result" => false, "data" => [] );
+
+            $par['select'] = 'amount';
+            $par['where']  = array('fk_user_id' => get_user_id());
+            
+            $getdata       = getData('ca_payments payment', $par, 'obj');
+
+            if(!empty($getdata)){
+                $response = array(  "result" => true, "data" => array("amount" => $getdata[0]->amount) );
+            }
+
+            if($return == "json"){
+                echo json_encode($response);
+            }
+            else{
+                return $getdata[0];
+            }
+            
+        }
+    }
+    
+
+?>
