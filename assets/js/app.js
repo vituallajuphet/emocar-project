@@ -134,7 +134,15 @@ $(".form_field_emocar").submit(function(e){
     if(!con){
         e.preventDefault()
     }
+})
 
+$("input[name='paid_type']").change(function(){
+    let val = $(this).val();
+    if(val == "Check"){
+        $(".check_field").show()
+    }else{
+        $(".check_field").hide()
+    }
 
 })
 

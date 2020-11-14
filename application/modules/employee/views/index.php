@@ -173,6 +173,18 @@
 								<label for="THE SUM OF PESOS">THE SUM OF PESOS</label>
 								<textarea type="text" name="the_sum_of_pesos" id="or_total_text">SIX HUNDRED FIFTY PESOS ONLY</textarea>
 							</div>
+							
+						</div>
+						
+					</div>
+					<div class="paid_type_cont">
+						<div>PAID BY:</div>
+						<label for="paid_type_cash">Cash</label>
+						<input checked type="radio" id="paid_type_cash" name="paid_type" value="Cash">
+						<label for="paid_type_cash">Check</label>
+						<input type="radio" id="paid_type_check" name="paid_type" value="Check">
+						<div class="check_field">
+							<input type="text" name="check_no" placeholder="Check Number" required>
 						</div>
 					</div>
 					<!-- end -->

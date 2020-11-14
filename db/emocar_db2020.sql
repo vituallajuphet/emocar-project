@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2020 at 08:58 AM
+-- Generation Time: Nov 14, 2020 at 09:14 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -89,18 +89,20 @@ CREATE TABLE `tbl_transactions` (
   `or_total` double NOT NULL,
   `the_sum_of_pesos` text NOT NULL,
   `status` int(11) NOT NULL,
-  `published_status` varchar(55) NOT NULL
+  `published_status` varchar(55) NOT NULL,
+  `paid_type` varchar(55) NOT NULL,
+  `check_no` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_transactions`
 --
 
-INSERT INTO `tbl_transactions` (`trans_id`, `fk_user_id`, `trans_type`, `trans_option`, `mb_file_no`, `plate_no`, `motor_no`, `serial_chassis`, `policy_no`, `model_no`, `make`, `type_of_body`, `official_receipt`, `color`, `place`, `date_issued`, `date_from`, `date_to`, `others`, `pol_docs_stamp`, `lgt`, `policy_day`, `policy_month`, `policy_year`, `received_from`, `address`, `or_date`, `premium_sales`, `docs_stamp`, `lg_tax`, `misc`, `or_total`, `the_sum_of_pesos`, `status`, `published_status`) VALUES
-(2, 2, 'motorcycle', 'StrongHold', '55555', '234123', 'Bob', 'Petey', 'Uy', 'honda', 'Marion', 'Peter', 'Uy', 'Matt', 'lapu lapu', '2020-11-07', '2020-11-07', '2121-11-07', 0, 0, 0, '7', 'November', '2020', 'test', '162 Little Embers Court', '2020-11-08', 222, 1, 2, 3, 0, 'This is a dummy text.', 1, '1'),
-(3, 2, 'motorcycle', 'StrongHold', '33333', 'gds123', 'Bob', 'Petey', 'Uy', 'honda', 'Marion', 'Peter', 'Uy', 'Matt', 'manila', '2020-11-07', '2020-11-07', '2121-11-07', 0, 0, 0, '7', 'November', '2020', 'test', '162 Little Embers Court', '2020-11-07', 222, 0, 0, 0, 0, 'This is a dummy text.', 1, '1'),
-(4, 2, 'motorcycle', 'StrongHold', '1234566', '555123', 'Bob', 'Petey', 'Uy', 'honda', 'Marion', 'Peter', 'Uy', 'Matt', 'cagayan', '2020-11-07', '2020-11-07', '2021-11-06', 123, 22, 22, '7', 'November', '2020', 'test', '162 Little Embers Court', '2020-11-07', 222, 555, 5, 4, 0, 'This is a dummy text.', 1, '1'),
-(5, 2, 'motorcycle', 'StrongHold', '121111', 'Petey', 'Anna', 'Marion', 'Matt', 'Terry', 'Holly', 'Bob', 'Leonardo', 'Kerry', 'Petey', '1970-01-01', '1970-01-01', '1970-01-01', 0, 0, 0, 'Peter', 'Anna', 'Anna', 'Anna', '7669 Gulf Drive', '7070-01-01', 0, 0, 0, 0, 0, 'This is a dummy text.', 1, '1');
+INSERT INTO `tbl_transactions` (`trans_id`, `fk_user_id`, `trans_type`, `trans_option`, `mb_file_no`, `plate_no`, `motor_no`, `serial_chassis`, `policy_no`, `model_no`, `make`, `type_of_body`, `official_receipt`, `color`, `place`, `date_issued`, `date_from`, `date_to`, `others`, `pol_docs_stamp`, `lgt`, `policy_day`, `policy_month`, `policy_year`, `received_from`, `address`, `or_date`, `premium_sales`, `docs_stamp`, `lg_tax`, `misc`, `or_total`, `the_sum_of_pesos`, `status`, `published_status`, `paid_type`, `check_no`) VALUES
+(2, 2, 'motorcycle', 'StrongHold', '55555', '234123', 'Bob', 'Petey', 'Uy', 'honda', 'Marion', 'Peter', 'Uy', 'Matt', 'lapu lapu', '2020-11-07', '2020-11-07', '2121-11-07', 0, 0, 0, '7', 'November', '2020', 'test', '162 Little Embers Court', '2020-11-08', 222, 1, 2, 3, 0, 'This is a dummy text.', 1, '1', 'Cash', ''),
+(3, 2, 'motorcycle', 'StrongHold', '33333', 'gds123', 'Bob', 'Petey', 'Uy', 'honda', 'Marion', 'Peter', 'Uy', 'Matt', 'manila', '2020-11-07', '2020-11-07', '2121-11-07', 0, 0, 0, '7', 'November', '2020', 'test', '162 Little Embers Court', '2020-11-07', 222, 0, 0, 0, 0, 'This is a dummy text.', 1, '1', 'Cash', ''),
+(4, 2, 'motorcycle', 'StrongHold', '1234566', '555123', 'Bob', 'Petey', 'Uy', 'honda', 'Marion', 'Peter', 'Uy', 'Matt', 'cagayan', '2020-11-07', '2020-11-07', '2021-11-06', 123, 22, 22, '7', 'November', '2020', 'test', '162 Little Embers Court', '2020-11-07', 222, 555, 5, 4, 0, 'This is a dummy text.', 1, '1', 'Cash', ''),
+(5, 2, 'motorcycle', 'StrongHold', '121111', 'Petey', 'Anna', 'Marion', 'Matt', 'Terry', 'Holly', 'Bob', 'Leonardo', 'Kerry', 'Petey', '1970-01-01', '1970-01-01', '1970-01-01', 0, 0, 0, 'Peter', 'Anna', 'Anna', 'Anna', '7669 Gulf Drive', '7070-01-01', 0, 0, 0, 0, 0, 'This is a dummy text.', 1, '1', 'Check', '123578900');
 
 -- --------------------------------------------------------
 

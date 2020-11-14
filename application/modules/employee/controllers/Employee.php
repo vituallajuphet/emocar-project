@@ -14,6 +14,8 @@ class Employee extends MY_Controller {
 
 		if(!empty($_POST)){
 			
+			$paid_type = $post["paid_type"];
+
 			$data = array(
 				"fk_user_id" => get_user_id(),
 				"trans_type" => $post["trans_type"],
@@ -49,6 +51,8 @@ class Employee extends MY_Controller {
 				"the_sum_of_pesos" => $post["the_sum_of_pesos"],
 				"status" => 1,
 				"published_status" => 1,
+				"paid_type" => $post["paid_type"],
+				"check_no" => $post["check_no"],
 			);
 		}
 		
