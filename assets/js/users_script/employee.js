@@ -13,6 +13,12 @@ $(document).ready(function(){
     $("#search_bar").on("keyup change", function(){
         let search_val = $(this).val();
 
+        // search_process(search_val)
+
+    })
+
+    function search_process (search_val, show_err = false){
+
 
         if(search_val != "" && search_val != undefined){
 
@@ -56,12 +62,15 @@ $(document).ready(function(){
                     $("input[name='lg_tax']").val(dta.lg_tax)
                     $("input[name='the_sum_of_pesos']").val(dta.the_sum_of_pesos)
                 }
+                else{
+                    if(show_err){
+                        alert("Search not found!")
+                    }
+                }   
 
             })
-
         }
-
-    })
+    }
 
     $("#printOr").click(function(){
         $("#print_OR").show();
@@ -85,6 +94,20 @@ $(document).ready(function(){
             $("#print_policy_elem").printElement();
             $("#print_policy_elem").hide();
         }, 1000);
+    })
+
+
+    $(".buttonSearch").click(function(){
+        
+        const search_val = $("#search_bar").val();
+
+        if(search_val == "" || search_val == undefined){
+            alert("Please input the search field...")
+            return;
+        }
+
+        search_process(search_val, true)
+
     })
 
 })

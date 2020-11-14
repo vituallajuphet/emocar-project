@@ -14,16 +14,29 @@
 			</div>
 			<form action="<?=base_url("employee/save_transaction")?>" method="POST" class="form_field_emocar">
 				<input type="hidden" name="trans_type" class="trans_type" value="motorcycle">
-				<div class="opt_2">
-					<h2 class="opt2_heading">Options</h2>
-					<div class="form_field_radio">
-						<input type="radio" name="options" value="StrongHold">
-						<label for="StrongHold">StrongHold</label>
+				<div class="header_form">
+					<div class="opt_2">
+						<h2 class="opt2_heading">Options</h2>
+						<div class="form_field_radio">
+							<input type="radio" name="options" value="StrongHold">
+							<label for="StrongHold">StrongHold</label>
+						</div>
 					</div>
-				</div>
-				<div>
-					<label for="">Search</label>
-					<input type="text" id="search_bar" placeholder="Search here">
+					<div class="search_bar_cont">
+						<form action="" class="search_form" method="post" >
+							<div>					
+								<label for="">Search</label>
+								<div class="flex_cont">
+									<div class="flex-left">
+										<input required type="text" id="search_bar" placeholder="Search here">
+									</div>
+									<div class="flex-right">
+										<button class="buttonSearch" type="button">Search</button>
+									</div>	
+								</div>							
+							</div>
+						</form>
+					</div>
 				</div>
 				<div class="formfield_box coc_formfield">
 					<h2 class="main_form_heading">Fill up the form</h2>
