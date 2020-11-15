@@ -64,6 +64,9 @@ $(document).ready(function(){
     })
 
     $("#printOr").click(function(){
+
+     
+
         $("#print_OR").show();
         setTimeout(() => {
             $("#print_OR").printElement();
