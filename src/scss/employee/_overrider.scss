@@ -1,0 +1,71 @@
+#printCOC_elem{
+    display: none;
+}
+
+.addEmployee{padding: 2rem;}
+
+table {
+    tr{
+        th{
+            text-align: left!important;
+        }
+    }
+    tr{
+        text-align: left;
+        .action_btns{
+            text-align: center;
+            a{
+                display: inline-block;
+                vertical-align: top;
+                background: green;
+                padding: 1px 7px;
+                color: #fff;
+                margin: 0 2px 3px;
+
+                &:nth-child(2){
+                    background: #8888d0;
+                }
+                &:last-child{
+                    background: red;
+                }
+                &:hover{opacity: .6;}
+            }
+        }
+    }
+}
+
+.profile_form{
+    font-size: 1.1rem;
+    margin: 3rem 0 0;
+
+    label{
+        font-weight: bold;
+        margin:0 0 3px;
+    }
+
+}
+
+.dash_intro{
+
+    a{
+        color: #fff;
+        font-size: 0.9em;
+        padding: 8px;
+        background: #52ca40;
+        border-radius: 5px;
+        &:hover{
+            opacity: .5;
+        }
+    }
+    a.active{
+        opacity: .5;
+    }
+
+}
+
+.footer{
+    margin: 0 0 2em;
+    ul{
+        font-size: 1.2em;
+    }
+}

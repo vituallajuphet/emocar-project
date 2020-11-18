@@ -36,6 +36,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
     }
 
+    function getUserData(){
+        $ci = & get_instance();
+        
+        $user_id = $ci->session->userdata("user_id");
+
+        $res = [];
+
+        if(get_user_type() == 2){
+            
+            $par["where"] = ["employee_id" =>  $user_id];
+            $res = getData("employees", $par);
+        }
+
+        return $res[0];
+
+    }
+
     function get_user_data($par = "user_id"){
         $ci = & get_instance();
 
@@ -244,15 +261,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "global_api",
                 "register",
                 "admin_policies",
+                "my_profile",
                 "logout");
 
             $tabs_student = array( 
                 "home", 
                 "employee",
+                "employee_policies",
                 "logout",
                 "register",
                 "global_api",
                 "process_register",
+                "my_profile",
             );
 
        

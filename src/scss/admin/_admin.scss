@@ -1,0 +1,41 @@
+#main {padding: 25px;}
+
+.addEmployee {text-align: right;}
+.addemp_button {text-align: right;font-size: 16px;display: inline-block;color: #008001;cursor: pointer;font-weight: 600;}
+.pop_app_add_Emp {position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.85);visibility: hidden;opacity: -1;text-align: left; transition: all .8s ease;z-index: 123123123123;}
+.pop_up_inner {width: 700px;background: #fff;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);padding: 20px;}
+#add_emp_admin {width: 100%;display: block;}
+.addhead_emp {color: #008001;font-size: 21px;font-weight: 600;margin-bottom: 25px;border-bottom: 1px solid #808080;padding-bottom: 15px;}
+#add_emp_admin .form_box {display: block;margin: 0 0 0 5px;}
+#add_emp_admin .form_box label {display: block;font-size: 14px;font-weight: 500;}
+#add_emp_admin .form_box input {font-size: 14px;display: block;width: 100%;border: 1px solid #808080;height: 32px;padding: 0 10px;border-radius: 3px;}
+
+#add_emp_admin .birthdate {font-size: 0;}
+#add_emp_admin .birthdate .birth_form {display: flex;flex-wrap: nowrap;}
+#add_emp_admin .birthdate select {font-size: 14px;vertical-align: top;padding: 0 10px;border: 1px solid #808080;height: 32px;width: 100%;margin: 0 3px;border-radius: 3px;}
+
+#add_emp_admin .form_box select {font-size: 14px;vertical-align: top;padding: 0 10px;border: 1px solid #808080;height: 32px;width: 100%;border-radius: 3px;}
+
+#add_emp_admin .form_box input[type="submit"] {font-size: 16px;background:  #006001;height: 45px;border: none;color: #fff;width: 100%;margin-top: 30px;text-transform: uppercase;transition: 0.5s ease;}
+#add_emp_admin .form_box input[type="submit"]:hover {background: #002900;color: #fff;}
+
+.close_pop_up {position: absolute;top: 0;right: 0;font-size: 25px;color: #000;font-weight: 600;cursor: pointer;padding: 20px;}
+.active_popup {visibility: visible; opacity: 1;}
+
+
+.parent_form {display: flex; flex-wrap: nowrap;}
+.parent_form .form_box {width: 100%; margin: 0 0 0 10px; display: block;}
+
+
+/*  */
+
+#employee_table, #trans_table {text-align: left!important;}
+
+.dta_txt{font-weight: bold;}
+.colm{margin-bottom: 13px!important;}
+
+.row label{margin: 0 0 0! important;}
+
+.preloader{position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0 ,0 ,0, .5); z-index: 123123;display: none;}
+.pre_cont{text-align: center; font-size: 30px; color: #fff; top: 20%; position: absolute; left: 0; right: 0; margin: 0 auto;}
+.colm div {font-weight: bold!important;}

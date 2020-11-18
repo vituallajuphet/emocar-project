@@ -14,6 +14,7 @@
 			</div>
 			<form action="<?=base_url("employee/save_transaction")?>" method="POST" class="form_field_emocar">
 				<input type="hidden" name="trans_type" class="trans_type" value="motorcycle">
+				<input type="hidden" class="hidden_trans_id">
 				<div class="header_form">
 					<div class="opt_2">
 						<h2 class="opt2_heading">Options</h2>

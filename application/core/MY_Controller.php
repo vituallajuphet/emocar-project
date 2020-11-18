@@ -53,6 +53,23 @@ class MY_Controller extends MX_Controller {
 		$this->load->view('includes/employee/footer',$data);
 	}
 
+	public function load_global_page($page, $data = array()){
 
+		if(get_user_type() != 1){
+			$this->load->view('includes/employee/header',$data);
+			$this->load->view('includes/employee/nav',$data);
+			$this->load->view('includes/employee/head',$data);
+			$this->load->view($page, $data);
+			$this->load->view('includes/employee/footer',$data);
+		}
+		else{
+			$this->load->view('includes/admin/header',$data);
+			$this->load->view('includes/admin/nav',$data);
+			$this->load->view('includes/admin/head',$data);
+			$this->load->view($page, $data);
+			$this->load->view('includes/admin/footer',$data);
+		}
+		
+	}
 
 }

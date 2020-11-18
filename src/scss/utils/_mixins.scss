@@ -1,0 +1,5 @@
+@mixin display_inblock($align, $margin) {
+    display: inline-block;
+    vertical-align: $align;
+    margin: $margin;
+}

@@ -1,0 +1,105 @@
+html{font-size: 14px;}
+
+body{font-family: 'Roboto', sans-serif;font-size: 18px; line-height: 28px;  color:#333;position: relative;background: none;}
+
+#head_nav {display: inline-block;vertical-align: top;width: 250px;background: #66cc00;position: absolute;top: 0;left: 0;height: 100%;}
+header {margin-bottom: 20px;}
+header figure {background: #fff;padding: 20px 15px;margin-right: 1px;}
+
+nav ul {margin: 0;padding: 0;list-style-type: none;}
+nav ul li {display: block;}
+nav ul li a {display: block;padding: 10px 20px;font-size: 16px;font-weight: 300;color: #fff;margin: 1px 0;}
+nav ul li a:hover {background: #004001;}
+nav ul li.active a {background: #004001;}
+
+#dash_right_info {width: calc(100% - 250px);margin-left: 250px;}
+.dash_intro {text-align: right;height: 55px;border-bottom: 1px solid #008001;padding-right: 20px;position: relative;}
+.dash_intro h2 {color: #000;font-size: 15px;line-height: 55px;display: inline-block;vertical-align: middle;}
+.dash_intro figure {display: inline-block;vertical-align: middle;width: 43px;margin-left: 10px;}
+.dash_intro figure img {max-width: 100%;display: block;}
+
+.show_hover {position: absolute;bottom: 0;right: 0;width: 300px;height: 200px;border: 1px solid gray;background: gray;}
+.show_hover ul {width: 100%;}
+.show_hover ul li {display: block;}
+.show_hover ul li a {display: block;padding: 15px 10px;color: #fff;font-size: 16px;}
+
+main {padding: 30px 20px;}
+.main_area {border: 1px solid #004001;min-height: 600px;}
+.mn_heading_tabs {background: #004001;height: 50px;}
+.mn_heading_tabs ul {display: flex;flex-wrap: nowrap;list-style-type: none;text-align: center;padding-top: 3px;}
+.mn_heading_tabs ul li {display: inline-block;margin: 0 5px;vertical-align: top;color: #fff;text-align: center;font-size: 14px;line-height: 47px;width: 100%;cursor: pointer;opacity: .2;}
+
+.mn_heading_tabs ul li:hover {background: #fff;color: #000;}
+.mn_heading_tabs ul li.active {background: #fff;color: #000;opacity: 1;}
+
+.form_field_emocar {width: 100%;display: block;padding: 30px 20px;}
+.opt_2 {display: block;margin-bottom: 30px;}
+.opt_2 .opt2_heading {text-transform: uppercase;color: #004001;font-size: 16px;margin-bottom: 8px;}
+.opt_2 .form_field_radio {border: 1px solid #004001;display: inline-block;vertical-align: top;position: relative;}
+.opt_2 .form_field_radio input {position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity: 0;cursor: pointer;margin: 0;z-index: 45;}
+.opt_2 .form_field_radio label {padding: 0 20px 0 48px;display: block;line-height: 42px;color: #004001;font-size: 17px;position: relative;}
+.opt_2 .form_field_radio label:before {content: "";width: 13px;height: 13px;border-radius: 50%;border: 1px solid #004001;position: absolute;top: 50%;transform: translate(0, -50%);left: 20px;}
+
+.opt_2 .form_field_radio input:hover ~ label, .opt_2 .form_field_radio input:checked ~ label  {background: #004001;}
+.opt_2 .form_field_radio input:hover ~ label:before, .opt_2 .form_field_radio input:checked ~ label:before {border: 1px solid #fff;background: #fff;}
+.opt_2 .form_field_radio input:hover ~ label, .opt_2 .form_field_radio input:checked ~ label {color: #fff;}
+
+.formfield_box {display: block;}
+.coc_formfield {border: 1px solid #008080;}
+.coc_formfield .main_form_heading {font-size: 20px;color: #fff;line-height: 34px;background: #008080;display: block;padding-left: 15px;}
+
+.formfield_box .form_outer_cont {padding: 15px 11px;}
+.form_outer_cont {display: flex;flex-wrap: nowrap;}
+.form_outer_cont .form_sec {width: 100%;}
+.form_outer_cont .form_sec .main_frm_field { display: block; margin: 0 20px 6px; position: relative; }
+.form_outer_cont .form_sec .main_frm_field label {display: block;font-size: 14px;}
+.form_outer_cont .form_sec .main_frm_field input, .form_outer_cont .form_sec .main_frm_fieldss input, .form_outer_cont .form_sec .main_frm_fields input { display: block; font-size: 15px; width: 100%; border: 1px solid #008080; height: 28px; padding-left: 10px; }
+.print_sec {text-align: right;padding: 0 30px 22px;}
+.print_sec input {display: inline-block; background: #008080; font-size: 18px; height: 41px; border: none; padding: 0 46px; color: #fff;}
+.or_formfield {border: 1px solid #bf0000; margin-top: 30px;}
+.or_formfield .main_form_heading {font-size: 20px;color: #fff;line-height: 45px;background: #bf0000;display: block;padding-left: 15px;}
+
+.form_outer_cont .form_sec .main_frm_fields {display: block;margin: 0 20px 15px;}
+.form_outer_cont .form_sec .main_frm_fields label {display: block;font-size: 16px;}
+/* .form_outer_cont .form_sec .main_frm_fields input {display: block;font-size: 17px;width: 100%;border: 1px solid #bf0000;height: 35px;padding-left: 10px;} */
+.form_outer_cont .form_sec .main_frm_fields textarea {resize: none;display: block;font-size: 17px;width: 100%;border: 1px solid #008080;height: 35px;padding-left: 10px;}
+
+.date_issued, .date_issued1, .date_issued2 {position: absolute;bottom: 0;left: 0;right: 0;opacity: 0;}
+
+.print_or {text-align: right;padding: 0 30px 30px;}
+.print_or input {display: inline-block;background: #bf0000;font-size: 18px;height: 50px;border: none;padding: 0 80px;color: #fff;}
+
+.policy_formfield {border: 1px solid #0003ff; margin-top: 30px;}
+.policy_formfield .main_form_heading {font-size: 20px;color: #fff;line-height: 45px;background: #0003ff;display: block;padding-left: 15px;}
+
+.form_outer_cont .form_sec .main_frm_fieldss {display: block;margin: 0 20px 15px;}
+.form_outer_cont .form_sec .main_frm_fieldss label {display: block;font-size: 16px;}
+/* .form_outer_cont .form_sec .main_frm_fieldss input {display: block;font-size: 17px;width: 100%;border: 1px solid #0003ff;height: 35px;padding-left: 10px;} */
+
+.print_policy {text-align: right;padding: 0 30px 30px;}
+.print_policy input {display: inline-block;background: #0003ff;font-size: 18px;height: 50px;border: none;padding: 0 80px;color: #fff;}
+
+.submit {text-align: right;padding: 0 30px 30px;}
+.submit input {display: inline-block;background: #008001;font-size: 18px;height: 50px;border: none;padding: 0 80px;color: #fff; margin-top: 30px;}
+
+.footer ul{ padding: 0; list-style-type: none; margin: 0;}
+.footer ul li{margin-left: 20px;font-weight: bold;}
+
+#print_OR{display: none;}
+
+.paid_type_cont{ text-align:left;  padding: 15px 32px; }
+.paid_type_cont input[type="text"]{ display: block; font-size: 15px; width: 100%; border: 1px solid #008080; height: 28px; padding-left: 10px;max-width: 291px;}
+
+.check_field{display: none;margin: 5px 0 0;}
+
+.header_form{display: flex;justify-content: space-between;}
+.search_bar_cont{}
+.search_bar_cont input{display: block; width: 241px; border: 1px solid gray; font-family: inherit; padding: 5px; font-size: 15px;}
+.search_bar_cont{align-items: flex-start;}
+
+.opt_2{align-items: flex-end;}
+
+.flex_cont{display: flex;align-content: center;}
+.flex-left{align-items: flex-start;}
+.flex-right{align-items: flex-end;}
+.flex-right button{font-family: inherit; border: 1px solid #6c0; font-size: 15px; padding: 5px 8px; margin-left: 0.5rem;}

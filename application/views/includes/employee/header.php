@@ -8,12 +8,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
 
-	<title></title>
+  	<title>Emocar Brokerage Insurance</title>
 
 	<link rel="stylesheet" href="<?=base_url("assets/css/")?>style.css">
-	<link rel="stylesheet" href="<?=base_url("assets/css/")?>main_dashboard.css">
+	<link rel="stylesheet" href="<?=base_url("assets/css/")?>employee.css">
 	<link rel="stylesheet" href="<?=base_url("assets/css/")?>css/media.css">
 	<link rel="stylesheet" href="<?=base_url("assets/css/")?>css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?=base_url("assets/css/datatable.css")?>" >
+	<link rel="stylesheet" href="<?=base_url("assets/css/bootstrap.css")?>" >
 
 
 </head>

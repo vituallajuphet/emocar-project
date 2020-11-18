@@ -1,0 +1,23 @@
+{
+  "name": "emocar",
+  "version": "1.0.0",
+  "description": "emocar",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --watch src/scss -o assets/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vituallajuphet/emocar-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vituallajuphet/emocar-project/issues"
+  },
+  "homepage": "https://github.com/vituallajuphet/emocar-project#readme",
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  }
+}
