@@ -5,6 +5,7 @@ class Employee_policies extends MY_Controller {
 
 	public function index(){
 		$data["title"] 		="Employee Policies";
+		$data["page_header"] = "List of policies";
 		$this->load_employee_page('index', $data);
 	}
 
@@ -17,13 +18,12 @@ class Employee_policies extends MY_Controller {
 		$draw         = $this->input->post('draw');
 		
 		$column_order = array(
-			'emp.employee_id',
+			'trans.trans_id',
 			'trans.trans_type',
 			'trans.mb_file_no',
 			'trans.plate_no',
 			'emp.first_name',
-			'emp.location',
-			'emp.branch',
+			'trans.published_status',
 			'trans.date_issued',
 		);
 
@@ -32,7 +32,8 @@ class Employee_policies extends MY_Controller {
 		);
 		$select       = "*";
 		$where        = array(
-			'trans.status' 	=> 1,
+			'trans.status' 		=> 1,
+			'trans.fk_user_id' 	=> get_user_id(),
 		);
 		$group        = array();
 		$list         = getDataTables('tbl_transactions trans',$column_order, $select, $where, $join, $limit, $offset ,$search, $order, $group);

@@ -1,5 +1,6 @@
 <?php
 	$route = $this->router->fetch_class();
+	$userinfo = getUserData();
 ?>
 
 <div id="head_nav">
@@ -14,4 +15,12 @@
 			<li class="<?= $route == "employee_policies" ? 'active' :'' ?>"><a href="employee_policies">POLICIES</a></li>
 		</ul>
 	</nav>
+	<div class="nav_userinfo">
+		<label for="#">Date:</label>
+		<div class="usrval"><?= date("F j, Y")?></div>
+		<label for="#">Location:</label>
+		<div class="usrval"><?= $userinfo["location"]?></div>
+		<label for="#">Location:</label>
+		<div class="usrval"><?= $userinfo["branch"]?></div>
+	</div>
 </div>

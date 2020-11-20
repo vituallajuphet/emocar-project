@@ -4,23 +4,24 @@
             <!-- <span class="addemp_button">+ Add Employee</span> -->
             <!-- modal -->
              <?php
-             
+                
                 if(!empty($modal)){
                     $this->load->view("modal/{$modal}");
                 }
              ?>
+
+             <h2 class="page_header"><?= $page_header;?></h2>
             <!-- end modal -->
             <!-- start table -->
-            <table id="trans_table" class="display" >
+            <table data-tbl='datatable' id="trans_table" class="display" >
                 <thead>
                     <tr>
                         <th>Transaction ID</th>
                         <th>Transaction Type</th>
-                        <th>MV FILE NO.</th>
-                        <th>PLATE NO.</th>
+                        <th>MV File No.</th>
+                        <th>Plate No.</th>
                         <th>Processed By</th>
-                        <th>Location</th>
-                        <th>Office</th>
+                        <th>Status</th>
                         <th>Date Issued</th>
                         <th>Action</th>
                     </tr>

@@ -210,13 +210,52 @@ body {
   height: 100%;
   background: none; }
 
-header {
-  display: block; }
+.page_header {
+  font-size: 2.2rem;
+  margin: 0 0 2rem; }
+
+.nav_userinfo {
+  background: #004001;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 2rem 0 0; }
+  .nav_userinfo label {
+    margin: 0;
+    display: block; }
+  .nav_userinfo .usrval {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #d0c5c5;
+    margin-bottom: 1rem; }
 
 .profile_container {
   padding: 2rem; }
   .profile_container .headingTitle {
     font-size: 2rem; }
+
+.project_author {
+  text-align: center;
+  padding: 1rem 0;
+  color: #004001;
+  font-weight: bold; }
+
+table[data-tbl='datatable'] tbody tr.row-approved {
+  background-color: #52ca40 !important; }
+  table[data-tbl='datatable'] tbody tr.row-approved td {
+    background-color: #52ca40 !important; }
+
+table[data-tbl='datatable'] tbody tr.row-pending {
+  background-color: #fcc !important; }
+  table[data-tbl='datatable'] tbody tr.row-pending td {
+    background-color: #fcc !important; }
+
+.page-item.active .page-link {
+  background-color: #52ca40 !important; }
+
+#trans_table tbody tr td:nth-child(6) {
+  font-weight: bold; }
 
 #main {
   padding: 25px; }

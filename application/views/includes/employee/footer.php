@@ -1,8 +1,10 @@
+<div class="project_author">Emocar Brokerage Logger System Version 2.0 </div>
 </div>
 <!-- Header -->
 
   </div> <!-- End Clearfix -->
   </div> <!-- End Protect Me -->
+  
   <script>
     var base_url = "<?= base_url()?>";
   </script>
@@ -12,6 +14,7 @@
   <script src="<?=base_url("assets/")?>js/app.js"></script>
   <script src="<?= base_url("assets/")?>js/axios.js"></script>
   <script src="<?= base_url("assets/js/datatable/datatable.js")?>"></script>
+  <script src="<?= base_url("assets/js/datatable/datatable_responsive.js")?>"></script>
   <script src="<?= base_url("assets/js/bootstrap.js")?>"></script>
   <script src="<?=base_url("assets/")?>js/printjs.js"></script>
   <script type="text/javascript">

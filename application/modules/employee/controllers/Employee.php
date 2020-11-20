@@ -50,7 +50,7 @@ class Employee extends MY_Controller {
 				"or_total" => $post["or_total"],
 				"the_sum_of_pesos" => $post["the_sum_of_pesos"],
 				"status" => 1,
-				"published_status" => 1,
+				"published_status" => 0,
 				"paid_type" => $post["paid_type"],
 				"check_no" => $post["check_no"],
 			);

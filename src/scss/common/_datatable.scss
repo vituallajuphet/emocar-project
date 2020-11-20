@@ -1,0 +1,29 @@
+table[data-tbl='datatable']{
+    tbody tr.row-approved{
+        background-color: #52ca40 !important;
+
+        td{
+            background-color: #52ca40 !important;
+        }
+    }
+    tbody tr.row-pending{
+        background-color: #fcc !important;
+
+        td{
+            background-color: #fcc !important;
+        }
+    }
+}
+
+.page-item.active .page-link{
+    background-color: #52ca40!important;
+}
+
+#trans_table{
+    tbody tr {
+        td:nth-child(6){
+          font-weight: bold;
+        }
+    }
+}
+
