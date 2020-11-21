@@ -6,7 +6,7 @@ class Employee_policies extends MY_Controller {
 	public function index(){
 		$data["title"] 		="Employee Policies";
 		$data["page_header"] = "List of policies";
-		$data["modal"] = "modal";
+		$data["modal"] = "index";
 		$this->load_employee_page('index', $data);
 	}
 
@@ -20,10 +20,10 @@ class Employee_policies extends MY_Controller {
 		
 		$column_order = array(
 			'trans.trans_id',
+			'trans.received_from',
 			'trans.trans_type',
 			'trans.mb_file_no',
 			'trans.plate_no',
-			'emp.first_name',
 			'trans.published_status',
 			'trans.date_issued',
 		);

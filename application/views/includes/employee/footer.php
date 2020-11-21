@@ -23,6 +23,5 @@ $this->current_class = $this->router->fetch_class();
   echo (_user_script($this->current_class))?"\t<script type='text/javascript' src='".base_url('assets/js/'._user_script($this->current_class))."'></script>\n":'';
 ?>
 </body>
-</body>
 </html>
 <!-- End Footer -->

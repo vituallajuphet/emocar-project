@@ -38,7 +38,7 @@ button, html input[type=button], input[type=reset], input[type=submit] {
   -webkit-appearance: button;
   cursor: pointer; }
 
-input:not([type='radio']):not([type='checkbox']), textarea, select {
+input:not([type='radio']):not([type='checkbox']), textarea {
   -webkit-appearance: none; }
 
 form, label {
@@ -265,6 +265,9 @@ table[data-tbl='datatable'] tbody tr.row-pending {
 
 #trans_table_filter label {
   text-align: left !important; }
+
+.dataTable thead tr th {
+  border: 1px solid gray !important; }
 
 .modal-header {
   background: #52ca40;

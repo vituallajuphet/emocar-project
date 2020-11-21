@@ -35,3 +35,15 @@ table[data-tbl='datatable']{
 #trans_table_filter{
     label{text-align: left!important;}
 }
+
+.dataTable{
+    thead{
+        tr{
+            th{
+                border: 1px solid gray!important;
+            }   
+            
+        }
+        
+    }
+}

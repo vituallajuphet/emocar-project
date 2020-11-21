@@ -7,7 +7,6 @@ $(document).ready(function () {
         "responsive": true,
         "order": [[0, 'desc']], //Initial no order.
         "createdRow": function (row, data, dataIndex) {
-            console.log(row, data);
             if(data.published_status == 1){
                 $(row).addClass('row-approved');
             }
@@ -22,10 +21,10 @@ $(document).ready(function () {
                 }
             },
             // { "data": "trans_id" },
+            { "data": "received_from" },
             { "data": "trans_type" },
             { "data": "mb_file_no" },
             { "data": "plate_no" },
-            { "data": "first_name" },
             {
                 "data": "published_status", "render": function (data, type, row, meta) {
                     return row.published_status == 1 ? "Approved" : "Pending";
@@ -53,8 +52,9 @@ $(document).ready(function () {
         ]
     });
 
-    $(document).on("click", ".btn_view" , function(){
+    
 
+    $(document).on("click", ".btn_view" , function(){
         $("#view_policy_modal").modal();
 
         let trans_id = $(this).data("id");
@@ -108,19 +108,25 @@ $(document).ready(function () {
             else{
                 alert("something wrong!")
             }
-
         })
     })
 
-   
+    $("#datatable_sorter_select").on("change", function(){
+        trans_table.search($(this).val()).draw() ;
+    })
+
+    $(document).on("click", ".btn_edit", function (e){
+            
+        const trans_id = $(this).data("id"); 
+        
+        $("#edit_policy_modal").modal();
+        
+    })
 
     function getDateFormat(cur_date) {
         let d = new Date(cur_date);
         return `${d.getMonth()}-${d.getDate() + 1}-${d.getFullYear()}`;
     }
-
-
-
 
 })
 

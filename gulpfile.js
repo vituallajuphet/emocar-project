@@ -9,7 +9,6 @@ gulp.task('connect-sync', function() {
         });
     });
 
-
     gulp.watch('**/*.php').on('change', function () {
         browserSync.reload();
     });

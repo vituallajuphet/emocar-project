@@ -15,7 +15,7 @@ blockquote:before, blockquote:after,
 q:before, q:after {content: '';content: none;}
 table {border-collapse: collapse;border-spacing: 0;}
 button, html input[type=button], input[type=reset], input[type=submit] { -webkit-appearance: button; cursor: pointer; }
-input:not([type='radio']):not([type='checkbox']), textarea, select{-webkit-appearance: none;}
+input:not([type='radio']):not([type='checkbox']), textarea{-webkit-appearance: none;}
 form, label {-webkit-text-size-adjust: 100%;}
 mark {background-color: transparent;}
 /* end reset */
