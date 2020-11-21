@@ -100,6 +100,10 @@ $(document).ready(function () {
                 $(".dta_sum_pesos").val(dta.the_sum_of_pesos)
 
                 $("#policies_modal").modal();
+
+                const published_status = (dta.published_status == 1 ? "Approved" : "Pending")
+
+                $(".policy_status").html(published_status).addClass(published_status.toLocaleLowerCase())
             }
             else{
                 alert("something wrong!")

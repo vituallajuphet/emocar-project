@@ -10,6 +10,9 @@
       </div>
       <div class="modal-body">
         <form>
+          <div>
+              <h2 class="heading_modal ">Approval Status: <span class="policy_status">Approved</span></h2>
+          </div>
           <div class="row mt-3">
               <div class="col-md-4">
                 <div class="form-group">
