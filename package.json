@@ -18,7 +18,12 @@
   },
   "homepage": "https://github.com/vituallajuphet/emocar-project#readme",
   "dependencies": {
+    "browser-sync": "^2.26.13",
     "node-sass": "^5.0.0",
     "pug": "^3.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-connect-php": "^1.0.3"
   }
 }

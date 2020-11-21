@@ -53,49 +53,51 @@ $(document).ready(function () {
         ]
     });
 
-
     $(document).on("click", ".btn_view" , function(){
+
+        $("#view_policy_modal").modal();
 
         let trans_id = $(this).data("id");
         $(".preloader").hide();
 
-        axios.get(`${base_url}/admin_policies/get_trans_info/${trans_id}`).then(res => {
+        axios.get(`${base_url}/employee_policies/get_trans_info/${trans_id}`).then(res => {
 
             $(".preloader").hide();
+            $("#view_policy_modal input").attr("readonly","readonly")
             if(res.data.status == "success"){
                 let dta = res.data.data[0];
                 console.log(dta)
-                $(".dta_mv_file").html(dta.mb_file_no)
-                $(".dta_model_no").html(dta.model_no)
-                $(".dta_date_issued").html(dta.date_issued)
-                $(".dta_plate_no").html(dta.plate_no)
-                $(".dta_make").html(dta.make)
-                $(".dta_date_from").html(dta.date_from)
-                $(".dta_motor_no").html(dta.motor_no)
-                $(".dta_type_body").html(dta.type_of_body)
-                $(".dta_date_to").html(dta.date_to)
-                $(".dta_serial_chassis").html(dta.serial_chassis)
-                $(".dta_of_receipt").html(dta.official_receipt)
-                $(".dta_policy_no").html(dta.policy_no)
-                $(".dta_color").html(dta.color)
+                $(".dta_mv_file").val(dta.mb_file_no)
+                $(".dta_model_no").val(dta.model_no)
+                $(".dta_date_issued").val(dta.date_issued)
+                $(".dta_plate_no").val(dta.plate_no)
+                $(".dta_make").val(dta.make)
+                $(".dta_date_from").val(dta.date_from)
+                $(".dta_motor_no").val(dta.motor_no)
+                $(".dta_type_body").val(dta.type_of_body)
+                $(".dta_date_to").val(dta.date_to)
+                $(".dta_serial_chassis").val(dta.serial_chassis)
+                $(".dta_of_receipt").val(dta.official_receipt)
+                $(".dta_policy_no").val(dta.policy_no)
+                $(".dta_color").val(dta.color)
 
-                $(".dta_place").html(dta.place)
-                $(".dta_others").html('₱ '+dta.others)
-                $(".dta_date_day").html(dta.policy_day)
-                $(".dta_docs_stamp").html('₱ '+dta.pol_docs_stamp)
-                $(".dta_month").html(dta.policy_month)
-                $(".dta_lgt").html('₱'+dta.lgt)
-                $(".dta_year").html(dta.policy_year)
+                $(".dta_place").val(dta.place)
+                $(".dta_others").val('₱ '+dta.others)
+                $(".dta_date_day").val(dta.policy_day)
+                $(".dta_docs_stamp").val('₱ '+dta.pol_docs_stamp)
+                $(".dta_month").val(dta.policy_month)
+                $(".dta_lgt").val('₱'+dta.lgt)
+                $(".dta_year").val(dta.policy_year)
 
-                $(".dta_received_from").html(dta.received_from)
-                $(".dta_premium_sales").html('₱ '+dta.premium_sales)
-                $(".dta_or_misc").html('₱ '+dta.misc)
-                $(".dta_or_address").html(dta.address)
-                $(".dta_or_doc_stamp").html('₱ '+dta.docs_stamp)
-                $(".dta_or_total").html('₱ '+dta.or_total)
-                $(".dta_or_date").html(dta.or_date)
-                $(".dta_lg_tax").html('₱ '+dta.lg_tax)
-                $(".dta_sum_pesos").html(dta.the_sum_of_pesos)
+                $(".dta_received_from").val(dta.received_from)
+                $(".dta_premium_sales").val('₱ '+dta.premium_sales)
+                $(".dta_or_misc").val('₱ '+dta.misc)
+                $(".dta_or_address").val(dta.address)
+                $(".dta_or_doc_stamp").val('₱ '+dta.docs_stamp)
+                $(".dta_or_total").val('₱ '+dta.or_total)
+                $(".dta_or_date").val(dta.or_date)
+                $(".dta_lg_tax").val('₱ '+dta.lg_tax)
+                $(".dta_sum_pesos").val(dta.the_sum_of_pesos)
 
                 $("#policies_modal").modal();
             }

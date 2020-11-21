@@ -80,7 +80,6 @@ class Employee extends MY_Controller {
 				$response = ["status" => "success", "data" => $res];
 			}
 		}
-
 		echo json_encode($response);
 
 	}

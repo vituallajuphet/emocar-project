@@ -213,11 +213,7 @@
 				</div>
 			</form>
 			<div class="footer">
-            <ul>
-				<li>User: Main Branch</li> 
-				<li>Branch: Cebu City</li>
-				<li>Date: <span id="spanDate"></span></li>
-			</ul>
+	
 		</div>
 		</div>
 	</main>

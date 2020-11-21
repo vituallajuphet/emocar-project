@@ -1,14 +1,15 @@
+<?php          
+    if(!empty($modal)){
+        $this->load->view("modal/{$modal}");
+    }
+?>
+
 <div id="main">
     <div class="main_area">
         <div class="addEmployee">
             <!-- <span class="addemp_button">+ Add Employee</span> -->
             <!-- modal -->
-             <?php
-                
-                if(!empty($modal)){
-                    $this->load->view("modal/{$modal}");
-                }
-             ?>
+       
 
              <h2 class="page_header"><?= $page_header;?></h2>
             <!-- end modal -->

@@ -1,0 +1,22 @@
+.modal-header{
+    background: #52ca40;
+    color: #fff;
+    width: 100%;
+}
+
+.modal{
+    .form-control{
+        height: auto;
+        padding: 2px 10px;
+        font-weight: bold;
+    }
+    .form-group{
+        margin-bottom: 0.3rem;
+    }
+}
+
+.btn-favorate {
+    color: #fff!important;
+    background-color: #52ca40!important;
+    border-color: #52ca40!important;
+}

@@ -27,3 +27,11 @@ table[data-tbl='datatable']{
     }
 }
 
+.dataTables_length{
+    select{
+        width: 120px;
+    }
+}
+#trans_table_filter{
+    label{text-align: left!important;}
+}

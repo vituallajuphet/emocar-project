@@ -6,6 +6,7 @@ class Employee_policies extends MY_Controller {
 	public function index(){
 		$data["title"] 		="Employee Policies";
 		$data["page_header"] = "List of policies";
+		$data["modal"] = "modal";
 		$this->load_employee_page('index', $data);
 	}
 
@@ -47,7 +48,28 @@ class Employee_policies extends MY_Controller {
 		echo json_encode($list_array);
 	}
 
+	public function get_trans_info($id){
 
+		$response = ["status" => "error", "data" => []];
+
+		if(!empty($id)){
+			
+			$par["where"] = [ "trans_id" => $id, "status" => 1 ];
+			$par["join"] = [ 
+				"employees emp" => "emp.fk_user_id = trans.fk_user_id"
+			];
+
+			$res = getData("tbl_transactions trans", $par);
+
+			if(!empty($res)){
+				$response = ["status" => "success", "data" => $res];
+			}
+
+		}
+
+		echo json_encode($response);
+
+	}
 	
 
 }

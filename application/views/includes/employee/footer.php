@@ -17,11 +17,7 @@
   <script src="<?= base_url("assets/js/datatable/datatable_responsive.js")?>"></script>
   <script src="<?= base_url("assets/js/bootstrap.js")?>"></script>
   <script src="<?=base_url("assets/")?>js/printjs.js"></script>
-  <script type="text/javascript">
-
-</script>
-
-
+  <script src="<?=base_url("assets/")?>js/real_time.js"></script>
 <?php 
 $this->current_class = $this->router->fetch_class();
   echo (_user_script($this->current_class))?"\t<script type='text/javascript' src='".base_url('assets/js/'._user_script($this->current_class))."'></script>\n":'';

@@ -20,8 +20,6 @@
                 $(".preloader").show();
             })
 
-            
-
             setTimeout(() => {
                 calcHeight()
             }, 1000);

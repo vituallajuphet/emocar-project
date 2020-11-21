@@ -9,7 +9,8 @@
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
 
   	<title>Emocar Brokerage Insurance</title>
-
+	<link rel="shortcut icon" href="<?=base_url("assets/images/")?>favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?=base_url("assets/images/")?>favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="<?=base_url("assets/css/")?>style.css">
 	<link rel="stylesheet" href="<?=base_url("assets/css/")?>employee.css">
 	<link rel="stylesheet" href="<?=base_url("assets/css/")?>css/media.css">
@@ -17,8 +18,6 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?=base_url("assets/css/datatable.css")?>" >
 	<link rel="stylesheet" href="<?=base_url("assets/css/bootstrap.css")?>" >
-
-
 </head>
 	<body>
 		<div class="protect-me">

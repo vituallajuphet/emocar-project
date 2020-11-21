@@ -17,7 +17,9 @@
 	</nav>
 	<div class="nav_userinfo">
 		<label for="#">Date:</label>
-		<div class="usrval"><?= date("F j, Y")?></div>
+		<div class="usrval f20"><?= date("F j, Y")?></div>
+		<label for="#">Time:</label>
+		<div class="usrval time_div f20"></div>
 		<label for="#">Location:</label>
 		<div class="usrval"><?= $userinfo["location"]?></div>
 		<label for="#">Location:</label>
