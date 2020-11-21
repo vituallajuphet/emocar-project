@@ -9,8 +9,6 @@
         <div class="addEmployee">
             <!-- <span class="addemp_button">+ Add Employee</span> -->
             <!-- modal -->
-       
-
              <h2 class="page_header"><?= $page_header;?></h2>
             <!-- end modal -->
             <!-- start table -->

@@ -301,6 +301,14 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   background-color: #52ca40 !important;
   border-color: #52ca40 !important; }
 
+.ajs-header {
+  font-weight: bold !important; }
+
+.ajs-message {
+  border: 2px solid #fff !important;
+  color: #fff;
+  font-size: 17px; }
+
 html {
   font-size: 14px; }
 

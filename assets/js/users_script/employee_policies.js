@@ -55,18 +55,15 @@ $(document).ready(function () {
     
 
     $(document).on("click", ".btn_view" , function(){
-        $("#view_policy_modal").modal();
-
         let trans_id = $(this).data("id");
-        $(".preloader").hide();
+        $(".preloader").show();
 
         axios.get(`${base_url}/employee_policies/get_trans_info/${trans_id}`).then(res => {
-
+            $("#view_policy_modal").modal();
             $(".preloader").hide();
             $("#view_policy_modal input").attr("readonly","readonly")
             if(res.data.status == "success"){
                 let dta = res.data.data[0];
-                console.log(dta)
                 $(".dta_mv_file").val(dta.mb_file_no)
                 $(".dta_model_no").val(dta.model_no)
                 $(".dta_date_issued").val(dta.date_issued)
@@ -99,14 +96,12 @@ $(document).ready(function () {
                 $(".dta_lg_tax").val('₱ '+dta.lg_tax)
                 $(".dta_sum_pesos").val(dta.the_sum_of_pesos)
 
-                $("#policies_modal").modal();
-
                 const published_status = (dta.published_status == 1 ? "Approved" : "Pending")
 
                 $(".policy_status").html(published_status).addClass(published_status.toLocaleLowerCase())
             }
             else{
-                alert("something wrong!")
+                errorMessage("something wrong!")
             }
         })
     })
@@ -116,12 +111,70 @@ $(document).ready(function () {
     })
 
     $(document).on("click", ".btn_edit", function (e){
-            
-        const trans_id = $(this).data("id"); 
         
-        $("#edit_policy_modal").modal();
+        let trans_id = $(this).data("id");
+        $(".preloader").show();
+
+        axios.get(`${base_url}/employee_policies/get_trans_info/${trans_id}`).then(res => {
+            
+            $(".preloader").hide();
+            if(res.data.status == "success"){
+                let dta = res.data.data[0];
+                $(".dta_edit_mv_file").val(dta.mb_file_no)
+                $(".dta_edit_model_no").val(dta.model_no)
+                $(".dta_edit_date_issued").val(dta.date_issued)
+                $(".dta_edit_plate_no").val(dta.plate_no)
+                $(".dta_edit_make").val(dta.make)
+                $(".dta_edit_date_from").val(dta.date_from)
+                $(".dta_edit_motor_no").val(dta.motor_no)
+                $(".dta_edit_type_body").val(dta.type_of_body)
+                $(".dta_edit_date_to").val(dta.date_to)
+                $(".dta_edit_serial_chassis").val(dta.serial_chassis)
+                $(".dta_edit_of_receipt").val(dta.official_receipt)
+                $(".dta_edit_policy_no").val(dta.policy_no)
+                $(".dta_edit_color").val(dta.color)
+                
+                $(".dta_edit_place").val(dta.place)
+                $(".dta_edit_others").val('₱ '+dta.others)
+                $(".dta_edit_date_day").val(dta.policy_day)
+                $(".dta_edit_docs_stamp").val('₱ '+dta.pol_docs_stamp)
+                $(".dta_edit_month").val(dta.policy_month)
+                $(".dta_edit_lgt").val('₱'+dta.lgt)
+                $(".dta_edit_year").val(dta.policy_year)
+                
+                $(".dta_edit_received_from").val(dta.received_from)
+                $(".dta_edit_premium_sales").val('₱ '+dta.premium_sales)
+                $(".dta_edit_or_misc").val('₱ '+dta.misc)
+                $(".dta_edit_or_address").val(dta.address)
+                $(".dta_edit_or_doc_stamp").val('₱ '+dta.docs_stamp)
+                $(".dta_edit_or_total").val('₱ '+dta.or_total)
+                $(".dta_edit_or_date").val(dta.or_date)
+                $(".dta_edit_lg_tax").val('₱ '+dta.lg_tax)
+                $(".dta_edit_sum_pesos").val(dta.the_sum_of_pesos)
+
+                $("#edit_policy_modal").modal();
+
+                const published_status = (dta.published_status == 1 ? "Approved" : "Pending")
+
+                $(".policy_edit_status").html(published_status).addClass(published_status.toLocaleLowerCase())
+            }
+            else{
+                errorMessage("something wrong!")
+            }
+        })
         
     })
+
+    $(document).on("click", ".btn_delete", function(){
+        alertConfirm("Are you sure to delete this policy?", "Successfully Deleted!")
+    })
+    
+    // submit form edit
+    $(".form_edit_policy").submit(function (e) { 
+        e.preventDefault();
+        alertConfirm("Are you sure to update this policy information?", "Successfully Updated!")
+    });
+
 
     function getDateFormat(cur_date) {
         let d = new Date(cur_date);
