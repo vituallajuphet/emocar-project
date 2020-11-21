@@ -1,9 +1,9 @@
 
-function alertConfirm(msg,success, sa ){
+function alertConfirm(msg, confirmed ){
     alertify.confirm(msg,
     function(){
-        alertify.success(success);
-    }).setHeader("Confirmation")
+        confirmed()
+    }).setHeader("<i class='fa fa-question-circle'></i> Confirmation")
 }
 
 function successMessage(msg){

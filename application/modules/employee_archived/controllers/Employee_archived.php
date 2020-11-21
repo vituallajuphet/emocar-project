@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Employee_policies extends MY_Controller {
+class Employee_archived extends MY_Controller {
 
 	public function index(){
-		$data["title"] 		="Employee Policies";
-		$data["page_header"] = "List of policies";
+		$data["title"] 		="Archived Policies";
+		$data["page_header"] = "List of archived policies";
 		$data["modal"] = "index";
 		$this->load_employee_page('index', $data);
 	}
@@ -33,7 +33,7 @@ class Employee_policies extends MY_Controller {
 		);
 		$select       = "*";
 		$where        = array(
-			'trans.status' 		=> 1,
+			'trans.status' 		=> 0,
 			'trans.fk_user_id' 	=> get_user_id(),
 		);
 		$group        = array();
@@ -51,21 +51,27 @@ class Employee_policies extends MY_Controller {
 	public function get_trans_info($id){
 
 		$response = ["status" => "error", "data" => []];
+
 		if(!empty($id)){
+			
 			$par["where"] = [ "trans_id" => $id, "status" => 1 ];
 			$par["join"] = [ 
 				"employees emp" => "emp.fk_user_id = trans.fk_user_id"
 			];
+
 			$res = getData("tbl_transactions trans", $par);
 
 			if(!empty($res)){
 				$response = ["status" => "success", "data" => $res];
 			}
+
 		}
+
 		echo json_encode($response);
+
 	}
 
-	public function api_delete_policy (){
+	public function api_restore_policy (){
 		
 		$post 		= $this->input->post();
 		$response 	= ["status" => "error", "message" => ""];
@@ -73,7 +79,7 @@ class Employee_policies extends MY_Controller {
 		if(!empty($post)){
 			$trans_id = $post["trans_id"];
 
-			$set 	= [ "status" 	=> 0 ];
+			$set 	= [ "status" 	=> 1 ];
 			$where 	= [ "trans_id" 	=> $trans_id ];
 
 			updateData("tbl_transactions", $set, $where);

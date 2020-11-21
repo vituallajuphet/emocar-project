@@ -210,6 +210,26 @@ body {
   height: 100%;
   background: none; }
 
+.preloader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 123123;
+  display: none; }
+
+.pre_cont {
+  text-align: center;
+  font-size: 30px;
+  color: #fff;
+  top: 20%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto; }
+
 .page_header {
   font-size: 2.2rem;
   margin: 0 0 2rem; }
@@ -554,7 +574,7 @@ main {
   text-align: right;
   padding: 0 30px 22px; }
 
-.print_sec input {
+.print_sec button {
   display: inline-block;
   background: #008080;
   font-size: 18px;

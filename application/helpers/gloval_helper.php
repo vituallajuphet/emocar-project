@@ -267,6 +267,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $tabs_student = array( 
                 "home", 
                 "employee",
+                "employee_archived",
                 "employee_policies",
                 "logout",
                 "register",

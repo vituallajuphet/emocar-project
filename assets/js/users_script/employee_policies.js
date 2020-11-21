@@ -1,5 +1,27 @@
 $(document).ready(function () {
 
+    function convertDate(the_date, get_type = ""){
+        let ret_date;
+        let ddte = new Date(the_date);
+        const month = ddte.toLocaleString('default', { month: 'long' });
+
+        let res = "";
+
+        if(get_type == "month"){
+            return month;
+        }
+        else if(get_type == "day"){
+            res = ddte.getDate();
+        }
+        else if(get_type == "year"){
+            res = (ddte.getFullYear()+"").slice(-2); 
+        }
+        else{
+            res = `${month} ${ddte.getDate()}, ${ddte.getFullYear()}`;
+        }
+        return res;
+    }
+
     var trans_table = $('#trans_table').DataTable({
         "language": { "infoFiltered": "" },
         "processing": true, //Feature control the processing indicator.
@@ -66,13 +88,13 @@ $(document).ready(function () {
                 let dta = res.data.data[0];
                 $(".dta_mv_file").val(dta.mb_file_no)
                 $(".dta_model_no").val(dta.model_no)
-                $(".dta_date_issued").val(dta.date_issued)
+                $(".dta_date_issued").val(convertDate(dta.date_issued))
                 $(".dta_plate_no").val(dta.plate_no)
                 $(".dta_make").val(dta.make)
-                $(".dta_date_from").val(dta.date_from)
+                $(".dta_date_from").val(convertDate(dta.date_from))
                 $(".dta_motor_no").val(dta.motor_no)
                 $(".dta_type_body").val(dta.type_of_body)
-                $(".dta_date_to").val(dta.date_to)
+                $(".dta_date_to").val(convertDate(dta.date_to))
                 $(".dta_serial_chassis").val(dta.serial_chassis)
                 $(".dta_of_receipt").val(dta.official_receipt)
                 $(".dta_policy_no").val(dta.policy_no)
@@ -92,7 +114,7 @@ $(document).ready(function () {
                 $(".dta_or_address").val(dta.address)
                 $(".dta_or_doc_stamp").val('₱ '+dta.docs_stamp)
                 $(".dta_or_total").val('₱ '+dta.or_total)
-                $(".dta_or_date").val(dta.or_date)
+                $(".dta_or_date").val(convertDate(dta.or_date))
                 $(".dta_lg_tax").val('₱ '+dta.lg_tax)
                 $(".dta_sum_pesos").val(dta.the_sum_of_pesos)
 
@@ -148,7 +170,7 @@ $(document).ready(function () {
                 $(".dta_edit_or_address").val(dta.address)
                 $(".dta_edit_or_doc_stamp").val('₱ '+dta.docs_stamp)
                 $(".dta_edit_or_total").val('₱ '+dta.or_total)
-                $(".dta_edit_or_date").val(dta.or_date)
+                $(".dta_edit_or_date").val(convertDate(dta.or_date))
                 $(".dta_edit_lg_tax").val('₱ '+dta.lg_tax)
                 $(".dta_edit_sum_pesos").val(dta.the_sum_of_pesos)
 
@@ -166,7 +188,24 @@ $(document).ready(function () {
     })
 
     $(document).on("click", ".btn_delete", function(){
-        alertConfirm("Are you sure to delete this policy?", "Successfully Deleted!")
+        const trans_id = $(this).data("id");
+        
+        alertConfirm("Are you sure to delete this policy?" , function(){
+            let frmdata = new FormData();
+            $(".preloader").show();
+            frmdata.append("trans_id", trans_id )
+
+            axios.post(`${base_url}employee_policies/api_delete_policy/`, frmdata).then(res => {
+                $(".preloader").hide();
+                if(res.data.status == "success"){
+                    successMessage("Successfully Deleted!");
+                    trans_table.ajax.reload();
+                }
+                else{
+                    errorMessage("something wrong!")
+                }
+            })
+        })
     })
     
     // submit form edit

@@ -203,9 +203,9 @@
 					</div>
 					<!-- end -->
 					<div class="print_sec">
-						<input type="button" id="printOr" value="PRINT OR">
-						<input type="button" id="printCOC" value="PRINT COC">
-						<input type="button" id="printPolicy" value="PRINT POLICY">
+						<button id="printOr"><i class="fa fa-print"></i> PRINT OR</button>
+						<button id="printCOC"><i class="fa fa-print"></i> PRINT COC</button>
+						<button id="printPolicy"><i class="fa fa-print"></i> PRINT POLICY</button>
 					</div>
 				   </div>
 				<div class="submit">
