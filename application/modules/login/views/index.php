@@ -18,6 +18,7 @@
 	<body>
 		<div class="protect-me">
 		<div class="clearfix">
+		<div id="underdiv">Note: The website is under development</div>
 
 <!-- Header -->
 <main>

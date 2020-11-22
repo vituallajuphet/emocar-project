@@ -230,6 +230,16 @@ body {
   right: 0;
   margin: 0 auto; }
 
+#underdiv {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1234;
+  background: red;
+  text-align: center;
+  font-size: 20px;
+  color: #fff; }
+
 .page_header {
   font-size: 2.2rem;
   margin: 0 0 2rem; }
