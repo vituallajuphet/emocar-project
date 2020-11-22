@@ -1,10 +1,9 @@
 todos:
 - fix transction
 - print
-- edit transaction
 - approved transaction
 - modifiy admin user
-- sign function
 - clear fields in switching tabs
 - dynamic profile
 - update profile functionality
+- sign function
