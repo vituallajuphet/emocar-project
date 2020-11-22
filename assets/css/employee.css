@@ -307,14 +307,18 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   font-weight: bold;
   margin: 0 0 2rem; }
 
-.modal .policy_status {
+.modal .policy_status, .modal .policy_edit_status {
   font-style: italic; }
 
-.modal .policy_status.approved {
+.modal .policy_status.approved, .modal .policy_edit_status.approved {
   color: #52ca40; }
 
-.modal .policy_status.pending {
+.modal .policy_status.pending, .modal .policy_edit_status.pending {
   color: #d52e2e; }
+
+.modal .policy_edit_type {
+  font-style: italic;
+  color: #368e44; }
 
 .btn-favorate {
   color: #fff !important;

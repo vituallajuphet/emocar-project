@@ -173,6 +173,10 @@ $(document).ready(function () {
                 $(".dta_edit_or_date").val(convertDate(dta.or_date))
                 $(".dta_edit_lg_tax").val('₱ '+dta.lg_tax)
                 $(".dta_edit_sum_pesos").val(dta.the_sum_of_pesos)
+                $(".dta_edit_trans_type").val(dta.trans_type)
+                $(".dta_edit_trans_id").val(dta.trans_id)
+                $(".policy_edit_type").html(capitalize(dta.trans_type))
+
 
                 $("#edit_policy_modal").modal();
 

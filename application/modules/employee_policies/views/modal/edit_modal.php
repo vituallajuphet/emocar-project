@@ -10,8 +10,11 @@
       </div>
       <form class="form_edit_policy" method="post">
       <div class="modal-body">
+           <input type="hidden" name="trans_type" class="dta_edit_trans_type">
+           <input type="hidden" name="trans_type" class="dta_edit_trans_id">
           <div>
               <h2 class="heading_modal ">Approval Status: <span class="policy_edit_status">Approved</span></h2>
+              <h2 class="heading_modal ">Transaction Type: <span class="policy_edit_type">Approved</span></h2>
           </div>
           <div class="row mt-3">
               <div class="col-md-4">

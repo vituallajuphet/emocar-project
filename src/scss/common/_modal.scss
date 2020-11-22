@@ -17,15 +17,20 @@
         font-weight: bold;
         margin: 0 0 2rem
     }
-    .policy_status{
+    .policy_status, .policy_edit_status{
         font-style: italic;
         
     }
-    .policy_status.approved{
+    .policy_status.approved, .policy_edit_status.approved{
         color: #52ca40;
     }
-    .policy_status.pending{
+    .policy_status.pending, .policy_edit_status.pending{
         color: #d52e2e;
+    }
+
+    .policy_edit_type{
+        font-style: italic;
+        color: #368e44;
     }
 }
 

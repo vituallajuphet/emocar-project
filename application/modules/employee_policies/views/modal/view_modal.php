@@ -12,6 +12,7 @@
         <form>
           <div>
               <h2 class="heading_modal ">Approval Status: <span class="policy_status">Approved</span></h2>
+              <h2 class="heading_modal ">Transaction Type: <span class="policy_edit_type">Approved</span></h2>
           </div>
           <div class="row mt-3">
               <div class="col-md-4">
