@@ -12,6 +12,10 @@
   <script src="<?= base_url("assets/js/datatable/datatable.js")?>"></script>
   <script src="<?= base_url("assets/js/bootstrap.js")?>"></script>
 
+  <script>
+     window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+  </script>
+
   <script type="text/javascript">
     var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];       
     var tomorrow = new Date();

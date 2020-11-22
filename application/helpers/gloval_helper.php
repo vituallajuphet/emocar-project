@@ -329,6 +329,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     }
 
+    function is_ajaxs(){
+        if(empty($_SERVER["HTTP_X_REQUESTED_WITH"])){
+            show_404();
+        }else{
+           return true;
+        }
+    }
+
     function encrypt_data(){
 
         $plaintext = "test";

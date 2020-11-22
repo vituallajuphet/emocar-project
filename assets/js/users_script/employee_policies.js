@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
     function convertDate(the_date, get_type = ""){
@@ -144,34 +145,34 @@ $(document).ready(function () {
                 let dta = res.data.data[0];
                 $(".dta_edit_mv_file").val(dta.mb_file_no)
                 $(".dta_edit_model_no").val(dta.model_no)
-                $(".dta_edit_date_issued").val(dta.date_issued)
+                $(".dta_edit_date_issued").val(convertDate(dta.date_issued))
                 $(".dta_edit_plate_no").val(dta.plate_no)
                 $(".dta_edit_make").val(dta.make)
-                $(".dta_edit_date_from").val(dta.date_from)
+                $(".dta_edit_date_from").val(convertDate(dta.date_from))
                 $(".dta_edit_motor_no").val(dta.motor_no)
                 $(".dta_edit_type_body").val(dta.type_of_body)
-                $(".dta_edit_date_to").val(dta.date_to)
+                $(".dta_edit_date_to").val(convertDate(dta.date_to))
                 $(".dta_edit_serial_chassis").val(dta.serial_chassis)
                 $(".dta_edit_of_receipt").val(dta.official_receipt)
                 $(".dta_edit_policy_no").val(dta.policy_no)
                 $(".dta_edit_color").val(dta.color)
                 
                 $(".dta_edit_place").val(dta.place)
-                $(".dta_edit_others").val('₱ '+dta.others)
+                $(".dta_edit_others").val(dta.others)
                 $(".dta_edit_date_day").val(dta.policy_day)
-                $(".dta_edit_docs_stamp").val('₱ '+dta.pol_docs_stamp)
+                $(".dta_edit_docs_stamp").val(dta.pol_docs_stamp)
                 $(".dta_edit_month").val(dta.policy_month)
-                $(".dta_edit_lgt").val('₱'+dta.lgt)
+                $(".dta_edit_lgt").val(dta.lgt)
                 $(".dta_edit_year").val(dta.policy_year)
                 
                 $(".dta_edit_received_from").val(dta.received_from)
-                $(".dta_edit_premium_sales").val('₱ '+dta.premium_sales)
-                $(".dta_edit_or_misc").val('₱ '+dta.misc)
+                $(".dta_edit_premium_sales").val(dta.premium_sales)
+                $(".dta_edit_or_misc").val(+dta.misc)
                 $(".dta_edit_or_address").val(dta.address)
-                $(".dta_edit_or_doc_stamp").val('₱ '+dta.docs_stamp)
-                $(".dta_edit_or_total").val('₱ '+dta.or_total)
+                $(".dta_edit_or_doc_stamp").val(dta.docs_stamp)
+                $(".dta_edit_or_total").val(dta.or_total)
                 $(".dta_edit_or_date").val(convertDate(dta.or_date))
-                $(".dta_edit_lg_tax").val('₱ '+dta.lg_tax)
+                $(".dta_edit_lg_tax").val(dta.lg_tax)
                 $(".dta_edit_sum_pesos").val(dta.the_sum_of_pesos)
                 $(".dta_edit_trans_type").val(dta.trans_type)
                 $(".dta_edit_trans_id").val(dta.trans_id)
@@ -206,7 +207,7 @@ $(document).ready(function () {
                     trans_table.ajax.reload();
                 }
                 else{
-                    errorMessage("something wrong!")
+                    errorMessage("Something wrong!")
                 }
             })
         })
@@ -215,7 +216,23 @@ $(document).ready(function () {
     // submit form edit
     $(".form_edit_policy").submit(function (e) { 
         e.preventDefault();
-        alertConfirm("Are you sure to update this policy information?", "Successfully Updated!")
+        const frm = $(".form_edit_policy");
+        let frmdata = new FormData(frm[0]);
+        alertConfirm("Are you sure to update this policy?" , function(){
+            
+            $(".preloader").show();
+            axios.post(`${base_url}employee_policies/api_update_policy/`, frmdata).then(res => {
+               $(".preloader").hide();
+                if(res.data.status == "success"){
+                    $("#edit_policy_modal").modal("hide");
+                    successMessage("Successfully Updated!");
+                    trans_table.ajax.reload();
+                }
+                else{
+                    errorMessage("Something wrong!")
+                }
+            })
+        })
     });
 
 
