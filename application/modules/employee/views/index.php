@@ -24,7 +24,6 @@
 						</div>
 					</div>
 					<div class="search_bar_cont">
-						<form action="" class="search_form" method="post" >
 							<div>					
 								<label for="">Search</label>
 								<div class="flex_cont">
@@ -36,7 +35,6 @@
 									</div>	
 								</div>							
 							</div>
-						</form>
 					</div>
 				</div>
 				<div class="formfield_box coc_formfield">
