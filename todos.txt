@@ -7,3 +7,4 @@ todos:
 - dynamic profile 
 - update profile functionality
 - sign function
+- validation sa transaction

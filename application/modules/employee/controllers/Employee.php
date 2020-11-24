@@ -57,8 +57,20 @@ class Employee extends MY_Controller {
 		}
 		
 		$res = insertData("tbl_transactions", $data);
+
+		swal_data("Saved Successfully!");
+		redirect(base_url("employee"));
 	
 	}
+
+	private function is_transaction_exists ($off_rec){
+			
+		$par ["where"] =" official_receipt = '$off_rec'";
+		$res = getData("tbl_transactions", $par);
+	
+		return $res;
+	}
+
 
 	public function search_policy (){
 		
@@ -71,7 +83,6 @@ class Employee extends MY_Controller {
 				$tab_value  = $_GET["tab_value"];
 
 			}
-
 
 			$par["where"] = " (trans.mb_file_no = '$search_val' OR trans.plate_no = '$search_val') AND trans_type = '$tab_value'";
 
@@ -91,6 +102,23 @@ class Employee extends MY_Controller {
 			}
 
 			echo json_encode($response);
+		}
+	}
+
+	public function api_check_transaction($off_rec){
+		
+		if(is_ajaxs()){
+
+			$resp = ["status"=> "error", "message" => ""];
+
+			if($this->is_transaction_exists($off_rec)){
+				$resp = ["status"=> "error", "message" => "Transaction already recorded. Please contact the administrator!"];
+			}else{
+				$resp = ["status"=> "success", "message" => ""];
+			}
+
+			echo json_encode($resp);
+
 		}
 
 	}

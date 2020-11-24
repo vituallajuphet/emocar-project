@@ -2,6 +2,7 @@
 $(document).ready(function(){
 
     function convertDate(the_date, get_type = ""){
+
         let ret_date;
         let ddte = new Date(the_date);
         const month = ddte.toLocaleString('default', { month: 'long' });
@@ -11,24 +12,35 @@ $(document).ready(function(){
         if(get_type == "month"){
             return month;
         }
-
         else if(get_type == "day"){
             res = ddte.getDate();
         }
-
         else if(get_type == "year"){
             res = (ddte.getFullYear()+"").slice(-2);
-            
         }
         else{
             res = `${month} ${ddte.getDate()}, ${ddte.getFullYear()}`;
         }
-
         return res;
     }
 
     $("#search_bar").on("keyup change", function(){
         let search_val = $(this).val();
+    })
+
+    $("input[name='official_receipt']").on("keyup change", function(){
+        const or_value = $(this).val();
+        const self = $(this);
+
+        if(or_value !== "" && or_value !== undefined){
+            axios.get(`${base_url}employee/api_check_transaction/${or_value}`).then(res => {
+                
+                if(res.data.status == "error"){
+                    errorMessage(res.data.message)
+                    setTimeout(() => { self.val("")}, 1000);
+                }
+            })
+        }
     })
 
     function search_process (search_val, show_err = false, tab_value=""){

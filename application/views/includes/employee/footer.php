@@ -24,6 +24,15 @@
      window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   </script>
 <?php 
+
+if(!empty($this->session->flashdata("flash_data"))){ 
+  $fdta = $this->session->flashdata("flash_data");  
+?>
+  <script>
+      swalMessage("<?= $fdta['message']?>", "<?= $fdta['err']?>")
+  </script>
+<?php }
+
 $this->current_class = $this->router->fetch_class();
   echo (_user_script($this->current_class))?"\t<script type='text/javascript' src='".base_url('assets/js/'._user_script($this->current_class))."'></script>\n":'';
 ?>

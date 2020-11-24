@@ -8,9 +8,17 @@ header figure {background: #fff;padding: 20px 15px;margin-right: 1px;}
 
 nav ul {margin: 0;padding: 0;list-style-type: none;}
 nav ul li {display: block;}
-nav ul li a {display: block;padding: 10px 20px;font-size: 16px;font-weight: 300;color: #fff;margin: 1px 0;}
+nav ul li a {display: block;padding: 10px 20px;font-size: 16px;font-weight: 300;color: #fff;margin: 1px 0;
+    &:hover{
+        text-decoration: none;
+        font-weight: bold;
+        color: #fff;
+    }
+}
 nav ul li a:hover {background: #004001;}
 nav ul li.active a {background: #004001;}
+
+
 
 #dash_right_info {width: calc(100% - 250px);margin-left: 250px;}
 .dash_intro {text-align: right;height: 55px;border-bottom: 1px solid #008001;padding-right: 20px;position: relative;}

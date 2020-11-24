@@ -76,6 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $ci = & get_instance();
         $ci->session->set_flashdata("flash_data", array( "err"=>$err, "message" => $msg));
     }
+    
 
     function get_logged_user($typ = "array"){
         $ci = & get_instance();
