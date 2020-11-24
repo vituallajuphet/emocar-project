@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2020 at 09:42 AM
+-- Generation Time: Nov 24, 2020 at 02:37 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -99,10 +99,11 @@ CREATE TABLE `tbl_transactions` (
 --
 
 INSERT INTO `tbl_transactions` (`trans_id`, `fk_user_id`, `trans_type`, `trans_option`, `mb_file_no`, `plate_no`, `motor_no`, `serial_chassis`, `policy_no`, `model_no`, `make`, `type_of_body`, `official_receipt`, `color`, `place`, `date_issued`, `date_from`, `date_to`, `others`, `pol_docs_stamp`, `lgt`, `policy_day`, `policy_month`, `policy_year`, `received_from`, `address`, `or_date`, `premium_sales`, `docs_stamp`, `lg_tax`, `misc`, `or_total`, `the_sum_of_pesos`, `status`, `published_status`, `paid_type`, `check_no`) VALUES
-(2, 2, 'motorcycle', 'StrongHold', '55555', '234123', 'Bob', 'Petey', '1234566', 'honda', 'Marion', 'Peter', 'Uy', 'Matt', 'lapu lapu', '2020-11-07', '2020-11-07', '2121-11-07', 0, 0, 0, '7', 'November', '2020', 'Juan de cruz', '162 Little Embers Court', '2020-11-08', 560, 200, 200, 290, 1250, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Cash', ''),
-(3, 2, 'motorcycle', 'StrongHold', '33333', 'gds123', 'Bob', 'Petey', '6123782', 'honda', 'Marion', 'Peter', 'Uy', 'Matt', 'manila', '2020-11-07', '2020-11-07', '2121-11-07', 0, 0, 0, '7', 'November', '2020', 'Allan Doe', '162 Little Embers Court', '2020-11-07', 222, 0, 0, 0, 0, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Cash', ''),
-(4, 2, 'motorcycle', 'StrongHold', '1234566', '555123', 'Bob', 'Petey', '51235612', 'honda', 'Marion', 'Peter', 'Uy', 'Matt', 'cagayan', '2020-11-07', '2020-11-07', '2021-11-06', 123, 22, 22, '7', 'November', '2020', 'John Doe', '162 Little Embers Court', '2020-11-07', 222, 555, 5, 4, 0, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Cash', ''),
-(5, 2, 'motorcycle', 'StrongHold', '22222', 'Petey', 'Anna', 'Marion', '6123123', '123123', 'Holly', 'Bob', 'Leonardo', 'Kerry', 'Petey', '1970-01-01', '1970-01-01', '1970-01-01', 0, 0, 0, 'Peter', 'Anna', 'Anna', 'Anna Diaz', 'test address', '2020-11-07', 0, 0, 0, 0, 0, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Check', '123578900');
+(2, 2, 'motorcycle', 'StrongHold', '55555', '234123', 'test', 'Petey', '1234566', 'honda', 'Marion', 'Peter', '1111', 'Matt', 'lapu lapu', '2020-11-07', '2020-11-07', '2121-11-07', 0, 0, 0, '7', 'November', '2020', 'Juan de cruz', '162 Little Embers Court', '2020-11-08', 560, 200, 200, 290, 1250, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Cash', ''),
+(3, 2, 'motorcycle', 'StrongHold', '33333', 'gds123', 'Bob', 'Petey', '6123782', 'honda', 'Marion', 'Peter', '2222', 'Matt', 'manila', '2020-11-07', '2020-11-07', '2121-11-07', 0, 0, 0, '7', 'November', '2020', 'Allan Doe', '162 Little Embers Court', '2020-11-07', 222, 0, 0, 0, 0, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Cash', ''),
+(4, 2, 'motorcycle', 'StrongHold', '1234566', '555123', 'Bob', 'Petey', '51235612', 'honda', 'Marion', 'Peter', '3333', 'Matt', 'cagayan', '2020-11-07', '2020-11-07', '2021-11-06', 123, 22, 22, '7', 'November', '2020', 'John Doe', '162 Little Embers Court', '2020-11-07', 222, 555, 5, 4, 0, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Cash', ''),
+(5, 2, 'motorcycle', 'StrongHold', '22222', 'Petey', 'Anna', 'Marion', '6123123', '123123', 'Holly', 'Bob', '123456', 'Kerry', 'Petey', '1970-01-01', '1970-01-01', '1970-01-01', 0, 0, 0, 'Peter', 'Anna', 'Anna', 'Anna Diaz', 'test address', '2020-11-07', 0, 0, 0, 0, 0, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Check', '123578900'),
+(6, 2, 'motorcycle', 'StrongHold', '51231', '11123123', '123123', '23123', '5123123', '56123', 'BMW', 'test body1', '4444', 'red', 'cebu', '2020-11-24', '2020-11-24', '2021-11-24', 200, 200, 200, '24', 'November', '2020', 'John Prats', 'dalaguete', '2020-11-24', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '0', 'Check', '123123123');
 
 -- --------------------------------------------------------
 
@@ -194,7 +195,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `tbl_transactions`
 --
 ALTER TABLE `tbl_transactions`
-  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
