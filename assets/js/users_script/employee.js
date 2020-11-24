@@ -29,15 +29,15 @@ $(document).ready(function(){
 
     $("#search_bar").on("keyup change", function(){
         let search_val = $(this).val();
-
     })
 
-    function search_process (search_val, show_err = false){
+    function search_process (search_val, show_err = false, tab_value=""){
+        if( (search_val != "" && search_val != undefined) &&
+            tab_value != "" && tab_value != undefined){
 
+            const url_value = `?search_val=${search_val}&tab_value=${tab_value}`;
 
-        if(search_val != "" && search_val != undefined){
-
-            axios.get(`${base_url}/employee/search_policy/${search_val}`).then(res => {
+            axios.get(`${base_url}employee/search_policy${url_value}`).then(res => {
                 
                 if(res.data.status == "success"){
                     let dta = res.data.data[0];
@@ -85,7 +85,7 @@ $(document).ready(function(){
                     $(".hidden_trans_id").val(0)
 
                     if(show_err){
-                        alert("Search not found!")
+                        errorMessage("Search not found!")
                     }
                 }   
 
@@ -156,7 +156,6 @@ $(document).ready(function(){
         else{
             alert("Please search a policy first!")
         }
-
         
     })
 
@@ -180,13 +179,14 @@ $(document).ready(function(){
     $(".buttonSearch").click(function(){
         
         const search_val = $("#search_bar").val();
+        const tab_value = $(".trans_type").val();
 
         if(search_val == "" || search_val == undefined){
             alert("Please input the search field...")
             return;
         }
         
-        search_process(search_val, true)
+        search_process(search_val, true, tab_value);
 
     })
 

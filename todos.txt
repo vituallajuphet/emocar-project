@@ -3,7 +3,7 @@ todos:
 - print
 - approved transaction
 - modifiy admin user
-- clear fields in switching tabs
-- dynamic profile
+- clear fields in switching tabs - DONE
+- dynamic profile 
 - update profile functionality
 - sign function

@@ -11,7 +11,7 @@ function successMessage(msg){
 }
 
 function errorMessage(msg){
-    alertify.error('Error message');
+    alertify.error(msg);
 }
 
 function capitalize(txt){

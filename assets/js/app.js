@@ -87,9 +87,18 @@ $(document).ready(function(){
 
         if(textline == "MOTORCYCLE (MC)"){
             $(".trans_type").val("motorcycle");
+            $('#or_prem_sales').val('250');
+            $('#or_docs_stamp').val('100');
+            $('#or_lg_tax').val('100');
+            $('#or_misc').val('200');
+            $('#or_total').val('650');
+            $('#or_total_text').text('SIX HUNDRED FIFTY PESOS ONLY');
+            $('#pol_others').val('200');
+            $('#pol_docs_stamp').val('200');
+            $('#pol_lgt').val('200');
         }
 
-        if(textline == 'PRIVATE CAR (UV - CAR)') {
+        else if(textline == 'PRIVATE CAR (UV - CAR)') {
             $(".trans_type").val("private");
             $('#or_prem_sales').val('560');
             $('#or_docs_stamp').val('200');
@@ -102,7 +111,7 @@ $(document).ready(function(){
             $('#pol_lgt').val('200');
         } 
 
-        if(textline == 'COMMERCIAL VEHICLE (TRUCK)') {
+        else if(textline == 'COMMERCIAL VEHICLE (TRUCK)') {
             $(".trans_type").val("commercial");
             $('#or_prem_sales').val('1200');
             $('#or_docs_stamp').val('100');
@@ -115,7 +124,7 @@ $(document).ready(function(){
             $('#pol_lgt').val('50');
         }
 
-        if(textline == 'TRAILER') {
+        else if(textline == 'TRAILER') {
             $(".trans_type").val("trialer");
             $('#or_prem_sales').val('250');
             $('#or_docs_stamp').val('250');
@@ -150,8 +159,10 @@ $(document).ready(function(){
         let val = $(this).val();
         if(val == "Check"){
             $(".check_field").show()
+            $(".check_field input").attr("required", "required")
         }else{
             $(".check_field").hide()
+            $(".check_field input").removeAttr("required")
         }
 
     })

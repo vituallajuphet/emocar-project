@@ -520,7 +520,8 @@ main {
   line-height: 42px;
   color: #004001;
   font-size: 17px;
-  position: relative; }
+  position: relative;
+  margin-bottom: 0; }
 
 .opt_2 .form_field_radio label:before {
   content: "";
@@ -709,7 +710,8 @@ main {
 
 .paid_type_cont {
   text-align: left;
-  padding: 15px 32px; }
+  padding: 15px 32px;
+  font-size: 17px; }
 
 .paid_type_cont input[type="text"] {
   display: block;
@@ -719,6 +721,10 @@ main {
   height: 28px;
   padding-left: 10px;
   max-width: 291px; }
+
+#paid_type_cash {
+  margin-right: 15px;
+  display: inline-block; }
 
 .check_field {
   display: none;

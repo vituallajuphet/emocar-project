@@ -60,27 +60,38 @@ class Employee extends MY_Controller {
 	
 	}
 
-	public function search_policy ($search_val){
-	
-		$response = ["status" => "error", "data" => []];
+	public function search_policy (){
+		
+		if(is_ajaxs()){
+			$response = ["status" => "error", "data" => []];
 
-		$par["where"] = " trans.mb_file_no = '$search_val' OR trans.plate_no = '$search_val'";
+			if(!empty($_GET)){
 
-		if(isset($_GET["search_by_id"])){
-			$par["where"] = " trans.trans_id = $search_val";
-		}
+				$search_val = $_GET["search_val"];
+				$tab_value  = $_GET["tab_value"];
 
-		if(!empty($search_val)){
-			
-			$par["join"] = [ 
-				"employees emp" => "emp.fk_user_id = trans.fk_user_id"
-			];
-			$res = getData("tbl_transactions trans", $par);
-			if(!empty($res)){
-				$response = ["status" => "success", "data" => $res];
 			}
+
+
+			$par["where"] = " (trans.mb_file_no = '$search_val' OR trans.plate_no = '$search_val') AND trans_type = '$tab_value'";
+
+			if(isset($_GET["search_by_id"])){
+				$par["where"] = " trans.trans_id = $search_val";
+			}
+
+			if(!empty($search_val) ){
+				
+				$par["join"] = [ 
+					"employees emp" => "emp.fk_user_id = trans.fk_user_id"
+				];
+				$res = getData("tbl_transactions trans", $par);
+				if(!empty($res)){
+					$response = ["status" => "success", "data" => $res];
+				}
+			}
+
+			echo json_encode($response);
 		}
-		echo json_encode($response);
 
 	}
 
