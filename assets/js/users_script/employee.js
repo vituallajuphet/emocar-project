@@ -148,7 +148,6 @@ $(document).ready(function(){
                     $("#trans_misc").html(numberWithCommas(dta.misc));
                     $("#trans_total").html(numberWithCommas(dta.or_total));
                     
-
                     let html_elm = `<div style="font-size:18px;margin-top:35px">&check;</div>`;
 
                     if(dta.paid_type == "Check"){
