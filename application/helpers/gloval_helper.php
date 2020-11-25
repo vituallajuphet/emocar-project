@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
     }
 
-    function getUserData(){
+    function getUserData($show_pass = false){
         $ci = & get_instance();
         
         $user_id = $ci->session->userdata("user_id");
@@ -55,8 +55,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $res = getData("users_meta u_meta", $par);
         }
         
+        
+
         if(isset($res)){
-            unset($res[0]["password"]);
+            if(!$show_pass){
+                unset($res[0]["password"]);
+            }
         }
 
         return $res[0];

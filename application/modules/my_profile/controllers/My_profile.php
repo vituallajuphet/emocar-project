@@ -22,13 +22,14 @@ class My_profile extends MY_Controller {
 				if(!$this->validate_password($post)){
 					$response 	= ["status" => "error", "message" => "Incorrect Password!"];
 				}
+
 				else{
 					$user_id = $post->user_id;
 					$set 	 = array(
-						"first_name"	=> $post->fname,
-						"middle_name"	=> $post->mname,
-						"last_name"		=> $post->lname,
-						"address"		=> $post->address,
+						"first_name"	=> ucfirst($post->fname),
+						"middle_name"	=> ucfirst($post->mname),
+						"last_name"		=> ucfirst($post->lname),
+						"address"		=> ucfirst($post->address),
 						"birth_date"	=> $post->bday,
 						"gender"		=> $post->gender,
 					);
@@ -37,6 +38,15 @@ class My_profile extends MY_Controller {
 					$tlbname = ($post->user_type == 2 ) ? "employees" : "user_meta";
 
 					updateData($tlbname, $set, $where);
+
+					$set	= [
+						"username" => $post->username, 
+						"password" => password_hash($post->con_password, PASSWORD_DEFAULT)
+					];
+					$where	= array("user_id" => $user_id);
+					updateData("users", $set, $where);
+
+					$response 	= ["status" => "success", "message" => "Updated Successfully!"];
 				}
 			}
 			
@@ -47,6 +57,9 @@ class My_profile extends MY_Controller {
 
 	private function validate_password($post){
 		
+		$userdata = getUserData(true);
+		return (password_verify($post->password, $userdata["password"]));
+
 	}
 
 	public function get_profile_info(){
@@ -61,9 +74,7 @@ class My_profile extends MY_Controller {
 			}
 
 			echo json_encode($res);
-
 		}
-
 	}
 
 }

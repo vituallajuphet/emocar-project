@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2020 at 02:37 PM
+-- Generation Time: Nov 25, 2020 at 02:00 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -45,8 +45,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `fk_user_id`, `first_name`, `middle_name`, `last_name`, `address`, `birth_date`, `gender`, `location`, `branch`) VALUES
-(2, 1, 'opet', 'o', 'trest', 'test address', '2020-01-01', 'Male', 'Mandaue', 'Branch Option 3'),
-(3, 2, 'opet', 'o', 'trest', 'test address', '2020-01-01', 'Male', 'Mandaue', 'Branch Option 3');
+(2, 2, 'Opet', 'P', 'Test lastname', 'Test address 2', '2020-01-01', 'Female', 'Mandaue', 'Branch Option 3');
 
 -- --------------------------------------------------------
 
@@ -126,7 +125,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `status`, `is_logged`) VALUES
 (1, 'admin', '$2y$10$26XhmRp3LVAYyfWc968LIO9jjS.gVovO83Iiwbx7sd8ReVUIumj5O', 1, 1, 0),
-(2, 'user', '$2y$10$26XhmRp3LVAYyfWc968LIO9jjS.gVovO83Iiwbx7sd8ReVUIumj5O', 2, 1, 0);
+(2, 'user', '$2y$10$7m7oFIvna9YEqmg/Fl7H6OXJjD9HQx70pQIIDW9JoidmNssK78bhe', 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -139,6 +138,7 @@ CREATE TABLE `user_meta` (
   `fk_user_id` int(11) NOT NULL,
   `first_name` varchar(66) NOT NULL,
   `last_name` varchar(55) NOT NULL,
+  `middle_name` varchar(55) NOT NULL,
   `email` varchar(55) NOT NULL,
   `status` int(11) NOT NULL,
   `contact` varchar(55) NOT NULL,
@@ -150,8 +150,8 @@ CREATE TABLE `user_meta` (
 -- Dumping data for table `user_meta`
 --
 
-INSERT INTO `user_meta` (`user_meta_id`, `fk_user_id`, `first_name`, `last_name`, `email`, `status`, `contact`, `location`, `office`) VALUES
-(1, 1, 'admin', 'emocar', 'vitualla@gmail.com', 2, '123546566', 'Cebu', 'Office 1');
+INSERT INTO `user_meta` (`user_meta_id`, `fk_user_id`, `first_name`, `last_name`, `middle_name`, `email`, `status`, `contact`, `location`, `office`) VALUES
+(1, 1, 'admin', 'emocar', 'milde', 'vitualla@gmail.com', 2, '123546566', 'Cebu', 'Office 1');
 
 --
 -- Indexes for dumped tables

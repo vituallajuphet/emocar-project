@@ -5,7 +5,6 @@
             <form action="#" @submit.prevent="submitForm()" method="post" class="profile_form">
                 <div class="row">
                     <div class="col-md-4">
-                        <input type="hidden" v-model="user_id">
                         <label for="">First Name</label>
                         <input required name="fname" v-model="frmdata.fname" type="text" class="form-control">
                     </div>

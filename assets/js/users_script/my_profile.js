@@ -22,28 +22,35 @@ var app = new Vue({
 
             const self = this;
             
+            if(self.frmdata.con_password.length < 6){
+                errorMessage("Password must at least 6 letters!")
+                return;
+            }
+
             alertConfirm("Are you sure to update your profile?", ()=>{ 
+                $(".preloader").show();
                 axios.post(`${base_url}my_profile/update_profile`, self.frmdata).then(res => {
-                    
-                    if(!res.data.status == "success"){
+                    $(".preloader").hide();
+                    if(res.data.status == "error"){
                         errorMessage(res.data.message)
                         return;
-                    }   
-
-                    successMessage("Updated Successfully!");
+                    }else{
+                        successMessage("Updated Successfully!");
+                        self.get_userinfo();
+                    } 
 
                 }).catch(err => errorMessage("Something Wrong!"))
             });
         },
         get_userinfo(){
             const self = this;
+
             axios.get(`${base_url}my_profile/get_profile_info/`, self.frmdata).then(res => {
 
                 if(res.data.status != "success"){
-                    errorMessage("Something Wrong!")
+                    errorMessage(res.data.message)
                     return;
                 }
-
                 const dta = res.data.data;
 
                 self.frmdata.fname      = dta.first_name
@@ -55,6 +62,7 @@ var app = new Vue({
                 self.frmdata.username   = dta.username
                 self.frmdata.user_id    = dta.fk_user_id
                 self.frmdata.user_type  = dta.user_type
+                self.frmdata.password   = ""
 
             }).catch(err => errorMessage("Something Wrong!"))
         }
