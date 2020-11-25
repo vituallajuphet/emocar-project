@@ -263,10 +263,18 @@ body {
 .f20 {
   font-size: 18px; }
 
+header {
+  visibility: hidden; }
+
+#underdiv, .project_author {
+  visibility: hidden; }
+
 .profile_container {
-  padding: 2rem; }
+  padding: 2rem 3rem; }
   .profile_container .headingTitle {
     font-size: 2rem; }
+  .profile_container div[class^="col"] {
+    margin-bottom: 1rem; }
 
 .project_author {
   text-align: center;

@@ -43,14 +43,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         $res = [];
 
+        $par["join"] = ["users usr" => "usr.user_id = u_meta.fk_user_id"];
+
         if(get_user_type() == 2){
             
             $par["where"] = ["employee_id" =>  $user_id];
-            $res = getData("employees", $par);
+            $res = getData("employees u_meta", $par);
+        }
+        else{
+            $par["where"] = ["employee_id" =>  $user_id];
+            $res = getData("users_meta u_meta", $par);
+        }
+        
+        if(isset($res)){
+            unset($res[0]["password"]);
         }
 
         return $res[0];
-
     }
 
     function get_user_data($par = "user_id"){
@@ -336,6 +345,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }else{
            return true;
         }
+    }
+
+    function getJsonData(){
+
+        return json_decode(file_get_contents("php://input"));
+
     }
 
     function encrypt_data(){
