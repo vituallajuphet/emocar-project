@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2020 at 02:00 PM
+-- Generation Time: Nov 27, 2020 at 01:14 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -45,7 +45,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `fk_user_id`, `first_name`, `middle_name`, `last_name`, `address`, `birth_date`, `gender`, `location`, `branch`) VALUES
-(2, 2, 'Opet', 'P', 'Test lastname', 'Test address 2', '2020-01-01', 'Female', 'Mandaue', 'Branch Option 3');
+(2, 2, 'Opet', 'P', 'Test lastname', 'Test address 2', '2020-01-23', 'Female', 'Mandaue', 'Branch Option 3');
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `status`, `is_logged`) VALUES
 (1, 'admin', '$2y$10$26XhmRp3LVAYyfWc968LIO9jjS.gVovO83Iiwbx7sd8ReVUIumj5O', 1, 1, 0),
-(2, 'user', '$2y$10$7m7oFIvna9YEqmg/Fl7H6OXJjD9HQx70pQIIDW9JoidmNssK78bhe', 2, 1, 0);
+(2, 'user', '$2y$10$kNYPdRylGi8Nk7kxcNazu.p/O06/L.7Az9PvcfTh1Cg/lrGYX4GXy', 2, 1, 0);
 
 -- --------------------------------------------------------
 
