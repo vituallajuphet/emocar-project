@@ -12,7 +12,7 @@
 	<nav>
 		<ul>
 			<li class="<?= ($route == "admin") ? 'active' :''  ?>"><a href="admin"><i class="fa fa-users"></i> Users</a></li>
-			<li class="<?= ($route == "admin_policies") ? 'active' :''  ?>"><a href="admin_policies"><i class="fa fa-list-alt"></i> Policies</a></li>
+			<li class="<?= ($route == "admin_policies") ? 'active' :''  ?>"><a href="/admin_policies"><i class="fa fa-list-alt"></i> Policies</a></li>
 			<li><a href="#"><i class="fa fa-map"></i> Branches</a></li>
 			<li><a href="#"><i class="fa fa-map-marker"></i> Locations</a></li>
 		</ul>

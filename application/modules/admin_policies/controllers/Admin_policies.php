@@ -7,8 +7,6 @@ class Admin_policies extends MY_Controller {
 		$data["title"] 		="Admin";
 		$data["modal"] = "modal.php";
 		$this->load_page('index', $data);
-
-
 	}
 	
 	public function get_transaction_data(){

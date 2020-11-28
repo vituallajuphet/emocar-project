@@ -22,8 +22,6 @@ $(document).ready(function () {
     _init()
 
 
-
-
     var employee_table = $('#trans_table').DataTable({
         "language": { "infoFiltered": "" },
         "processing": true, //Feature control the processing indicator.
@@ -136,6 +134,7 @@ $(document).ready(function () {
             $(".preloader").hide();
             if(res.data.status == "success"){
                 let dta = res.data.data[0];
+                dta.user_type = dta.user_type == 1 ? "Administrator" : "Employee";
                 $("#view_user_modal").modal()
                 fill_fields(dta, "view");
             }
@@ -179,6 +178,8 @@ $(document).ready(function () {
             $(".preloader").hide();
             if(res.data.status == "success"){
                 let dta = res.data.data[0];
+                dta.hidden_user_type = dta.user_type;
+                dta.user_type = dta.user_type == 1 ? "Administrator" : "Employee";
                 fill_locations();
                 $("#edit_user_modal").modal()
                 fill_fields(dta, "view", "dta_edit_");
@@ -198,15 +199,15 @@ $(document).ready(function () {
             $(".preloader").show();
             axios.post(`${base_url}admin/api_update_user/`, frmdata).then(res => {
                $(".preloader").hide();
-                // if(res.data.status == "success"){
-                //     $("#edit_policy_modal").modal("hide");
-                //     successMessage("Successfully Updated!");
-                //     trans_table.ajax.reload();
-                // }
-                // else{
-                //     errorMessage("Something wrong!")
-                // }
-            }).catch(err => errorMessage("Something wrong!"))
+                if(res.data.status == "success"){
+                    $("#edit_user_modal").modal("hide");
+                    successMessage("Successfully Updated!");
+                    employee_table.ajax.reload();
+                }
+                else{
+                    errorMessage("Something wrong2")
+                }
+            }).catch(err => errorMessage("Something wrong!hwre"))
         })
 
     });
@@ -282,6 +283,31 @@ $(document).ready(function () {
         }
     })
 
+    $(".dta_edit_location").change(function(){
+
+        const loc_value = $(this).val();
+
+        if(loc_value != "" && loc_value != undefined){
+            let location = global_locations.find(loc => loc.loc_id == loc_value);
+
+            if(location != "" && location != undefined){
+                const branches = location.branches;
+
+                if(branches.length != 0){
+                    let option  = '';
+                    
+                    branches.map(brn => {
+                        option += `<option value="${brn.branch_id}">${brn.branch_name}</option>`;
+                    })
+
+                    $(".dta_edit_branches").html(option);
+                }
+            }
+        }
+    })
+
+    
+
    
     function fill_fields(dta = [], view ="view", $prefix="dta_"){
         if(dta != undefined){
@@ -294,6 +320,7 @@ $(document).ready(function () {
                 }else{
                     $(`.${$prefix}${key}`).val(dta[key]);
                 }
+                
             }
         }
         else{

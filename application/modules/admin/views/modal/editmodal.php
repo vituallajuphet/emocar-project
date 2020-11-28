@@ -11,7 +11,14 @@
         </div>
         <div class="modal-body">
                 <div class="row">
-                    <input type="hidden" class="dta_edit_user_id">
+                  <div class="col-md-4">
+                        <label for="recipient-name" class="col-form-label">User Type</label>
+                        <input readonly  type="text" class="form-control dta_edit_user_type" >
+                        <input type="hidden" name="user_type" class="dta_edit_hidden_user_type" >
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="hidden" name="user_id" class="dta_edit_user_id">
                     <div class="col-md-4">
                         <label for="recipient-name" class="col-form-label">First Name</label>
                         <input required name="first_name"  type="text" class="form-control dta_edit_first_name" >
@@ -32,7 +39,7 @@
                     </div>
                     <div class="col-md-4">
                         <label required for="recipient-name" class="col-form-label">Birth Date</label>
-                        <input  type="text" name="birth_date" class="form-control dta_edit_birth_date" >
+                        <input  type="date" name="birth_date" class="form-control dta_edit_birth_date" >
                     </div>
                 </div>
                 <div class="row">
@@ -57,11 +64,15 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label required for="recipient-name" class="col-form-label">Email Address</label>
-                        <input  type="text" name="birth_date" class="form-control dta_edit_email" >
+                        <input  type="text" name="email" class="form-control dta_edit_email" >
                     </div>
                     <div class="col-md-4">
                         <label required for="recipient-name" class="col-form-label">Contact No</label>
-                        <input  type="text" name="birth_date" class="form-control dta_edit_contact_no" >    
+                        <input  type="text" name="contact" class="form-control dta_edit_contact_no" >    
+                    </div>
+                    <div class="col-md-4">
+                        <label required for="recipient-name" class="col-form-label">Username</label>
+                        <input  type="text" name="username" class="form-control dta_edit_username" >    
                     </div>
                 </div>
         </div>

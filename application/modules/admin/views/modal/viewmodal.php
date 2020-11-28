@@ -10,6 +10,12 @@
       </div>
       <div class="modal-body">
             <div class="row">
+              <div class="col-md-4">
+                    <label for="recipient-name" class="col-form-label">User Type</label>
+                    <input readonly type="text" class="form-control dta_user_type" >
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                     <label for="recipient-name" class="col-form-label">First Name</label>
                     <input readonly type="text" class="form-control dta_first_name" >

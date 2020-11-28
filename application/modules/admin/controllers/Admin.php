@@ -44,7 +44,7 @@ class Admin extends MY_Controller {
 							"address" => ucfirst($post["address"]),
 							"birth_date" => $post["birth_year"] ."-".$post["birth_month"]. "-".$post["birth_day"],
 							"gender" => ucfirst($post["gender"]),
-							"location" => ucfirst( $post["office_location"]),
+							"location" =>  $post["office_location"],
 							"branch" => $post["branch"],
 							"email" => $post["email"],
 							"contact_no" => $post["contact"],
@@ -63,7 +63,7 @@ class Admin extends MY_Controller {
 								"email" => "example@example.com",
 								"birth_date" => $post["birth_year"] ."-".$post["birth_month"]. "-".$post["birth_day"],
 								"gender" => ucfirst($post["gender"]),
-								"location" => ucfirst( $post["office_location"]),
+								"location" =>  $post["office_location"],
 								"branch" => $post["branch"],
 								"email" => $post["email"],
 								"contact_no" => $post["contact"],
@@ -85,12 +85,23 @@ class Admin extends MY_Controller {
 		}
 	}
 
-	private function validatedUser ($username){
+	private function validatedUser ($username, $user_id = 0){
 		
+		$ret = true;
+
 		$par["where"] = ["username" => $username];
 
+		if($user_id != 0){
+			$par["where"] = ["username" => $username, "user_id !=" => $user_id];
+		}
+
 		$res = getData("users", $par);
-		return empty($res);
+
+		if(!empty($res)){
+			$ret = false;
+		}
+
+		return $ret;
 	}
 
 	public function get_employees_data(){
@@ -231,14 +242,38 @@ class Admin extends MY_Controller {
 
 		if(is_ajaxs()){
 			
-			$response = ["status" => "error", "data" => []];
-			
-			echo '<pre>';
-			print_r($_POST);
-			echo '</pre>';
-			exit;
+			$response 	= ["status" => "error", "message" => "Something Wrong!"];
+			$post 		= $this->input->post();
+			$where 	    = ["user_id" => $post["user_id"]];
+			$set 	    = array( "username" => $post["username"], "user_type" => $post["user_type"], );
 
-			// echo json_encode($response);
+			updateData("users", $set, $where);
+
+			$set = array(
+				"first_name" => ucfirst($post["first_name"]),
+				"middle_name" =>  ucfirst($post["middle_name"]),
+				"last_name" => ucfirst($post["last_name"]),
+				"address" => ucfirst($post["address"]),
+				"birth_date" => $post["birth_date"],
+				"gender" => ucfirst($post["gender"]),
+				"location" =>  $post["location"],
+				"branch" => $post["branches"],
+				"email" => $post["email"],
+				"contact_no" => $post["contact"],
+			);
+
+			$where 	    = ["fk_user_id" => $post["user_id"]];
+
+			if($post["user_type"] != 1){
+				updateData("employees",  $set, $where);
+			}
+			else{
+				updateData("user_meta",  $set, $where);
+			}
+
+			$response = ["status" => "success"];
+
+			echo json_encode($response);
 		}
 	}
 
