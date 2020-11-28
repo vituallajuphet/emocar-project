@@ -22,8 +22,8 @@
 		<label for="#">Time:</label>
 		<div class="usrval time_div f20"></div>
 		<label for="#">Location:</label>
-		<div class="usrval"><?= $userinfo["location"]?></div>
+		<div class="usrval"><?= $userinfo["location_name"]?></div>
 		<label for="#">Branch:</label>
-		<div class="usrval"><?= $userinfo["branch"]?></div>
+		<div class="usrval"><?= $userinfo["branch_name"]?></div>
 	</div>
 </div>

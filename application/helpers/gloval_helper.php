@@ -43,10 +43,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         $res = [];
 
-        $par["join"] = ["users usr" => "usr.user_id = u_meta.fk_user_id"];
+        $par["join"] = [
+            "users usr" => "usr.user_id = u_meta.fk_user_id",
+            "tbl_branches brn" => "brn.branch_id = u_meta.branch",
+            "tbl_locations loc" => "loc.loc_id = u_meta.location",
+        ];
 
         if(get_user_type() == 2){
-            
             $par["where"] = ["employee_id" =>  $user_id];
             $res = getData("employees u_meta", $par);
         }
