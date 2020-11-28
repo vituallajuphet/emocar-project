@@ -1,4 +1,4 @@
-#main {padding: 25px;}
+// #main {padding: 25px;}
 
 .addEmployee {text-align: right;}
 .addemp_button {text-align: right; font-size: 16px; display: inline-block; color: #fff; cursor: pointer; font-weight: 600; padding: 5px 12px; background: #008001; border-radius: 5px;}
@@ -22,6 +22,7 @@
 .close_pop_up {position: absolute;top: 0;right: 0;font-size: 25px;color: #000;font-weight: 600;cursor: pointer;padding: 20px;}
 .active_popup {visibility: visible; opacity: 1;}
 
+#main label {text-align: left!important;display: block;}
 
 .parent_form {display: flex; flex-wrap: nowrap;}
 .parent_form .form_box {width: 100%; margin: 0 0 0 10px; display: block;}

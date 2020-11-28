@@ -28,7 +28,7 @@
 								<label for="">Search</label>
 								<div class="flex_cont">
 									<div class="flex-left">
-										<input required type="text" id="search_bar" placeholder="Search here">
+										<input type="text" id="search_bar" placeholder="Search here">
 									</div>
 									<div class="flex-right">
 										<button class="buttonSearch" type="button">Search</button>

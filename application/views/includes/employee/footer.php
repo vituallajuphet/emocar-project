@@ -8,6 +8,7 @@
   <script src="<?=base_url("assets/")?>js/jquery-2.1.1.min.js"></script>
   <script src="<?=base_url("assets/")?>js/js_migrate.js"></script>
   <!-- <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script> -->
+  <script src="<?=base_url("assets/")?>js/alert.js"></script>
   <script src="<?=base_url("assets/")?>js/app.js"></script>
   <script src="<?= base_url("assets/")?>js/axios.js"></script>
   <script src="<?= base_url("assets/js/datatable/datatable.js")?>"></script>
@@ -16,8 +17,7 @@
   <script src="<?=base_url("assets/")?>js/printjs.js"></script>
   <script src="<?=base_url("assets/")?>js/real_time.js"></script>
   <script src="<?=base_url("assets/")?>js/alertify/alertify.js"></script>
-  <script src="<?=base_url("assets/")?>js/alert.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="<?=base_url("assets/")?>js/vue.js"></script>
    <script>
     var base_url = "<?= base_url()?>";
     window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

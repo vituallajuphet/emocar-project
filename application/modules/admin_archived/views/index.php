@@ -23,21 +23,6 @@
                         <option value="Trailer">Trailer</option>
                     </select>
                 </div>
-                <div class="col-md-3">
-                    <label for="">Sort by Location: </label>
-                    <select id="sel_sort_location"  class="form-control" id=""> </select>
-                </div>
-                <div class="col-md-3">
-                    <label for="">Sort by Branch: </label>
-                    <select id="sel_sort_branch"  class="form-control" id=""> </select>
-                </div>
-                <div class="col-md-3">
-                    <label for="">Sort by User: </label>
-                    <select id="sel_sort_user"  class="form-control" id="">
-                         <option value="AL">Alabama</option>
-                          <option value="WY">Wyoming</option>
-                    </select>
-                </div>
             </div>
 
             <table data-tbl='datatable' id="trans_table" class="display" >

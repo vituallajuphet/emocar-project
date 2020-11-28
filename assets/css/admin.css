@@ -361,9 +361,6 @@ table[data-tbl='datatable'] tbody tr.row-pending {
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   padding: 0 !important; }
 
-#main {
-  padding: 25px; }
-
 .addEmployee {
   text-align: right; }
 
@@ -485,6 +482,10 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   visibility: visible;
   opacity: 1; }
 
+#main label {
+  text-align: left !important;
+  display: block; }
+
 .parent_form {
   display: flex;
   flex-wrap: nowrap; }
@@ -566,3 +567,6 @@ table tr {
 
 .alertify .ajs-modal {
   z-index: 123123123123; }
+
+.select2-selection__rendered {
+  text-align: left !important; }

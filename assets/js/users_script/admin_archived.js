@@ -63,7 +63,7 @@ $(document).ready(function () {
             },
         ],
         "ajax": {
-            "url": base_url + "employee_archived/get_transaction_data",
+            "url": base_url + "admin_archived/get_transaction_data",
             "type": "POST"
         },
         "columnDefs": [
@@ -81,10 +81,10 @@ $(document).ready(function () {
 
         alertConfirm("Are you sure to restore this policy?" , function(){
             let frmdata = new FormData();
-            eshow(".preloader")
+           eshow(".preloader");
             frmdata.append("trans_id", trans_id )
 
-            axios.post(`${base_url}employee_archived/api_restore_policy/`, frmdata).then(res => {
+            axios.post(`${base_url}admin_archived/api_restore_policy/`, frmdata).then(res => {
                ehide(".preloader");
                 if(res.data.status == "success"){
                     successMessage("Successfully Restored!");

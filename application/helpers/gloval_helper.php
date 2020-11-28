@@ -279,6 +279,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "my_profile",
                 "admin_location",
                 "admin_branches",
+                "admin_archived",
                 "logout");
 
             $tabs_student = array( 

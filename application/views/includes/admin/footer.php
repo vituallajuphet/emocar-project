@@ -15,7 +15,8 @@
   <script src="<?=base_url("assets/")?>js/real_time.js"></script>
   <script src="<?=base_url("assets/")?>js/alertify/alertify.js"></script>
   <script src="<?=base_url("assets/")?>js/alert.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="<?=base_url("assets/")?>js/select2.js"></script>
+  <script src="<?=base_url("assets/")?>js/vue.js"></script>
    <script>
     var base_url = "<?= base_url()?>";
     window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

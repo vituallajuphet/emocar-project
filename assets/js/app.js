@@ -19,6 +19,16 @@ $(document).ready(function(){
         $('#pol_months').val(months[curr_month]);
         $('#pol_year').val(curr_year);
 
+        setCheck();
+        
+
+    }
+
+    function setCheck(){
+        setTimeout(() => {
+            $("#paid_type_check").trigger("click")
+            $("input[name='paid_type']").trigger("change");
+        }, 1000);
     }
 
     _init();
@@ -62,6 +72,7 @@ $(document).ready(function(){
 
         reset_fields();        
         _init();
+        setCheck();
 
         var textline = $(this).html();
 
@@ -139,17 +150,31 @@ $(document).ready(function(){
 
     });
 
-   
     $(".form_field_emocar").submit(function(e){
-        let con = confirm("Are you sure to save this transaction?")
         
-        if(!con){
-            e.preventDefault()
-        }
+        e.preventDefault();
+
+        let frmdata = $(".form_field_emocar").serialize();
+
+        alertConfirm("Are you sure to save this transaction?" , function(){
+            axios.post(base_url+"employee/save_transaction/", frmdata).then(res =>{
+                ehide(".preloader");
+                if(res.data.status == "success"){
+                    successMessage("Saved successfully!")
+                    reset_fields();        
+                    _init();
+                    setCheck();
+                }else{
+                    errorMessage(res.data.message);
+                }
+            }).catch(err => {ehide(".preloader");errorMessage("Something Wrong!")})
+        })
+
     })
 
     $("input[name='paid_type']").change(function(){
         let val = $(this).val();
+
         if(val == "Check"){
             $(".check_field").show()
             $(".check_field input").attr("required", "required")
