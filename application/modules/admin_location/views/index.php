@@ -1,0 +1,33 @@
+<div id="main">
+    <div class="main_area">
+        <div class="addEmployee">
+            <!-- <span class="addemp_button">+ Add Employee</span> -->
+            <!-- modal -->
+             <?php
+             
+                if(!empty($modal)){
+                    $this->load->view("modal/{$modal}");
+                }
+             ?>
+            <div class="text-right">
+                <button class="btn btn-success btn_addlocation"><i class="fa fa-plus"></i> Add Location</button>
+            </div>
+            <h2 class="page_header user_header"><?= $page_header;?></h2>
+            <!-- end modal -->
+            <!-- start table -->
+            <table id="trans_table" class="display" >
+                <thead>
+                    <tr>
+                        <th>Location ID</th>
+                        <th>Location Name</th>
+                        <th>Date Added</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                </tbody>
+            </table>
+            <!-- end -->
+        </div>
+    </div>
+</div>

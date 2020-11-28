@@ -81,7 +81,7 @@ class Admin_branches extends MY_Controller {
 				
 				$data = [
 					"fk_location_id" => $post["location"],
-					"branch_name" => $post["branch_name"],
+					"branch_name" => ucfirst($post["branch_name"]),
 					"date_added" => date("Y-m-d"),
 					"status" => 1,
 				];
@@ -131,12 +131,12 @@ class Admin_branches extends MY_Controller {
 				
 				$set = [
 					"fk_location_id" => $post["location"],
-					"branch_name" => $post["branch_name"],
+					"branch_name" => ucfirst($post["branch_name"]),
 				];
 
 				$where = ["branch_id" => $post["branch_id"]];
 				updateData("tbl_branches" ,$set, $where);
-				
+
 				$response = ["status" => "success", "message" => "Updated Successfully!"];
 
 			}
