@@ -16,7 +16,7 @@ $(document).ready(function () {
                 errorMessage("Something wrong!")
             }
 
-        }).catch(err => errorMessage("Something wrong!"))
+        }).catch(err=>{errorMessage("Something Wrong!"); ehide(".preloader");} )
 
     }
     _init()
@@ -109,9 +109,9 @@ $(document).ready(function () {
 
         alertConfirm("Are you sure to save this user?", function(){
             console.log(frmdata)
-            $(".preloader").show();
+            eshow(".preloader");
             axios.post(base_url+"admin/save_employee/", frmdata).then(res =>{
-                $(".preloader").hide();
+                 ehide(".preloader");
                 if(res.data.status == "success"){
                     successMessage("Saved successfully!")
                     $(".pop_app_add_Emp").removeClass("active_popup");
@@ -120,7 +120,7 @@ $(document).ready(function () {
                 }else{
                     errorMessage(res.data.message);
                 }
-            }).catch(err=>errorMessage("Something Wrong!") )
+            }).catch(err=>{errorMessage("Something Wrong!"); ehide(".preloader");} )
         })
     })
 
@@ -128,10 +128,10 @@ $(document).ready(function () {
 
         const user_id = $(this).data("id");
         const user_type = $(this).data("type");
-        $(".preloader").show();
+         eshow(".preloader");
         
         axios.get(`${base_url}/admin/api_get_userinfo/${user_id}?type= ${user_type}`).then(res => {
-            $(".preloader").hide();
+             ehide(".preloader");
             if(res.data.status == "success"){
                 let dta = res.data.data[0];
                 dta.user_type = dta.user_type == 1 ? "Administrator" : "Employee";
@@ -141,7 +141,7 @@ $(document).ready(function () {
             else{
                 errorMessage("Something wrong!")
             }
-        }).catch(err => { $(".preloader").hide();errorMessage("Something Wrong!")})
+        }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!")})
     })
 
     $(document).on("click",".btn_delete", function(){
@@ -151,11 +151,11 @@ $(document).ready(function () {
         
         alertConfirm("Are you sure to delete this employee" , function(){
             let frmdata = new FormData();
-            $(".preloader").show();
+             eshow(".preloader");
             frmdata.append("user_id", user_id )
 
             axios.post(`${base_url}admin/api_delete_employee/`, frmdata).then(res => {
-                $(".preloader").hide();
+                 ehide(".preloader");
                 if(res.data.status == "success"){
                     successMessage("Successfully Deleted!");
                     trans_table.ajax.reload();
@@ -163,7 +163,7 @@ $(document).ready(function () {
                 else{
                     errorMessage("Something wrong!")
                 }
-            }).catch(err => { $(".preloader").hide();errorMessage("Something Wrong!")})
+            }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!")})
         })
     })
 
@@ -172,10 +172,10 @@ $(document).ready(function () {
         const user_id = $(this).data("id");
         const user_type = $(this).data("type");
 
-        $(".preloader").show();
+         eshow(".preloader");
         
         axios.get(`${base_url}/admin/api_get_userinfo/${user_id}?type=${user_type}`).then(res => {
-            $(".preloader").hide();
+             ehide(".preloader");
             if(res.data.status == "success"){
                 let dta = res.data.data[0];
                 dta.hidden_user_type = dta.user_type;
@@ -188,7 +188,7 @@ $(document).ready(function () {
             else{
                 errorMessage("Something wrong!")
             }
-        }).catch(err => { $(".preloader").hide();errorMessage("Something Wrong!")})
+        }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!")})
     })
 
     $("#frm_update_user").submit(function (e) { 
@@ -196,9 +196,9 @@ $(document).ready(function () {
         const frm = $("#frm_update_user");
         let frmdata = new FormData(frm[0]);
         alertConfirm("Are you sure to update this employee information?" , function(){
-            $(".preloader").show();
+             eshow(".preloader");
             axios.post(`${base_url}admin/api_update_user/`, frmdata).then(res => {
-               $(".preloader").hide();
+                ehide(".preloader");
                 if(res.data.status == "success"){
                     $("#edit_user_modal").modal("hide");
                     successMessage("Successfully Updated!");
@@ -207,7 +207,7 @@ $(document).ready(function () {
                 else{
                     errorMessage("Something wrong")
                 }
-            }).catch(err => { $(".preloader").hide();errorMessage("Something Wrong!")})
+            }).catch(err => { ehide(".preloader");errorMessage("Something Wrong!")})
         })
 
     });
@@ -305,9 +305,6 @@ $(document).ready(function () {
         }
     })
 
-    
-
-   
     function fill_fields(dta = [], view ="view", $prefix="dta_"){
         if(dta != undefined){
             for (const key in dta) {            

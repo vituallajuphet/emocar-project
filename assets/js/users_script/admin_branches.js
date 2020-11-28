@@ -62,19 +62,23 @@ $(document).ready(function () {
 
         const brn_id = $(this).data("id");
 
-        $(".preloader").show();
-        
+        eshow(".preloader");
         axios.get(`${base_url}/admin_branches/api_get_branch/${brn_id}`).then(res => {
-            $(".preloader").hide();
+            ehide(".preloader")
             if(res.data.status == "success"){
                 let dta = res.data.data[0];
-
-
+                let elm = $(".dta_edit_location");
+                fill_locations(elm)
+                $(".dta_edit_branch_name").val(dta.branch_name);
+                $(".dta_edit_location").val(dta.loc_id);
+                $(".dta_edit_branch_id").val(dta.branch_id);
+                
+                mshow("#edit_branch_modal");
             }
             else{
                 errorMessage("Something Wrong!")
             }
-        }).catch(err => errorMessage(err))
+        }).catch(err => {errorMessage("Something Wrong!");ehide(".preloader");})
     })
 
     $(".btn_addbranch").on("click", function(){
@@ -90,10 +94,10 @@ $(document).ready(function () {
         
         let frmdata = $("#frm_add_branch").serialize();
 
-        alertConfirm("Are you sure to save this brancg?", function(){
-            $(".preloader").show();
+        alertConfirm("Are you sure to save this branch?", function(){
+             eshow(".preloader");
             axios.post(base_url+"admin_branches/api_save_branch/", frmdata).then(res =>{
-                $(".preloader").hide();
+                 ehide(".preloader");
                 if(res.data.status == "success"){
                     successMessage("Saved successfully!")
                     $("#add_branch_modal").modal("hide")
@@ -101,9 +105,32 @@ $(document).ready(function () {
                 }else{
                     errorMessage("Something Wrong!");
                 }
-            }).catch(err => { $(".preloader").hide();errorMessage("Something Wrong!")})
+            }).catch(err => {ehide(".preloader");errorMessage("Something Wrong!")})
         })
     })
+
+    $("#frm_edit_branch").on("submit", function(e){
+       
+        e.preventDefault();
+        
+        let frmdata = $("#frm_edit_branch").serialize();
+
+        alertConfirm("Are you sure to update this branch?", function(){
+             eshow(".preloader");
+            axios.post(base_url+"admin_branches/api_update_branch/", frmdata).then(res =>{
+                 ehide(".preloader");
+                if(res.data.status == "success"){
+                    successMessage("Updated successfully!")
+                    $("#edit_branch_modal").modal("hide")
+                    branches_table.ajax.reload();
+                }else{
+                    errorMessage("Something Wrong!");
+                }
+            }).catch(err => {ehide(".preloader");errorMessage("Something Wrong2")})
+        })
+    })
+
+    
 
     $(document).on("click",".btn_delete", function(){
 
@@ -111,11 +138,11 @@ $(document).ready(function () {
         
         alertConfirm("Are you sure to delete this branch?" , function(){
             let frmdata = new FormData();
-            $(".preloader").show();
+             eshow(".preloader");
             frmdata.append("branch_id", brn_id);
 
             axios.post(`${base_url}admin_branches/api_delete_branch/`, frmdata).then(res => {
-                $(".preloader").hide();
+                 ehide(".preloader");
                 if(res.data.status == "success"){
                     successMessage("Successfully Deleted!");
                     branches_table.ajax.reload();
@@ -123,7 +150,7 @@ $(document).ready(function () {
                 else{
                     errorMessage("Something wrong!")
                 }
-            }).catch(err => { $(".preloader").hide();errorMessage("Something Wrong!")})
+            }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!")})
         })
     })
 

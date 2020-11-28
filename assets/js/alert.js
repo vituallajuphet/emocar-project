@@ -25,3 +25,17 @@ function swalMessage(msg, err){
 function capitalize(txt){
     return txt.charAt(0).toUpperCase() + txt.slice(1)
 }
+
+function mhide(elem){
+    $(elem).modal("hide");
+}
+function mshow(elem){
+    $(elem).modal();
+}
+
+function ehide(elem){
+    $(elem).hide();
+}
+function eshow(elem){
+    $(elem).show();
+}

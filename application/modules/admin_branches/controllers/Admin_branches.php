@@ -118,5 +118,33 @@ class Admin_branches extends MY_Controller {
 			echo json_encode($response);
 		}
 	} 
+
+	public function api_update_branch (){
+
+		if(is_ajaxs()){	
+			
+			$post = $this->input->post();
+
+			$response = ["status" => "error", "message" => "Something Wrong!"];
+
+			if(!empty($post["location"]) && !empty($post["branch_name"]) && !empty($post["branch_id"])){
+				
+				$set = [
+					"fk_location_id" => $post["location"],
+					"branch_name" => $post["branch_name"],
+				];
+
+				$where = ["branch_id" => $post["branch_id"]];
+				updateData("tbl_branches" ,$set, $where);
+				
+				$response = ["status" => "success", "message" => "Updated Successfully!"];
+
+			}
+
+			echo json_encode($response);
+		}
+	} 
+
+	
 	
 }
