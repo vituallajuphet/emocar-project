@@ -186,7 +186,7 @@ $(document).ready(function () {
                 $(".policy_edit_status").html(published_status).addClass(published_status.toLocaleLowerCase())
             }
             else{
-                errorMessage("something wrong!")
+                errorMessage("Something wrong!")
             }
         })
         

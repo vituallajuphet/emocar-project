@@ -1,4 +1,3 @@
-<div class="project_author">Emocar Brokerage Logger System Version 2.0 </div>
 </div>
 <!-- Header -->
 

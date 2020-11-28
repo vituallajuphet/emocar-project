@@ -18,10 +18,10 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?=base_url("assets/css/datatable.css")?>" >
 	<link rel="stylesheet" href="<?=base_url("assets/css/bootstrap.css")?>" >
-<link rel="stylesheet" href="<?=base_url("assets/css/alertify.css")?>" >
+	<link rel="stylesheet" href="<?=base_url("assets/css/alertify.css")?>" >
 
 </head>
 	<body>
 		<div class="protect-me">
 		<div class="clearfix">
-		<div id="underdiv">Note: The website is under development</div>
+		<!-- <div id="underdiv">Note: The website is under development</div> -->

@@ -9,9 +9,10 @@
                     $this->load->view("modal/{$modal}");
                 }
              ?>
+             <h2 class="page_header"><?= $page_header;?></h2>
             <!-- end modal -->
             <!-- start table -->
-            <table id="employee_table" class="display" >
+            <table id="trans_table" class="display" >
                 <thead>
                     <tr>
                         <th>Employee ID</th>

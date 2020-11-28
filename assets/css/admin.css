@@ -242,7 +242,8 @@ body {
 
 .page_header {
   font-size: 2.2rem;
-  margin: 0 0 2rem; }
+  margin: 0 0 2rem;
+  text-align: left; }
 
 .nav_userinfo {
   background: #004001;
@@ -337,6 +338,9 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   background-color: #52ca40 !important;
   border-color: #52ca40 !important; }
 
+.modal-body {
+  text-align: left; }
+
 .ajs-header {
   font-weight: bold !important; }
 
@@ -344,6 +348,18 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   border: 2px solid #fff !important;
   color: #fff;
   font-size: 17px; }
+
+#trans_table {
+  margin-top: 20px; }
+
+.dataTable thead {
+  border: 1px solid gray !important; }
+
+.dataTables_length label {
+  text-align: left !important; }
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0 !important; }
 
 #main {
   padding: 25px; }
@@ -355,9 +371,12 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   text-align: right;
   font-size: 16px;
   display: inline-block;
-  color: #008001;
+  color: #fff;
   cursor: pointer;
-  font-weight: 600; }
+  font-weight: 600;
+  padding: 5px 12px;
+  background: #008001;
+  border-radius: 5px; }
 
 .pop_app_add_Emp {
   position: absolute;
@@ -490,3 +509,54 @@ table[data-tbl='datatable'] tbody tr.row-pending {
 
 .colm div {
   font-weight: bold !important; }
+
+#printCOC_elem {
+  display: none; }
+
+.addEmployee {
+  padding: 2rem; }
+
+table tr th {
+  text-align: left !important; }
+
+table tr {
+  text-align: left; }
+  table tr .action_btns {
+    text-align: center; }
+    table tr .action_btns a {
+      display: inline-block;
+      vertical-align: top;
+      background: green;
+      padding: 1px 7px;
+      color: #fff;
+      margin: 0 2px 3px; }
+      table tr .action_btns a:nth-child(2) {
+        background: #8888d0; }
+      table tr .action_btns a:last-child {
+        background: red; }
+      table tr .action_btns a:hover {
+        opacity: .6; }
+
+.profile_form {
+  font-size: 1.1rem;
+  margin: 3rem 0 0; }
+  .profile_form label {
+    font-weight: bold;
+    margin: 0 0 3px; }
+
+.dash_intro a {
+  color: #fff;
+  font-size: 0.9em;
+  padding: 8px;
+  background: #52ca40;
+  border-radius: 5px; }
+  .dash_intro a:hover {
+    opacity: .5; }
+
+.dash_intro a.active {
+  opacity: .5; }
+
+.footer {
+  margin: 0 0 2em; }
+  .footer ul {
+    font-size: 1.2em; }

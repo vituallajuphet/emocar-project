@@ -51,11 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $res = getData("employees u_meta", $par);
         }
         else{
-            $par["where"] = ["employee_id" =>  $user_id];
-            $res = getData("users_meta u_meta", $par);
+            $par["where"] = ["fk_user_id" =>  $user_id];
+            $res = getData("user_meta u_meta", $par);
         }
-        
-        
 
         if(isset($res)){
             if(!$show_pass){
@@ -354,6 +352,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     function getJsonData(){
 
         return json_decode(file_get_contents("php://input"));
+
+    }
+
+    function get_branches_and_location (){
+
+        $ci = & get_instance();
+        $par["select"] = "*";
+        $result = [];
+        $locations = getData("tbl_locations", $par, "obj");
+
+        if(!empty($locations)){
+            $c = 0;
+           foreach ($locations as $loc) {
+               $loc_id = $loc->loc_id;
+               $par["where"] = ["fk_location_id" => $loc_id];
+               $branches =  getData("tbl_branches", $par, "obj");
+
+               $locations[$c]->branches = [];
+
+                if(!empty($branches)){
+                    $locations[$c]->branches = $branches;
+                }
+
+               $c++;
+           }
+
+           $result = $locations;
+        }
+        return $result;
 
     }
 

@@ -1,5 +1,16 @@
+#trans_table{margin-top: 20px;}
+
 .dataTable{
+    
     thead{
         border: 1px solid gray!important;
     }
 }
+
+.dataTables_length{
+    label{
+        text-align: left!important;
+    }
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button{padding: 0!important;}

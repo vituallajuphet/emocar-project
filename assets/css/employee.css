@@ -242,7 +242,8 @@ body {
 
 .page_header {
   font-size: 2.2rem;
-  margin: 0 0 2rem; }
+  margin: 0 0 2rem;
+  text-align: left; }
 
 .nav_userinfo {
   background: #004001;
@@ -336,6 +337,9 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   color: #fff !important;
   background-color: #52ca40 !important;
   border-color: #52ca40 !important; }
+
+.modal-body {
+  text-align: left; }
 
 .ajs-header {
   font-weight: bold !important; }

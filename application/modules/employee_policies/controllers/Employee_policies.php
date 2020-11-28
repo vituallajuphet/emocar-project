@@ -68,7 +68,6 @@ class Employee_policies extends MY_Controller {
 				}
 			}
 			echo json_encode($response);
-
 		}
 	}
 
