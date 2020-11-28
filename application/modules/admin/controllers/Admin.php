@@ -220,7 +220,6 @@ class Admin extends MY_Controller {
 		}
 
 		return $result;
-
 	}
 
 	public function api_get_locations (){
@@ -280,10 +279,7 @@ class Admin extends MY_Controller {
 	public function api_delete_employee (){
 
 		if(is_ajaxs()){
-			
-			$response = ["status" => "error", "data" => []];
-		
-
+			$response = ["status" => "error", "data" => []];		
 			// echo json_encode($response);
 		}
 	}

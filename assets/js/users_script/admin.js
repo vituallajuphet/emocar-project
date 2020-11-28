@@ -16,7 +16,7 @@ $(document).ready(function () {
                 errorMessage("Something wrong!")
             }
 
-        }).catch(err => errorMessage("Something wrong!2"))
+        }).catch(err => errorMessage("Something wrong!"))
 
     }
     _init()
@@ -141,7 +141,7 @@ $(document).ready(function () {
             else{
                 errorMessage("Something wrong!")
             }
-        }).catch(err => errorMessage(err))
+        }).catch(err => { $(".preloader").hide();errorMessage("Something Wrong!")})
     })
 
     $(document).on("click",".btn_delete", function(){
@@ -163,7 +163,7 @@ $(document).ready(function () {
                 else{
                     errorMessage("Something wrong!")
                 }
-            }).catch(err => errorMessage(err))
+            }).catch(err => { $(".preloader").hide();errorMessage("Something Wrong!")})
         })
     })
 
@@ -186,9 +186,9 @@ $(document).ready(function () {
                 setTimeout(() => { fill_branches(dta.branch.branch_id) }, 500);
             }
             else{
-                errorMessage("Something wrong!2")
+                errorMessage("Something wrong!")
             }
-        }).catch(err => errorMessage(err))
+        }).catch(err => { $(".preloader").hide();errorMessage("Something Wrong!")})
     })
 
     $("#frm_update_user").submit(function (e) { 
@@ -205,9 +205,9 @@ $(document).ready(function () {
                     employee_table.ajax.reload();
                 }
                 else{
-                    errorMessage("Something wrong2")
+                    errorMessage("Something wrong")
                 }
-            }).catch(err => errorMessage("Something wrong!hwre"))
+            }).catch(err => { $(".preloader").hide();errorMessage("Something Wrong!")})
         })
 
     });
@@ -225,7 +225,6 @@ $(document).ready(function () {
         else{
             elem.html(locs);
         }
-
     }
 
     function fill_branches(brn_id){
