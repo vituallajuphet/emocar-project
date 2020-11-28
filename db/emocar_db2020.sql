@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2020 at 01:14 PM
+-- Generation Time: Nov 28, 2020 at 05:41 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -45,7 +45,55 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `fk_user_id`, `first_name`, `middle_name`, `last_name`, `address`, `birth_date`, `gender`, `location`, `branch`) VALUES
-(2, 2, 'Opet', 'P', 'Test lastname', 'Test address 2', '2020-01-23', 'Female', 'Mandaue', 'Branch Option 3');
+(2, 2, 'Opet', 'P', 'Test lastname', 'Test address 2', '2020-01-23', 'Female', '2', '5');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_branches`
+--
+
+CREATE TABLE `tbl_branches` (
+  `branch_id` int(11) NOT NULL,
+  `fk_location_id` int(11) NOT NULL,
+  `branch_name` varchar(100) NOT NULL,
+  `date_added` date NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_branches`
+--
+
+INSERT INTO `tbl_branches` (`branch_id`, `fk_location_id`, `branch_name`, `date_added`, `status`) VALUES
+(1, 1, 'Branch 1', '2020-11-28', 1),
+(2, 1, 'Branch 2', '2020-11-28', 1),
+(3, 1, 'Branch 3', '2020-11-28', 1),
+(4, 2, 'Branch 1', '2020-11-28', 1),
+(5, 2, 'Branch 2', '2020-11-28', 1),
+(6, 3, 'Branch 1', '2020-11-28', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_locations`
+--
+
+CREATE TABLE `tbl_locations` (
+  `loc_id` int(11) NOT NULL,
+  `location_name` varchar(100) NOT NULL,
+  `date_added` date NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_locations`
+--
+
+INSERT INTO `tbl_locations` (`loc_id`, `location_name`, `date_added`, `status`) VALUES
+(1, 'Cebu', '2020-11-28', 1),
+(2, 'Mandaue', '2020-11-28', 1),
+(3, 'Lapu-Lapu', '2020-11-28', 1);
 
 -- --------------------------------------------------------
 
@@ -125,7 +173,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `status`, `is_logged`) VALUES
 (1, 'admin', '$2y$10$26XhmRp3LVAYyfWc968LIO9jjS.gVovO83Iiwbx7sd8ReVUIumj5O', 1, 1, 0),
-(2, 'user', '$2y$10$kNYPdRylGi8Nk7kxcNazu.p/O06/L.7Az9PvcfTh1Cg/lrGYX4GXy', 2, 1, 0);
+(2, 'user', '$2y$10$26XhmRp3LVAYyfWc968LIO9jjS.gVovO83Iiwbx7sd8ReVUIumj5O', 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -143,15 +191,15 @@ CREATE TABLE `user_meta` (
   `status` int(11) NOT NULL,
   `contact` varchar(55) NOT NULL,
   `location` varchar(55) NOT NULL,
-  `office` varchar(55) NOT NULL
+  `branch` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_meta`
 --
 
-INSERT INTO `user_meta` (`user_meta_id`, `fk_user_id`, `first_name`, `last_name`, `middle_name`, `email`, `status`, `contact`, `location`, `office`) VALUES
-(1, 1, 'admin', 'emocar', 'milde', 'vitualla@gmail.com', 2, '123546566', 'Cebu', 'Office 1');
+INSERT INTO `user_meta` (`user_meta_id`, `fk_user_id`, `first_name`, `last_name`, `middle_name`, `email`, `status`, `contact`, `location`, `branch`) VALUES
+(1, 1, 'admin', 'Emocar', 'milde', 'vitualla@gmail.com', 2, '123546566', 'Cebu', 'Office 1');
 
 --
 -- Indexes for dumped tables
@@ -162,6 +210,18 @@ INSERT INTO `user_meta` (`user_meta_id`, `fk_user_id`, `first_name`, `last_name`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`employee_id`);
+
+--
+-- Indexes for table `tbl_branches`
+--
+ALTER TABLE `tbl_branches`
+  ADD PRIMARY KEY (`branch_id`);
+
+--
+-- Indexes for table `tbl_locations`
+--
+ALTER TABLE `tbl_locations`
+  ADD PRIMARY KEY (`loc_id`);
 
 --
 -- Indexes for table `tbl_transactions`
@@ -190,6 +250,18 @@ ALTER TABLE `user_meta`
 --
 ALTER TABLE `employees`
   MODIFY `employee_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_branches`
+--
+ALTER TABLE `tbl_branches`
+  MODIFY `branch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_locations`
+--
+ALTER TABLE `tbl_locations`
+  MODIFY `loc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_transactions`

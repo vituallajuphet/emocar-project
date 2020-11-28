@@ -139,14 +139,7 @@ $(document).ready(function(){
 
     });
 
-    $(".addemp_button").on("click", function(){
-        $(".pop_app_add_Emp").addClass("active_popup"); 
-        });
-
-    $(".close_pop_up").on("click", function(){
-        $(".pop_app_add_Emp").removeClass("active_popup"); 
-    });
-
+   
     $(".form_field_emocar").submit(function(e){
         let con = confirm("Are you sure to save this transaction?")
         

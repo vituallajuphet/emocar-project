@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-user"></i> Employee Details</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-user"></i> User Details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -45,6 +45,20 @@
                 <div class="col-md-4">
                     <label for="recipient-name" class="col-form-label">Branch</label>
                     <input readonly type="text" class="form-control dta_branch" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="recipient-name" class="col-form-label">Username</label>
+                    <input readonly type="text" class="form-control dta_username" >
+                </div>
+                <div class="col-md-4">
+                    <label for="recipient-name" class="col-form-label">Email Address</label>
+                    <input readonly type="text" class="form-control dta_email" >
+                </div>
+                <div class="col-md-4">
+                    <label for="recipient-name" class="col-form-label">Contact No.</label>
+                    <input readonly type="text" class="form-control dta_contact_no" >
                 </div>
             </div>
       </div>

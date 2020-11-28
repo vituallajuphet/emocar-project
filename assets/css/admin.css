@@ -389,7 +389,7 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   opacity: -1;
   text-align: left;
   transition: all .8s ease;
-  z-index: 123123123123; }
+  z-index: 1000; }
 
 .pop_up_inner {
   width: 700px;
@@ -560,3 +560,9 @@ table tr {
   margin: 0 0 2em; }
   .footer ul {
     font-size: 1.2em; }
+
+#add_emp_admin .form_box label {
+  margin-top: 10px !important; }
+
+.alertify .ajs-modal {
+  z-index: 123123123123; }

@@ -192,6 +192,9 @@ $(document).ready(function () {
         
     })
 
+    
+
+
     $(document).on("click", ".btn_delete", function(){
         const trans_id = $(this).data("id");
         

@@ -78,7 +78,6 @@
 										<?php
 											$curyear = date("Y");
 											for ($i=intval($curyear); $i > 1900; $i--) { 
-												
 												echo "<option value='$i'>$i</option>\n";
 											}
 										?>
@@ -86,40 +85,40 @@
 								</div>
 							</div>
 							<div class="parent_form">
-							<div class="form_box">
-								<label for="">Gender:</label>
-								<select name="gender" id="">
-									<option value="Male">Male</option>
-									<option value="Female">Female</option>
-								</select>
+								<div class="form_box">
+									<label for="">Gender:</label>
+									<select required name="gender" id="">
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
+									</select>
+								</div>
+								<div class="form_box">
+									<label for="">Type Of User:</label>
+									<select name="user_type" required id="">
+										<option value="1">Admin</option>
+										<option value="2">Employee</option>
+										<option value="3">Semi-Admin</option>
+									</select>
+								</div>
 							</div>
-							<div class="form_box">
-								<label for="">Type Of User:</label>
-								<select name="user_type" required id="">
-									<option value="Admin">Admin</option>
-									<option value="Employee">Employee</option>
-									<option value="Semi-Admin">Semi-Admin</option>
-								</select>
-							</div>
+							<div class="parent_form">
+								<div class="form_box">
+									<label for="">Email Address</label>
+									<input type="email" name="email" placeholder="Enter email address...">
+								</div>
+								<div class="form_box">
+									<label for="">Contact No.</label>
+									<input type="contact" name="contact" placeholder="Enter contact...">
+								</div>
 							</div>
 							<div class="parent_form">
 								<div class="form_box">
 									<label for="">Office Location:</label>
-									<select name="office_location" required id="">
-										<option value="Mandaue">Mandaue</option>
-										<option value="Cebu City">Cebu City</option>
-										<option value="Lapu-Lapu">Lapu-Lapu</option>
-										<option value="Medellin">Medellin</option>
-									</select>
+									<select name="office_location" class="add_location" required id=""> </select>
 								</div>
 								<div class="form_box">
 									<label for="">Branch:</label>
-									<select name="branch" required id="">
-										<option value="Branch Option 1">Branch Option 1</option>
-										<option value="Branch Option 2">Branch Option 2</option>
-										<option value="Branch Option 3">Branch Option 3</option>
-										<option value="Branch Option 4">Branch Option 4</option>
-									</select>
+									<select class="add_branch" name="branch" required id=""> </select>
 								</div>
 							</div>
 							<div class="parent_form">
@@ -129,7 +128,7 @@
 								</div>
 								<div class="form_box">
 									<label for="">Password:</label>
-									<input type="password" name="password" placeholder="Enter Password ...">
+									<input class="add_password" type="password" name="password" required placeholder="Enter Password ...">
 								</div>
 							</div>
 							<div class="form_box">

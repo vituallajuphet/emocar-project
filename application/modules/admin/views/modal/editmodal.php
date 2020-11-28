@@ -4,7 +4,7 @@
     <div class="modal-content">
        <form id="frm_update_user" method="post" action ="">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-pencil"></i> Edit Employee Details</h5>
+            <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-pencil"></i> Edit User Details</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -52,6 +52,16 @@
                         <label for="recipient-name" class="col-form-label">Branch</label>
                         <select name="branches" required class="form-control dta_edit_branches">
                         </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label required for="recipient-name" class="col-form-label">Email Address</label>
+                        <input  type="text" name="birth_date" class="form-control dta_edit_email" >
+                    </div>
+                    <div class="col-md-4">
+                        <label required for="recipient-name" class="col-form-label">Contact No</label>
+                        <input  type="text" name="birth_date" class="form-control dta_edit_contact_no" >    
                     </div>
                 </div>
         </div>

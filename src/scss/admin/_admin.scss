@@ -2,7 +2,7 @@
 
 .addEmployee {text-align: right;}
 .addemp_button {text-align: right; font-size: 16px; display: inline-block; color: #fff; cursor: pointer; font-weight: 600; padding: 5px 12px; background: #008001; border-radius: 5px;}
-.pop_app_add_Emp {position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.85);visibility: hidden;opacity: -1;text-align: left; transition: all .8s ease;z-index: 123123123123;}
+.pop_app_add_Emp {position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.85);visibility: hidden;opacity: -1;text-align: left; transition: all .8s ease;z-index: 1000;}
 .pop_up_inner {width: 700px;background: #fff;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);padding: 20px;}
 #add_emp_admin {width: 100%;display: block;}
 .addhead_emp {color: #008001;font-size: 21px;font-weight: 600;margin-bottom: 25px;border-bottom: 1px solid #808080;padding-bottom: 15px;}

@@ -20,41 +20,77 @@ class Admin extends MY_Controller {
 
 		if(is_ajaxs()){
 			$post = $this->input->post();
-			$response = ["status" => "failed"];
+			$response = ["status" => "error", "message" => "Something Wrong!"];
 
 			if(!empty($post)){
 
-				$data = array(
-					"username" => $post["first_name"],
-					"password" => password_hash($post["first_name"], PASSWORD_DEFAULT),
-					"user_type" => 2,
-					"user.status" => 1,
-					"is_logged" => 0,
-				);
-
-				$user_id = insertData("users", $data);
-
-				if($user_id){
+				if($this->validatedUser($post["username"])){
 					$data = array(
-						"fk_user_id" => $user_id,
-						"first_name" => $post["first_name"],
-						"middle_name" =>  $post["middle_name"],
-						"last_name" => $post["last_name"],
-						"address" => $post["address"],
-						"birth_date" => $post["birth_year"] ."-".$post["birth_month"]. "-".$post["birth_day"],
-						"gender" => $post["gender"],
-						"location" => $post["office_location"],
-						"branch" => $post["branch"],
+						"username" => $post["username"],
+						"password" => password_hash($post["password"], PASSWORD_DEFAULT),
+						"user_type" => $post["user_type"],
+						"status" => 1,
+						"is_logged" => 0,
 					);
+	
+					$user_id = insertData("users", $data);
+	
+					if($user_id){
+						$data = array(
+							"fk_user_id" => $user_id,
+							"first_name" => ucfirst($post["first_name"]),
+							"middle_name" =>  ucfirst($post["middle_name"]),
+							"last_name" => ucfirst($post["last_name"]),
+							"address" => ucfirst($post["address"]),
+							"birth_date" => $post["birth_year"] ."-".$post["birth_month"]. "-".$post["birth_day"],
+							"gender" => ucfirst($post["gender"]),
+							"location" => ucfirst( $post["office_location"]),
+							"branch" => $post["branch"],
+							"email" => $post["email"],
+							"contact_no" => $post["contact"],
+						);
 
-					insertData("employees",  $data)  ;
-					$response = ["status" => "success"];
+						if($post["user_type"] != 1){
+							insertData("employees",  $data);
+						}else{
+
+							$data = array(
+								"fk_user_id" => $user_id,
+								"first_name" => ucfirst($post["first_name"]),
+								"middle_name" =>  ucfirst($post["middle_name"]),
+								"last_name" => ucfirst($post["last_name"]),
+								"address" => ucfirst($post["address"]),
+								"email" => "example@example.com",
+								"birth_date" => $post["birth_year"] ."-".$post["birth_month"]. "-".$post["birth_day"],
+								"gender" => ucfirst($post["gender"]),
+								"location" => ucfirst( $post["office_location"]),
+								"branch" => $post["branch"],
+								"email" => $post["email"],
+								"contact_no" => $post["contact"],
+							);
+						
+							insertData("user_meta",  $data);
+						}
+	
+						
+						$response = ["status" => "success"];
+					}
+				}else{
+					$response = ["status" => "error", "message" => "The username is already used!"];
 				}
+
 			}
 
 			echo json_encode($response);
 		}
+	}
 
+	private function validatedUser ($username){
+		
+		$par["where"] = ["username" => $username];
+
+		$res = getData("users", $par);
+		return empty($res);
 	}
 
 	public function get_employees_data(){
@@ -64,9 +100,21 @@ class Admin extends MY_Controller {
 		$search       = $this->input->post('search');
 		$order        = $this->input->post('order');
 		$draw         = $this->input->post('draw');
+		$sort_by       = $this->input->post('sortby');
 		
+		$user_type = 2;
+		$select_table = "employees emp";
+
+		if($sort_by == "admin"){
+			$user_type = 1;
+			$select_table = "user_meta emp";
+		}
+		else if($sort_by == "semi"){
+			$user_type = 3;
+		}
+	
 		$column_order = array(
-			'emp.employee_id',
+			'emp.fk_user_id',
 			'emp.first_name',
 			'emp.middle_name',
 			'emp.last_name',
@@ -80,10 +128,12 @@ class Admin extends MY_Controller {
 		$select       = "*";
 		$where        = array(
 			'user.status' 	=> 1,
-			'user.user_type' 	=> 2,
+			'user.user_type' 	=> $user_type,
 		);
+
+
 		$group        = array();
-		$list         = getDataTables('employees emp',$column_order, $select, $where, $join, $limit, $offset ,$search, $order, $group);
+		$list         = getDataTables($select_table ,$column_order, $select, $where, $join, $limit, $offset ,$search, $order, $group);
 		
 		if(!empty($list["data"])){
 			$c = 0;
@@ -109,15 +159,25 @@ class Admin extends MY_Controller {
 	}
 
 	public function api_get_userinfo ($user_id){
-		
-		if(is_ajaxs()){
-			
+
+		if(is_ajaxs()){	
+
 			$response = ["status" => "error", "data" => []];
 			if(!empty($user_id)){
+				$user_type = $_GET["type"];
+
+				
 				$par["where"] = [ "user.user_id" => $user_id, "status" => 1 ];
+
 				$par["join"] = [ 
 					"employees emp" => "emp.fk_user_id = user.user_id"
 				];
+				if($user_type == 1){
+					$par["join"] = [ 
+						"user_meta emp" => "emp.fk_user_id = user.user_id"
+					];
+				}
+
 				$res = getData("users user", $par);
 
 				if(!empty($res)){
@@ -181,5 +241,18 @@ class Admin extends MY_Controller {
 			// echo json_encode($response);
 		}
 	}
+
+	public function api_delete_employee (){
+
+		if(is_ajaxs()){
+			
+			$response = ["status" => "error", "data" => []];
+		
+
+			// echo json_encode($response);
+		}
+	}
+
+	
 	
 }
