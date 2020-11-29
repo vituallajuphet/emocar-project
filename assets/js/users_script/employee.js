@@ -182,9 +182,20 @@ $(document).ready(function(){
 
                     $("#pcocpolicy").html(dta.policy_no);
                     $("#pcoc_or").html(dta.official_receipt);
+                    $("#pcoc_address").html(dta.address);
+                    $("#pcoc_receivedfrom").html(dta.received_from);
+                    $("#pcoc_date_issued").html(convertDate(dta.date_issued));
+                    $("#pcoc_date_from").html(convertDate(dta.date_from));
+                    $("#pcoc_date_to").html(convertDate(dta.date_to));
+                    $("#pcoc_model").html(dta.model_no);
+                    $("#pcoc_make").html(dta.make);
+                    $("#pcoc_body").html(dta.type_of_body);
+                    $("#pcoc_color").html(dta.color);
+                    $("#pcoc_mv_file").html(dta.mb_file_no);
+                    $("#pcoc_plate_no").html(dta.plate_no);
+                    $("#pcoc_serial").html(dta.serial_chassis);
+                    $("#pcoc_motor").html(dta.motor_no);
                     
-                    
-                   
                     setTimeout(() => {
                         $("#printCOC_elem").printElement();
                         $("#printCOC_elem").hide();

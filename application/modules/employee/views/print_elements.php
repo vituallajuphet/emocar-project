@@ -150,32 +150,32 @@
 <div id="printCOC_elem" style="font-size:14px;text-transform:uppercase;">
     <div style="width:720px">
         <div style="text-align:right;">
-            <div style="width:190px;text-align:left;display:inline-block;margin-top:150px;" id="pcocpolicy">123456</div>  
+            <div style="width:190px;text-align:left;display:inline-block;margin-top:150px;" id="pcocpolicy">-----</div>  
         </div>
         <div style="text-align:right;margin-top:9px;">  
-            <div id="pcocpolicy" style="width:190px;display:inline-block;text-align:left;position:relative;top:5px;"> 4232323 </div>
+            <div id="pcocpolicy" style="width:190px;display:inline-block;text-align:left;position:relative;top:5px;visibility:hidden;"> ------ </div>
         </div>
-       <div id="ppolicy_name" style="line-height:20px;margin-left:-20px;margin-top:17px;position:relative;top:-10px;">Juan dela Cruz<span id="ppolicy_address" style="display:block;">Cebu City</span></div>
+       <div id="ppolicy_name" style="line-height:20px;margin-left:-20px;margin-top:17px;position:relative;top:-10px;"><span id="pcoc_receivedfrom">Juan dela Csruz</span><span id="pcoc_address" style="display:block;">Cebu City</span></div>
        
         <div>
             <div style="text-align:right">
                 <div style="width:363px;display:inline-block;text-align:left;">
-                    <div id="ppolicy_date_issued" style="position:relative;top: -43px;" ><span style="width:185px;display:inline-block;">November 1, 2020</span><span id="ppolicy_or" style="display:inline-block">2345667</span></div>
-                    <div style="margin-top:5px;position:relative;top:-8px;" id="ppolicy_date_from"><span style="width:175px;display:inline-block;">November 1, 2020</span><span id="ppolicy_date_to" style="display:inline-block">November 1, 2021</span></div>   
+                    <div id="ppolicy_date_issued" style="position:relative;top: -43px;" ><span id="pcoc_date_issued" style="width:185px;display:inline-block;">------</span><span id="pcoc_or" style="display:inline-block">-----</span></div>
+                    <div style="margin-top:5px;position:relative;top:-8px;"><span style="width:175px;display:inline-block;" id="pcoc_date_from">-----</span><span style="display:inline-block" id="pcoc_date_to">-----</span></div>   
                 </div>
             </div>
            <div style="text-align:left;margin-left:-20px;position:relative;top:32px;">
-                <div style="display:inline-block;width:100px;" id="ppolicy_model">2014</div>
-                <div style="display:inline-block;width:165px;" id="ppolicy_make">HYUNDAI</div> 
-                <div style="display:inline-block;width:144px;" id="ppolicy_body">SUB COMPACT</div>
-                <div style="display:inline-block;width:144px;" id="ppolicy_color">RED</div>
-                <div style="display:inline-block;width:144px;" id="ppolicy_mv_file">12345-67891</div>    
+                <div style="display:inline-block;width:100px;" id="pcoc_model">-----</div>
+                <div style="display:inline-block;width:165px;" id="pcoc_make">-----</div> 
+                <div style="display:inline-block;width:144px;" id="pcoc_body">---------</div>
+                <div style="display:inline-block;width:144px;" id="pcoc_color">-----</div>
+                <div style="display:inline-block;width:144px;" id="pcoc_mv_file">---------------</div>    
             </div>
 
             <div style="text-align:left;margin-left:-20px;position:relative;top:45px;">
-                <div style="display:inline-block;width:100px;" id="ppolicy_plate_no">AAE6626</div>
-                <div style="display:inline-block;width:165px;" id="ppolicy_serial">A2F1GASH21UY51H51</div>
-                <div style="display:inline-block;width:141px;" id="ppolicy_motor_no">6123HSLGS123</div>
+                <div style="display:inline-block;width:100px;" id="pcoc_plate_no">---------</div>
+                <div style="display:inline-block;width:165px;" id="pcoc_serial">-------</div>
+                <div style="display:inline-block;width:141px;" id="pcoc_motor">--------</div>
             </div>
         </div>
     </div>
