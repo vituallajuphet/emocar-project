@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2020 at 07:39 PM
+-- Generation Time: Nov 29, 2020 at 04:22 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -39,16 +39,17 @@ CREATE TABLE `employees` (
   `location` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `contact_no` varchar(100) NOT NULL,
-  `branch` varchar(100) NOT NULL
+  `branch` varchar(100) NOT NULL,
+  `profile_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`employee_id`, `fk_user_id`, `first_name`, `middle_name`, `last_name`, `address`, `birth_date`, `gender`, `location`, `email`, `contact_no`, `branch`) VALUES
-(2, 2, 'Opet', 'P', 'Test lastname', 'Test address 2', '2020-01-23', 'Female', '2', 'juphetvitualla@gmail.com', '1234567788', '5'),
-(4, 3, 'Juphetsss', 'P', 'Vituallas', 'Test address', '2009-02-02', 'Female', '2', 'test@test.com', '11111111', '5');
+INSERT INTO `employees` (`employee_id`, `fk_user_id`, `first_name`, `middle_name`, `last_name`, `address`, `birth_date`, `gender`, `location`, `email`, `contact_no`, `branch`, `profile_name`) VALUES
+(2, 2, 'Opet', 'P', 'Test lastname', 'Test address 2', '2020-01-23', 'Female', '2', 'juphetvitualla@gmail.com', '1234567788', '5', 'profile-1606619662.png'),
+(4, 3, 'Juphetsss', 'P', 'Vituallas', 'Test address', '2009-02-02', 'Female', '2', 'test@test.com', '11111111', '5', '');
 
 -- --------------------------------------------------------
 
@@ -192,7 +193,8 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `status`, `
 (1, 'admin', '$2y$10$26XhmRp3LVAYyfWc968LIO9jjS.gVovO83Iiwbx7sd8ReVUIumj5O', 1, 1, 0),
 (2, 'user', '$2y$10$26XhmRp3LVAYyfWc968LIO9jjS.gVovO83Iiwbx7sd8ReVUIumj5O', 2, 1, 0),
 (3, 'opet', '$2y$10$evpPQQVKKkvOtcWx3plyoukQndCs6BHmTzT4orpRyQxS0Fk5dowbu', 2, 1, 0),
-(5, 'admin2', '$2y$10$w.U5ay3B7h91w86y507jVuxtNq8r00k5ql8Wxm8p3q3xNlBVI4fey', 1, 1, 0);
+(5, 'admin2', '$2y$10$w.U5ay3B7h91w86y507jVuxtNq8r00k5ql8Wxm8p3q3xNlBVI4fey', 1, 1, 0),
+(6, 'test', '$2y$10$TG0RpIqiXLD.SHNTNRvtgu.uQBler2If6VNvruzI9anxE4L.y.39.', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -212,16 +214,18 @@ CREATE TABLE `user_meta` (
   `branch` varchar(55) NOT NULL,
   `gender` varchar(55) NOT NULL,
   `birth_date` date NOT NULL,
-  `address` varchar(200) NOT NULL
+  `address` varchar(200) NOT NULL,
+  `profile_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_meta`
 --
 
-INSERT INTO `user_meta` (`user_meta_id`, `fk_user_id`, `first_name`, `last_name`, `middle_name`, `email`, `contact_no`, `location`, `branch`, `gender`, `birth_date`, `address`) VALUES
-(1, 1, 'admin', 'Emocar', 'E', 'vitualla@gmail.com', '123546566', '1', '1', 'Male', '2011-02-09', 'cebu city'),
-(2, 5, 'James2', 'Leonardo2', 'Cliffs2', 'ex2@exs.com', '222222222', '1', '2', 'Female', '2016-02-25', 'Cebu test');
+INSERT INTO `user_meta` (`user_meta_id`, `fk_user_id`, `first_name`, `last_name`, `middle_name`, `email`, `contact_no`, `location`, `branch`, `gender`, `birth_date`, `address`, `profile_name`) VALUES
+(1, 1, 'admin', 'Emocar', 'E', 'vitualla@gmail.com', '123546566', '1', '1', 'Male', '2011-02-09', 'cebu city', 'profile-1606619739.jpg'),
+(2, 5, 'James2', 'Leonardo2', 'Cliffs2', 'ex2@exs.com', '222222222', '1', '2', 'Female', '2016-02-25', 'Cebu test', ''),
+(3, 6, 'Marion', 'Bob', 'Frank', 'example@proweaver.com', 'Cory', '1', '1', 'Male', '1971-05-28', '7669 Gulf Drive', 'profile-1606620051.png');
 
 --
 -- Indexes for dumped tables
@@ -295,13 +299,13 @@ ALTER TABLE `tbl_transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_meta`
 --
 ALTER TABLE `user_meta`
-  MODIFY `user_meta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_meta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

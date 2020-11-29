@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "scss": "node-sass --watch src/scss -o assets/css",
-    "start_gulp": "gulp connect-sync"
+    "start": "gulp connect-sync"
   },
   "repository": {
     "type": "git",

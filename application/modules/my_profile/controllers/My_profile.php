@@ -62,6 +62,44 @@ class My_profile extends MY_Controller {
 
 	}
 
+	public function api_update_profilepic(){
+
+		if(is_ajaxs()){
+
+			$response = ["status" => "error" , "message" => "Something Wrong!"];
+
+			if(!empty($_FILES["file"]["name"])){
+
+				$settings["file_name"] = "profile-".time();
+				$path = $_FILES['file']['name'];
+				$ext = pathinfo($path, PATHINFO_EXTENSION);
+
+				if(upload_file($_FILES, $settings)){
+
+					// update database
+
+					$filename = $settings["file_name"].".".$ext;
+
+					$user_id = get_user_id();
+					$tbl_name = "employees";
+					$set = ["profile_name" => $filename];
+					$where = ["fk_user_id" => $user_id];
+
+					if(get_user_type() == 1){
+						$tbl_name = "user_meta";
+					}
+
+					updateData($tbl_name, $set, $where);
+
+					$response = ["status" => "success" , "message" => "Uploaded successfully!"];
+				}
+	
+			}
+			echo json_encode($response);
+		}
+
+	}
+
 	public function get_profile_info(){
 
 		if(is_ajaxs()){

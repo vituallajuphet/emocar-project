@@ -185,8 +185,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     function upload_file($files, $setting){
         $ci = & get_instance();
-        $config['upload_path']     = "./assets/file_uploads/";
-        $config['allowed_types']   = 'gif|jpg|png|pdf|docx|doc|zip|xlsx|xlsm|xltx|xltm|txt';
+        $config['upload_path']     = "./assets/profiles/";
+        $config['allowed_types']   = 'jpg|png';
         $config['max_size']        = 9999999999;
         if(!empty($setting)){
             if(!empty($setting["upload_path"])){

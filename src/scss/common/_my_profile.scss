@@ -1,0 +1,43 @@
+.my_profile{
+    &__note{
+        color: red;
+    }
+
+    &__fig{
+        max-width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid #b5a1a1;
+        background-color: #222;
+        &--img{
+ 
+        }
+    }
+
+    &__uploadcont{
+        max-width: 400px;
+    }
+
+    &__form_cont{
+        display: flex;
+        justify-content: flex-start;
+
+        button{
+            width: 173px;
+            margin-left: 12px;
+        }
+    }
+
+}
+
+.dash_intro figure{
+    display: inline-block;
+    vertical-align: middle;
+    width: 43px;
+    margin-left: 10px;
+    height: 43px;
+    background: #222;
+    border-radius: 50%;
+    overflow: hidden;
+}

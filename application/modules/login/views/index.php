@@ -7,43 +7,40 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-	<title></title>
+	<title>Emocar Insurance Brokerage</title>
 	<link rel="stylesheet" href="<?= base_url("assets/css/")?>style.css">
 	<link rel="stylesheet" href="<?= base_url("assets/css/")?>login.css">
 	<link rel="stylesheet" href="<?= base_url("assets/css/")?>css/media.css">
 	<link rel="stylesheet" href="<?= base_url("assets/css/")?>css/font-awesome.min.css">
-
-
 </head>
 	<body>
 		<div class="protect-me">
 		<div class="clearfix">
-		<div id="underdiv">Note: The website is under development</div>
 
 <!-- Header -->
-<main>
-	<div class="main_login_details">
-		<figure>
-			<img src="<?= base_url("assets/images/")?>comp_logo.png" alt="">
-		</figure>
-		<form method="post" action="<?= base_url("login/process_login")?>" >
-			<input required type="text" name="username" placeholder="Username">
-			<input required type="password" name="password" placeholder="Password">
-			<input type="submit" name="submit" value="Login">
-		</form>
-		<a href="#" class="login_forgot">Forgot Password?</a>
-		<div>
-			<?php 
-				if(!empty($this->session->flashdata('err'))){
-					echo $this->session->flashdata('err');
-				}
-			?>
-		</div>
-	</div>
-</main>
+			<main>
+				<div class="main_login_details">
+					<figure>
+						<img src="<?= base_url("assets/images/")?>comp_logo.png" alt="">
+					</figure>
+					<form method="post" action="<?= base_url("login/process_login")?>" >
+						<input required type="text" name="username" placeholder="Username">
+						<input required type="password" name="password" placeholder="Password">
+						<input type="submit" name="submit" value="Login">
+					</form>
+					<a href="#" class="login_forgot">Forgot Password?</a>
+					<div>
+						<?php 
+							if(!empty($this->session->flashdata('err'))){
+								echo $this->session->flashdata('err');
+							}
+						?>
+					</div>
+				</div>
+			</main>
 
-  </div> <!-- End Clearfix -->
-  </div> <!-- End Protect Me -->
+		</div> <!-- End Clearfix -->
+		</div> <!-- End Protect Me -->
 
   <script src="<?= base_url("assets/css/")?>js/jquery-2.1.1.min.js"></script>
   <script src="<?= base_url("assets/css/")?>js/plugins.js"></script>

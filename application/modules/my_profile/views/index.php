@@ -2,7 +2,25 @@
     <div class="main_area">
         <div class="profile_container">
             <h1 class="headingTitle"><i class="fa fa-user"></i> <?=$title?></h1>
+            <div class="row mt-5" >
+                    <div class="col-md-12">
+                        <div class="my_profile">
+                          <figure class="my_profile__fig"><img class="my_profile__fig--img" :src="get_profile_pic" alt="profile"></figure>
+                          <div class="mt-2 mb-2 my_profile__note">Please upload  same dimension images eg: (200x200, 500x500, etc.)</div>
+
+                          <div class="my_profile__uploadcont mb-3">
+                              <form action="" class="my_profile__form" @submit.prevent="upload_profile" enctype="multipart/form-data">
+                                  <div class="my_profile__form_cont">
+                                    <input  @change="processFile" required type="file" name="file" class="form-control" accept="image/*">
+                                    <button type="submit" class="btn btn-success"><i class="fa fa-upload"></i> Upload</button>
+                                  </div>
+                              </form>
+                          </div>
+                        </div>
+                    </div>
+                </div>
             <form action="#" @submit.prevent="submitForm()" method="post" class="profile_form">
+                
                 <div class="row">
                     <div class="col-md-4">
                         <label for="">First Name</label>

@@ -48,6 +48,7 @@ class Admin extends MY_Controller {
 							"branch" => $post["branch"],
 							"email" => $post["email"],
 							"contact_no" => $post["contact"],
+							"profile_name" => "",
 						);
 
 						if($post["user_type"] != 1){
@@ -67,6 +68,7 @@ class Admin extends MY_Controller {
 								"branch" => $post["branch"],
 								"email" => $post["email"],
 								"contact_no" => $post["contact"],
+								"profile_name" => "",
 							);
 						
 							insertData("user_meta",  $data);

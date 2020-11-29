@@ -140,14 +140,10 @@ $(document).ready(function () {
     });
 
 
-
     $("#sel_sort_location").change(function(){
         const val   = $(this).val();
-
         fill_branches(val, "#sel_sort_branch");
     })
-
-    
 
     $(document).on("click", ".btn_view" , function(){
         let trans_id = $(this).data("id");
@@ -205,7 +201,6 @@ $(document).ready(function () {
         trans_table.search($(this).val()).draw() ;
     })
     
-
     $(document).on("click", ".btn_approve", function (e){
         
         const trans_id  = $(this).data("id");
@@ -226,7 +221,6 @@ $(document).ready(function () {
                 }
             }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!")})
         })
-
     })
 
     $(document).on("click", ".btn_edit", function (e){
@@ -287,9 +281,6 @@ $(document).ready(function () {
         })
         
     })
-
-    
-
 
     $(document).on("click", ".btn_delete", function(){
         const trans_id = $(this).data("id");
