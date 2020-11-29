@@ -61,8 +61,6 @@ $(document).ready(function(){
                     $("input[name='date_issued']").val(convertDate(dta.date_issued))
                     $("input[name='date_from']").val(convertDate(dta.date_from))
 
-                   
-
                     $("input[name='date_to']").val(convertDate(dta.date_to))
 
                     $("input[name='plate_no']").val(dta.plate_no)
@@ -121,7 +119,7 @@ $(document).ready(function(){
 
         if(trans_id != 0 && trans_id != undefined) {
 
-            axios.get(`${base_url}/employee/search_policy/${trans_id}?search_by_id=1`).then(res => {
+            axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1`).then(res => {
                 $("#print_OR").show();
 
                 if(res.data.status == "success"){
@@ -165,25 +163,58 @@ $(document).ready(function(){
             })
         }
         else{
-            alert("Please search a policy first!")
+            errorMessage("Please search a policy first!")
         }
         
     })
 
     $("#printCOC").click(function(){
-        $("#printCOC_elem").show();
-        setTimeout(() => {
-            $("#printCOC_elem").printElement();
-            $("#printCOC_elem").hide();
-        }, 1000);
+
+        const trans_id = $(".hidden_trans_id").val();
+
+        if(trans_id != 0 && trans_id != undefined) {
+
+            axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1`).then(res => {
+                $("#printCOC_elem").show();
+
+                if(res.data.status == "success"){
+                    const dta = res.data.data[0];
+
+                    $("#pcocpolicy").html(dta.policy_no);
+                   
+                    setTimeout(() => {
+                        $("#printCOC_elem").printElement();
+                        $("#printCOC_elem").hide();
+                    }, 1000);
+                }
+                
+            })
+        }
+        else{
+            errorMessage("Please search a policy first!")
+        }
+
+        
     })
 
     $("#printPolicy").click(function(){
-        $("#print_Policy_elem").show();
-        setTimeout(() => {
-            $("#print_Policy_elem").printElement();
-            $("#print_Policy_elem").hide();
-        }, 1000);
+        
+        let  slectab = "MOTORCYCLE (MC)";
+
+        if(slectab =="PRIVATE CAR (UV - CAR)" || slectab == "COMMERCIAL VEHICLE (TRUCK)"){
+            $("#print_Policy_elem").show();
+            setTimeout(() => {
+                $("#print_Policy_elem").printElement();
+                $("#print_Policy_elem").hide();
+            }, 1000);
+        }
+        else if(slectab =="MOTORCYCLE (MC)" || slectab == "TRICYCLE (TC-Hire)" || slectab == "TRAILER"){
+            $("#print_Policy_elem_motor").show();
+            setTimeout(() => {
+                $("#print_Policy_elem_motor").printElement();
+                $("#print_Policy_elem_motor").hide();
+            }, 1000);
+        }    
     })
 
 

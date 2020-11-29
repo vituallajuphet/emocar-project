@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2020 at 09:02 AM
+-- Generation Time: Nov 29, 2020 at 08:44 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -49,7 +49,8 @@ CREATE TABLE `employees` (
 
 INSERT INTO `employees` (`employee_id`, `fk_user_id`, `first_name`, `middle_name`, `last_name`, `address`, `birth_date`, `gender`, `location`, `email`, `contact_no`, `branch`, `profile_name`) VALUES
 (2, 2, 'Opet', 'P', 'Test lastname', 'Test address 2', '2020-01-23', 'Female', '2', 'juphetvitualla@gmail.com', '1234567788', '5', 'profile-1606619662.png'),
-(4, 3, 'Juphetsss', 'P', 'Vituallas', 'Test address', '2009-02-02', 'Female', '2', 'test@test.com', '11111111', '5', '');
+(4, 3, 'Juphetsss', 'P', 'Vituallas', 'Test address', '2009-02-02', 'Female', '2', 'test@test.com', '11111111', '5', ''),
+(5, 7, 'Juan', 'P', 'Balongas', 'Test address 2', '1997-01-01', 'Male', '1', 'jessie@gmail.com', '61232123', '13', '');
 
 -- --------------------------------------------------------
 
@@ -195,7 +196,8 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `status`, `
 (2, 'user', '$2y$10$26XhmRp3LVAYyfWc968LIO9jjS.gVovO83Iiwbx7sd8ReVUIumj5O', 2, 1, 0),
 (3, 'opet', '$2y$10$evpPQQVKKkvOtcWx3plyoukQndCs6BHmTzT4orpRyQxS0Fk5dowbu', 2, 1, 0),
 (5, 'admin2', '$2y$10$w.U5ay3B7h91w86y507jVuxtNq8r00k5ql8Wxm8p3q3xNlBVI4fey', 1, 1, 0),
-(6, 'test', '$2y$10$TG0RpIqiXLD.SHNTNRvtgu.uQBler2If6VNvruzI9anxE4L.y.39.', 1, 1, 0);
+(6, 'test', '$2y$10$TG0RpIqiXLD.SHNTNRvtgu.uQBler2If6VNvruzI9anxE4L.y.39.', 1, 1, 0),
+(7, 'juan', '$2y$10$Qyb3sDuOVh3zu.BSkcbYfeVSpjFdwPyC/Ga5Z8iFYuzKDcjxmpNZi', 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -276,7 +278,7 @@ ALTER TABLE `user_meta`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `employee_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `employee_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_branches`
@@ -300,7 +302,7 @@ ALTER TABLE `tbl_transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_meta`

@@ -83,16 +83,16 @@ class Employee extends MY_Controller {
 		if(is_ajaxs()){
 			$response = ["status" => "error", "data" => []];
 
-			if(!empty($_GET)){
+			if(isset($_GET["search_val"]) && isset($_GET["tab_value"])){
 
 				$search_val = $_GET["search_val"];
 				$tab_value  = $_GET["tab_value"];
-
+				$par["where"] = " (trans.mb_file_no = '$search_val' OR trans.plate_no = '$search_val') AND trans_type = '$tab_value'";
 			}
 
-			$par["where"] = " (trans.mb_file_no = '$search_val' OR trans.plate_no = '$search_val') AND trans_type = '$tab_value'";
 
 			if(isset($_GET["search_by_id"])){
+				$search_val = $_GET["search_val"];
 				$par["where"] = " trans.trans_id = $search_val";
 			}
 

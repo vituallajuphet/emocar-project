@@ -201,9 +201,9 @@
 					</div>
 					<!-- end -->
 					<div class="print_sec">
-						<button id="printOr"><i class="fa fa-print"></i> PRINT OR</button>
-						<button id="printCOC"><i class="fa fa-print"></i> PRINT COC</button>
-						<button id="printPolicy"><i class="fa fa-print"></i> PRINT POLICY</button>
+						<button type="button" id="printOr"><i class="fa fa-print"></i> PRINT OR</button>
+						<button type="button" id="printCOC"><i class="fa fa-print"></i> PRINT COC</button>
+						<button type="button" id="printPolicy"><i class="fa fa-print"></i> PRINT POLICY</button>
 					</div>
 				   </div>
 				<div class="submit">
