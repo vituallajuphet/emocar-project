@@ -97,7 +97,7 @@ $(document).ready(function () {
             loc[0].branches.map(brn => {
                 brnches += `<option value="${brn.branch_id}" >${brn.branch_name}</option>`;
             })
-        }
+        }                                                                                                                          
 
         $(elem).html(brnches);
 

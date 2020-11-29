@@ -10,6 +10,13 @@
       </div>
       <div class="modal-body">
             <div class="row">
+             <div class="col-md-12">
+                    <figure class="user_profile_cont">
+                        <img src="" alt="profile">
+                    </figure>
+                </div>
+            </div>
+            <div class="row">
               <div class="col-md-4">
                     <label for="recipient-name" class="col-form-label">User Type</label>
                     <input readonly type="text" class="form-control dta_user_type" >

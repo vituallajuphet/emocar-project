@@ -341,6 +341,15 @@ table[data-tbl='datatable'] tbody tr.row-pending {
 .modal-body {
   text-align: left; }
 
+.user_profile_cont {
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #d7d4d4;
+  text-align: center;
+  margin: 0 auto 20px; }
+
 .ajs-header {
   font-weight: bold !important; }
 

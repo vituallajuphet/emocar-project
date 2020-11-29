@@ -134,6 +134,12 @@ $(document).ready(function () {
              ehide(".preloader");
             if(res.data.status == "success"){
                 let dta = res.data.data[0];
+
+                const profile_pic = dta.profile_name == "" ?
+                                    `${base_url}assets/profiles/dummy-profile.jpg` :
+                                    `${base_url}assets/profiles/${dta.profile_name}`;
+                $(".user_profile_cont img").attr("src", profile_pic);
+
                 dta.user_type = dta.user_type == 1 ? "Administrator" : "Employee";
                 $("#view_user_modal").modal()
                 fill_fields(dta, "view");
