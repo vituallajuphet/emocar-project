@@ -150,10 +150,10 @@
 <div id="printCOC_elem" style="font-size:14px;text-transform:uppercase;">
     <div style="width:720px">
         <div style="text-align:right;">
-            <div style="width:190px;text-align:left;display:inline-block;margin-top:150px;" id="pcocpolicy"></div>  
+            <div style="width:190px;text-align:left;display:inline-block;margin-top:150px;" id="pcocpolicy">123456</div>  
         </div>
         <div style="text-align:right;margin-top:9px;">  
-            <div style="width:190px;display:inline-block;text-align:left;position:relative;top:5px;"> 4232323 </div>
+            <div id="pcocpolicy" style="width:190px;display:inline-block;text-align:left;position:relative;top:5px;"> 4232323 </div>
         </div>
        <div id="ppolicy_name" style="line-height:20px;margin-left:-20px;margin-top:17px;position:relative;top:-10px;">Juan dela Cruz<span id="ppolicy_address" style="display:block;">Cebu City</span></div>
        

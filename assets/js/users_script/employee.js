@@ -181,6 +181,9 @@ $(document).ready(function(){
                     const dta = res.data.data[0];
 
                     $("#pcocpolicy").html(dta.policy_no);
+                    $("#pcoc_or").html(dta.official_receipt);
+                    
+                    
                    
                     setTimeout(() => {
                         $("#printCOC_elem").printElement();
