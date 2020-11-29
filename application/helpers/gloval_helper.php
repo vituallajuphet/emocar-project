@@ -67,6 +67,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return $res[0];
     }
 
+    function get_all_users(){
+
+        $ci = & get_instance();
+
+        $par["where"] = ["user_type" => 2, "usr.status" => 1];
+        $par["join"]  = [
+            "employees emp" => "emp.fk_user_id = usr.user_id",
+            "tbl_branches brn" => "brn.branch_id = emp.branch",
+            "tbl_locations loc" => "loc.loc_id = emp.location",
+        ];
+
+        $res = getData("users usr" , $par);
+
+        if(!empty($res)){
+            $c = 0;
+            foreach ($res as $key) {
+                unset($res[$c]["password"]);
+                $c++;
+            }
+        }
+        return $res;
+    }
+
     function get_user_data($par = "user_id"){
         $ci = & get_instance();
 

@@ -2,27 +2,54 @@
 $(document).ready(function () {
 
     let global_locations = [];
-    let sorted_by = "";
+    let sorted_by = {sorted:"", sorted_value:""};
+    let global_users = [];
 
     function _init (){
 
+        get_all_users();
+        
         axios.get(`${base_url}admin/api_get_locations`).then(res => {
             
             if(res.data.status == "success"){
                 global_locations = res.data.data;
                 let elm = $("#sel_sort_location");
                 fill_locations(elm)
+                $("#sel_sort_location").select2();
 
             }else{
-                errorMessage("Something wrong!")
+                errorMessage("Something Wrong!")
             }
 
         }).catch(err=>{errorMessage("Something Wrong!"); ehide(".preloader");} )
 
-        $('#sel_sort_user').select2();
+        // $('#sel_sort_user').select2();
 
     }
     _init()
+
+    function get_all_users(){
+
+        axios.get(`${base_url}admin_policies/api_get_all_users`).then(res => {
+            
+            if(res.data.status == "success"){
+                global_users = res.data.data;
+
+                let options = "<option value=''>Please select...</option>";
+                global_users.map(usr => {
+                    options += `<option data-loc="${usr.fk_location_id}" data-branch="${usr.branch_id}" value="${usr.user_id}">${usr.first_name} ${usr.last_name}</option>`;
+                })
+                
+                $('#sel_sort_user').html(options);
+                $('#sel_sort_user').select2();
+                
+
+            }else{
+                errorMessage(res.data.message);
+            }
+
+        }).catch(err=>{errorMessage("Something Wrong!"); ehide(".preloader");} )
+    }
 
     function convertDate(the_date, get_type = ""){
         let ret_date;
@@ -61,12 +88,10 @@ $(document).ready(function () {
         }
     }
 
-    function fill_branches(loc_id, elem){
+    function fill_branches(loc_id, elem, useSelect2 = false){
 
         let brnches     = `<option value="">Please select...</option>`;
         let loc = global_locations.filter((loc =>  loc.loc_id == loc_id));
-
-        console.log(loc)
 
         if(loc != undefined && loc.length != 0){
             loc[0].branches.map(brn => {
@@ -75,6 +100,10 @@ $(document).ready(function () {
         }
 
         $(elem).html(brnches);
+
+        if(useSelect2){
+            $(elem).select2();
+        }
     }
 
     var trans_table = $('#trans_table').DataTable({
@@ -128,7 +157,10 @@ $(document).ready(function () {
             "url": base_url + "admin_policies/get_transaction_data",
             "type": "POST",
             "data" : function(dta){
-                dta.sortby = sorted_by;
+                dta.sortby = {
+                    sorted:sorted_by.sorted, 
+                    sort_value:sorted_by.sorted_value
+                };
             }
         },
         "columnDefs": [
@@ -140,9 +172,41 @@ $(document).ready(function () {
     });
 
 
+    $("#sel_sort_user").change(function(){
+        const usr_id = $(this).val();
+
+        if(usr_id != "" && usr_id != undefined){
+            sorted_by.sorted = "user";
+            sorted_by.sorted_value = usr_id;
+        }else{
+            sorted_by.sorted = "";
+            sorted_by.sorted_value = "";   
+        }
+
+        trans_table.ajax.reload();
+    })
+
+    $("#sel_sort_branch").change(function(){
+        const brn_id = $(this).val();
+        const loc_id = $("#sel_sort_location").val();
+
+        if((brn_id != "" && brn_id != undefined) && (loc_id != "" && loc_id != undefined)){
+            sorted_by.sorted = "location";
+            sorted_by.sorted_value = [brn_id, loc_id];
+        }else{
+            sorted_by.sorted = "";
+            sorted_by.sorted_value = "";   
+        }
+
+        trans_table.ajax.reload();
+    })
+
+    
+
+
     $("#sel_sort_location").change(function(){
         const val   = $(this).val();
-        fill_branches(val, "#sel_sort_branch");
+        fill_branches(val, "#sel_sort_branch", true);
     })
 
     $(document).on("click", ".btn_view" , function(){

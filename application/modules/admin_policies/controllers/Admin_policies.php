@@ -19,6 +19,7 @@ class Admin_policies extends MY_Controller {
 			$search       = $this->input->post('search');
 			$order        = $this->input->post('order');
 			$draw         = $this->input->post('draw');
+			$sorted         = $this->input->post('sortby');
 			
 			$column_order = array(
 				'trans.trans_id',
@@ -34,9 +35,28 @@ class Admin_policies extends MY_Controller {
 				"employees emp" => "emp.fk_user_id = trans.fk_user_id",
 			);
 			$select       = "*";
+			
 			$where        = array(
 				'trans.status' 		=> 1
 			);
+
+			if(!empty($sorted["sorted"]) && !empty($sorted["sort_value"])){
+				
+				if($sorted["sorted"] == "user"){
+					$where  = array(
+						'emp.fk_user_id' => $sorted["sort_value"],
+						'trans.status' 	 => 1
+					);
+				}
+				else if($sorted["sorted"] == "location"){
+					$where  = array(
+						'emp.location' => $sorted["sort_value"][1],
+						'emp.branch' => $sorted["sort_value"][0],
+						'trans.status' 	 => 1
+					);
+				}
+			}
+
 			$group        = array();
 			$list         = getDataTables('tbl_transactions trans',$column_order, $select, $where, $join, $limit, $offset ,$search, $order, $group);
 			
@@ -90,7 +110,6 @@ class Admin_policies extends MY_Controller {
 			echo json_encode($response);
 		}
 	}
-	
 
 	public function api_delete_policy (){
 		
@@ -111,6 +130,23 @@ class Admin_policies extends MY_Controller {
 
 			echo json_encode($response);
 		}
+	}
+
+	public function api_get_all_users(){
+
+		if(is_ajaxs()){
+
+			$response = ["status" => "error", "message" => "No users found!"];
+
+			$data = get_all_users();
+
+			if(!empty($data)){
+				$response = ["status" => "success", "data" => $data];
+			}
+			
+			echo json_encode($response);
+		}
+
 	}
 	
 

@@ -28,7 +28,7 @@
 						<input required type="password" name="password" placeholder="Password">
 						<input type="submit" name="submit" value="Login">
 					</form>
-					<a href="#" class="login_forgot">Forgot Password?</a>
+					
 					<div>
 						<?php 
 							if(!empty($this->session->flashdata('err'))){
