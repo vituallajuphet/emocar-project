@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $is_production = true;
 
-if(!$is_production){
+if($is_production){
   $config['base_url'] = 'https://emocarinsurancebrokerage.com/';
 }
 
