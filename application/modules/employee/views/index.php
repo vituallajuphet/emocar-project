@@ -31,7 +31,7 @@
 										<input type="text" id="search_bar" placeholder="Search here">
 									</div>
 									<div class="flex-right">
-										<button class="buttonSearch" type="button">Search</button>
+										<button class="buttonSearch" type="button"><i class="fa fa-search"></i> Search</button>
 									</div>	
 								</div>							
 							</div>
