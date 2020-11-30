@@ -34,12 +34,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 
-$config['base_url'] = 'https://emocarinsurancebrokerage.com/';
+$config['base_url'] = 'http://emocarinsurancebrokerage.com/';
 
 
 
