@@ -168,6 +168,10 @@ $(document).ready(function(){
         
     })
 
+    const test = () => {
+        
+    }
+
     $("#printCOC").click(function(){
 
         const trans_id = $(".hidden_trans_id").val();
@@ -182,8 +186,7 @@ $(document).ready(function(){
 
                     $("#pcocpolicy").html(dta.policy_no);
                     $("#pcoc_or").html(dta.official_receipt);
-                    
-                    
+                    $("#pcoc_coc").html(dta.official_receipt);
                    
                     setTimeout(() => {
                         $("#printCOC_elem").printElement();

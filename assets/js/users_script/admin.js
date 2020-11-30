@@ -124,6 +124,8 @@ $(document).ready(function () {
         })
     })
 
+    
+
     $(document).on("click",".btn_view", function(){
 
         const user_id = $(this).data("id");
