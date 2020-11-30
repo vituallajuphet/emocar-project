@@ -168,6 +168,10 @@ $(document).ready(function(){
         
     })
 
+    const test = () => {
+        
+    }
+
     $("#printCOC").click(function(){
 
         const trans_id = $(".hidden_trans_id").val();
@@ -182,6 +186,7 @@ $(document).ready(function(){
 
                     $("#pcocpolicy").html(dta.policy_no);
                     $("#pcoc_or").html(dta.official_receipt);
+<<<<<<< HEAD
                     $("#pcoc_address").html(dta.address);
                     $("#pcoc_receivedfrom").html(dta.received_from);
                     $("#pcoc_date_issued").html(convertDate(dta.date_issued));
@@ -196,6 +201,10 @@ $(document).ready(function(){
                     $("#pcoc_serial").html(dta.serial_chassis);
                     $("#pcoc_motor").html(dta.motor_no);
                     
+=======
+                    $("#pcoc_coc").html(dta.official_receipt);
+                   
+>>>>>>> master
                     setTimeout(() => {
                         $("#printCOC_elem").printElement();
                         $("#printCOC_elem").hide();
