@@ -136,7 +136,7 @@ $(document).ready(function(){
         }
 
         else if(textline == 'TRAILER') {
-            $(".trans_type").val("trialer");
+            $(".trans_type").val("trailer");
             $('#or_prem_sales').val('250');
             $('#or_docs_stamp').val('250');
             $('#or_lg_tax').val('250');

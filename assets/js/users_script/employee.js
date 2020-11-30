@@ -168,10 +168,6 @@ $(document).ready(function(){
         
     })
 
-    const test = () => {
-        
-    }
-
     $("#printCOC").click(function(){
 
         const trans_id = $(".hidden_trans_id").val();
@@ -186,7 +182,6 @@ $(document).ready(function(){
 
                     $("#pcocpolicy").html(dta.policy_no);
                     $("#pcoc_or").html(dta.official_receipt);
-<<<<<<< HEAD
                     $("#pcoc_address").html(dta.address);
                     $("#pcoc_receivedfrom").html(dta.received_from);
                     $("#pcoc_date_issued").html(convertDate(dta.date_issued));
@@ -200,11 +195,7 @@ $(document).ready(function(){
                     $("#pcoc_plate_no").html(dta.plate_no);
                     $("#pcoc_serial").html(dta.serial_chassis);
                     $("#pcoc_motor").html(dta.motor_no);
-                    
-=======
-                    $("#pcoc_coc").html(dta.official_receipt);
                    
->>>>>>> master
                     setTimeout(() => {
                         $("#printCOC_elem").printElement();
                         $("#printCOC_elem").hide();
@@ -216,28 +207,72 @@ $(document).ready(function(){
         else{
             errorMessage("Please search a policy first!")
         }
-
-        
     })
 
     $("#printPolicy").click(function(){
         
-        let  slectab = "MOTORCYCLE (MC)";
+        let  slectab =  $(".mn_heading_tabs ul li.active").html();
 
-        if(slectab =="PRIVATE CAR (UV - CAR)" || slectab == "COMMERCIAL VEHICLE (TRUCK)"){
-            $("#print_Policy_elem").show();
-            setTimeout(() => {
-                $("#print_Policy_elem").printElement();
-                $("#print_Policy_elem").hide();
-            }, 1000);
+        console.log(slectab)
+
+        const trans_id = $(".hidden_trans_id").val();
+
+        if(trans_id != 0 && trans_id != undefined) {
+
+            axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1`).then(res => {
+
+                if(res.data.status == "success"){
+                    const dta = res.data.data[0];
+
+                    $(".ppop_policy").html(dta.policy_no);
+                    $(".ppop_name").html(dta.received_from);
+                    $(".ppop_address").html(dta.address);
+                    $(".ppop_dateissued").html(convertDate(dta.date_issued));
+                    $(".ppop_or").html(dta.official_receipt);
+                    $(".ppop_dfrom").html(convertDate(dta.date_from));
+                    $(".ppop_dto").html(convertDate(dta.date_to));
+                    $(".ppop_model").html(dta.model_no);
+                    $(".ppop_make").html(dta.make);
+                    $(".ppop_body").html(dta.type_of_body);
+                    $(".ppop_color").html(dta.color);
+                    $(".ppop_mv_file").html(dta.mb_file_no);
+                    $(".ppop_plate").html(dta.plate_no);
+                    $(".ppop_serial").html(dta.serial_chassis);
+                    $(".ppop_motor").html(dta.motor_no);
+
+                    $(".ppop_prem_paid").html(numberWithCommas(dta.premium_sales));
+                    $(".ppop_docstamp").html(numberWithCommas(dta.pol_docs_stamp));
+                    $(".ppop_vattax").html(numberWithCommas(dta.others));
+                    $(".ppop_lgtax").html(numberWithCommas(dta.lg_tax));
+                    $(".ppop_total_amount_due").html(numberWithCommas(dta.or_total));
+                    
+                    $(".ppop_place").html(dta.place);
+                    $(".ppop_pop_day").html(dta.policy_day);
+                    $(".ppop_pop_month").html(dta.policy_month);
+                    $(".ppop_pop_year").html(convertDate(dta.policy_year, "year"));
+                    
+
+                    if(slectab =="PRIVATE CAR (UV - CAR)" || slectab == "COMMERCIAL VEHICLE (TRUCK)"){
+                        $("#print_Policy_elem").show();
+                        setTimeout(() => {
+                            $("#print_Policy_elem").printElement();
+                            $("#print_Policy_elem").hide();
+                        }, 1000);
+                    }
+                    else if(slectab =="MOTORCYCLE (MC)" || slectab == "TRICYCLE (TC-Hire)" || slectab == "TRAILER"){
+                        $("#print_Policy_elem_motor").show();
+                        setTimeout(() => {
+                            $("#print_Policy_elem_motor").printElement();
+                            $("#print_Policy_elem_motor").hide();
+                        }, 1000);
+                    }  
+                }
+
+            })
         }
-        else if(slectab =="MOTORCYCLE (MC)" || slectab == "TRICYCLE (TC-Hire)" || slectab == "TRAILER"){
-            $("#print_Policy_elem_motor").show();
-            setTimeout(() => {
-                $("#print_Policy_elem_motor").printElement();
-                $("#print_Policy_elem_motor").hide();
-            }, 1000);
-        }    
+        else{
+            errorMessage("Please search a policy first!")
+        }  
     })
 
 
