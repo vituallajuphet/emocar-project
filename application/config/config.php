@@ -35,10 +35,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$is_production = false;
+$is_production = true;
 
 if(!$is_production){
-  $config['base_url'] = 'http://localhost/emocar/';
+  $config['base_url'] = 'https://emocarinsurancebrokerage.com/';
 }
 
 
