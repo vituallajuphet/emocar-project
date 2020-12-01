@@ -1,3 +1,5 @@
+<?php $this->load->view("print_elements"); ?>
+
 <?php          
     if(!empty($modal)){
         $this->load->view("modal/{$modal}");

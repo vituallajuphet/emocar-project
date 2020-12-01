@@ -7,12 +7,16 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        <div>
+           <input type="hidden" class="vtrans_id">
+           <input type="hidden" class="vtrans_type">
+        </div>
       </div>
       <div class="modal-body">
         <form>
           <div>
               <h2 class="heading_modal ">Approval Status: <span class="policy_status">Approved</span></h2>
-              <h2 class="heading_modal ">Transaction Type: <span class="policy_edit_type">Approved</span></h2>
+              <h2 class="heading_modal ">Transaction Type: <span class="policy_type policy_edit_type">Approved</span></h2>
           </div>
           <div class="row mt-3">
               <div class="col-md-4">
@@ -205,9 +209,9 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-favorate"><i class="fa fa-print"></i> Print COC</button>
-        <button type="button" class="btn btn-favorate"><i class="fa fa-print"></i> Print OR</button>
-        <button type="button" class="btn btn-favorate"><i class="fa fa-print"></i> Print Policy</button>
+        <button type="button" id="btnPrintCoc" class="btn btn-favorate"><i class="fa fa-print"></i> Print COC</button>
+        <button type="button" id="btnPrintOR" class="btn btn-favorate"><i class="fa fa-print"></i> Print OR</button>
+        <button type="button" id="btnPrintPolicy" class="btn btn-favorate"><i class="fa fa-print"></i> Print Policy</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
       </div>
     </div>

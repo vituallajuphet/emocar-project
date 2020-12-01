@@ -610,3 +610,6 @@ table tr {
 
 .select2-selection__rendered {
   text-align: left !important; }
+
+#print_OR {
+  display: none; }
