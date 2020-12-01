@@ -278,6 +278,40 @@ class Admin extends MY_Controller {
 		}
 	}
 
+	public function search_policy (){
+		
+		if(is_ajaxs()){
+			$response = ["status" => "error", "data" => []];
+
+			if(isset($_GET["search_val"]) && isset($_GET["tab_value"])){
+
+				$search_val = $_GET["search_val"];
+				$tab_value  = $_GET["tab_value"];
+				$par["where"] = " (trans.mb_file_no = '$search_val' OR trans.plate_no = '$search_val') AND trans_type = '$tab_value'";
+			}
+
+
+			if(isset($_GET["search_by_id"])){
+				$search_val = $_GET["search_val"];
+				$par["where"] = " trans.trans_id = $search_val";
+			}
+
+			if(!empty($search_val) ){
+				
+				$par["join"] = [ 
+					"employees emp" => "emp.fk_user_id = trans.fk_user_id"
+				];
+				$res = getData("tbl_transactions trans", $par);
+				if(!empty($res)){
+					$response = ["status" => "success", "data" => $res];
+				}
+			}
+
+			echo json_encode($response);
+		}
+	}
+
+
 	public function api_delete_employee (){
 
 		if(is_ajaxs()){

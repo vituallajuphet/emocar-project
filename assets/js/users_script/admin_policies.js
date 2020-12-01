@@ -201,8 +201,6 @@ $(document).ready(function () {
         trans_table.ajax.reload();
     })
 
-    
-
 
     $("#sel_sort_location").change(function(){
         const val   = $(this).val();
@@ -219,6 +217,8 @@ $(document).ready(function () {
             $("#view_policy_modal input").attr("readonly","readonly")
             if(res.data.status == "success"){
                 let dta = res.data.data[0];
+                $(".vtrans_id").val(dta.trans_id)
+                $(".vtrans_type").val(dta.trans_type)
                 $(".dta_mv_file").val(dta.mb_file_no)
                 $(".dta_model_no").val(dta.model_no)
                 $(".dta_date_issued").val(convertDate(dta.date_issued))
@@ -250,6 +250,7 @@ $(document).ready(function () {
                 $(".dta_or_date").val(convertDate(dta.or_date))
                 $(".dta_lg_tax").val('₱ '+dta.lg_tax)
                 $(".dta_sum_pesos").val(dta.the_sum_of_pesos)
+                $(".policy_type").html(capitalize(dta.trans_type))
 
                 const published_status = (dta.published_status == 1 ? "Approved" : "Pending")
 
@@ -388,6 +389,207 @@ $(document).ready(function () {
             })
         })
     });
+
+    // added new functions here...
+    $("#btnPrintOR").click(function(){
+
+        const trans_id = $(".vtrans_id").val();
+        const trans_type = $(".vtrans_type").val();
+
+        console.log(trans_id, trans_type)
+
+        if(trans_id != 0 && trans_id != undefined) {
+
+            axios.get(`${base_url}admin/search_policy?search_val=${trans_id}&search_by_id=1`).then(res => {
+                $("#print_OR").show();
+
+                if(res.data.status == "success"){
+                    const dta = res.data.data[0];
+
+                    const amt_of_cov = 100000;
+
+                    $("#date_trans").html(convertDate(dta.date_issued));
+                    $("#trans_rec_from").html(dta.received_from);
+                    $("#trans_address").html(dta.address);
+                    $("#trans_amount_text").html(dta.the_sum_of_pesos);
+                    $("#trans_amount_of_cov").html(numberWithCommas(amt_of_cov));
+                    $("#trans_policy").html(dta.policy_no);
+                    $("#trans_date_from_month").html(convertDate(dta.date_from, "month"));
+                    $("#trans_date_from_day").html(convertDate(dta.date_from, "day")  +", ");
+                    $("#trans_date_from_year").html(convertDate(dta.date_from, "year"));
+                    $("#trans_date_to_month").html(convertDate(dta.date_to, "month"));
+                    $("#trans_date_to_day").html(convertDate(dta.date_to, "day") +", ");
+                    $("#trans_date_to_year").html(convertDate(dta.date_to, "year"));
+
+                    $("#trans_prem").html(numberWithCommas(dta.premium_sales));
+                    $("#trans_doc_stamp").html(numberWithCommas(dta.docs_stamp));
+                    $("#trans_tax").html(numberWithCommas(dta.lg_tax));
+                    $("#trans_misc").html(numberWithCommas(dta.misc));
+                    $("#trans_total").html(numberWithCommas(dta.or_total));
+                    
+                    let html_elm = `<div style="font-size:18px;margin-top:35px">&check;</div>`;
+
+                    if(dta.paid_type == "Check"){
+                        html_elm = `<div style="margin-left:90px;font-size:12px;margin-top:40px">${dta.check_no}</div>`;
+                    }
+            
+                    $("#trans_paid_type").html(html_elm)
+                    
+                    setTimeout(() => {
+                        $("#print_OR").printElement();
+                        $("#print_OR").hide();
+                    }, 1000);
+                }
+                
+            })
+        }
+        else{
+            errorMessage("Please search a policy first!")
+        }
+        
+    })
+
+    $("#btnPrintCoc").click(function(){
+
+        const trans_id = $(".vtrans_id").val();
+        const trans_type = $(".vtrans_type").val();
+
+        if(trans_id != 0 && trans_id != undefined) {
+
+            axios.get(`${base_url}admin/search_policy?search_val=${trans_id}&search_by_id=1`).then(res => {
+                $("#printCOC_elem").show();
+
+                if(res.data.status == "success"){
+                    const dta = res.data.data[0];
+
+                    $("#pcocpolicy").html(dta.policy_no);
+                    $("#pcoc_or").html(dta.official_receipt);
+                    $("#pcoc_address").html(dta.address);
+                    $("#pcoc_receivedfrom").html(dta.received_from);
+                    $("#pcoc_date_issued").html(convertDate(dta.date_issued));
+                    $("#pcoc_date_from").html(convertDate(dta.date_from));
+                    $("#pcoc_date_to").html(convertDate(dta.date_to));
+                    $("#pcoc_model").html(dta.model_no);
+                    $("#pcoc_make").html(dta.make);
+                    $("#pcoc_body").html(dta.type_of_body);
+                    $("#pcoc_color").html(dta.color);
+                    $("#pcoc_mv_file").html(dta.mb_file_no);
+                    $("#pcoc_plate_no").html(dta.plate_no);
+                    $("#pcoc_serial").html(dta.serial_chassis);
+                    $("#pcoc_motor").html(dta.motor_no);
+                    
+                    setTimeout(() => {
+                        $("#printCOC_elem").printElement();
+                        $("#printCOC_elem").hide();
+                    }, 1000);   
+                }
+                
+            })
+        }
+        else{
+            errorMessage("Please search a policy first!")
+        }
+    })
+
+    $("#btnPrintPolicy").click(function(){
+        
+        const trans_id = $(".vtrans_id").val();
+        const slectab = $(".vtrans_type").val().toLocaleLowerCase();
+
+        if(trans_id != 0 && trans_id != undefined) {
+
+            axios.get(`${base_url}admin/search_policy?search_val=${trans_id}&search_by_id=1`).then(res => {
+
+                if(res.data.status == "success"){
+                    const dta = res.data.data[0];
+
+                    $(".ppop_policy").html(dta.policy_no);
+                    $(".ppop_name").html(dta.received_from);
+                    $(".ppop_address").html(dta.address);
+                    $(".ppop_dateissued").html(convertDate(dta.date_issued));
+                    $(".ppop_or").html(dta.official_receipt);
+                    $(".ppop_dfrom").html(convertDate(dta.date_from));
+                    $(".ppop_dto").html(convertDate(dta.date_to));
+                    $(".ppop_model").html(dta.model_no);
+                    $(".ppop_make").html(dta.make);
+                    $(".ppop_body").html(dta.type_of_body);
+                    $(".ppop_color").html(dta.color);
+                    $(".ppop_mv_file").html(dta.mb_file_no);
+                    $(".ppop_plate").html(dta.plate_no);
+                    $(".ppop_serial").html(dta.serial_chassis);
+                    $(".ppop_motor").html(dta.motor_no);
+
+                    $(".ppop_prem_paid").html(numberWithCommas(dta.premium_sales));
+                    $(".ppop_docstamp").html(numberWithCommas(dta.pol_docs_stamp));
+                    $(".ppop_vattax").html(numberWithCommas(dta.others));
+                    $(".ppop_lgtax").html(numberWithCommas(dta.lg_tax));
+                    $(".ppop_total_amount_due").html(numberWithCommas(dta.or_total));
+                    
+                    $(".ppop_place").html(dta.place);
+                    $(".ppop_pop_day").html(dta.policy_day);
+                    $(".ppop_pop_month").html(dta.policy_month);
+                    $(".ppop_pop_year").html(convertDate(dta.policy_year, "year"));
+                    
+
+                    if(slectab =="private" || slectab == "commercial"){
+                        $("#print_Policy_elem").show();
+                        setTimeout(() => {
+                            $("#print_Policy_elem").printElement();
+                            $("#print_Policy_elem").hide();
+                        }, 1000);
+                    }
+                    else if(slectab =="motorcycle" || slectab == "tricycle" || slectab == "trailer"){
+                        $("#print_Policy_elem_motor").show();
+                        setTimeout(() => {
+                            $("#print_Policy_elem_motor").printElement();
+                            $("#print_Policy_elem_motor").hide();
+                        }, 1000);
+
+                    }  
+                }
+
+            })
+        }
+        else{
+            errorMessage("Please search a policy first!")
+        }  
+    })
+
+
+    function numberWithCommas(num) {
+        let res = num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+        if((res.split(".")[1] == undefined)){
+            res = res+".00"
+        }
+
+        return res;
+    }
+
+    function convertDate(the_date, get_type = ""){
+
+        let ret_date;
+        let ddte = new Date(the_date);
+        const month = ddte.toLocaleString('default', { month: 'long' });
+
+        let res = "";
+
+        if(get_type == "month"){
+            return month;
+        }
+        else if(get_type == "day"){
+            res = ddte.getDate();
+        }
+        else if(get_type == "year"){
+            res = (ddte.getFullYear()+"").slice(-2);
+        }
+        else{
+            res = `${month} ${ddte.getDate()}, ${ddte.getFullYear()}`;
+        }
+        return res;
+    }
+
+    // end new functions
 
 
     function getDateFormat(cur_date) {

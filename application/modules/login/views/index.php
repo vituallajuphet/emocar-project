@@ -8,6 +8,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
 	<title>Emocar Insurance Brokerage</title>
+	<link rel="shortcut icon" href="<?= base_url()?>assets/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?= base_url()?>assets/images/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="<?= base_url("assets/css/")?>style.css">
 	<link rel="stylesheet" href="<?= base_url("assets/css/")?>login.css">
 	<link rel="stylesheet" href="<?= base_url("assets/css/")?>css/media.css">

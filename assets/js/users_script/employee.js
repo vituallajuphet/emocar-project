@@ -24,8 +24,11 @@ $(document).ready(function(){
         return res;
     }
 
-    $("#search_bar").on("keyup change", function(){
-        let search_val = $(this).val();
+    $("#search_bar").keyup(function(e){
+        if(e.keyCode == 13){
+            let search_val = $(this).val();
+            search_process(search_val, true)
+        }
     })
 
     $("input[name='official_receipt']").on("keyup change", function(){
