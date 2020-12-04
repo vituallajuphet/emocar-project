@@ -240,6 +240,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     }
 
+    function getReqMethod(){
+
+        return $_SERVER["REQUEST_METHOD"];
+
+    }
+
     function get_logged_name(){
         $ci = & get_instance();
         return $ci->session->userdata("first_name") . " " . $ci->session->userdata("last_name");
@@ -315,6 +321,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "global_api",
                 "process_register",
                 "my_profile",
+                "api_agent"
             );
 
        

@@ -7,21 +7,27 @@ class MY_Controller extends MX_Controller {
 
 		$route = $this->router->fetch_class();
 
-		if($route == 'login'){
-			if($this->session->has_userdata('is_logged')){
-				redirect(base_url());
+		if($route  == "api_agent"){
+			
+		} else{
+			if($route == 'login'){
+				if($this->session->has_userdata('is_logged')){
+					redirect(base_url());
+				}
 			}
-		}
-		else {
-			if(!$this->session->has_userdata('is_logged')){
-				redirect(base_url('login'));
-			}
-			else{
-				if(!verify_tab_access()){
-					show_404();
+			else {
+				if(!$this->session->has_userdata('is_logged')){
+					redirect(base_url('login'));
+				}
+				else{
+					if(!verify_tab_access()){
+						show_404();
+					}
 				}
 			}
 		}
+
+		
 
 	}
 
