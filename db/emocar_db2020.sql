@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2020 at 11:30 AM
+-- Generation Time: Dec 06, 2020 at 07:57 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -48,7 +48,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `fk_user_id`, `first_name`, `middle_name`, `last_name`, `address`, `birth_date`, `gender`, `location`, `email`, `contact_no`, `branch`, `profile_name`) VALUES
-(2, 2, 'Opet', 'P', 'Test lastname', 'Test address 2', '2020-01-23', 'Female', '2', 'juphetvitualla@gmail.com', '1234567788', '5', 'profile-1606619662.png'),
+(2, 2, 'Opet', 'P', 'Test lastname', 'Test address 2', '2020-01-23', 'Female', '2', 'juphetvitualla@gmail.com', '1234567788', '5', 'profile-1606809791.png'),
 (4, 3, 'Juphetsss', 'P', 'Vituallas', 'Test address', '2009-02-02', 'Female', '2', 'test@test.com', '11111111', '5', ''),
 (5, 7, 'Juan', 'P', 'Balongas', 'Test address 2', '1997-01-01', 'Male', '1', 'jessie@gmail.com', '61232123', '13', '');
 
@@ -110,6 +110,28 @@ INSERT INTO `tbl_locations` (`loc_id`, `location_name`, `date_added`, `status`) 
 (5, 'NCR', '2020-11-28', 1),
 (6, 'Davao2', '2020-11-28', 0),
 (7, 'NCR2', '2020-11-28', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_log_tokens`
+--
+
+CREATE TABLE `tbl_log_tokens` (
+  `token_id` int(11) NOT NULL,
+  `fk_user_id` int(11) NOT NULL,
+  `token_value` text NOT NULL,
+  `date_added` date NOT NULL,
+  `date_expired` date NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_log_tokens`
+--
+
+INSERT INTO `tbl_log_tokens` (`token_id`, `fk_user_id`, `token_value`, `date_added`, `date_expired`, `status`) VALUES
+(40, 2, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInVzZXJuYW1lIjoidXNlciIsInVzZXJfdHlwZSI6IjIiLCJzdGF0dXMiOiIxIiwiaXNfbG9nZ2VkIjoiMCIsImVtcGxveWVlX2lkIjoiMiIsImZrX3VzZXJfaWQiOiIyIiwiZmlyc3RfbmFtZSI6Ik9wZXQiLCJtaWRkbGVfbmFtZSI6IlAiLCJsYXN0X25hbWUiOiJUZXN0IGxhc3RuYW1lIiwiYWRkcmVzcyI6IlRlc3QgYWRkcmVzcyAyIiwiYmlydGhfZGF0ZSI6IjIwMjAtMDEtMjMiLCJnZW5kZXIiOiJGZW1hbGUiLCJsb2NhdGlvbiI6IjIiLCJlbWFpbCI6Imp1cGhldHZpdHVhbGxhQGdtYWlsLmNvbSIsImNvbnRhY3Rfbm8iOiIxMjM0NTY3Nzg4IiwiYnJhbmNoIjoiNSIsInByb2ZpbGVfbmFtZSI6InByb2ZpbGUtMTYwNjgwOTc5MS5wbmciLCJsb2NfaWQiOiIyIiwibG9jYXRpb25fbmFtZSI6Ik1hbmRhdWUiLCJkYXRlX2FkZGVkIjoiMjAyMC0xMS0yOCIsImJyYW5jaF9pZCI6IjUiLCJma19sb2NhdGlvbl9pZCI6IjIiLCJicmFuY2hfbmFtZSI6IkJyYW5jaCAyIiwidGltZSI6MTYwNzIzNzcyMH0.2ab6_rqqdRqyeKTD1OTkV34U9M_9UC4b5hj4i5TLKd8', '2020-12-06', '2020-12-07', 1);
 
 -- --------------------------------------------------------
 
@@ -192,8 +214,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `status`, `is_logged`) VALUES
-(1, 'admin', '$2y$10$26XhmRp3LVAYyfWc968LIO9jjS.gVovO83Iiwbx7sd8ReVUIumj5O', 1, 1, 0),
-(2, 'user', '$2y$10$26XhmRp3LVAYyfWc968LIO9jjS.gVovO83Iiwbx7sd8ReVUIumj5O', 2, 1, 0),
+(1, 'admin', '$2y$10$zg4hcu3jrnJKwNM05.EMI.yRYdqc.Ql/fPTtUS6wv60EPeoACqHp.', 1, 1, 0),
+(2, 'user', '$2y$10$zg4hcu3jrnJKwNM05.EMI.yRYdqc.Ql/fPTtUS6wv60EPeoACqHp.', 2, 1, 0),
 (3, 'opet', '$2y$10$evpPQQVKKkvOtcWx3plyoukQndCs6BHmTzT4orpRyQxS0Fk5dowbu', 2, 1, 0),
 (5, 'admin2', '$2y$10$w.U5ay3B7h91w86y507jVuxtNq8r00k5ql8Wxm8p3q3xNlBVI4fey', 1, 1, 0),
 (6, 'test', '$2y$10$TG0RpIqiXLD.SHNTNRvtgu.uQBler2If6VNvruzI9anxE4L.y.39.', 1, 1, 0),
@@ -253,6 +275,12 @@ ALTER TABLE `tbl_locations`
   ADD PRIMARY KEY (`loc_id`);
 
 --
+-- Indexes for table `tbl_log_tokens`
+--
+ALTER TABLE `tbl_log_tokens`
+  ADD PRIMARY KEY (`token_id`);
+
+--
 -- Indexes for table `tbl_transactions`
 --
 ALTER TABLE `tbl_transactions`
@@ -291,6 +319,12 @@ ALTER TABLE `tbl_branches`
 --
 ALTER TABLE `tbl_locations`
   MODIFY `loc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tbl_log_tokens`
+--
+ALTER TABLE `tbl_log_tokens`
+  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `tbl_transactions`

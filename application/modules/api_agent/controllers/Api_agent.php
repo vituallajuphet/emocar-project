@@ -97,7 +97,12 @@ class Api_agent extends MY_Controller {
                     $res = getData("tbl_log_tokens", $par, "obj");
 
                     if(!empty($res)) {
-                        $response = ["status" => "success", "message" => "Verified", "data" => [] ];
+
+                        $this->removeExpiredToken($res[0]->fk_user_id);
+
+                        $decoded = JWT::decode($post["token"], $this->pkey, array('HS256'));
+
+                        $response = ["status" => "success", "message" => "Verified", "data" => $decoded ];
                     }
                 }
         
@@ -106,11 +111,41 @@ class Api_agent extends MY_Controller {
         }
     }
 
+
+    public function logout(){
+
+        if(getReqMethod() == "POST"){
+
+            if(is_ajaxs()){
+                $post = $this->input->post();
+                $response = ["status" => "error", "message" => "Something wrong!", "data" => [] ];
+
+                if(!empty($post["token"])){
+
+                    $where  = ["token_value" => $post["token"]];
+
+                    deleteData("tbl_log_tokens", $where);
+                    $response = ["status" => "success", "message" => "logged out", "data" => [] ];
+                  
+                }
+        
+                $this->setResponse($response);
+            }
+        }
+
+    }
+
+    private function removeExpiredToken($user_id){
+        
+        $where= ["fk_user_id" => $user_id, "date_expired <=" => date("Y-m-d") ];
+        deleteData("tbl_log_tokens", $where);
+    }
+
     public function gen_key(){
         $payload = [
             "name" => "test",
             "id" => 1,
-            "username" => "opet"
+            "username" => "opet" 
         ];
 
         $jwt = JWT::encode($payload, $this->pkey);
@@ -124,5 +159,43 @@ class Api_agent extends MY_Controller {
         echo json_encode($response);
         exit;
 
-    }	
+    }
+
+    public function get_transaction_data(){
+
+			$limit        = $this->input->post('length');
+			$offset       = $this->input->post('start');
+			$search       = $this->input->post('search');
+			$order        = $this->input->post('order');
+			$draw         = $this->input->post('draw');
+			
+			$column_order = array(
+				'trans.trans_id',
+				'trans.received_from',
+				'trans.trans_type',
+				'trans.mb_file_no',
+				'trans.plate_no',
+				'trans.published_status',
+				'trans.date_issued',
+			);
+
+			$join         = array(
+				"employees emp" => "emp.fk_user_id = trans.fk_user_id",
+			);
+			$select       = "*";
+			$where        = array(
+				'trans.status' 		=> 1,
+				'trans.fk_user_id' 	=> 2,
+			);
+			$group        = array();
+			$list         = getDataTables('tbl_transactions trans',$column_order, $select, $where, $join, $limit, $offset ,$search, $order, $group);
+			
+			$list_array = array(
+				"draw" => $draw,
+				"recordsTotal" => $list['count_all'],
+				"recordsFiltered" => $list['count'],
+				"data" => $list['data']
+			);
+			echo json_encode($list_array);
+	}
 }
