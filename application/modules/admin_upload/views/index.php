@@ -1,7 +1,9 @@
 <div id="main">
     <div class="main_area">
         <div class="addEmployee">
-            <span class="addemp_button">+ Add User</span>
+            <div>
+                <button class="btn btn-success btn_add_upload"><i class="fa fa-plus"></i> Add New</button>
+            </div>
             <!-- modal -->
              <?php
              
@@ -11,14 +13,9 @@
              ?>
              <input type="hidden" class="tab_sort_value" value="employee">
              <h2 class="page_header user_header"><?= $page_header;?></h2>
-             <div class="text-left mb-3">
-                 <button class="btn btn-primary btn_sort_employee"><i class="fa fa-user"></i> Employees</button>
-                 <button class="btn btn-warning btn_sort_semiadmin"><i class="fa fa-user"></i> Semi Administrator</button>
-                 <button class="btn btn-success btn_sort_admin"><i class="fa fa-user"></i> Administrator</button>
-             </div>
             <!-- end modal -->
             <!-- start table -->
-            <table id="trans_table" class="display" >
+            <!-- <table id="trans_table" class="display" >
                 <thead>
                     <tr>
                         <th>User ID</th>
@@ -32,7 +29,7 @@
                 </thead>
                 <tbody> 
                 </tbody>
-            </table>
+            </table> -->
             <!-- end -->
         </div>
     </div>

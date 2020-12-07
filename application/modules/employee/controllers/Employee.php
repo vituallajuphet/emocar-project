@@ -55,6 +55,8 @@ class Employee extends MY_Controller {
 					"published_status" => 0,
 					"paid_type" => $post["paid_type"],
 					"check_no" => $post["check_no"],
+					"coc_no" => $post["coc_no"],
+					
 				);
 			}
 			

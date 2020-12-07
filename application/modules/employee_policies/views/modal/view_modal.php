@@ -85,6 +85,12 @@
                     <input type="text" class="form-control dta_of_receipt" >
                 </div>
               </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">COC NO.</label>
+                    <input type="text" class="form-control dta_coc_no" >
+                </div>
+              </div>
               <div class="col-md-4"></div>
               <div class="col-md-4">
                 <div class="form-group">

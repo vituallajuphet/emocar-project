@@ -75,6 +75,7 @@ $(document).ready(function(){
                     $("input[name='official_receipt']").val(dta.official_receipt)
                     $("input[name='policy_no']").val(dta.policy_no)
                     $("input[name='color']").val(dta.color)
+                    $("input[name='coc_no']").val(dta.coc_no)
 
                     $("input[name='place']").val(dta.place)
                     $("input[name='others']").val(dta.others)

@@ -1,10 +1,11 @@
 <?php
 
+
 header("Access-Control-Allow-Origin: *");   
 header("Access-Control-Allow-Methods: *");
 header("Access-Control-Allow-Headers: *");
 
-require($_SERVER["DOCUMENT_ROOT"] . '/vendor/autoload.php');
+require($_SERVER["DOCUMENT_ROOT"] . '/emocar/vendor/autoload.php');
 use \Firebase\JWT\JWT;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -20,8 +21,9 @@ class Api_agent extends MY_Controller {
 
     }
 
+
     public function index(){
-        // $response = ["status" => "error", "message" => ""];
+         $response = ["status" => "error", "message" => ""];
         $this->setResponse($response);
     }
 

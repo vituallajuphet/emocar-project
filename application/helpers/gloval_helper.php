@@ -309,6 +309,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "admin_location",
                 "admin_branches",
                 "admin_archived",
+                "admin_upload",
                 "logout");
 
             $tabs_student = array( 

@@ -101,6 +101,7 @@ $(document).ready(function () {
                 $(".dta_of_receipt").val(dta.official_receipt)
                 $(".dta_policy_no").val(dta.policy_no)
                 $(".dta_color").val(dta.color)
+                $(".dta_coc_no").val(dta.coc_no)
 
                 $(".dta_place").val(dta.place)
                 $(".dta_others").val('₱ '+dta.others)
@@ -157,6 +158,8 @@ $(document).ready(function () {
                 $(".dta_edit_of_receipt").val(dta.official_receipt)
                 $(".dta_edit_policy_no").val(dta.policy_no)
                 $(".dta_edit_color").val(dta.color)
+                $(".dta_edit_coc_no").val(dta.coc_no)
+                
                 
                 $(".dta_edit_place").val(dta.place)
                 $(".dta_edit_others").val(dta.others)

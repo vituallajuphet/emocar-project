@@ -54,12 +54,12 @@
 								<input type="text" required name="motor_no" placeholder="">
 							</div>
 							<div class="main_frm_field">
-								<label for="SERIAL / CHASSIS">SERIAL / CHASSIS</label>
-								<input type="text" required name="serial_chassis" placeholder="">
-							</div>
-							<div class="main_frm_field">
 								<label for="POLICY NO">POLICY NO.</label>
 								<input type="text" required name="policy_no" placeholder="">
+							</div>
+							<div class="main_frm_field">
+								<label for="SERIAL / CHASSIS">SERIAL / CHASSIS</label>
+								<input type="text" required name="serial_chassis" placeholder="">
 							</div>
 						</div>
 						<div class="form_sec">
@@ -99,6 +99,10 @@
 								<label for="TO 12:00 NN">TO 12:00 NN</label>
 								<input type="date" name="date_to" placeholder="" class="date_issued2" readonly>
 								<input type="text" name="date_to" class="dummy_date_text2" id="date_end" readonly>
+							</div>
+							<div class="main_frm_field">
+								<label for="COC NO.">COC NO.</label>
+								<input type="text" required name="coc_no" placeholder="">
 							</div>
 						</div>
 					</div>

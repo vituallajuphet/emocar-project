@@ -127,6 +127,7 @@ class Employee_policies extends MY_Controller {
 				"misc" => $post["misc"],
 				"or_total" => $post["or_total"],
 				"the_sum_of_pesos" => $post["the_sum_of_pesos"],
+				"coc_no" => $post["coc_no"],
 			);
 
 			$where = [

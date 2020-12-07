@@ -32,6 +32,15 @@
         font-style: italic;
         color: #368e44;
     }
+    .form-group label{
+        font-size: 1.1rem;
+        margin:0 0 0.3rem !important
+    }
+
+    .form-group .form-control{
+        height: unset;
+        padding: 6px 10px;
+    }
 }
 
 .btn-favorate {
@@ -55,5 +64,5 @@
     margin: 0 auto 20px;
 
     img{}
-
 }
+
