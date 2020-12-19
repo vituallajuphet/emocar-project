@@ -54,11 +54,11 @@
 								<input type="text" required name="motor_no" placeholder="">
 							</div>
 							<div class="main_frm_field">
-								<label for="POLICY NO">POLICY NO.</label>
-								<input type="text" required name="policy_no" placeholder="">
+								<label for="OFFICIAL RECEIPT">OFFICIAL RECEIPT</label>
+								<input type="text" required name="official_receipt" placeholder="">
 							</div>
 							<div class="main_frm_field">
-								<label for="SERIAL / CHASSIS">SERIAL / CHASSIS</label>
+								<label for="SERIAL / CHASSIS">SERIAL / CHASSIS NO.</label>
 								<input type="text" required name="serial_chassis" placeholder="">
 							</div>
 						</div>
@@ -76,8 +76,8 @@
 								<input type="text" required name="type_of_body" placeholder="">
 							</div>
 							<div class="main_frm_field">
-								<label for="OFFICIAL RECEIPT">OFFICIAL RECEIPT</label>
-								<input type="text" required name="official_receipt" placeholder="">
+								<label for="POLICY NO">POLICY NO.</label>
+								<input type="text" required name="policy_no" placeholder="">
 							</div>
 							<div class="main_frm_field">
 								<label for="COLOR">COLOR</label>
@@ -111,7 +111,7 @@
 					<div class="form_outer_cont">
 						<div class="form_sec">
 							<div class="main_frm_fieldss">
-								<label for="PLACE">PLACE</label>
+								<label for="PLACE">PLACE OF ISSUE</label>
 								<input type="text" required name="place" placeholder="">
 							</div>
 						</div>

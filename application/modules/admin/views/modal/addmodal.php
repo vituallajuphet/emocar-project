@@ -2,7 +2,7 @@
 					<div class="pop_up_inner">
 						<span class="close_pop_up">X</span>
 						<form action="#" method="POST" id="add_emp_admin">
-							<h2 class="addhead_emp">Add Employee</h2>
+							<h2 class="addhead_emp">Intermediaries Profile</h2>
 							<div class="parent_form">
 								<div class="form_box">
 									<label for="">First Name:</label>

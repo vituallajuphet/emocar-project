@@ -35,7 +35,7 @@ main {padding: 30px 20px;}
 .main_area {border: 1px solid #004001;min-height: 600px;}
 .mn_heading_tabs {background: #004001;height: 50px;}
 .mn_heading_tabs ul {display: flex;flex-wrap: nowrap;list-style-type: none;text-align: center;padding-top: 3px;}
-.mn_heading_tabs ul li {display: inline-block;margin: 0 5px;vertical-align: top;color: #fff;text-align: center;font-size: 14px;line-height: 47px;width: 100%;cursor: pointer;opacity: .2;}
+.mn_heading_tabs ul li {display: inline-block;margin: 0 5px;vertical-align: top;color: #fff;text-align: center;font-size: 14px;line-height: 47px;width: 100%;cursor: pointer;background-color: #d4af37;}
 
 .mn_heading_tabs ul li:hover {background: #fff;color: #000;}
 .mn_heading_tabs ul li.active {background: #fff;color: #000;opacity: 1;}

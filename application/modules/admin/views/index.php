@@ -12,9 +12,9 @@
              <input type="hidden" class="tab_sort_value" value="employee">
              <h2 class="page_header user_header"><?= $page_header;?></h2>
              <div class="text-left mb-3">
-                 <button class="btn btn-primary btn_sort_employee"><i class="fa fa-user"></i> Employees</button>
-                 <button class="btn btn-warning btn_sort_semiadmin"><i class="fa fa-user"></i> Semi Administrator</button>
                  <button class="btn btn-success btn_sort_admin"><i class="fa fa-user"></i> Administrator</button>
+                 <button class="btn btn-warning btn_sort_semiadmin"><i class="fa fa-user"></i> Semi Administrator</button>
+                 <button class="btn btn-primary btn_sort_employee"><i class="fa fa-user"></i> Employees</button>
              </div>
             <!-- end modal -->
             <!-- start table -->
