@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         ];
 
         if(get_user_type() == 2){
-            $par["where"] = ["employee_id" =>  $user_id];
+            $par["where"] = ["fk_user_id" =>  $user_id];
             $res = getData("employees u_meta", $par);
         }
         else{
