@@ -35,12 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$is_production = false;
-
-if(!$is_production){
-  $config['base_url'] = 'http://emocar.com';
-}
-
+$config['base_url'] = 'https://www.emocarinsurancebrokerage.com/';
 
 
 // $config['base_url'] = 'http://cbmcgroup.com.ph/portal/';
