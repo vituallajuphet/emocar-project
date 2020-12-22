@@ -27,7 +27,7 @@ class Admin_policies extends MY_Controller {
 				'trans.trans_type',
 				'trans.mb_file_no',
 				'trans.plate_no',
-				'trans.published_status',
+				// 'trans.published_status',
 				'trans.date_issued',
 			);
 

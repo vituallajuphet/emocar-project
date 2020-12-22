@@ -283,9 +283,10 @@ table[data-tbl='datatable'] tbody tr.row-approved {
     background-color: #52ca40 !important; }
 
 table[data-tbl='datatable'] tbody tr.row-pending {
-  background-color: #fcc !important; }
+  background-color: #52ca40 !important; }
   table[data-tbl='datatable'] tbody tr.row-pending td {
-    background-color: #fcc !important; }
+    background-color: #fcc !important;
+    background-color: #52ca40 !important; }
 
 .page-item.active .page-link {
   background-color: #52ca40 !important; }
