@@ -529,14 +529,14 @@ main {
   line-height: 47px;
   width: 100%;
   cursor: pointer;
-  background-color: #d4af37; }
+  background-color: #9bdf4c; }
 
 .mn_heading_tabs ul li:hover {
-  background: #fff;
+  background: #ffd000;
   color: #000; }
 
 .mn_heading_tabs ul li.active {
-  background: #fff;
+  background: #ffd000;
   color: #000;
   opacity: 1; }
 
@@ -606,13 +606,13 @@ main {
   display: block; }
 
 .coc_formfield {
-  border: 1px solid #008080; }
+  border: 1px solid #ffd000; }
 
 .coc_formfield .main_form_heading {
   font-size: 20px;
   color: #fff;
   line-height: 34px;
-  background: #008080;
+  background: #ffd000;
   display: block;
   padding-left: 15px; }
 
@@ -639,7 +639,7 @@ main {
   display: block;
   font-size: 15px;
   width: 100%;
-  border: 1px solid #008080;
+  border: 1px solid #ffd000;
   height: 28px;
   padding-left: 10px; }
 
@@ -654,7 +654,14 @@ main {
   height: 41px;
   border: none;
   padding: 0 46px;
-  color: #fff; }
+  color: #fff;
+  color: #333; }
+  .print_sec button:first-child {
+    background-color: #ffd000; }
+  .print_sec button:nth-child(2) {
+    background-color: #d5ef89; }
+  .print_sec button:last-child {
+    background-color: #9bdf4c; }
 
 .or_formfield {
   border: 1px solid #bf0000;
@@ -682,7 +689,7 @@ main {
   display: block;
   font-size: 17px;
   width: 100%;
-  border: 1px solid #008080;
+  border: 1px solid #ffd000;
   height: 35px;
   padding-left: 10px; }
 
@@ -746,7 +753,7 @@ main {
 
 .submit input {
   display: inline-block;
-  background: #008001;
+  background: #9bdf4c;
   font-size: 18px;
   height: 50px;
   border: none;
@@ -775,7 +782,7 @@ main {
   display: block;
   font-size: 15px;
   width: 100%;
-  border: 1px solid #008080;
+  border: 1px solid #ffd000;
   height: 28px;
   padding-left: 10px;
   max-width: 291px; }

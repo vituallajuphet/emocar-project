@@ -35,10 +35,10 @@ main {padding: 30px 20px;}
 .main_area {border: 1px solid #004001;min-height: 600px;}
 .mn_heading_tabs {background: #004001;height: 50px;}
 .mn_heading_tabs ul {display: flex;flex-wrap: nowrap;list-style-type: none;text-align: center;padding-top: 3px;}
-.mn_heading_tabs ul li {display: inline-block;margin: 0 5px;vertical-align: top;color: #fff;text-align: center;font-size: 14px;line-height: 47px;width: 100%;cursor: pointer;background-color: #d4af37;}
+.mn_heading_tabs ul li {display: inline-block;margin: 0 5px;vertical-align: top;color: #fff;text-align: center;font-size: 14px;line-height: 47px;width: 100%;cursor: pointer;background-color: #9bdf4c;}
 
-.mn_heading_tabs ul li:hover {background: #fff;color: #000;}
-.mn_heading_tabs ul li.active {background: #fff;color: #000;opacity: 1;}
+.mn_heading_tabs ul li:hover {background: #ffd000;color: #000;}
+.mn_heading_tabs ul li.active {background: #ffd000;color: #000;opacity: 1;}
 
 .form_field_emocar {width: 100%;display: block;padding: 30px 20px;}
 .opt_2 {display: block;margin-bottom: 30px;}
@@ -53,24 +53,36 @@ main {padding: 30px 20px;}
 .opt_2 .form_field_radio input:hover ~ label, .opt_2 .form_field_radio input:checked ~ label {color: #fff;}
 
 .formfield_box {display: block;}
-.coc_formfield {border: 1px solid #008080;}
-.coc_formfield .main_form_heading {font-size: 20px;color: #fff;line-height: 34px;background: #008080;display: block;padding-left: 15px;}
+.coc_formfield {border: 1px solid #ffd000;}
+.coc_formfield .main_form_heading {font-size: 20px;color: #fff;line-height: 34px;background: #ffd000;display: block;padding-left: 15px;}
 
 .formfield_box .form_outer_cont {padding: 15px 11px;}
 .form_outer_cont {display: flex;flex-wrap: nowrap;}
 .form_outer_cont .form_sec {width: 100%;}
 .form_outer_cont .form_sec .main_frm_field { display: block; margin: 0 20px 6px; position: relative; }
 .form_outer_cont .form_sec .main_frm_field label {display: block;font-size: 14px;}
-.form_outer_cont .form_sec .main_frm_field input, .form_outer_cont .form_sec .main_frm_fieldss input, .form_outer_cont .form_sec .main_frm_fields input { display: block; font-size: 15px; width: 100%; border: 1px solid #008080; height: 28px; padding-left: 10px; }
+.form_outer_cont .form_sec .main_frm_field input, .form_outer_cont .form_sec .main_frm_fieldss input, .form_outer_cont .form_sec .main_frm_fields input { display: block; font-size: 15px; width: 100%; border: 1px solid #ffd000; height: 28px; padding-left: 10px; }
 .print_sec {text-align: right;padding: 0 30px 22px;}
-.print_sec button {display: inline-block; background: #008080; font-size: 18px; height: 41px; border: none; padding: 0 46px; color: #fff;}
+.print_sec button {display: inline-block; background: #008080; font-size: 18px; height: 41px; border: none; padding: 0 46px; color: #fff;
+    color: #333;
+    &:first-child{
+        background-color:#ffd000 ;
+        
+    }
+    &:nth-child(2){
+        background-color: #d5ef89;
+    }
+    &:last-child{
+        background-color: #9bdf4c;
+    }
+}
 .or_formfield {border: 1px solid #bf0000; margin-top: 30px;}
 .or_formfield .main_form_heading {font-size: 20px;color: #fff;line-height: 45px;background: #bf0000;display: block;padding-left: 15px;}
 
 .form_outer_cont .form_sec .main_frm_fields {display: block;margin: 0 20px 15px;}
 .form_outer_cont .form_sec .main_frm_fields label {display: block;font-size: 16px;}
 /* .form_outer_cont .form_sec .main_frm_fields input {display: block;font-size: 17px;width: 100%;border: 1px solid #bf0000;height: 35px;padding-left: 10px;} */
-.form_outer_cont .form_sec .main_frm_fields textarea {resize: none;display: block;font-size: 17px;width: 100%;border: 1px solid #008080;height: 35px;padding-left: 10px;}
+.form_outer_cont .form_sec .main_frm_fields textarea {resize: none;display: block;font-size: 17px;width: 100%;border: 1px solid #ffd000;height: 35px;padding-left: 10px;}
 
 .date_issued, .date_issued1, .date_issued2 {position: absolute;bottom: 0;left: 0;right: 0;opacity: 0;}
 
@@ -88,7 +100,7 @@ main {padding: 30px 20px;}
 .print_policy input {display: inline-block;background: #0003ff;font-size: 18px;height: 50px;border: none;padding: 0 80px;color: #fff;}
 
 .submit {text-align: right;padding: 0 30px 30px;}
-.submit input {display: inline-block;background: #008001;font-size: 18px;height: 50px;border: none;padding: 0 80px;color: #fff; margin-top: 30px;}
+.submit input {display: inline-block;background: #9bdf4c;font-size: 18px;height: 50px;border: none;padding: 0 80px;color: #fff; margin-top: 30px;}
 
 .footer ul{ padding: 0; list-style-type: none; margin: 0;}
 .footer ul li{margin-left: 20px;font-weight: bold;}
@@ -98,7 +110,7 @@ main {padding: 30px 20px;}
 .paid_type_cont{ text-align:left;  padding: 15px 32px; font-size: 17px
 
 }
-.paid_type_cont input[type="text"]{ display: block; font-size: 15px; width: 100%; border: 1px solid #008080; height: 28px; padding-left: 10px;max-width: 291px;}
+.paid_type_cont input[type="text"]{ display: block; font-size: 15px; width: 100%; border: 1px solid #ffd000; height: 28px; padding-left: 10px;max-width: 291px;}
 
 #paid_type_cash{margin-right: 15px;display: inline-block;}
 
