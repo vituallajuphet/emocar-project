@@ -44,7 +44,7 @@ class Employee extends MY_Controller {
 					"received_from" => ucfirst($post["received_from"]),
 					"address" => $post["address"],
 					"place" => $post["place"],
-					"or_date" =>  date('yy-m-d', strtotime($post["or_date"])),
+					"or_date" =>  date('yy-m-d', strtotime($post["date_issued"])),
 					"premium_sales" => $post["premium_sales"],
 					"docs_stamp" => $post["docs_stamp"],
 					"lg_tax" => $post["lg_tax"],
@@ -56,6 +56,7 @@ class Employee extends MY_Controller {
 					"paid_type" => $post["paid_type"],
 					"check_no" => $post["check_no"],
 					"coc_no" => $post["coc_no"],
+					"series_no" => $post["series_no"]
 					
 				);
 			}

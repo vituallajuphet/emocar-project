@@ -93,6 +93,7 @@ $(document).ready(function(){
                     $("input[name='or_total']").val(dta.or_total)
                     $("input[name='or_date']").val(convertDate(dta.or_date))
                     $("input[name='lg_tax']").val(dta.lg_tax)
+                    $("input[name='series_no']").val(dta.series_no)
                     $("textarea[name='the_sum_of_pesos']").val(dta.the_sum_of_pesos)
                 }
                 else{
