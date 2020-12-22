@@ -50,7 +50,7 @@
                         <th>Transaction Type</th>
                         <th>MV File No.</th>
                         <th>Plate No.</th>
-                        <th>Status</th>
+                        <!-- <th>Status</th> -->
                         <th>Date Issued</th>
                         <th>Action</th>
                     </tr>
