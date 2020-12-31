@@ -398,6 +398,9 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   border-radius: 50%;
   overflow: hidden; }
 
+.trust_receipt label {
+  font-weight: bold; }
+
 html {
   font-size: 14px; }
 
@@ -830,6 +833,33 @@ main {
   font-size: 15px;
   padding: 5px 8px;
   margin-left: 0.5rem; }
+
+.tbl-rows .first_td span {
+  margin-bottom: 14px; }
+
+.tbl-rows .td-cont {
+  padding: 36px 0 0; }
+  .tbl-rows .td-cont input {
+    display: block;
+    margin-bottom: 5px; }
+
+.tbl-rows th {
+  font-weight: bold; }
+
+.tbl-rows .td-action {
+  width: 0;
+  text-align: center;
+  padding: 43px  0 0; }
+  .tbl-rows .td-action a {
+    font-size: 21px;
+    color: red;
+    margin-bottom: 7px; }
+
+.tbl-rows tr .removeRow a {
+  font-size: 21px;
+  color: red;
+  display: inline-block;
+  margin-left: 5px; }
 
 #printCOC_elem {
   display: none; }

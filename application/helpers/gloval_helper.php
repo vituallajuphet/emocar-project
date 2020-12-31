@@ -317,6 +317,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "employee",
                 "employee_archived",
                 "employee_policies",
+                "employee_trust_receipt",
                 "logout",
                 "register",
                 "global_api",
