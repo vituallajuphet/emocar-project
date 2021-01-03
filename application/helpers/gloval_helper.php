@@ -141,6 +141,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return $res;
     }
 
+    function getNextId($tblName ="" ){
+        $ci =& get_instance();
+        $sqlQuery = "SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES
+        WHERE table_name = '$tblName'";
+    
+        $exeQuery =  $ci->db->query($sqlQuery);
+
+        $res = $exeQuery->result_object();
+        
+        return $res[0]->auto_increment;
+
+    }
+
     function getDataTables($table, $column_order, $select = "*", $where = "", $join = array(), $limit, $offset, $search, $order,$group = ''){
         $ci = & get_instance();
         $ci->db->from($table);
@@ -317,6 +330,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "employee",
                 "employee_archived",
                 "employee_policies",
+                "employee_trust_receipt",
                 "logout",
                 "register",
                 "global_api",

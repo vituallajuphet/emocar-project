@@ -14,6 +14,7 @@
 			<li class="<?= $route == "employee" ? 'active' :'' ?>"><a href="employee"><i class="fa fa-file"></i> DETAILS ENTRY</a></li>
 			<li class="<?= $route == "employee_policies" ? 'active' :'' ?>"><a href="employee_policies"><i class="fa fa-list-alt"></i> DETAIL RECORDS</a></li>
 			<li class="<?= $route == "employee_archived" ? 'active' :'' ?>"><a href="employee_archived"><i class="fa fa-trash"></i> ARCHIVED DETAILS</a></li>
+			<li class="<?= $route == "employee_trust_receipt" ? 'active' :'' ?>"><a href="employee_trust_receipt"><i class="fa fa-newspaper-o"></i> GENERATE TRUST RECEIPT</a></li>
 		</ul>
 	</nav>
 	<div class="nav_userinfo">

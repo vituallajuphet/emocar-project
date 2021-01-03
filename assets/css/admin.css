@@ -398,6 +398,9 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   border-radius: 50%;
   overflow: hidden; }
 
+.trust_receipt label {
+  font-weight: bold; }
+
 #trans_table {
   margin-top: 20px; }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2020 at 07:57 AM
+-- Generation Time: Jan 03, 2021 at 04:25 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -48,9 +48,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `fk_user_id`, `first_name`, `middle_name`, `last_name`, `address`, `birth_date`, `gender`, `location`, `email`, `contact_no`, `branch`, `profile_name`) VALUES
-(2, 2, 'Opet', 'P', 'Test lastname', 'Test address 2', '2020-01-23', 'Female', '2', 'juphetvitualla@gmail.com', '1234567788', '5', 'profile-1606809791.png'),
-(4, 3, 'Juphetsss', 'P', 'Vituallas', 'Test address', '2009-02-02', 'Female', '2', 'test@test.com', '11111111', '5', ''),
-(5, 7, 'Juan', 'P', 'Balongas', 'Test address 2', '1997-01-01', 'Male', '1', 'jessie@gmail.com', '61232123', '13', '');
+(6, 8, 'Anabelle', 'Bejagan', 'Torino', 'Anahaw Buhisan Cebu City', '1977-08-13', 'Female', '1', 'anabellebtorino123@gmail.com', '09264418054', '1', '');
 
 -- --------------------------------------------------------
 
@@ -71,19 +69,7 @@ CREATE TABLE `tbl_branches` (
 --
 
 INSERT INTO `tbl_branches` (`branch_id`, `fk_location_id`, `branch_name`, `date_added`, `status`) VALUES
-(1, 1, 'Branch 1', '2020-11-28', 1),
-(2, 1, 'Branch 2', '2020-11-28', 1),
-(3, 1, 'Branch 3', '2020-11-28', 1),
-(4, 2, 'Branch 1', '2020-11-28', 1),
-(5, 2, 'Branch 2', '2020-11-28', 1),
-(6, 3, 'Branch 1', '2020-11-28', 1),
-(7, 2, 'asd', '2020-11-28', 0),
-(8, 2, 'asd asd asdas d', '2020-11-28', 0),
-(9, 1, 'asdasd asd', '2020-11-28', 0),
-(10, 2, 'sample 2', '2020-11-28', 0),
-(11, 1, 'branch 2', '2020-11-28', 0),
-(12, 3, 'test branch2', '2020-11-28', 0),
-(13, 1, 'Colon', '2020-11-29', 1);
+(1, 1, 'Main', '2020-11-28', 1);
 
 -- --------------------------------------------------------
 
@@ -103,13 +89,7 @@ CREATE TABLE `tbl_locations` (
 --
 
 INSERT INTO `tbl_locations` (`loc_id`, `location_name`, `date_added`, `status`) VALUES
-(1, 'Cebu', '2020-11-28', 1),
-(2, 'Mandaue', '2020-11-28', 1),
-(3, 'Lapu-Lapu', '2020-11-28', 1),
-(4, 'cebu city', '2020-11-28', 0),
-(5, 'NCR', '2020-11-28', 1),
-(6, 'Davao2', '2020-11-28', 0),
-(7, 'NCR2', '2020-11-28', 1);
+(1, 'Cebu City', '2020-11-28', 1);
 
 -- --------------------------------------------------------
 
@@ -131,7 +111,7 @@ CREATE TABLE `tbl_log_tokens` (
 --
 
 INSERT INTO `tbl_log_tokens` (`token_id`, `fk_user_id`, `token_value`, `date_added`, `date_expired`, `status`) VALUES
-(40, 2, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInVzZXJuYW1lIjoidXNlciIsInVzZXJfdHlwZSI6IjIiLCJzdGF0dXMiOiIxIiwiaXNfbG9nZ2VkIjoiMCIsImVtcGxveWVlX2lkIjoiMiIsImZrX3VzZXJfaWQiOiIyIiwiZmlyc3RfbmFtZSI6Ik9wZXQiLCJtaWRkbGVfbmFtZSI6IlAiLCJsYXN0X25hbWUiOiJUZXN0IGxhc3RuYW1lIiwiYWRkcmVzcyI6IlRlc3QgYWRkcmVzcyAyIiwiYmlydGhfZGF0ZSI6IjIwMjAtMDEtMjMiLCJnZW5kZXIiOiJGZW1hbGUiLCJsb2NhdGlvbiI6IjIiLCJlbWFpbCI6Imp1cGhldHZpdHVhbGxhQGdtYWlsLmNvbSIsImNvbnRhY3Rfbm8iOiIxMjM0NTY3Nzg4IiwiYnJhbmNoIjoiNSIsInByb2ZpbGVfbmFtZSI6InByb2ZpbGUtMTYwNjgwOTc5MS5wbmciLCJsb2NfaWQiOiIyIiwibG9jYXRpb25fbmFtZSI6Ik1hbmRhdWUiLCJkYXRlX2FkZGVkIjoiMjAyMC0xMS0yOCIsImJyYW5jaF9pZCI6IjUiLCJma19sb2NhdGlvbl9pZCI6IjIiLCJicmFuY2hfbmFtZSI6IkJyYW5jaCAyIiwidGltZSI6MTYwNzIzNzcyMH0.2ab6_rqqdRqyeKTD1OTkV34U9M_9UC4b5hj4i5TLKd8', '2020-12-06', '2020-12-07', 1);
+(44, 2, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInVzZXJuYW1lIjoidXNlciIsInVzZXJfdHlwZSI6IjIiLCJzdGF0dXMiOiIxIiwiaXNfbG9nZ2VkIjoiMCIsImVtcGxveWVlX2lkIjoiMiIsImZrX3VzZXJfaWQiOiIyIiwiZmlyc3RfbmFtZSI6Ik9wZXQiLCJtaWRkbGVfbmFtZSI6IlAiLCJsYXN0X25hbWUiOiJUZXN0IGxhc3RuYW1lIiwiYWRkcmVzcyI6IlRlc3QgYWRkcmVzcyAyIiwiYmlydGhfZGF0ZSI6IjIwMjAtMDEtMjMiLCJnZW5kZXIiOiJGZW1hbGUiLCJsb2NhdGlvbiI6IjIiLCJlbWFpbCI6Imp1cGhldHZpdHVhbGxhQGdtYWlsLmNvbSIsImNvbnRhY3Rfbm8iOiIxMjM0NTY3Nzg4IiwiYnJhbmNoIjoiNSIsInByb2ZpbGVfbmFtZSI6InByb2ZpbGUtMTYwNjgwOTc5MS5wbmciLCJsb2NfaWQiOiIyIiwibG9jYXRpb25fbmFtZSI6Ik1hbmRhdWUiLCJkYXRlX2FkZGVkIjoiMjAyMC0xMS0yOCIsImJyYW5jaF9pZCI6IjUiLCJma19sb2NhdGlvbl9pZCI6IjIiLCJicmFuY2hfbmFtZSI6IkJyYW5jaCAyIiwidGltZSI6MTYwNzI0ODQyMH0.zp6XltXyB-2FbXfjXMzO7wrHd9EAjHTNBN9-uXfAMEo', '2020-12-06', '2020-12-07', 1);
 
 -- --------------------------------------------------------
 
@@ -176,23 +156,37 @@ CREATE TABLE `tbl_transactions` (
   `status` int(11) NOT NULL,
   `published_status` varchar(55) NOT NULL,
   `paid_type` varchar(55) NOT NULL,
-  `check_no` varchar(100) NOT NULL
+  `check_no` varchar(100) NOT NULL,
+  `coc_no` varchar(100) NOT NULL,
+  `series_no` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_transactions`
 --
 
-INSERT INTO `tbl_transactions` (`trans_id`, `fk_user_id`, `trans_type`, `trans_option`, `mb_file_no`, `plate_no`, `motor_no`, `serial_chassis`, `policy_no`, `model_no`, `make`, `type_of_body`, `official_receipt`, `color`, `place`, `date_issued`, `date_from`, `date_to`, `others`, `pol_docs_stamp`, `lgt`, `policy_day`, `policy_month`, `policy_year`, `received_from`, `address`, `or_date`, `premium_sales`, `docs_stamp`, `lg_tax`, `misc`, `or_total`, `the_sum_of_pesos`, `status`, `published_status`, `paid_type`, `check_no`) VALUES
-(2, 2, 'motorcycle', 'StrongHold', '55555', '234123', 'test', 'Petey', '1234566', 'honda', 'Marion', 'Peter', '1111', 'Matt', 'lapu lapu', '2020-11-07', '2020-11-07', '2121-11-07', 0, 0, 0, '7', 'November', '2020', 'Juan de cruz', '162 Little Embers Court', '2020-11-08', 560, 200, 200, 290, 1250, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Cash', ''),
-(3, 2, 'tricycle', 'StrongHold', '33333', 'gds123', 'Bob', 'Petey', '6123782', 'honda', 'Marion', 'Peter', '2222', 'Matt', 'manila', '2020-11-07', '2020-11-07', '2121-11-07', 0, 0, 0, '7', 'November', '2020', 'Allan Doe', '162 Little Embers Court', '2020-11-07', 222, 0, 0, 0, 0, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Cash', ''),
-(4, 3, 'private', 'StrongHold', '1234566', '555123', 'Bob', 'Petey', '51235612', 'honda', 'Marion', 'Peter', '3333', 'Matt', 'cagayan', '2020-11-07', '2020-11-07', '2021-11-06', 123, 22, 22, '7', 'November', '2020', 'John Doe', '162 Little Embers Court', '2020-11-07', 222, 555, 5, 4, 0, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Cash', ''),
-(5, 2, 'commercial', 'StrongHold', '22222', 'Petey', 'Anna', 'Marion', '6123123', '123123', 'Holly', 'Bob', '123456', 'Kerry', 'Petey', '1970-01-01', '1970-01-01', '1970-01-01', 0, 0, 0, 'Peter', 'Anna', 'Anna', 'Anna Diaz', 'test address', '2020-11-07', 0, 0, 0, 0, 0, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Check', '123578900'),
-(6, 2, 'trailer', 'StrongHold', '51231', '11123123', '123123', '23123', '5123123', '56123', 'BMW', 'test body1', '4444', 'red', 'cebu', '2020-11-24', '2020-11-24', '2021-11-24', 200, 200, 200, '24', 'November', '2020', 'John Prats', 'dalaguete', '2020-11-24', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 0, '0', 'Check', '123123123'),
-(7, 2, 'motorcycle', 'StrongHold', '555123', '612311', '666611', 'cgase 2123', '6123123', 'test modale', 'honda', 'test vody', '6123123', 'blue', 'cebu city', '2020-11-29', '2020-11-30', '2021-11-30', 200, 200, 200, '29', 'November', '2020', 'Joch clart', 'mandaie', '2020-11-29', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Check', 'chck1235123'),
-(8, 2, 'motorcycle', 'StrongHold', 'Cliff', 'Frank', 'Holly', 'Marion', 'Anna', 'Terry', 'Matt', 'Petey', 'Tom', 'Lynn', 'Sue', '1970-01-01', '1970-01-01', '1970-01-01', 0, 0, 0, 'Cory', 'Anna', 'Leonardo', 'Cruiser', '162 Little Embers Court', '7070-01-01', 0, 0, 0, 0, 0, 'This is a dummy text.', 0, '0', 'Check', 'Leonardo'),
-(9, 2, 'motorcycle', 'StrongHold', 'asd', 'asd', 'asd', 'a', 'asd', 'asdas', 'asd', 'asd', 'asd', 'asd', 'asd', '2020-11-29', '2020-11-29', '2021-11-29', 200, 200, 200, '29', 'November', '2020', 'Asd', 'asd', '2020-11-29', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 0, '0', 'Check', 'asdasd'),
-(10, 2, 'Motorcycle', 'StrongHold', '1111', '12', '11', '123', '123', '1', '123', '123', '123', '123', 'cenu', '2020-11-29', '2020-11-29', '2021-11-29', 200, 200, 200, '29', 'November', '2020', '11', 'Test address 2', '2020-11-29', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Cash', '');
+INSERT INTO `tbl_transactions` (`trans_id`, `fk_user_id`, `trans_type`, `trans_option`, `mb_file_no`, `plate_no`, `motor_no`, `serial_chassis`, `policy_no`, `model_no`, `make`, `type_of_body`, `official_receipt`, `color`, `place`, `date_issued`, `date_from`, `date_to`, `others`, `pol_docs_stamp`, `lgt`, `policy_day`, `policy_month`, `policy_year`, `received_from`, `address`, `or_date`, `premium_sales`, `docs_stamp`, `lg_tax`, `misc`, `or_total`, `the_sum_of_pesos`, `status`, `published_status`, `paid_type`, `check_no`, `coc_no`, `series_no`) VALUES
+(12, 8, 'Motorcycle', 'StrongHold', '55555', '070106', 'x', 'xxxxxx', '000000000', '2016', 'yyama', 'mc', '111111', 'otange', 'cebu city', '2020-12-21', '2020-12-21', '2021-12-21', 200, 200, 200, '21', 'December', '2020', 'Anabel', 'cebu city', '2020-12-21', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '1', 'Cash', '', '00000000', 'asdasd'),
+(13, 8, 'Motorcycle', 'StrongHold', 'asdasd', 'asd', 'asdasd', 'tesdt', '123', 'asd', 'asdasd', 'asd', '123123', 'test', '123123', '2020-12-22', '2020-12-22', '2021-12-22', 200, 200, 200, '22', 'December', '2020', 'Test', 'tesadd', '2020-12-22', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '0', 'Cash', '', '123123', 'asdasd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_trust_receipt`
+--
+
+CREATE TABLE `tbl_trust_receipt` (
+  `trust_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `date_added` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_trust_receipt`
+--
+
+INSERT INTO `tbl_trust_receipt` (`trust_id`, `status`, `date_added`) VALUES
+(1, 1, '2021-01-02');
 
 -- --------------------------------------------------------
 
@@ -215,11 +209,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `status`, `is_logged`) VALUES
 (1, 'admin', '$2y$10$zg4hcu3jrnJKwNM05.EMI.yRYdqc.Ql/fPTtUS6wv60EPeoACqHp.', 1, 1, 0),
-(2, 'user', '$2y$10$zg4hcu3jrnJKwNM05.EMI.yRYdqc.Ql/fPTtUS6wv60EPeoACqHp.', 2, 1, 0),
-(3, 'opet', '$2y$10$evpPQQVKKkvOtcWx3plyoukQndCs6BHmTzT4orpRyQxS0Fk5dowbu', 2, 1, 0),
-(5, 'admin2', '$2y$10$w.U5ay3B7h91w86y507jVuxtNq8r00k5ql8Wxm8p3q3xNlBVI4fey', 1, 1, 0),
-(6, 'test', '$2y$10$TG0RpIqiXLD.SHNTNRvtgu.uQBler2If6VNvruzI9anxE4L.y.39.', 1, 1, 0),
-(7, 'juan', '$2y$10$Qyb3sDuOVh3zu.BSkcbYfeVSpjFdwPyC/Ga5Z8iFYuzKDcjxmpNZi', 2, 1, 0);
+(8, 'test', '$2y$10$zg4hcu3jrnJKwNM05.EMI.yRYdqc.Ql/fPTtUS6wv60EPeoACqHp.', 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -248,9 +238,7 @@ CREATE TABLE `user_meta` (
 --
 
 INSERT INTO `user_meta` (`user_meta_id`, `fk_user_id`, `first_name`, `last_name`, `middle_name`, `email`, `contact_no`, `location`, `branch`, `gender`, `birth_date`, `address`, `profile_name`) VALUES
-(1, 1, 'admin', 'Emocar', 'E', 'vitualla@gmail.com', '123546566', '1', '1', 'Male', '2011-02-09', 'cebu city', 'profile-1606619739.jpg'),
-(2, 5, 'James2', 'Leonardo2', 'Cliffs2', 'ex2@exs.com', '222222222', '1', '2', 'Female', '2016-02-25', 'Cebu test', ''),
-(3, 6, 'Marion', 'Bob', 'Frank', 'example@proweaver.com', 'Cory', '1', '1', 'Male', '1971-05-28', '7669 Gulf Drive', 'profile-1606620051.png');
+(1, 1, 'admin', 'Emocar', 'E', 'vitualla@gmail.com', '123546566', '1', '1', 'Male', '2011-02-09', 'cebu city', 'profile-1606619739.jpg');
 
 --
 -- Indexes for dumped tables
@@ -287,6 +275,12 @@ ALTER TABLE `tbl_transactions`
   ADD PRIMARY KEY (`trans_id`);
 
 --
+-- Indexes for table `tbl_trust_receipt`
+--
+ALTER TABLE `tbl_trust_receipt`
+  ADD PRIMARY KEY (`trust_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -306,7 +300,7 @@ ALTER TABLE `user_meta`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `employee_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `employee_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_branches`
@@ -324,19 +318,25 @@ ALTER TABLE `tbl_locations`
 -- AUTO_INCREMENT for table `tbl_log_tokens`
 --
 ALTER TABLE `tbl_log_tokens`
-  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `tbl_transactions`
 --
 ALTER TABLE `tbl_transactions`
-  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `tbl_trust_receipt`
+--
+ALTER TABLE `tbl_trust_receipt`
+  MODIFY `trust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_meta`

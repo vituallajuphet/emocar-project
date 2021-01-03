@@ -1,3 +1,8 @@
 node_modules
+<<<<<<< HEAD
 packege-lock.json
 
+=======
+package-lock.json
+gulpfile.js
+>>>>>>> development
