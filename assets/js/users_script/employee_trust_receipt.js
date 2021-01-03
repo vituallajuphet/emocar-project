@@ -132,6 +132,41 @@ $(document).ready(function () {
             errorMessage("Please add atleast one option first!")
             return;
         }
+
+        alertConfirm("Are you sure to generate this trust receipt?" , function(){
+            // $(".preloader").show();
+            // axios.post(`${base_url}employee_policies/api_update_policy/`, frmdata).then(res => {
+            //    $(".preloader").hide();
+            //     if(res.data.status == "success"){
+            //         $("#edit_policy_modal").modal("hide");
+            //         successMessage("Successfully Updated!");
+            //         trans_table.ajax.reload();
+            //     }
+            //     else{
+            //         errorMessage("Something wrong!")
+            //     }
+            // })
+
+            $("#print_trust_receipt").show();
+
+            setTimeout(() => {
+                $("#print_trust_receipt").printElement();
+                $("#print_trust_receipt").hide();
+            }, 1000);
+
+        })
+    })
+
+
+    const printTest = () => {
+        setTimeout(() => {
+            $("#print_trust_receipt").printElement();
+            $("#print_trust_receipt").hide();
+        }, 1000);
+    }
+
+    $(".page_header").on("click", function(){
+        printTest()
     })
 
     $(document).on("change keyup", ".tr-row .td-serial, .tr-row .td-quantity,  .tr-row .td-set", function (){
@@ -176,9 +211,9 @@ $(document).ready(function () {
                     </td>
                     <td> 
                         <div class="td-cont">
-                            <input type="number" required class="form-control td-quantity" data-id='coc'>
-                            <input type="number" required class="form-control td-quantity" data-id='or'>
-                            <input type="number" required class="form-control td-quantity" data-id='policy'>
+                            <input type="number" readonly required class="form-control td-quantity" data-id='coc'>
+                            <input type="number" readonly required class="form-control td-quantity" data-id='or'>
+                            <input type="number" readonly required class="form-control td-quantity" data-id='policy'>
                         </div>
                     </td>       
                     <td class="td-action">
