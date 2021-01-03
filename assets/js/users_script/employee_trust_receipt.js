@@ -84,7 +84,7 @@ $(document).ready(function () {
 
                 data.map(dta => {
                     html += `
-                     <option value="${dta.user_id}">${dta.first_name + " "+ dta.last_name}</option>
+                     <option data-fullname="${dta.first_name + " "+ dta.last_name}" data-gender="${dta.gender}" data-address="${dta.location_name}" value="${dta.user_id}">${dta.first_name + " "+ dta.last_name}</option>
                     `
                 })
 
@@ -147,6 +147,67 @@ $(document).ready(function () {
             //     }
             // })
 
+            const uname = $("#employee_id").val(); 
+            const uNameText = $("#employee_id option:selected").data("fullname"); 
+            const rDate = $("input[name='date_of_issued']").val(); 
+            const treceipt = $("input[name='trust_id']").val();
+            const placeIssued = $("input[name='place_issued']").val();
+            const gender =  $("#employee_id option:selected").data("gender")
+            const nameFirst  = (gender == "Female" ? "Mrs." : "Mr.") + ` ${uNameText}`;
+            const userLocation = $("#employee_id option:selected").data("address")
+            
+            $(".prDate").html(rDate)
+            $(".prName").html(nameFirst)
+            $(".prDearName").html(`Dear ${nameFirst}`)
+            $(".prTreceipt").html(treceipt)
+            $(".prPlace").html(placeIssued)
+            $(".prLocation").html(userLocation)
+
+            let html = "";
+
+            $(".tbody-tbl .tr-row").each(function (){
+
+                const dta_id = $(this).data("id");
+                
+                const tcont = $(this).find(".td-cont");
+
+                let tcontDta = ""
+
+                tcont.each(function(){
+                    tcontDta += `
+                        <td>
+                            <div>1234</div>
+                            <div>1234</div>
+                            <div>1234</div>
+                        </td>
+                    `
+                })
+
+                html += `
+                    <tr>
+                        <td style='padding: 15px 0; '>
+                            <div><strong>${dta_id} Policy</strong></div> 
+                            <div>COC #</div>
+                            <div>OR #</div>
+                            <div>POLICY #</div>
+                        </td>
+                        <td>
+                            <div>1234</div>
+                            <div>1234</div>
+                            <div>1234</div>
+                        </td>
+                        <td>
+                            <div>1234</div>
+                            <div>1234</div>
+                            <div>1234</div>
+                        </td>
+                    </tr>
+                `;
+
+            })
+
+             
+
             $("#print_trust_receipt").show();
 
             setTimeout(() => {
@@ -157,17 +218,16 @@ $(document).ready(function () {
         })
     })
 
+    // const printTest = () => {
+    //     setTimeout(() => {
+    //         $("#print_trust_receipt").printElement();
+    //         $("#print_trust_receipt").hide();
+    //     }, 1000);
+    // }
 
-    const printTest = () => {
-        setTimeout(() => {
-            $("#print_trust_receipt").printElement();
-            $("#print_trust_receipt").hide();
-        }, 1000);
-    }
-
-    $(".page_header").on("click", function(){
-        printTest()
-    })
+    // $(".page_header").on("click", function(){
+    //     printTest()
+    // })
 
     $(document).on("change keyup", ".tr-row .td-serial, .tr-row .td-quantity,  .tr-row .td-set", function (){
         const trow = $(this).closest(".tr-row");
