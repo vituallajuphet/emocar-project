@@ -70,6 +70,16 @@ $(document).ready(function () {
          }).catch(err => {errorMessage("Something Wrong")})
     }
     
+    const incrementTrusTRequestId = () => {
+        axios.get(`${base_url}employee_trust_receipt/increment_trust_number`).then(res => {
+            if(res.data.status == "success"){
+
+            }
+            else{
+                errorMessage(res.data.message)
+            }
+        }).catch(err => {errorMessage("Something Wrong")})
+    }
     
     const getAllUserData = () =>{
 
@@ -133,19 +143,7 @@ $(document).ready(function () {
             return;
         }
 
-        alertConfirm("Are you sure to generate this trust receipt?" , function(){
-            // $(".preloader").show();
-            // axios.post(`${base_url}employee_policies/api_update_policy/`, frmdata).then(res => {
-            //    $(".preloader").hide();
-            //     if(res.data.status == "success"){
-            //         $("#edit_policy_modal").modal("hide");
-            //         successMessage("Successfully Updated!");
-            //         trans_table.ajax.reload();
-            //     }
-            //     else{
-            //         errorMessage("Something wrong!")
-            //     }
-            // })
+        alertConfirm("Are you sure to generate this trust receipt? The Trust Receipt Number will be incremented once you proceed." , function(){
 
             const uname = $("#employee_id").val(); 
             const uNameText = $("#employee_id option:selected").data("fullname"); 
@@ -169,65 +167,71 @@ $(document).ready(function () {
 
                 const dta_id = $(this).data("id");
                 
-                const tcont = $(this).find(".td-cont");
+                const tcont = $(this).find(".first_td span.d-block");
+                const tserial = $(this).find("input.td-serial");
+                const tset = $(this).find("input.td-set");
+                const tqty = $(this).find("input.td-quantity");
+
+                const headerCol = () => {
+                    let res = '';
+                    tcont.map((idx, inp) => {
+                        res += `<div style='text-transform: uppercase;
+                        '>${inp.getAttribute("data-id")} #</div>`
+                    }) 
+                    return res;
+                }
+
+                const serialCont = () => {
+                    let res = '';
+                    tserial.map((idx, inp) => {
+                        res += `<div>${inp.value}</div>`
+                    }) 
+                    return res;
+                }
+
+                const qtyCont = () => {
+                    let res = '';
+                    tqty.map((idx, inp) => {
+                        res += `<div>${inp.value} = ${tset[idx].value} Sets</div>`
+                    }) 
+                    return res;
+                }
 
                 let tcontDta = ""
-
-                tcont.each(function(){
-                    tcontDta += `
-                        <td>
-                            <div>1234</div>
-                            <div>1234</div>
-                            <div>1234</div>
-                        </td>
-                    `
-                })
-
                 html += `
                     <tr>
                         <td style='padding: 15px 0; '>
-                            <div><strong>${dta_id} Policy</strong></div> 
-                            <div>COC #</div>
-                            <div>OR #</div>
-                            <div>POLICY #</div>
+                            <div><strong style='text-transform: capitalize;
+                            '>${dta_id} Policy</strong></div> 
+                            ${headerCol()}
                         </td>
                         <td>
-                            <div>1234</div>
-                            <div>1234</div>
-                            <div>1234</div>
+                            ${serialCont()}
                         </td>
                         <td>
-                            <div>1234</div>
-                            <div>1234</div>
-                            <div>1234</div>
+                            ${qtyCont()}
                         </td>
                     </tr>
                 `;
 
             })
 
-             
+            $(".tbody_trustReceipt").html(html)
 
             $("#print_trust_receipt").show();
 
             setTimeout(() => {
                 $("#print_trust_receipt").printElement();
                 $("#print_trust_receipt").hide();
+                incrementTrusTRequestId()
+
+                $("#employee_id").val("")
+                $(".tbody-tbl").html("")
+                getTrustIdNumber()
             }, 1000);
 
         })
     })
-
-    // const printTest = () => {
-    //     setTimeout(() => {
-    //         $("#print_trust_receipt").printElement();
-    //         $("#print_trust_receipt").hide();
-    //     }, 1000);
-    // }
-
-    // $(".page_header").on("click", function(){
-    //     printTest()
-    // })
 
     $(document).on("change keyup", ".tr-row .td-serial, .tr-row .td-quantity,  .tr-row .td-set", function (){
         const trow = $(this).closest(".tr-row");
@@ -257,16 +261,16 @@ $(document).ready(function () {
                     </td>
                     <td> 
                         <div class="td-cont">
-                            <input type="number" required class="form-control td-serial" data-id='coc'>
-                            <input type="number" required class="form-control td-serial" data-id='or'>
-                            <input type="number" required class="form-control td-serial" data-id='policy'>
+                            <input type="number" min="1" required class="form-control td-serial" data-id='coc'>
+                            <input type="number" min="1" required class="form-control td-serial" data-id='or'>
+                            <input type="number" min="1" required class="form-control td-serial" data-id='policy'>
                         </div>
                     </td>
                     <td> 
                         <div class="td-cont">
-                            <input type="number" required class="form-control td-set" data-id='coc'>
-                            <input type="number" required class="form-control td-set" data-id='or'>
-                            <input type="number" required class="form-control td-set" data-id='policy'>
+                            <input type="number" min="1" required class="form-control td-set" data-id='coc'>
+                            <input type="number" min="1" required class="form-control td-set" data-id='or'>
+                            <input type="number" min="1" required class="form-control td-set" data-id='policy'>
                         </div>
                     </td>
                     <td> 
@@ -311,8 +315,10 @@ $(document).ready(function () {
         $(".trust_receipt .btn-submit").attr("disabled", !(id != undefined && id != ""));
     })
 
+    
 
     // useful functions
+
 
     function getDateFormat(cur_date) {
         let d = new Date(cur_date);

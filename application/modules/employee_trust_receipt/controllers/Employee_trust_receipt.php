@@ -45,4 +45,20 @@ class Employee_trust_receipt extends MY_Controller {
 
 	}
 
+	public function increment_trust_number() {
+
+		if(is_ajaxs()){
+
+			$response = ["status" => "error", "message" => "Something Wrong!"];
+
+			insertData("tbl_trust_receipt" , ["status" => 1, "date_added" => date("Y-m-d")]);
+
+			$response = ["status" => "success", "message" => "Successful"];
+
+			echo json_encode($response);
+
+		}	
+
+	}
+
 }

@@ -38,27 +38,7 @@
                     <th>Quantity</th>
                 </tr>
             </thead>
-            <tbody>
-                
-                <tr>
-                    <td style='padding-bottom: 15px; '>
-                        <div><strong>Motorcycle Policy</strong></div> 
-                        <div>COC #</div>
-                        <div>OR #</div>
-                        <div>POLICY #</div>
-                    </td>
-                    <td>
-                        <div>1234</div>
-                        <div>1234</div>
-                        <div>1234</div>
-                    </td>
-                    <td>
-                    <div>1234</div>
-                        <div>1234</div>
-                        <div>1234</div>
-                    </td>
-                </tr>
-            </tbody>
+            <tbody class="tbody_trustReceipt"></tbody>
         </table>
     </div>
     <div>
@@ -73,10 +53,10 @@
 
     <div style='margin:20px 0;'>
         <div style="margin-top:20px"> Hoping to receive everything in order as stated above. </div>
-        <div style="margin-top:20px">Prepared By:</div>
-        <div style="margin-top:20px">Annabelle B. Torino</div>
-        <div style="margin-top:20px">Approved By:</div>
-        <div style="margin-top:20px">Felix R. Secuya</div>
+        <div style="margin-top:23px">Prepared By:</div>
+        <div style="margin-top:23px">Annabelle B. Torino</div>
+        <div style="margin-top:23px">Approved By:</div>
+        <div style="margin-top:23px">Felix R. Secuya</div>
     </div>
     <div style='position:fixed;bottom:0;left:0;width:100%;text-align:center'>
         Main Office: Rm.: 308 Colon Development Corporation (formerly Gorones Bldg.) Osmeña Blvd., Cebu City
