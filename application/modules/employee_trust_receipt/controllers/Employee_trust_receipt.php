@@ -25,6 +25,23 @@ class Employee_trust_receipt extends MY_Controller {
 			echo json_encode($response);
 
 		}
+	}
+
+	public function get_trust_number (){
+		
+		if(is_ajaxs()){
+
+			$response = ["status" => "error", "trust_id" => 0, "message" => "Something Wrong!"];
+
+			$res =	getNextId("tbl_trust_receipt");
+
+			if(!empty($res)){
+				$response = ["status" => "success", "trust_id" => $res];
+			}
+
+			echo json_encode($response);
+
+		}	
 
 	}
 

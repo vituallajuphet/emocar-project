@@ -13,7 +13,7 @@
             <h2 class="page_header"><?= $page_header;?></h2>
             <hr>
             <div class='trust_receipt'>
-                <form action="" method=''>
+                <form action="" method='' id="formTrustReceipt">
 
                     <div class="row mt-5">
                         <div class="col-md-3">
@@ -27,11 +27,11 @@
                         </div>
                         <div class="col-md-3">
                             <label for="">Trust Reciept Form No.</label>
-                            <input type="text" required name='trust_id' class="form-control">
+                            <input  type="text" readonly required name='trust_id' class="form-control">
                         </div>
                         <div class="col-md-4">
                             <label for="">Place Issued</label>
-                            <input type="text" value="Cebu City" required name='trust_id' class="form-control">
+                            <input type="text" value="Cebu City" required name='place_issued' class="form-control">
                         </div>
                     </div>
                     <hr>
@@ -58,7 +58,8 @@
                                 <tr>
                                     <th>Description</th>
                                     <th>Serial Numbers</th>
-                                    <th>Quantity</th>
+                                    <th>Set</th>
+                                    <th>Total Quantity</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -67,7 +68,6 @@
                             </tbody>
 
                         </table>
-                    
                     </div>
 
                     <hr>

@@ -19,10 +19,57 @@ $(document).ready(function () {
         }
         else{
             res = `${month} ${ddte.getDate()}, ${ddte.getFullYear()}`;
-        }
+        }                                                                                                                                                                                              
         return res;
     }
 
+
+    const calculateTabledata = (trow, dataId) => {
+
+        const serial = trow.find("input[data-id='"+dataId+"'].td-serial").val();
+        const tset   = trow.find("input[data-id='"+dataId+"'].td-set").val();
+
+        if(Number.isNaN(serial)  ||  Number.isNaN(tset)){
+            trow.find("input[data-id='"+dataId+"'].td-quantity").val("");
+            return;
+        }
+
+        if((serial != undefined && serial != "") && (tset != undefined && tset != "")){
+            const tQty = Number(serial) + Number(tset);
+            trow.find("input[data-id='"+dataId+"'].td-quantity").val(tQty);
+        }
+    }
+
+    const getTrustIdNumber = () =>{
+        axios.get(`${base_url}employee_trust_receipt/get_trust_number`).then(res => {
+             if(res.data.status == "success"){
+
+                const  trust_id = res.data.trust_id;
+                let convertedTrustId = '';
+                const len = trust_id.toString().length;
+
+                if(len > 5){
+                    convertedTrustId = trust_id;
+                }else{
+                    
+                    const maxchar = 4;
+                    const toLoop = maxchar - len;
+                    
+                    for (let index = 0; index < toLoop; index++) {
+                        convertedTrustId += "0";
+                    }
+                    convertedTrustId += trust_id;
+                }
+
+                $("input[name='trust_id']").val(convertedTrustId)
+
+             }
+             else{
+                 errorMessage(res.data.message)
+             }
+         }).catch(err => {errorMessage("Something Wrong")})
+    }
+    
     
     const getAllUserData = () =>{
 
@@ -51,7 +98,8 @@ $(document).ready(function () {
 
     }
 
-    getAllUserData()
+    getAllUserData();
+    getTrustIdNumber();
     
     $(document).on("click", ".btn_restore", function(){
 
@@ -73,6 +121,23 @@ $(document).ready(function () {
                 }
             }).catch(err => {ehide(".preloader");errorMessage("Something Wrong")})
         })
+    })
+
+    $("#formTrustReceipt").submit(function(e){
+        e.preventDefault();
+
+        const trowCount = $(".tbody-tbl .tr-row").length;
+        
+        if(trowCount == 0){
+            errorMessage("Please add atleast one option first!")
+            return;
+        }
+    })
+
+    $(document).on("change keyup", ".tr-row .td-serial, .tr-row .td-quantity,  .tr-row .td-set", function (){
+        const trow = $(this).closest(".tr-row");
+        const dataId = $(this).data("id");
+        calculateTabledata(trow, dataId);
     })
 
     $(".trust_receipt .btn-add-row").on("click", function(params) {
@@ -97,18 +162,25 @@ $(document).ready(function () {
                     </td>
                     <td> 
                         <div class="td-cont">
-                            <input type="text" class="form-control td-serial" data-id='coc'>
-                            <input type="text" class="form-control td-serial" data-id='or'>
-                            <input type="text" class="form-control td-serial" data-id='policy'>
+                            <input type="number" required class="form-control td-serial" data-id='coc'>
+                            <input type="number" required class="form-control td-serial" data-id='or'>
+                            <input type="number" required class="form-control td-serial" data-id='policy'>
                         </div>
                     </td>
                     <td> 
                         <div class="td-cont">
-                            <input type="text" class="form-control td-quantity" data-id='coc'>
-                            <input type="text" class="form-control td-quantity" data-id='or'>
-                            <input type="text" class="form-control td-quantity" data-id='policy'>
+                            <input type="number" required class="form-control td-set" data-id='coc'>
+                            <input type="number" required class="form-control td-set" data-id='or'>
+                            <input type="number" required class="form-control td-set" data-id='policy'>
                         </div>
                     </td>
+                    <td> 
+                        <div class="td-cont">
+                            <input type="number" required class="form-control td-quantity" data-id='coc'>
+                            <input type="number" required class="form-control td-quantity" data-id='or'>
+                            <input type="number" required class="form-control td-quantity" data-id='policy'>
+                        </div>
+                    </td>       
                     <td class="td-action">
                         <a class="d-block" data-val="coc" href="javascript:;"> <i class='fa fa-trash'></i></a>
                         <a class="d-block" data-val="or" href="javascript:;"> <i class='fa fa-trash'></i></a>
@@ -118,6 +190,8 @@ $(document).ready(function () {
             `
 
             $(".tbody-tbl").append(html);
+        }else{
+            errorMessage("Please select option first!")
         }
 
     })
