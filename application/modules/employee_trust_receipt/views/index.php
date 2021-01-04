@@ -17,7 +17,11 @@
 
                     <div class="row mt-5">
                         <div class="col-md-3">
-                            <label for="">Select User</label>
+                            <label for="">Employee</label>
+                            <input type="text" class="form-control" value="Anabelle Torino">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">Select Agent</label>
                             <select name="employee_id" required id="employee_id" class='form-control'> </select>
                         </div>
                         <div class="col-md-12 mb-3"></div>

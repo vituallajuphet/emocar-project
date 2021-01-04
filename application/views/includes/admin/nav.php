@@ -12,6 +12,7 @@
 	<nav>
 		<ul>
 			<li class="<?= ($route == "admin") ? 'active' :''  ?>"><a href="<?=base_url("admin")?>"><i class="fa fa-users"></i> Users</a></li>
+			<li class="<?= ($route == "admin_agents") ? 'active' :''  ?>"><a href="<?=base_url("admin_agents")?>"><i class="fa fa-user"></i> Agents</a></li>
 			<li class="<?= ($route == "admin_policies") ? 'active' :''  ?>"><a href="<?=base_url("admin_policies")?>"><i class="fa fa-list-alt"></i> Policies</a></li>
 			<li class="<?= ($route == "admin_archived") ? 'active' :''  ?>"><a href="<?=base_url("admin_archived")?>"><i class="fa fa-trash"></i> Archived Policies</a></li>
 			<li class="<?= ($route == "admin_upload") ? 'active' :''  ?>"><a href="<?=base_url("admin_upload")?>"><i class="fa fa-upload"></i> Upload Policy</a></li>
