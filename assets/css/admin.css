@@ -413,6 +413,16 @@ table[data-tbl='datatable'] tbody tr.row-pending {
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   padding: 0 !important; }
 
+.serial_separator {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; }
+  .serial_separator > div:first-child {
+    margin-right: 5px; }
+
+.serialCont {
+  padding: 15px 0 0 !important; }
+
 .addEmployee {
   text-align: right; }
 

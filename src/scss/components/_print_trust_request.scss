@@ -1,0 +1,13 @@
+.serial_separator{
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    > div:first-child{
+        margin-right: 5px;
+    }
+  
+}
+.serialCont{
+    padding: 15px 0 0!important;
+}

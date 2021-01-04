@@ -260,10 +260,21 @@ $(document).ready(function () {
                         <span data-id="policy" class='d-block'>Policy</span>
                     </td>
                     <td> 
-                        <div class="td-cont">
-                            <input type="number" min="1" required class="form-control td-serial" data-id='coc'>
-                            <input type="number" min="1" required class="form-control td-serial" data-id='or'>
-                            <input type="number" min="1" required class="form-control td-serial" data-id='policy'>
+                        <div class="td-cont serialCont">  
+                            <div class="serial_separator">
+                                <div>
+                                    <div><strong>From</strong></div>
+                                    <input type="number" min="1" required class="form-control td-serial serialFrom" data-id='coc'>
+                                    <input type="number" min="1" required class="form-control td-serial serialFrom" data-id='or'>
+                                    <input type="number" min="1" required class="form-control td-serial serialFrom" data-id='policy'>            
+                                </div>     
+                                <div>
+                                    <div><strong>To</strong></div>
+                                    <input type="number" min="1" required class="form-control td-serial serialTo" data-id='coc'>
+                                    <input type="number" min="1" required class="form-control td-serial serialTo" data-id='or'>
+                                    <input type="number" min="1" required class="form-control td-serial serialTo" data-id='policy'>            
+                                </div>     
+                            </div>
                         </div>
                     </td>
                     <td> 
