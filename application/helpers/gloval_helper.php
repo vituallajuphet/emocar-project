@@ -67,11 +67,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return $res[0];
     }
 
-    function get_all_users(){
+    function get_all_users($user_id = 2){
 
         $ci = & get_instance();
 
-        $par["where"] = ["user_type" => 2, "usr.status" => 1];
+        $par["where"] = ["user_type" => $user_id, "usr.status" => 1];
         $par["join"]  = [
             "employees emp" => "emp.fk_user_id = usr.user_id",
             "tbl_branches brn" => "brn.branch_id = emp.branch",

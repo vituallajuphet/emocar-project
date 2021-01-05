@@ -16,7 +16,7 @@ class Employee_trust_receipt extends MY_Controller {
 
 			$response = ["status" => "error", "data" => [], "message" => "No users found on the database!"];
 
-			$res = get_all_users();
+			$res = get_all_users(4);
 
 			if(!empty($res)){
 				$response = ["status" => "success", "data" => $res];
