@@ -324,6 +324,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "admin_archived",
                 "admin_upload",
                 "admin_agents",
+                "admin_agent_policies",
                 "logout");
 
             $tabs_student = array( 

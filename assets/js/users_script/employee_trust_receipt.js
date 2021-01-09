@@ -77,7 +77,6 @@ $(document).ready(function () {
              }
              else{
                  
-                
              }
          }).catch(err => {errorMessage("Something Wrong")})
     }
