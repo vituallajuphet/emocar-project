@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="">Place Issued</label>
-                            <input type="text" value="Cebu City" required name='place_issued' class="form-control">
+                            <input type="text"  required name='place_issued' class="form-control">
                         </div>
                     </div>
                     <hr>
@@ -77,9 +77,9 @@
                     <hr>
                     <div class="row mt-5">
                         <div class="col-md-12 text-right">
-                            <button type='submit' disabled class='btn btn-success btn-submit'><i class='fa fa-print'></i> Generate Trust Receipt</button>
+                            <button type='submit' class='btn btn-success btn-submit'><i class='fa fa-check'></i> Save Data</button>
                         </div>
-                    </div>
+                    </div>  
                 </form>
             </div>
         </div>

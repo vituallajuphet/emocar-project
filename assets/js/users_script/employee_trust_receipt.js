@@ -121,29 +121,7 @@ $(document).ready(function () {
 
     getAllUserData();
     getTrustIdNumber();
-    
-    $(document).on("click", ".btn_restore", function(){
-
-        const trans_id = $(this).data("id");
-
-        alertConfirm("Are you sure to restore this policy?" , function(){
-            let frmdata = new FormData();
-            eshow(".preloader")
-            frmdata.append("trans_id", trans_id )
-
-            axios.post(`${base_url}employee_archived/api_restore_policy/`, frmdata).then(res => {
-               ehide(".preloader");
-                if(res.data.status == "success"){
-                    successMessage("Successfully Restored!");
-                    trans_table.ajax.reload();
-                }
-                else{
-                    errorMessage("something wrong!")
-                }
-            }).catch(err => {ehide(".preloader");errorMessage("Something Wrong")})
-        })
-    })
-
+ 
     $("#formTrustReceipt").submit(function(e){
         e.preventDefault();
 
@@ -154,7 +132,7 @@ $(document).ready(function () {
             return;
         }
 
-        alertConfirm("Are you sure to generate this trust receipt? The Trust Receipt Number will be incremented once you proceed." , function(){
+        alertConfirm("Are you sure to save this trust receipt?" , function(){
 
             const uname = $("#employee_id").val(); 
             const uNameText = $("#employee_id option:selected").data("fullname"); 
@@ -165,13 +143,71 @@ $(document).ready(function () {
             const nameFirst  = (gender == "Female" ? "Mrs." : "Mr.") + ` ${uNameText}`;
             const userLocation = $("#employee_id option:selected").data("address")
             
-            $(".prDate").html(rDate)
-            $(".prName").html(nameFirst)
-            $(".prDearName").html(`Dear ${nameFirst}`)
-            $(".prTreceipt").html(treceipt)
-            $(".prPlace").html(placeIssued)
-            $(".prLocation").html(userLocation)
+            // $(".prDate").html(rDate)
+            // $(".prName").html(nameFirst)
+            // $(".prDearName").html(`Dear ${nameFirst}`)
+            // $(".prTreceipt").html(treceipt)
+            // $(".prPlace").html(placeIssued)
+            // $(".prLocation").html(userLocation)
 
+
+            let frmdata = new FormData();
+
+            frmdata.append("agent_id", uname)
+            frmdata.append("date", rDate)
+            frmdata.append("trust_id", treceipt)
+            frmdata.append("address", userLocation)
+
+            const tableData = [];
+
+            // generate form data
+            $(".tbody-tbl .tr-row").each(function (){
+
+                const dta_id = $(this).data("id");
+                const tcont = $(this).find(".first_td span.d-block");
+                const tserialFrom = $(this).find("input.serialFrom");
+                const tserialTo = $(this).find("input.serialFrom");
+                const tset = $(this).find("input.td-set");
+                const tqty = $(this).find("input.td-quantity");
+
+                const getTabledata = () => {
+                    let res = [];
+                    tcont.map((idx, inp) => {
+                       res.push({
+                           id:inp.getAttribute("data-id"),
+                           sfrom:  tserialFrom[idx].value,
+                           sTo:  tserialTo[idx].value,
+                           set:  tset[idx].value,
+                           qty:  tqty[idx].value,
+                       })
+                    }) 
+                    return res;
+                }
+
+                let rowData = {
+                    id:dta_id,
+                    tble_data: getTabledata()
+                };
+
+                tableData.push(rowData)                             
+            })  
+
+            frmdata.append("tableData", JSON.stringify(tableData)) 
+            
+            axios.post(`${base_url}employee_trust_receipt/save_trust_receive/`, frmdata).then(res => {
+                ehide(".preloader");
+                 if(res.data.status == "success"){
+                     successMessage("Successfully Saved!");
+                     setTimeout(() => {
+                        window.location.href =`${base_url}employee_trust_receipt`;
+                     }, 500);
+                 }
+                 else{
+                     errorMessage("something wrong!")
+                 }
+            }).catch(err => {ehide(".preloader");errorMessage("Something Wrong")})
+
+            return;
             let html = "";
 
             $(".tbody-tbl .tr-row").each(function (){
@@ -333,6 +369,10 @@ $(document).ready(function () {
     $(document).on("change", ".trust_receipt #employee_id", function(){
         
         const id = $(this).val();
+
+        const address = $("#employee_id option:selected").data("address")
+
+        $("input[name='place_issued'").val(address)
 
         $(".trust_receipt .btn-submit").attr("disabled", !(id != undefined && id != ""));
     })

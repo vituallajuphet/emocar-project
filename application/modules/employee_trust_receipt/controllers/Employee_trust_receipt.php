@@ -40,25 +40,42 @@ class Employee_trust_receipt extends MY_Controller {
 			}
 
 			echo json_encode($response);
-
 		}	
 
 	}
 
-	public function increment_trust_number() {
+	private function increment_trust_number() {
+		insertData("tbl_trust_receipt" , ["status" => 1, "date_added" => date("Y-m-d")]);
+	}
+
+	public function  save_trust_receive(){
 
 		if(is_ajaxs()){
 
+			$post = $this->input->post();
+
 			$response = ["status" => "error", "message" => "Something Wrong!"];
 
-			insertData("tbl_trust_receipt" , ["status" => 1, "date_added" => date("Y-m-d")]);
+			if(!empty($post)){
 
+				$parseJson = json_decode($post["tableData"]);
+
+				$data = [
+					"fk_user_id" =>  $post["agent_id"],
+					"fk_user_id" =>  $post["agent_id"],
+					"trust_receipt_no" =>  $post["trust_id"],
+					"table_data" =>  json_encode($parseJson),
+					"status" =>  1,
+					"date_added" =>  date("Y-m-d"),
+				];
+			}
+
+			insertData("tbl_agent_policies" , $data);
 			$response = ["status" => "success", "message" => "Successful"];
 
+			$this->increment_trust_number();
+
 			echo json_encode($response);
-
-		}	
-
+		}
 	}
-
 }
