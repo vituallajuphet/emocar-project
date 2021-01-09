@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             "tbl_locations loc" => "loc.loc_id = u_meta.location",
         ];
 
-        if(get_user_type() == 2){
+        if(get_user_type() == 2 || get_user_type() == 4){
             $par["where"] = ["fk_user_id" =>  $user_id];
             $res = getData("employees u_meta", $par);
         }
@@ -340,8 +340,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "my_profile",
                 "api_agent"
             );
-
-       
+            
+            $tabs_agent = array( 
+                "agent", 
+                "my_profile",
+                "global_api",
+                "logout",
+            );
 
             $response = false;
             if ( !empty($ci->session->userdata("user_type"))){
@@ -350,6 +355,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                          $response = true;
                     }
                 }
+
+                else if($ci->session->userdata("user_type") == 4){
+                    if (in_array(strtolower($route), $tabs_agent)) {
+                        $response = true;
+                    }
+                }
+
                 else{
                     if (in_array(strtolower($route), $tabs_student)) {
                         $response = true;

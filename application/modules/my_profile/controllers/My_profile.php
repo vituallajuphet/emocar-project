@@ -35,7 +35,7 @@ class My_profile extends MY_Controller {
 					);
 					$where	= array("fk_user_id" => $user_id);
 
-					$tlbname = ($post->user_type == 2 ) ? "employees" : "user_meta";
+					$tlbname = ($post->user_type == 2 || $post->user_type == 4 ) ? "employees" : "user_meta";
 
 					updateData($tlbname, $set, $where);
 

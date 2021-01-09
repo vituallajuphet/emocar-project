@@ -35,7 +35,7 @@ class Login extends MY_Controller {
 			$res = getData("users", $par, "obj");
 			
 			if(password_verify($password, $res[0]->password)){
-				if($res[0]->user_type == 2){
+				if($res[0]->user_type == 2 || $res[0]->user_type == 4){
 
 					$par["where"] = array(
 						"fk_user_id" => $res[0]->user_id,
@@ -64,7 +64,11 @@ class Login extends MY_Controller {
 				$this->session->set_userdata($user_info);
 				if($res[0]->user_type == 1){
 					redirect(base_url("admin"));
-				}else{
+				}
+				else if($res[0]->user_type == 4){
+					redirect(base_url("agent"));
+				}
+				else{
 					redirect(base_url("employee"));
 				}
 			}
