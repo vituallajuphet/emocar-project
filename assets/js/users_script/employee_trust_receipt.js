@@ -26,17 +26,28 @@ $(document).ready(function () {
 
     const calculateTabledata = (trow, dataId) => {
 
-        const serial = trow.find("input[data-id='"+dataId+"'].td-serial").val();
-        const tset   = trow.find("input[data-id='"+dataId+"'].td-set").val();
+        const serialFrom = trow.find("input[data-id='"+dataId+"'].serialFrom").val();
+        const serialTo = trow.find("input[data-id='"+dataId+"'].serialTo").val();
+        // const tset   = trow.find("input[data-id='"+dataId+"'].td-set").val();
 
-        if(Number.isNaN(serial)  ||  Number.isNaN(tset)){
+        if(Number.isNaN(serialTo)  ||  Number.isNaN(serialFrom)){
             trow.find("input[data-id='"+dataId+"'].td-quantity").val("");
+            trow.find("input[data-id='"+dataId+"'].td-set").val();
             return;
         }
+        else if(Number(serialTo)  <   Number(serialFrom)){
+            trow.find("input[data-id='"+dataId+"'].td-quantity").val("");
+            trow.find("input[data-id='"+dataId+"'].td-set").val();
+            return;
+        }
+        
 
-        if((serial != undefined && serial != "") && (tset != undefined && tset != "")){
-            const tQty = Number(serial) + Number(tset);
-            trow.find("input[data-id='"+dataId+"'].td-quantity").val(tQty);
+        if((serialTo != undefined && serialTo != "") && (serialFrom != undefined && serialFrom != "")){
+           
+            const totalQty = ((parseInt(serialTo) - parseInt(serialFrom)) + 1 ) 
+            const totalSet = (totalQty / 50);
+            trow.find("input[data-id='"+dataId+"'].td-set").val(totalSet);
+            trow.find("input[data-id='"+dataId+"'].td-quantity").val(totalQty);
         }
     }
 
@@ -65,7 +76,8 @@ $(document).ready(function () {
 
              }
              else{
-                 errorMessage(res.data.message)
+                 
+                
              }
          }).catch(err => {errorMessage("Something Wrong")})
     }
@@ -279,9 +291,9 @@ $(document).ready(function () {
                     </td>
                     <td> 
                         <div class="td-cont">
-                            <input type="number" min="1" required class="form-control td-set" data-id='coc'>
-                            <input type="number" min="1" required class="form-control td-set" data-id='or'>
-                            <input type="number" min="1" required class="form-control td-set" data-id='policy'>
+                            <input type="number" min="1" readonly required class="form-control td-set" data-id='coc'>
+                            <input type="number" min="1" readonly required class="form-control td-set" data-id='or'>
+                            <input type="number" min="1" readonly required class="form-control td-set" data-id='policy'>
                         </div>
                     </td>
                     <td> 
