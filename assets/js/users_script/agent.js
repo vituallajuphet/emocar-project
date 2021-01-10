@@ -50,6 +50,8 @@ $(document).ready(function () {
         ],
     });
 
+    var tableGlobalData = [];
+    var table_trust;
 
     $(document).on("click", ".btn_view", function(){
         const id = $(this).data("id");
@@ -61,17 +63,19 @@ $(document).ready(function () {
              if(res.data.data.length > 0){
                 const dta = res.data.data[0];
 
-                const tbleData = dta.table_data;
+                const tbleData = JSON.parse(dta.table_data);
+                tableGlobalData = tbleData;
 
                 $(".trs-issued_by").val("Anabelle Bejagan")
                 $(".trs-date_issued").val(convertDate(dta.date_added))
                 $(".trs-place_issued").val(dta.place_issued)
                 $(".trs-receipt_no").val(convertTrustid(dta.trust_receipt_no))
-                 
 
+                const tableResult =  generateTrustTable(tbleData)
+
+                $("#table_trust_list .tbody").html(tableResult)
                 $("#view_trust_info").modal()
-
-                $("#table_trust_list").DataTable();
+                table_trust = $("#table_trust_list").DataTable();
 
              }
 
@@ -83,6 +87,71 @@ $(document).ready(function () {
         }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!")})
     })
 
+    const generateTrustTable = ( tbleData = [], selected ="") => {
+
+        let trow  = "";
+        let selectOptions ="";
+
+        tbleData.map(tbl => {
+
+            selectOptions += `"<option class="text-capitalize" value="${tbl.id}">${ucFirst(tbl.id)}</option>`
+
+            tbl.tble_data.map(tdta => {
+
+                const qtys = tdta.qty;
+
+                for (let i = 0; i < Number(qtys); i++) {
+                    if(selected != "" ){
+
+                        if(selected == tbl.id){
+                            trow += `
+                                <tr>
+                                    <td class="text-capitalize font-weight-bold">${tbl.id}</td>
+                                    <td>${Number(tdta.sfrom) + i}</td>
+                                    <td class="text-capitalize"><span class="text-danger">unused</span></td>
+                                    <td>
+                                        <a href="${base_url}agent_use_trust?name=${tbl.id}&ser_num=${Number(tdta.sfrom) + i}" class="font-weight-bold"><i class="fa fa-pencil"></i> Use</a>
+                                    </td>
+                                </tr>
+                            `
+                        }
+                        
+                    }else{
+                        trow += `
+                            <tr>
+                                <td class="text-capitalize font-weight-bold">${tbl.id}</td>
+                                <td>${Number(tdta.sfrom) + i}</td>
+                                <td class="text-capitalize"><span class="text-danger">unused</span></td>
+                                <td>
+                                    <a href="${base_url}agent_use_trust?name=${tbl.id}&ser_num=${Number(tdta.sfrom) + i}" class="font-weight-bold"><i class="fa fa-pencil"></i> Use</a>
+                                </td>
+                            </tr>
+                        `
+                    }
+                }  
+            })
+        })
+
+        if (selected == undefined || selected == ""){
+            $("#table-sorter").html(selectOptions);
+        }
+
+        return trow;
+    }
+
+    $("#table-sorter").on("change", function(){
+        const selected = $(this).val();
+
+        console.log(selected)
+
+        table_trust.destroy();
+        const tbres = generateTrustTable(tableGlobalData, selected)
+
+        console.log(tbres)
+
+        $("#table_trust_list .tbody").html(tbres)
+        table_trust = $("#table_trust_list").DataTable();
+    })
 
     const convertTrustid = (trust_id) => {
 
@@ -140,6 +209,10 @@ $(document).ready(function () {
         return res;
     }
 
+    const ucFirst = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
+    }
     
 })
 

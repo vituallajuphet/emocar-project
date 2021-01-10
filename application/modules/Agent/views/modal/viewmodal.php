@@ -1,6 +1,6 @@
 <!-- start modal -->
 <div class="modal fade" id="view_trust_info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-file"></i> Trust File Informations</h5>
@@ -22,7 +22,7 @@
             <div class="row mt-4">
                 <div class="col-md-3">
                     <label class="font-weight-bold" for="">Date Issued: </label>
-                    <input type="text" class="form-control trs-date_issued" readonly>
+                    <input type="text" class="form-control trs-date_issued" readonly> 
                 </div>
                 <div class="col-md-6">
                     <label class="font-weight-bold" for="">Place Issued: </label>
@@ -31,6 +31,17 @@
             </div>
 
             <hr class="my-5">
+
+            <div class="row mb-3">
+               <div class="col-md-3">
+                  <label for="">Sort By:</label>
+                  <select id="table-sorter" class="form-control table-sorter">
+                      <option value="">Motor</option>
+                      <option value="">Motor</option>
+                      <option value="">Motor</option>
+                  </select>
+               </div>
+            </div>
 
             <table id="table_trust_list" class="display">
                 <thead>
@@ -41,7 +52,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="tbody">
                     <tr>
                         <td>test</td>
                         <td>test</td>
