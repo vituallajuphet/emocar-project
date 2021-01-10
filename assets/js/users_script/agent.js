@@ -65,6 +65,7 @@ $(document).ready(function () {
              if(res.data.data.length > 0){
                 const dta = res.data.data[0];
 
+
                 (async () => {
                     try {
                         const resp = await axios.get(`${base_url}agent/get_used_trust/${dta.trust_receipt_no}`)
@@ -72,11 +73,8 @@ $(document).ready(function () {
 
                         tableUsedData = gettrustrow(resData);
 
-                        console.log(tableUsedData)  
-
-                        return
-
                         const tbleData = JSON.parse(dta.table_data);
+
                         tableGlobalData = tbleData;
 
                         $(".trs-issued_by").val("Anabelle Bejagan")
@@ -102,7 +100,7 @@ $(document).ready(function () {
            else{
                errorMessage(res.data.message)
            }
-        }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!")})
+        }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!"); console.log(err)})
     })
 
     const gettrustrow = (resData) => {
@@ -110,7 +108,9 @@ $(document).ready(function () {
         let ret = [];
 
         if(resData.length > 0){
-            
+            resData.map(dta => {
+                ret.push(JSON.parse(dta.trust_data))
+            })
         }
 
         return ret;
@@ -134,14 +134,16 @@ $(document).ready(function () {
                     let is_used = false;
 
                     usedData.map(used => {
-                        if(
-                          tbl.id == used.name &&
-                          (Number(tdta.sfrom) + i) == used.serNum &&
-                          tdta.id == used.type
-                        ){
-                            is_used = true;
-                            
-                        }
+                        used.map(inner => {
+                            if(
+                                tbl.id == inner.name &&
+                                (Number(tdta.sfrom) + i) == inner.serNum &&
+                                tdta.id == inner.type
+                              ){
+                                  is_used = true;
+                                  
+                              }
+                        })
                     })
 
                     if(selected != "" ){

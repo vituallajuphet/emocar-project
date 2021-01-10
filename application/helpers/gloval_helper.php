@@ -341,7 +341,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "api_agent"
             );
             
-            $tabs_agent = array( 
+            $tabs_agent = array(
+                "home", 
                 "agent", 
                 "my_profile",
                 "global_api",

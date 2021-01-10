@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MY_Controller extends MX_Controller {
 
 	public function __construct(){
-
 		$route = $this->router->fetch_class();
 
 		if($route  == "api_agent"){
