@@ -76,6 +76,7 @@ $(document).ready(function () {
                 $("#table_trust_list .tbody").html(tableResult)
                 $("#view_trust_info").modal()
                 table_trust = $("#table_trust_list").DataTable();
+                $("#table-sorter").trigger("change");
 
              }
 
@@ -108,9 +109,10 @@ $(document).ready(function () {
                                 <tr>
                                     <td class="text-capitalize font-weight-bold">${tbl.id}</td>
                                     <td>${Number(tdta.sfrom) + i}</td>
+                                    <td class="text-uppercase">${tdta.id}</td>
                                     <td class="text-capitalize"><span class="text-danger">unused</span></td>
                                     <td>
-                                        <a href="${base_url}agent_use_trust?name=${tbl.id}&ser_num=${Number(tdta.sfrom) + i}" class="font-weight-bold"><i class="fa fa-pencil"></i> Use</a>
+                                        <input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox"> <span class="ml-1">Use</span> 
                                     </td>
                                 </tr>
                             `
@@ -121,9 +123,10 @@ $(document).ready(function () {
                             <tr>
                                 <td class="text-capitalize font-weight-bold">${tbl.id}</td>
                                 <td>${Number(tdta.sfrom) + i}</td>
+                                <td class="text-uppercase">${tdta.id}</td>
                                 <td class="text-capitalize"><span class="text-danger">unused</span></td>
                                 <td>
-                                    <a href="${base_url}agent_use_trust?name=${tbl.id}&ser_num=${Number(tdta.sfrom) + i}" class="font-weight-bold"><i class="fa fa-pencil"></i> Use</a>
+                                    <input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox"> <span class="ml-1">Use</span> 
                                 </td>
                             </tr>
                         `
@@ -139,19 +142,71 @@ $(document).ready(function () {
         return trow;
     }
 
+
+    var selectedUsed=[];
+
+    $(document).on("change", ".use_checkbox", function (){
+        const thename = $(this).data("name");
+        const serNum = $(this).data("ser_num");
+        const theType = $(this).data("type");
+
+        const selected = $(this)
+
+        if(selected[0].checked){
+            
+            let is_found = false;
+
+            selectedUsed.map(dta => {
+                if(dta.name == thename && dta.type == theType ){
+                    is_found = true;
+                }
+            });
+
+            if(selectedUsed > 3){
+                errorMessage(`you have already selected 3 files`)
+                return;
+            }
+
+           if(is_found){
+                errorMessage(`You have already selected a ${theType.toUpperCase()} for ${thename.toUpperCase()}`)
+                selected[0].checked = false
+                return;
+           }
+
+           selectedUsed.push({
+               name: thename,
+               serNum: serNum,
+               type: theType,
+           })
+           
+        }else{
+            const removeArr = selectedUsed.filter((dta) => (dta.name == thename && dta.type != theType));
+            selectedUsed = removeArr;
+        }
+
+    })
+
+    $(".btn-use-submit").click(function(){
+        if(selectedUsed.length == 3){
+            window.location.href=`${base_url}agent_use_trust?data=${JSON.stringify(selectedUsed)}`
+        }else{
+            errorMessage(`Please select COC, POLICY, and OR first before submitting!`)
+        }
+    })
+
     $("#table-sorter").on("change", function(){
         const selected = $(this).val();
 
-        console.log(selected)
+        selectedUsed = [];
 
         table_trust.destroy();
         const tbres = generateTrustTable(tableGlobalData, selected)
-
-        console.log(tbres)
-
+    
         $("#table_trust_list .tbody").html(tbres)
         table_trust = $("#table_trust_list").DataTable();
     })
+
+    
 
     const convertTrustid = (trust_id) => {
 

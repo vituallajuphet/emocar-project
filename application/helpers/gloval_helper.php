@@ -345,6 +345,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "agent", 
                 "my_profile",
                 "global_api",
+                "agent_use_trust",
                 "logout",
             );
 

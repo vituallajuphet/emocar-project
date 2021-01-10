@@ -48,7 +48,6 @@
                     <tr>
                         <th>Description</th>
                         <th>Serial No.</th>
-                        <th>Type</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -65,9 +64,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-        <button type="button" class="btn btn-success btn-use-submit" ><i class="fa fa-check"></i> Submit</button>
       </div>
     </div>
   </div>
 </div>
-<!-- end modal --> 
+<!-- end modal -->
