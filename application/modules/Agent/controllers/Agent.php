@@ -67,4 +67,22 @@ class Agent extends MY_Controller {
 		}
 	} 
 
+	public function get_used_trust($id){
+		
+		if(is_ajaxs()){
+
+			$response = ["status" => "error", "data" => []];
+			if(!empty($id)){
+				$par["where"] = [ "fk_trust_receipt_id" => $id, "status" => 1 ];
+				
+				$res = getData("tbl_trust_agents trust", $par);
+
+				if(!empty($res)){
+					$response = ["status" => "success", "data" => $res];
+				}
+			}
+			echo json_encode($response);
+		}
+	}
+
 }

@@ -51,11 +51,13 @@ $(document).ready(function () {
     });
 
     var tableGlobalData = [];
+    var tableUsedData = [];
     var table_trust;
 
     $(document).on("click", ".btn_view", function(){
         const id = $(this).data("id");
 
+        
         axios.get(`${base_url}agent/get_trust_details/${id}`).then(res => {
            ehide(".preloader");
            if(res.data.status == "success"){
@@ -63,35 +65,51 @@ $(document).ready(function () {
              if(res.data.data.length > 0){
                 const dta = res.data.data[0];
 
-                const tbleData = JSON.parse(dta.table_data);
-                tableGlobalData = tbleData;
+                (async () => {
+                    try {
+                        const resp = await axios.get(`${base_url}agent/get_used_trust/${dta.trust_receipt_no}`)
+                        const resData = resp.data.data[0];
 
-                $(".trs-issued_by").val("Anabelle Bejagan")
-                $(".trs-date_issued").val(convertDate(dta.date_added))
-                $(".trs-place_issued").val(dta.place_issued)
-                $(".trs-receipt_no").val(convertTrustid(dta.trust_receipt_no))
+                        tableUsedData = JSON.parse(resData.trust_data);
 
-                const tableResult =  generateTrustTable(tbleData)
+                        const tbleData = JSON.parse(dta.table_data);
+                        tableGlobalData = tbleData;
 
-                $("#table_trust_list .tbody").html(tableResult)
-                $("#view_trust_info").modal()
-                table_trust = $("#table_trust_list").DataTable();
-                $("#table-sorter").trigger("change");
+                        $(".trs-issued_by").val("Anabelle Bejagan")
+                        $(".trs-date_issued").val(convertDate(dta.date_added))
+                        $(".trs-place_issued").val(dta.place_issued)
+                        $(".trs-receipt_no").val(convertTrustid(dta.trust_receipt_no))
 
+                        const tableResult =  generateTrustTable(tbleData, "", tableUsedData)
+
+                        $("#table_trust_list .tbody").html(tableResult)
+                        $("#view_trust_info").modal()
+                        table_trust = $("#table_trust_list").DataTable();
+                        $("#table-sorter").trigger("change");
+
+                        } catch (error) {
+                            errorMessage("Something Wrong!")
+                        }
+                })()        
              }
 
-             
            }
            else{
                errorMessage(res.data.message)
            }
         }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!")})
+
+
+        
+
     })
 
-    const generateTrustTable = ( tbleData = [], selected ="") => {
+    const generateTrustTable = ( tbleData = [], selected ="", usedData = []) => {
 
         let trow  = "";
         let selectOptions ="";
+
+        console.log(usedData)
 
         tbleData.map(tbl => {
 
@@ -102,6 +120,20 @@ $(document).ready(function () {
                 const qtys = tdta.qty;
 
                 for (let i = 0; i < Number(qtys); i++) {
+
+                    let is_used = false;
+
+                    usedData.map(used => {
+                        if(
+                          tbl.id == used.name &&
+                          (Number(tdta.sfrom) + i) == used.serNum &&
+                          tdta.id == used.type
+                        ){
+                            is_used = true;
+                            
+                        }
+                    })
+
                     if(selected != "" ){
 
                         if(selected == tbl.id){
@@ -110,9 +142,12 @@ $(document).ready(function () {
                                     <td class="text-capitalize font-weight-bold">${tbl.id}</td>
                                     <td>${Number(tdta.sfrom) + i}</td>
                                     <td class="text-uppercase">${tdta.id}</td>
-                                    <td class="text-capitalize"><span class="text-danger">unused</span></td>
+                                    <td class="text-capitalize"><span class="text-${is_used ? 'success font-weight-bold' : 'danger'}">${ is_used ? 'Used' : 'Unused' }</span></td>
                                     <td>
-                                        <input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox"> <span class="ml-1">Use</span> 
+                                        ${(!is_used && 
+                                            `<input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox ${is_used ? 'd-none': ''}"> <span class="ml-1">Use</span> `) ||
+                                            `<div class="text-center text-success"><i class="fa fa-check"></i></div>`
+                                        }
                                     </td>
                                 </tr>
                             `
@@ -120,15 +155,18 @@ $(document).ready(function () {
                         
                     }else{
                         trow += `
-                            <tr>
-                                <td class="text-capitalize font-weight-bold">${tbl.id}</td>
-                                <td>${Number(tdta.sfrom) + i}</td>
-                                <td class="text-uppercase">${tdta.id}</td>
-                                <td class="text-capitalize"><span class="text-danger">unused</span></td>
-                                <td>
-                                    <input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox"> <span class="ml-1">Use</span> 
-                                </td>
-                            </tr>
+                        <tr>
+                            <td class="text-capitalize font-weight-bold">${tbl.id}</td>
+                            <td>${Number(tdta.sfrom) + i}</td>
+                            <td class="text-uppercase">${tdta.id}</td>
+                            <td class="text-capitalize"><span class="text-${is_used ? 'success font-weight-bold' : 'danger'}">${ is_used ? 'Used' : 'Unused' }</span></td>
+                            <td>
+                                ${(!is_used && 
+                                    `<input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox ${is_used ? 'd-none': ''}"> <span class="ml-1">Use</span> `) ||
+                                    `<div class="text-center text-success"><i class="fa fa-check"></i></div>`
+                                }
+                            </td>
+                        </tr>
                         `
                     }
                 }  
@@ -141,7 +179,6 @@ $(document).ready(function () {
 
         return trow;
     }
-
 
     var selectedUsed=[];
 
@@ -188,7 +225,8 @@ $(document).ready(function () {
 
     $(".btn-use-submit").click(function(){
         if(selectedUsed.length == 3){
-            window.location.href=`${base_url}agent_use_trust?data=${JSON.stringify(selectedUsed)}`
+            const trust_id = $(".trs-receipt_no").val();
+            window.location.href=`${base_url}agent_use_trust?data=${JSON.stringify(selectedUsed)}&trust_id=${trust_id}`
         }else{
             errorMessage(`Please select COC, POLICY, and OR first before submitting!`)
         }
@@ -200,7 +238,7 @@ $(document).ready(function () {
         selectedUsed = [];
 
         table_trust.destroy();
-        const tbres = generateTrustTable(tableGlobalData, selected)
+        const tbres = generateTrustTable(tableGlobalData, selected, tableUsedData)
     
         $("#table_trust_list .tbody").html(tbres)
         table_trust = $("#table_trust_list").DataTable();

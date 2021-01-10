@@ -20,6 +20,16 @@
   <script src="<?=base_url("assets/")?>js/vue.js"></script>
    <script>
     var base_url = "<?= base_url()?>";
+
+    <?php 
+        if(!empty($trust_data)) {
+           ?>
+            var trust_data = '<?= $trust_data?>';
+           <?php
+        }
+    
+    ?>
+
     window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     $(".preloader").show();
     $(document).ready(function(){$(".preloader").hide();})
