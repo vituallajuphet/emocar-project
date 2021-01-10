@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2021 at 04:25 PM
+-- Generation Time: Jan 10, 2021 at 09:00 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -48,7 +48,32 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `fk_user_id`, `first_name`, `middle_name`, `last_name`, `address`, `birth_date`, `gender`, `location`, `email`, `contact_no`, `branch`, `profile_name`) VALUES
-(6, 8, 'Anabelle', 'Bejagan', 'Torino', 'Anahaw Buhisan Cebu City', '1977-08-13', 'Female', '1', 'anabellebtorino123@gmail.com', '09264418054', '1', '');
+(6, 8, 'Anabelle', 'Bejagan', 'Torino', 'Anahaw Buhisan Cebu City', '1977-08-13', 'Female', '1', 'anabellebtorino123@gmail.com', '09264418054', '1', ''),
+(7, 9, 'Opets', 'Tests', 'Lstnames', 'Cebu ', '1998-01-05', 'Male', '1', 'test@sdf.com', '123568765', '1', 'profile-1610233723.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_agent_policies`
+--
+
+CREATE TABLE `tbl_agent_policies` (
+  `agent_policy_id` int(11) NOT NULL,
+  `fk_user_id` int(11) NOT NULL,
+  `trust_receipt_no` int(11) NOT NULL,
+  `table_data` longtext NOT NULL,
+  `place_issued` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL,
+  `date_added` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_agent_policies`
+--
+
+INSERT INTO `tbl_agent_policies` (`agent_policy_id`, `fk_user_id`, `trust_receipt_no`, `table_data`, `place_issued`, `status`, `date_added`) VALUES
+(10, 9, 3, '[{\"id\":\"motorcycle\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1.1\",\"qty\":\"55\"},{\"id\":\"or\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"2.22\",\"qty\":\"111\"},{\"id\":\"policy\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1.32\",\"qty\":\"66\"}]},{\"id\":\"private\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"2\",\"sTo\":\"2\",\"set\":\"1.08\",\"qty\":\"54\"},{\"id\":\"or\",\"sfrom\":\"2\",\"sTo\":\"2\",\"set\":\"0.2\",\"qty\":\"10\"},{\"id\":\"policy\",\"sfrom\":\"2\",\"sTo\":\"2\",\"set\":\"1.3\",\"qty\":\"65\"}]},{\"id\":\"trailer\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"11\",\"sTo\":\"11\",\"set\":\"1.34\",\"qty\":\"67\"},{\"id\":\"or\",\"sfrom\":\"5\",\"sTo\":\"5\",\"set\":\"1.46\",\"qty\":\"73\"},{\"id\":\"policy\",\"sfrom\":\"5\",\"sTo\":\"5\",\"set\":\"1.02\",\"qty\":\"51\"}]}]', 'Cebu City', 1, '2021-01-10'),
+(11, 9, 4, '[{\"id\":\"motorcycle\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1\",\"qty\":\"50\"},{\"id\":\"or\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1.1\",\"qty\":\"55\"},{\"id\":\"policy\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1.54\",\"qty\":\"77\"}]},{\"id\":\"tricycle\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"1001\",\"sTo\":\"1001\",\"set\":\"1\",\"qty\":\"50\"},{\"id\":\"or\",\"sfrom\":\"1001\",\"sTo\":\"1001\",\"set\":\"1\",\"qty\":\"50\"},{\"id\":\"policy\",\"sfrom\":\"1001\",\"sTo\":\"1001\",\"set\":\"1\",\"qty\":\"50\"}]}]', 'Cebu City', 1, '2021-01-10');
 
 -- --------------------------------------------------------
 
@@ -172,6 +197,64 @@ INSERT INTO `tbl_transactions` (`trans_id`, `fk_user_id`, `trans_type`, `trans_o
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_trust_agents`
+--
+
+CREATE TABLE `tbl_trust_agents` (
+  `trans_id` int(11) NOT NULL,
+  `fk_user_id` int(11) NOT NULL,
+  `fk_trust_receipt_id` int(11) NOT NULL,
+  `trust_data` longtext NOT NULL,
+  `trans_type` varchar(55) NOT NULL,
+  `trans_option` varchar(55) NOT NULL,
+  `mb_file_no` varchar(55) NOT NULL,
+  `plate_no` varchar(55) NOT NULL,
+  `motor_no` varchar(55) NOT NULL,
+  `serial_chassis` varchar(55) NOT NULL,
+  `policy_no` varchar(55) NOT NULL,
+  `model_no` varchar(55) NOT NULL,
+  `make` varchar(55) NOT NULL,
+  `type_of_body` varchar(55) NOT NULL,
+  `official_receipt` varchar(55) NOT NULL,
+  `color` varchar(55) NOT NULL,
+  `place` varchar(100) NOT NULL,
+  `date_issued` date NOT NULL,
+  `date_from` date NOT NULL,
+  `date_to` date NOT NULL,
+  `others` double NOT NULL,
+  `pol_docs_stamp` double NOT NULL,
+  `lgt` double NOT NULL,
+  `policy_day` varchar(55) NOT NULL,
+  `policy_month` varchar(22) NOT NULL,
+  `policy_year` varchar(22) NOT NULL,
+  `received_from` varchar(55) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `or_date` date NOT NULL,
+  `premium_sales` double NOT NULL,
+  `docs_stamp` double NOT NULL,
+  `lg_tax` double NOT NULL,
+  `misc` double NOT NULL,
+  `or_total` double NOT NULL,
+  `the_sum_of_pesos` text NOT NULL,
+  `status` int(11) NOT NULL,
+  `published_status` varchar(55) NOT NULL,
+  `paid_type` varchar(55) NOT NULL,
+  `check_no` varchar(100) NOT NULL,
+  `coc_no` varchar(100) NOT NULL,
+  `series_no` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_trust_agents`
+--
+
+INSERT INTO `tbl_trust_agents` (`trans_id`, `fk_user_id`, `fk_trust_receipt_id`, `trust_data`, `trans_type`, `trans_option`, `mb_file_no`, `plate_no`, `motor_no`, `serial_chassis`, `policy_no`, `model_no`, `make`, `type_of_body`, `official_receipt`, `color`, `place`, `date_issued`, `date_from`, `date_to`, `others`, `pol_docs_stamp`, `lgt`, `policy_day`, `policy_month`, `policy_year`, `received_from`, `address`, `or_date`, `premium_sales`, `docs_stamp`, `lg_tax`, `misc`, `or_total`, `the_sum_of_pesos`, `status`, `published_status`, `paid_type`, `check_no`, `coc_no`, `series_no`) VALUES
+(1, 9, 4, '[{\"name\":\"motorcycle\",\"serNum\":1,\"type\":\"coc\"},{\"name\":\"motorcycle\",\"serNum\":3,\"type\":\"or\"},{\"name\":\"motorcycle\",\"serNum\":76,\"type\":\"policy\"}]', 'Motorcycle', 'StrongHold', 'mv1234', 'palce1234', 'motro', 'serial1234', 'pocliy234', 'model123', 'make1234', 'body1234', 'or1234', 'color', 'cebu city', '2021-01-10', '2021-01-10', '2022-01-10', 200, 200, 200, '10', 'January', '2021', 'Juan cruz', 'test address', '2121-01-10', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '0', 'Cash', '', 'coc1234', 'series'),
+(2, 9, 4, '[{\"name\":\"motorcycle\",\"serNum\":2,\"type\":\"coc\"},{\"name\":\"motorcycle\",\"serNum\":4,\"type\":\"or\"},{\"name\":\"motorcycle\",\"serNum\":56,\"type\":\"policy\"}]', 'Motorcycle', 'StrongHold', 'mv11111', 'plate123', 'motor123', 'seriak', 'policy123', 'model1', 'maketes', 'testbody', 'or1234', 'red', 'place of isstest', '2021-01-10', '2021-01-10', '2022-01-10', 200, 200, 200, '10', 'January', '2021', 'Test from', 'address ts', '2121-01-10', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '0', 'Check', '1234', 'coc1234', '1234');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_trust_receipt`
 --
 
@@ -186,7 +269,10 @@ CREATE TABLE `tbl_trust_receipt` (
 --
 
 INSERT INTO `tbl_trust_receipt` (`trust_id`, `status`, `date_added`) VALUES
-(1, 1, '2021-01-02');
+(1, 1, '2021-01-02'),
+(2, 1, '2021-01-09'),
+(3, 1, '2021-01-10'),
+(4, 1, '2021-01-10');
 
 -- --------------------------------------------------------
 
@@ -209,7 +295,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `status`, `is_logged`) VALUES
 (1, 'admin', '$2y$10$zg4hcu3jrnJKwNM05.EMI.yRYdqc.Ql/fPTtUS6wv60EPeoACqHp.', 1, 1, 0),
-(8, 'test', '$2y$10$zg4hcu3jrnJKwNM05.EMI.yRYdqc.Ql/fPTtUS6wv60EPeoACqHp.', 2, 1, 0);
+(8, 'test', '$2y$10$zg4hcu3jrnJKwNM05.EMI.yRYdqc.Ql/fPTtUS6wv60EPeoACqHp.', 2, 1, 0),
+(9, 'opet', '$2y$10$xvVMrn6fCMCEL./zXqXi1eyZ7POfCzYFghKN85qGswMDqT.YlcJtm', 4, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -251,6 +338,12 @@ ALTER TABLE `employees`
   ADD PRIMARY KEY (`employee_id`);
 
 --
+-- Indexes for table `tbl_agent_policies`
+--
+ALTER TABLE `tbl_agent_policies`
+  ADD PRIMARY KEY (`agent_policy_id`);
+
+--
 -- Indexes for table `tbl_branches`
 --
 ALTER TABLE `tbl_branches`
@@ -272,6 +365,12 @@ ALTER TABLE `tbl_log_tokens`
 -- Indexes for table `tbl_transactions`
 --
 ALTER TABLE `tbl_transactions`
+  ADD PRIMARY KEY (`trans_id`);
+
+--
+-- Indexes for table `tbl_trust_agents`
+--
+ALTER TABLE `tbl_trust_agents`
   ADD PRIMARY KEY (`trans_id`);
 
 --
@@ -300,7 +399,13 @@ ALTER TABLE `user_meta`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `employee_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `employee_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tbl_agent_policies`
+--
+ALTER TABLE `tbl_agent_policies`
+  MODIFY `agent_policy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_branches`
@@ -327,16 +432,22 @@ ALTER TABLE `tbl_transactions`
   MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT for table `tbl_trust_agents`
+--
+ALTER TABLE `tbl_trust_agents`
+  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tbl_trust_receipt`
 --
 ALTER TABLE `tbl_trust_receipt`
-  MODIFY `trust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `trust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user_meta`

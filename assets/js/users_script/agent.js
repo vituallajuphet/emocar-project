@@ -68,9 +68,13 @@ $(document).ready(function () {
                 (async () => {
                     try {
                         const resp = await axios.get(`${base_url}agent/get_used_trust/${dta.trust_receipt_no}`)
-                        const resData = resp.data.data[0];
+                        const resData = resp.data.data;
 
-                        tableUsedData = JSON.parse(resData.trust_data);
+                        tableUsedData = gettrustrow(resData);
+
+                        console.log(tableUsedData)  
+
+                        return
 
                         const tbleData = JSON.parse(dta.table_data);
                         tableGlobalData = tbleData;
@@ -89,6 +93,7 @@ $(document).ready(function () {
 
                         } catch (error) {
                             errorMessage("Something Wrong!")
+                            console.log(error)
                         }
                 })()        
              }
@@ -98,18 +103,23 @@ $(document).ready(function () {
                errorMessage(res.data.message)
            }
         }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!")})
-
-
-        
-
     })
+
+    const gettrustrow = (resData) => {
+
+        let ret = [];
+
+        if(resData.length > 0){
+            
+        }
+
+        return ret;
+    }
 
     const generateTrustTable = ( tbleData = [], selected ="", usedData = []) => {
 
         let trow  = "";
         let selectOptions ="";
-
-        console.log(usedData)
 
         tbleData.map(tbl => {
 
@@ -143,7 +153,7 @@ $(document).ready(function () {
                                     <td>${Number(tdta.sfrom) + i}</td>
                                     <td class="text-uppercase">${tdta.id}</td>
                                     <td class="text-capitalize"><span class="text-${is_used ? 'success font-weight-bold' : 'danger'}">${ is_used ? 'Used' : 'Unused' }</span></td>
-                                    <td>
+                                    <td class="text-center">
                                         ${(!is_used && 
                                             `<input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox ${is_used ? 'd-none': ''}"> <span class="ml-1">Use</span> `) ||
                                             `<div class="text-center text-success"><i class="fa fa-check"></i></div>`
@@ -160,7 +170,7 @@ $(document).ready(function () {
                             <td>${Number(tdta.sfrom) + i}</td>
                             <td class="text-uppercase">${tdta.id}</td>
                             <td class="text-capitalize"><span class="text-${is_used ? 'success font-weight-bold' : 'danger'}">${ is_used ? 'Used' : 'Unused' }</span></td>
-                            <td>
+                            <td class="text-center">
                                 ${(!is_used && 
                                     `<input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox ${is_used ? 'd-none': ''}"> <span class="ml-1">Use</span> `) ||
                                     `<div class="text-center text-success"><i class="fa fa-check"></i></div>`
