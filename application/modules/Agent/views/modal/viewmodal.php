@@ -1,79 +1,55 @@
 <!-- start modal -->
-<div class="modal fade" id="view_user_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" id="view_trust_info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-user"></i> User Details</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-file"></i> Trust File Informations</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
             <div class="row">
-             <div class="col-md-12">
-                    <figure class="user_profile_cont">
-                        <img src="" alt="profile">
-                    </figure>
+                <div class="col-md-3">
+                    <label class="font-weight-bold" for="">Issued By: </label>
+                    <input type="text" class="form-control trs-issued_by" readonly>
+                </div>
+                <div class="col-md-3">
+                    <label class="font-weight-bold" for="">Trust Receipt No.: </label>
+                    <input type="text" class="form-control trs-receipt_no" readonly>
+                </div> 
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <label class="font-weight-bold" for="">Date Issued: </label>
+                    <input type="text" class="form-control trs-date_issued" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="font-weight-bold" for="">Place Issued: </label>
+                    <input type="text" class="form-control trs-place_issued" readonly>
                 </div>
             </div>
-            <div class="row">
-              <div class="col-md-4">
-                    <label for="recipient-name" class="col-form-label">User Type</label>
-                    <input readonly type="text" class="form-control dta_user_type" >
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="recipient-name" class="col-form-label">First Name</label>
-                    <input readonly type="text" class="form-control dta_first_name" >
-                </div>
-                <div class="col-md-4">
-                    <label for="recipient-name" class="col-form-label">Middle Name</label>
-                    <input readonly type="text" class="form-control dta_middle_name" >
-                </div>
-                <div class="col-md-4">
-                    <label for="recipient-name" class="col-form-label">Last Name</label>
-                    <input readonly type="text" class="form-control dta_last_name" >
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <label for="recipient-name" class="col-form-label">Address</label>
-                    <input readonly type="text" class="form-control dta_address" >
-                </div>
-                <div class="col-md-4">
-                    <label for="recipient-name" class="col-form-label">Birth Date</label>
-                    <input readonly type="text" class="form-control dta_birth_date" >
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="recipient-name" class="col-form-label">Gender</label>
-                    <input readonly type="text" class="form-control dta_gender" >
-                </div>
-                <div class="col-md-4">
-                    <label for="recipient-name" class="col-form-label">Location</label>
-                    <input readonly type="text" class="form-control dta_location" >
-                </div>
-                <div class="col-md-4">
-                    <label for="recipient-name" class="col-form-label">Branch</label>
-                    <input readonly type="text" class="form-control dta_branch" >
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="recipient-name" class="col-form-label">Username</label>
-                    <input readonly type="text" class="form-control dta_username" >
-                </div>
-                <div class="col-md-4">
-                    <label for="recipient-name" class="col-form-label">Email Address</label>
-                    <input readonly type="text" class="form-control dta_email" >
-                </div>
-                <div class="col-md-4">
-                    <label for="recipient-name" class="col-form-label">Contact No.</label>
-                    <input readonly type="text" class="form-control dta_contact_no" >
-                </div>
-            </div>
+
+            <hr class="my-5">
+
+            <table id="table_trust_list" class="display">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Serial No.</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>test</td>
+                        <td>test</td>
+                        <td>test</td>
+                        <td>test</td>
+                    </tr>
+                </tbody>
+            </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>

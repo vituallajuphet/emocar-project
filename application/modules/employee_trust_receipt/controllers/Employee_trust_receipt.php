@@ -64,6 +64,7 @@ class Employee_trust_receipt extends MY_Controller {
 					"fk_user_id" =>  $post["agent_id"],
 					"fk_user_id" =>  $post["agent_id"],
 					"trust_receipt_no" =>  $post["trust_id"],
+					"place_issued" =>  $post["address"],
 					"table_data" =>  json_encode($parseJson),
 					"status" =>  1,
 					"date_added" =>  date("Y-m-d"),
