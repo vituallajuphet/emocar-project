@@ -152,6 +152,8 @@ $(document).ready(function () {
             return;
         }
 
+      
+
         alertConfirm("Are you sure to save this trust receipt?" , function(){
 
             const uname = $("#employee_id").val(); 
@@ -163,14 +165,7 @@ $(document).ready(function () {
             const nameFirst  = (gender == "Female" ? "Mrs." : "Mr.") + ` ${uNameText}`;
             const userLocation = $("#employee_id option:selected").data("address")
             
-            // $(".prDate").html(rDate)
-            // $(".prName").html(nameFirst)
-            // $(".prDearName").html(`Dear ${nameFirst}`)
-            // $(".prTreceipt").html(treceipt)
-            // $(".prPlace").html(placeIssued)
-            // $(".prLocation").html(userLocation)
-
-
+           
             let frmdata = new FormData();
 
             frmdata.append("agent_id", uname)
@@ -219,39 +214,70 @@ $(document).ready(function () {
                  if(res.data.status == "success"){
                      successMessage("Successfully Saved!");
                      setTimeout(() => {
-                        window.location.href =`${base_url}employee_trust_receipt`;
+                        // printDocument()
+                        //window.location.href =`${base_url}employee_trust_receipt`;
                      }, 500);
                  }
                  else{
                      errorMessage("something wrong!")
                  }
             }).catch(err => {ehide(".preloader");errorMessage("Something Wrong")})
+        })
 
-            return;
-            let html = "";
+        printDocument()
+    })
+
+
+    $(".btn-print_here").click(function(){
+        printDocument()
+    })
+
+    const printDocument = () => {
+        let html = "";
+
+        const uname = $("#employee_id").val(); 
+        const uNameText = $("#employee_id option:selected").data("fullname"); 
+        const rDate = $("input[name='date_of_issued']").val(); 
+        const treceipt = $("input[name='trust_id']").val();
+        const placeIssued = $("input[name='place_issued']").val();
+        const gender =  $("#employee_id option:selected").data("gender")
+        const nameFirst  = (gender == "Female" ? "Mrs." : "Mr.") + ` ${uNameText}`;
+        const userLocation = $("#employee_id option:selected").data("address")
+
+        $(".prDate").html(rDate)
+        $(".prName").html(nameFirst)
+        $(".prDearName").html(`Dear ${nameFirst}`)
+        $(".prTreceipt").html(treceipt) 
+        $(".prPlace").html(placeIssued)
+        $(".prLocation").html(userLocation)
 
             $(".tbody-tbl .tr-row").each(function (){
 
                 const dta_id = $(this).data("id");
                 
                 const tcont = $(this).find(".first_td span.d-block");
-                const tserial = $(this).find("input.td-serial");
+                const tserial = $(this).find("input.serialFrom");
+                const tserialto = $(this).find("input.serialTo");
                 const tset = $(this).find("input.td-set");
                 const tqty = $(this).find("input.td-quantity");
+
+                
 
                 const headerCol = () => {
                     let res = '';
                     tcont.map((idx, inp) => {
                         res += `<div style='text-transform: uppercase;
-                        '>${inp.getAttribute("data-id")} #</div>`
+                        '>${getHeading(inp.getAttribute("data-id"))} #</div>`
                     }) 
                     return res;
                 }
+                
+            
 
                 const serialCont = () => {
                     let res = '';
                     tserial.map((idx, inp) => {
-                        res += `<div>${inp.value}</div>`
+                        res += `<div>${inp.value} --  ${tserialto[idx].value}</div>`
                     }) 
                     return res;
                 }
@@ -267,15 +293,19 @@ $(document).ready(function () {
                 let tcontDta = ""
                 html += `
                     <tr>
-                        <td style='padding: 15px 0; '>
+                        <td style='padding: 15px 0 0; '>
                             <div><strong style='text-transform: capitalize;
                             '>${dta_id} Policy</strong></div> 
                             ${headerCol()}
                         </td>
                         <td>
+                            <div style="visibility:hidden;"><strong style='text-transform: capitalize;
+                        '>${dta_id} Policy</strong></div> 
                             ${serialCont()}
                         </td>
                         <td>
+                            <div style="visibility:hidden;"><strong style='text-transform: capitalize;
+                        '>${dta_id} Policy</strong></div> 
                             ${qtyCont()}
                         </td>
                     </tr>
@@ -295,10 +325,8 @@ $(document).ready(function () {
                 $("#employee_id").val("")
                 $(".tbody-tbl").html("")
                 getTrustIdNumber()
-            }, 1000);
-
-        })
-    })
+            }, 2000);
+    }
 
     $(document).on("change keyup", ".tr-row .td-serial", function (){
         const trow = $(this).closest(".tr-row");
@@ -323,8 +351,8 @@ $(document).ready(function () {
                 <tr class="tr-row" data-id="${sel_val}">
                     <td class="first_td"> 
                         <strong class="d-block mb-3">${sel_val.toUpperCase()} <span class="removeRow"><a href="javascipt:;"><i class="fa fa-trash"></i></a></span></strong>
-                        <span data-id="coc" class='d-block'>Confirmation of Cover</span>
                         <span data-id="or" class='d-block'>Official Receipt</span>
+                        <span data-id="coc" class='d-block'>Confirmation of Cover</span>
                         <span data-id="policy" class='d-block'>Policy</span>
                     </td>
                     <td> 
@@ -332,14 +360,14 @@ $(document).ready(function () {
                             <div class="serial_separator">
                                 <div>
                                     <div><strong>From</strong></div>
-                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='coc'>
                                     <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='or'>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='coc'>
                                     <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='policy'>            
                                 </div>     
                                 <div>
                                     <div><strong>To</strong></div>
-                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='coc'>
                                     <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='or'>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='coc'>
                                     <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='policy'>            
                                 </div>     
                             </div>
@@ -347,21 +375,21 @@ $(document).ready(function () {
                     </td>
                     <td> 
                         <div class="td-cont">
+                        <input type="number" min="1" readonly required class="form-control td-set" data-id='or'>
                             <input type="number" min="1" readonly required class="form-control td-set" data-id='coc'>
-                            <input type="number" min="1" readonly required class="form-control td-set" data-id='or'>
                             <input type="number" min="1" readonly required class="form-control td-set" data-id='policy'>
                         </div>
                     </td>
                     <td> 
                         <div class="td-cont">
+                        <input type="number" readonly required class="form-control td-quantity" data-id='or'>
                             <input type="number" readonly required class="form-control td-quantity" data-id='coc'>
-                            <input type="number" readonly required class="form-control td-quantity" data-id='or'>
                             <input type="number" readonly required class="form-control td-quantity" data-id='policy'>
                         </div>
                     </td>       
                     <td class="td-action">
+                    <a class="d-block" data-val="or" href="javascript:;"> <i class='fa fa-trash'></i></a>
                         <a class="d-block" data-val="coc" href="javascript:;"> <i class='fa fa-trash'></i></a>
-                        <a class="d-block" data-val="or" href="javascript:;"> <i class='fa fa-trash'></i></a>
                         <a class="d-block" data-val="policy" href="javascript:;"> <i class='fa fa-trash'></i></a>
                     </td>
                 </tr>
@@ -427,6 +455,21 @@ $(document).ready(function () {
 
     }
 
+    const getHeading = (theName) => {
+        switch ((theName)) {
+            case "coc":
+                return "Confirmation of Cover (COC)"
+                break;
+            case "or":
+                return "Official Receipt (OR)"
+                break;
+            case "policy":
+                return "Policy"
+                break;
+            default:
+                break;
+        }
+    }
     const get_select_val = (sel) => {
 
         switch (sel) {
