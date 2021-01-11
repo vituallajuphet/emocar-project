@@ -32,7 +32,7 @@ em, i{font-style: italic;}
 input[type="submit"]{cursor: pointer;}
 a[href^="tel:"]{color: inherit!important; text-decoration: none;}
 
-.clearfix:before, .clearfix:after { content:""; display: table; clear: both; }
+.clearfix:before, .clearfix:after { content:"";  clear: both; }
 .clearfix {clear: both; overflow: hidden;}
 
 html {

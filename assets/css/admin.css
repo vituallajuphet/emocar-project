@@ -93,7 +93,6 @@ a[href^="tel:"] {
 
 .clearfix:before, .clearfix:after {
   content: "";
-  display: table;
   clear: both; }
 
 .clearfix {
@@ -251,7 +250,8 @@ body {
   font-weight: bold;
   font-size: 1.1rem;
   color: #fff;
-  margin: 2rem 0 0; }
+  margin: 2rem 0 0;
+  height: 100%; }
   .nav_userinfo label {
     margin: 0;
     display: block; }
