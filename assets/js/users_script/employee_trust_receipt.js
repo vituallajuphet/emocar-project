@@ -28,6 +28,8 @@ $(document).ready(function () {
 
         const serialFrom = trow.find("input[data-id='"+dataId+"'].serialFrom").val();
         const serialTo = trow.find("input[data-id='"+dataId+"'].serialTo").val();
+        const rowType = trow.find("input[data-id='"+dataId+"'].serialTo").data("id");
+        const tname = trow.find("input[data-id='"+dataId+"'].serialTo").data("tname");
         // const tset   = trow.find("input[data-id='"+dataId+"'].td-set").val();
 
         if(Number.isNaN(serialTo)  ||  Number.isNaN(serialFrom)){
@@ -37,13 +39,31 @@ $(document).ready(function () {
         }
         else if(Number(serialTo)  <   Number(serialFrom)){
             trow.find("input[data-id='"+dataId+"'].td-quantity").val("");
-            trow.find("input[data-id='"+dataId+"'].td-set").val();
+            trow.find("input[data-id='"+dataId+"'].td-set").val("");
             return;
         }
         
 
         if((serialTo != undefined && serialTo != "") && (serialFrom != undefined && serialFrom != "")){
            
+            let frmdata = new FormData();
+
+            frmdata.append("sfrom", serialFrom)
+            frmdata.append("sto", serialTo)
+            frmdata.append("type", rowType)
+            frmdata.append("trans_type", tname)
+            
+            axios.post(`${base_url}employee_trust_receipt/validate_range/`, frmdata).then(res => {
+                if(res.data.status == "success"){
+                    
+                }
+                else{
+                    trow.find("input[data-id='"+dataId+"'].td-quantity").val("");
+                    trow.find("input[data-id='"+dataId+"'].td-set").val("");
+                    errorMessage(res.data.message)
+                }
+            }).catch(err => {errorMessage("Something Wrong")})
+
             const totalQty = ((parseInt(serialTo) - parseInt(serialFrom)) + 1 ) 
             const totalSet = (totalQty / 50);
             trow.find("input[data-id='"+dataId+"'].td-set").val(totalSet);
@@ -280,10 +300,11 @@ $(document).ready(function () {
         })
     })
 
-    $(document).on("change keyup", ".tr-row .td-serial, .tr-row .td-quantity,  .tr-row .td-set", function (){
+    $(document).on("change keyup", ".tr-row .td-serial", function (){
         const trow = $(this).closest(".tr-row");
         const dataId = $(this).data("id");
         calculateTabledata(trow, dataId);
+
     })
 
     $(".trust_receipt .btn-add-row").on("click", function(params) {
@@ -311,15 +332,15 @@ $(document).ready(function () {
                             <div class="serial_separator">
                                 <div>
                                     <div><strong>From</strong></div>
-                                    <input type="number" min="1" required class="form-control td-serial serialFrom" data-id='coc'>
-                                    <input type="number" min="1" required class="form-control td-serial serialFrom" data-id='or'>
-                                    <input type="number" min="1" required class="form-control td-serial serialFrom" data-id='policy'>            
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='coc'>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='or'>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='policy'>            
                                 </div>     
                                 <div>
                                     <div><strong>To</strong></div>
-                                    <input type="number" min="1" required class="form-control td-serial serialTo" data-id='coc'>
-                                    <input type="number" min="1" required class="form-control td-serial serialTo" data-id='or'>
-                                    <input type="number" min="1" required class="form-control td-serial serialTo" data-id='policy'>            
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='coc'>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='or'>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='policy'>            
                                 </div>     
                             </div>
                         </div>
