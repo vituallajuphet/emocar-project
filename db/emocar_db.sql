@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 10, 2021 at 09:00 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Host: localhost
+-- Generation Time: Jan 11, 2021 at 06:56 AM
+-- Server version: 10.4.16-MariaDB
+-- PHP Version: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `emocar_db2020`
+-- Database: `emocar_db`
 --
 
 -- --------------------------------------------------------
@@ -49,7 +49,8 @@ CREATE TABLE `employees` (
 
 INSERT INTO `employees` (`employee_id`, `fk_user_id`, `first_name`, `middle_name`, `last_name`, `address`, `birth_date`, `gender`, `location`, `email`, `contact_no`, `branch`, `profile_name`) VALUES
 (6, 8, 'Anabelle', 'Bejagan', 'Torino', 'Anahaw Buhisan Cebu City', '1977-08-13', 'Female', '1', 'anabellebtorino123@gmail.com', '09264418054', '1', ''),
-(7, 9, 'Opets', 'Tests', 'Lstnames', 'Cebu ', '1998-01-05', 'Male', '1', 'test@sdf.com', '123568765', '1', 'profile-1610233723.png');
+(7, 9, 'Opets', 'Tests', 'Lstnames', 'Cebu ', '1998-01-05', 'Male', '1', 'test@sdf.com', '123568765', '1', 'profile-1610233723.png'),
+(8, 10, 'Van', 'Helsing', 'Tigbak', 'Alcoy cebu', '2001-04-06', 'Male', '1', 'test@testes.com', '123456789', '1', '');
 
 -- --------------------------------------------------------
 
@@ -73,7 +74,8 @@ CREATE TABLE `tbl_agent_policies` (
 
 INSERT INTO `tbl_agent_policies` (`agent_policy_id`, `fk_user_id`, `trust_receipt_no`, `table_data`, `place_issued`, `status`, `date_added`) VALUES
 (10, 9, 3, '[{\"id\":\"motorcycle\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1.1\",\"qty\":\"55\"},{\"id\":\"or\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"2.22\",\"qty\":\"111\"},{\"id\":\"policy\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1.32\",\"qty\":\"66\"}]},{\"id\":\"private\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"2\",\"sTo\":\"2\",\"set\":\"1.08\",\"qty\":\"54\"},{\"id\":\"or\",\"sfrom\":\"2\",\"sTo\":\"2\",\"set\":\"0.2\",\"qty\":\"10\"},{\"id\":\"policy\",\"sfrom\":\"2\",\"sTo\":\"2\",\"set\":\"1.3\",\"qty\":\"65\"}]},{\"id\":\"trailer\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"11\",\"sTo\":\"11\",\"set\":\"1.34\",\"qty\":\"67\"},{\"id\":\"or\",\"sfrom\":\"5\",\"sTo\":\"5\",\"set\":\"1.46\",\"qty\":\"73\"},{\"id\":\"policy\",\"sfrom\":\"5\",\"sTo\":\"5\",\"set\":\"1.02\",\"qty\":\"51\"}]}]', 'Cebu City', 1, '2021-01-10'),
-(11, 9, 4, '[{\"id\":\"motorcycle\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1\",\"qty\":\"50\"},{\"id\":\"or\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1.1\",\"qty\":\"55\"},{\"id\":\"policy\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1.54\",\"qty\":\"77\"}]},{\"id\":\"tricycle\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"1001\",\"sTo\":\"1001\",\"set\":\"1\",\"qty\":\"50\"},{\"id\":\"or\",\"sfrom\":\"1001\",\"sTo\":\"1001\",\"set\":\"1\",\"qty\":\"50\"},{\"id\":\"policy\",\"sfrom\":\"1001\",\"sTo\":\"1001\",\"set\":\"1\",\"qty\":\"50\"}]}]', 'Cebu City', 1, '2021-01-10');
+(11, 9, 4, '[{\"id\":\"motorcycle\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1\",\"qty\":\"50\"},{\"id\":\"or\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1.1\",\"qty\":\"55\"},{\"id\":\"policy\",\"sfrom\":\"1\",\"sTo\":\"1\",\"set\":\"1.54\",\"qty\":\"77\"}]},{\"id\":\"tricycle\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"1001\",\"sTo\":\"1001\",\"set\":\"1\",\"qty\":\"50\"},{\"id\":\"or\",\"sfrom\":\"1001\",\"sTo\":\"1001\",\"set\":\"1\",\"qty\":\"50\"},{\"id\":\"policy\",\"sfrom\":\"1001\",\"sTo\":\"1001\",\"set\":\"1\",\"qty\":\"50\"}]}]', 'Cebu City', 1, '2021-01-10'),
+(12, 10, 5, '[{\"id\":\"motorcycle\",\"tble_data\":[{\"id\":\"coc\",\"sfrom\":\"1010\",\"sTo\":\"1010\",\"set\":\"79.82\",\"qty\":\"3991\"},{\"id\":\"or\",\"sfrom\":\"6001\",\"sTo\":\"6001\",\"set\":\"1\",\"qty\":\"50\"},{\"id\":\"policy\",\"sfrom\":\"2\",\"sTo\":\"2\",\"set\":\"1\",\"qty\":\"50\"}]}]', 'Cebu City', 1, '2021-01-11');
 
 -- --------------------------------------------------------
 
@@ -250,7 +252,10 @@ CREATE TABLE `tbl_trust_agents` (
 
 INSERT INTO `tbl_trust_agents` (`trans_id`, `fk_user_id`, `fk_trust_receipt_id`, `trust_data`, `trans_type`, `trans_option`, `mb_file_no`, `plate_no`, `motor_no`, `serial_chassis`, `policy_no`, `model_no`, `make`, `type_of_body`, `official_receipt`, `color`, `place`, `date_issued`, `date_from`, `date_to`, `others`, `pol_docs_stamp`, `lgt`, `policy_day`, `policy_month`, `policy_year`, `received_from`, `address`, `or_date`, `premium_sales`, `docs_stamp`, `lg_tax`, `misc`, `or_total`, `the_sum_of_pesos`, `status`, `published_status`, `paid_type`, `check_no`, `coc_no`, `series_no`) VALUES
 (1, 9, 4, '[{\"name\":\"motorcycle\",\"serNum\":1,\"type\":\"coc\"},{\"name\":\"motorcycle\",\"serNum\":3,\"type\":\"or\"},{\"name\":\"motorcycle\",\"serNum\":76,\"type\":\"policy\"}]', 'Motorcycle', 'StrongHold', 'mv1234', 'palce1234', 'motro', 'serial1234', 'pocliy234', 'model123', 'make1234', 'body1234', 'or1234', 'color', 'cebu city', '2021-01-10', '2021-01-10', '2022-01-10', 200, 200, 200, '10', 'January', '2021', 'Juan cruz', 'test address', '2121-01-10', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '0', 'Cash', '', 'coc1234', 'series'),
-(2, 9, 4, '[{\"name\":\"motorcycle\",\"serNum\":2,\"type\":\"coc\"},{\"name\":\"motorcycle\",\"serNum\":4,\"type\":\"or\"},{\"name\":\"motorcycle\",\"serNum\":56,\"type\":\"policy\"}]', 'Motorcycle', 'StrongHold', 'mv11111', 'plate123', 'motor123', 'seriak', 'policy123', 'model1', 'maketes', 'testbody', 'or1234', 'red', 'place of isstest', '2021-01-10', '2021-01-10', '2022-01-10', 200, 200, 200, '10', 'January', '2021', 'Test from', 'address ts', '2121-01-10', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '0', 'Check', '1234', 'coc1234', '1234');
+(2, 9, 4, '[{\"name\":\"motorcycle\",\"serNum\":2,\"type\":\"coc\"},{\"name\":\"motorcycle\",\"serNum\":4,\"type\":\"or\"},{\"name\":\"motorcycle\",\"serNum\":56,\"type\":\"policy\"}]', 'Motorcycle', 'StrongHold', 'mv11111', 'plate123', 'motor123', 'seriak', 'policy123', 'model1', 'maketes', 'testbody', 'or1234', 'red', 'place of isstest', '2021-01-10', '2021-01-10', '2022-01-10', 200, 200, 200, '10', 'January', '2021', 'Test from', 'address ts', '2121-01-10', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '0', 'Check', '1234', 'coc1234', '1234'),
+(3, 9, 4, '[{\"name\":\"motorcycle\",\"serNum\":3,\"type\":\"coc\"},{\"name\":\"motorcycle\",\"serNum\":5,\"type\":\"or\"},{\"name\":\"motorcycle\",\"serNum\":77,\"type\":\"policy\"}]', 'Motorcycle', 'StrongHold', 'test mv', 'place', 'test mottr', 'serial', 'policy123', '123model', 'mnak tes', 'bodu', 'or11111', 'blue', 'test', '2021-01-11', '2021-01-11', '2022-01-11', 200, 200, 200, '11', 'January', '2021', 'Receiuve from', 'test addres', '2121-01-11', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '0', 'Cash', '', 'coc123', 'series1111'),
+(4, 10, 5, '[{\"name\":\"motorcycle\",\"serNum\":1010,\"type\":\"coc\"},{\"name\":\"motorcycle\",\"serNum\":51,\"type\":\"policy\"},{\"name\":\"motorcycle\",\"serNum\":6001,\"type\":\"or\"}]', 'Motorcycle', 'StrongHold', 'mvttt', 'place56', 'motor6', 'serial99', 'pool877', 'model99', 'make', 'body77', 'or88', 'red', 'cuby alcoy', '2021-01-11', '2021-01-11', '2022-01-11', 200, 200, 200, '11', 'January', '2021', 'Juna va', 'testy addddddd', '2121-01-11', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '0', 'Cash', '', 'coco89888', 'seruies1'),
+(5, 5, 5, '[{\"name\":\"motorcycle\",\"serNum\":1011,\"type\":\"coc\"},{\"name\":\"motorcycle\",\"serNum\":50,\"type\":\"policy\"},{\"name\":\"motorcycle\",\"serNum\":6050,\"type\":\"or\"}]', 'Motorcycle', 'StrongHold', 'mv test', 'tesplae', 'test mottr111', 'ser010293', 'pol99', 'mod99', 'tea', 'body 15123', 'or99', 'red99', 'issue99', '2021-01-11', '2021-01-11', '2022-01-11', 200, 200, 200, '11', 'January', '2021', 'Rec99', 'add99', '2121-01-11', 250, 100, 100, 200, 650, 'SIX HUNDRED FIFTY PESOS ONLY', 1, '0', 'Cash', '', 'coc99', 'ser123');
 
 -- --------------------------------------------------------
 
@@ -272,7 +277,8 @@ INSERT INTO `tbl_trust_receipt` (`trust_id`, `status`, `date_added`) VALUES
 (1, 1, '2021-01-02'),
 (2, 1, '2021-01-09'),
 (3, 1, '2021-01-10'),
-(4, 1, '2021-01-10');
+(4, 1, '2021-01-10'),
+(5, 1, '2021-01-11');
 
 -- --------------------------------------------------------
 
@@ -296,7 +302,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `status`, `is_logged`) VALUES
 (1, 'admin', '$2y$10$zg4hcu3jrnJKwNM05.EMI.yRYdqc.Ql/fPTtUS6wv60EPeoACqHp.', 1, 1, 0),
 (8, 'test', '$2y$10$zg4hcu3jrnJKwNM05.EMI.yRYdqc.Ql/fPTtUS6wv60EPeoACqHp.', 2, 1, 0),
-(9, 'opet', '$2y$10$xvVMrn6fCMCEL./zXqXi1eyZ7POfCzYFghKN85qGswMDqT.YlcJtm', 4, 1, 0);
+(9, 'opet', '$2y$10$xvVMrn6fCMCEL./zXqXi1eyZ7POfCzYFghKN85qGswMDqT.YlcJtm', 4, 1, 0),
+(10, 'van', '$2y$10$G0D/xblikTn.Q.vOHqyOteQ4jiA..tOQpHYFoitYv4H.km/ojDa1O', 4, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -399,13 +406,13 @@ ALTER TABLE `user_meta`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `employee_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `employee_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_agent_policies`
 --
 ALTER TABLE `tbl_agent_policies`
-  MODIFY `agent_policy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `agent_policy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_branches`
@@ -435,19 +442,19 @@ ALTER TABLE `tbl_transactions`
 -- AUTO_INCREMENT for table `tbl_trust_agents`
 --
 ALTER TABLE `tbl_trust_agents`
-  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_trust_receipt`
 --
 ALTER TABLE `tbl_trust_receipt`
-  MODIFY `trust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `trust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user_meta`

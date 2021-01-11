@@ -1,177 +1,378 @@
+// const { use } = require("browser-sync");
 
 $(document).ready(function () {
 
-    let global_locations = [];
-    let sorted_by = {sorted:"", sorted_value:""};
-    let global_users = [];
-
-    function _init (){
-
-        get_all_users();
-        
-        axios.get(`${base_url}admin/api_get_locations`).then(res => {
-            
-            if(res.data.status == "success"){
-                global_locations = res.data.data;
-                let elm = $("#sel_sort_location");
-                fill_locations(elm)
-                $("#sel_sort_location").select2();
-
-            }else{
-                errorMessage("Something Wrong!")
-            }
-
-        }).catch(err=>{errorMessage("Something Wrong!"); ehide(".preloader");} )
-
-        // $('#sel_sort_user').select2();
-
-    }
-    _init()
-
-    function get_all_users(){
-
-        axios.get(`${base_url}admin_policies/api_get_all_users`).then(res => {
-            
-            if(res.data.status == "success"){
-                global_users = res.data.data;
-
-                let options = "<option value=''>Please select...</option>";
-                global_users.map(usr => {
-                    options += `<option data-loc="${usr.fk_location_id}" data-branch="${usr.branch_id}" value="${usr.user_id}">${usr.first_name} ${usr.last_name}</option>`;
-                })
-                
-                $('#sel_sort_user').html(options);
-                $('#sel_sort_user').select2();
-                
-
-            }else{
-                errorMessage(res.data.message);
-            }
-
-        }).catch(err=>{errorMessage("Something Wrong!"); ehide(".preloader");} )
-    }
-
-    function convertDate(the_date, get_type = ""){
-        let ret_date;
-        let ddte = new Date(the_date);
-        const month = ddte.toLocaleString('default', { month: 'long' });
-
-        let res = "";
-
-        if(get_type == "month"){
-            return month;
-        }
-        else if(get_type == "day"){
-            res = ddte.getDate();
-        }
-        else if(get_type == "year"){
-            res = (ddte.getFullYear()+"").slice(-2); 
-        }
-        else{
-            res = `${month} ${ddte.getDate()}, ${ddte.getFullYear()}`;
-        }
-        return res;
-    }
-
-    function fill_locations (elem = ""){
-        let locs = `<option value="">Please select...</option>`;
-
-        global_locations.map (loc => {
-            locs += `<option data-id=${loc.loc_id} value="${loc.loc_id}">${loc.location_name}</option>`
-        })
-
-        if(elem == ""){
-            $(".dta_edit_location").html(locs);
-        }
-        else{
-            elem.html(locs);
-        }
-    }
-
-    function fill_branches(loc_id, elem, useSelect2 = false){
-
-        let brnches     = `<option value="">Please select...</option>`;
-        let loc = global_locations.filter((loc =>  loc.loc_id == loc_id));
-
-        if(loc != undefined && loc.length != 0){
-            loc[0].branches.map(brn => {
-                brnches += `<option value="${brn.branch_id}" >${brn.branch_name}</option>`;
-            })
-        }                                                                                                                          
-
-        $(elem).html(brnches);
-
-        if(useSelect2){
-            $(elem).select2();
-        }
-    }
-
-    var trans_table = $('#trans_table').DataTable({
+    var trust_table = $('#trans_table').DataTable({
         "language": { "infoFiltered": "" },
         "processing": true, //Feature control the processing indicator.
         "serverSide": true, //Feature control DataTables' server-side processing mode.
         "responsive": true,
+        "bDestroy":true,
         "order": [[0, 'desc']], //Initial no order.
         "createdRow": function (row, data, dataIndex) {
-            if(data.published_status == 1){
-                $(row).addClass('row-approved');
-            }
-            else if(data.published_status == 0){
-                $(row).addClass('row-pending');
-            }
         },
         "columns": [
-            {
-                "data": "trans_id", "render": function (data, type, row, meta) {
-                    return `TRANS-${row.trans_id}`
-                }
+            { 
+                "data":  "agent_policy_id", "render": function (data, type, row, meta) {
+                    return "Trans-"+row.agent_policy_id;
+                 }
             },
-            // { "data": "trans_id" },
-            { "data": "received_from" },
-            { "data": "trans_type" },
-            { "data": "mb_file_no" },
-            { "data": "plate_no" },
-            // {
-            //     "data": "published_status", "render": function (data, type, row, meta) {
-            //         return row.published_status == 1 ? "Approved" : "Pending";
-            //     }
-            // },
-            { "data": "date_issued" },
+            { 
+                "data": "trust_receipt_no", "render" : function(data, type, row, meta) {
+                    return convertTrustid(row.trust_receipt_no)
+                } 
+            },
+            { 
+                "data": "agent_policy_id", "render" : function(data, type, row, meta) {
+                    return "Anabelle Bejagan"
+                } 
+            },
+            { 
+                "data": "agent_policy_id", "render" : function(data, type, row, meta) {
+                    return `${row.first_name} ${row.last_name}`
+                } 
+            },
+            { "data": "date_added" },
             {
-                "data": "trans_id", "render": function (data, type, row, meta) {
-
-                    let app_btn = ``;
-
+                "data": "agent_policy_id", "render": function (data, type, row, meta) {
                     var btns = `
-                        <div class="action_btns"> ${app_btn} <a class="btn_view" data-id="${row.trans_id}" href="#"><i class="fa fa-eye"></i> View</a>  <a data-id="${row.trans_id}" class="btn_edit" href="#"><i class="fa fa-pencil"></i> Edit</a> <a class="btn_delete" data-id="${row.trans_id}" href="#"><i class="fa fa-trash"></i> Delete</a></div>
-                    `
-                    return btns;
+                    <div class="action_btns"><a class="btn_view bg-success" data-id="${row.agent_policy_id}" href="#"><i class="fa fa-eye"></i> View</a>  </div>
+                `
+                return btns;
                 }
             },
         ],
         "ajax": {
-            "url": base_url + "admin_policies/get_transaction_data",
-            "type": "POST",
-            "data" : function(dta){
-                dta.sortby = {
-                    sorted:sorted_by.sorted, 
-                    sort_value:sorted_by.sorted_value
-                };
-            }
+            "url": base_url + "admin_agent_policies/get_trust_data",
+            "type": "POST"
+                
         },
         "columnDefs": [
             {
-                "targets": [6],
+                "targets": [3,5],
                 "orderable": false,
             },
-        ]
+        ],
     });
 
-    // end new functions
+    var tableGlobalData = [];
+    var tableUsedData = [];
+    var table_trust;
+
+    $(document).on("click", ".btn_view", function(){
+        const id = $(this).data("id");
+
+        eshow(".preloader");
+        axios.get(`${base_url}admin_agent_policies/get_trust_details/${id}`).then(res => {
+           
+           if(res.data.status == "success"){
+
+             if(res.data.data.length > 0){
+                const dta = res.data.data[0];
+
+
+                (async () => {
+                    try {
+                        const resp = await axios.get(`${base_url}admin_agent_policies/get_used_trust/${dta.trust_receipt_no}`)
+                        const resData = resp.data.data;
+
+                        tableUsedData = gettrustrow(resData);
+
+                        console.log(tableUsedData)
+
+                        const tbleData = JSON.parse(dta.table_data);
+
+                        tableGlobalData = tbleData;
+
+                        $(".trs-user_id").val(dta.fk_user_id)
+                        $(".trs-issued_by").val("Anabelle Bejagan")
+                        $(".trs-date_issued").val(convertDate(dta.date_added))
+                        $(".trs-place_issued").val(dta.place_issued)
+                        $(".trs-receipt_no").val(convertTrustid(dta.trust_receipt_no))
+                        
+
+                        const tableResult =  generateTrustTable(tbleData, "", tableUsedData)
+
+                        $("#table_trust_list .tbody").html(tableResult)
+                        $("#view_trust_info").modal()
+                        table_trust = $("#table_trust_list").DataTable();
+                        $("#table-sorter").trigger("change");
+                        ehide(".preloader");
+                        } catch (error) {
+                            errorMessage("Something Wrong!")
+                            console.log(error)
+                        }
+                })()        
+             }
+
+           }
+           else{
+               errorMessage(res.data.message)
+           }
+        }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!"); console.log(err)})
+    })
+
+    const gettrustrow = (resData) => {
+
+        let ret = [];
+
+        if(resData.length > 0){
+            resData.map(dta => {
+                
+                let thedata = JSON.parse(dta.trust_data);
+
+                const newData = thedata.map(d => {
+                    d.trans_id = dta.trans_id 
+                    return d;
+                })
+
+                ret.push(newData)
+            })
+        }
+
+        return ret;
+    }
+
+    var total_coc_used = 0;
+    var total_or_used = 0;
+    var total_pol_used = 0;
+
+    const generateTrustTable = ( tbleData = [], selected ="", usedData = []) => {
+
+
+        total_coc_used = 0;
+        total_or_used = 0;
+        total_pol_used = 0;
+
+        let trow  = "";
+        let selectOptions ="";
+
+        tbleData.map(tbl => {
+
+            selectOptions += `"<option class="text-capitalize" value="${tbl.id}">${ucFirst(tbl.id)}</option>`
+
+            tbl.tble_data.map(tdta => {
+
+                const qtys = tdta.qty;
+
+                for (let i = 0; i < Number(qtys); i++) {
+
+                    let is_used = false;
+                    let t_id = 0;
+                    usedData.map(used => {
+                        used.map(inner => {
+                            if(
+                                tbl.id == inner.name &&
+                                (Number(tdta.sfrom) + i) == inner.serNum &&
+                                tdta.id == inner.type
+                              ){
+                                  switch (tdta.id) {
+                                      case "coc":
+                                        total_coc_used++;
+                                          break;
+                                      case "or":
+                                        total_or_used++;
+                                          break;
+                                      case "policy":
+                                        total_pol_used++;
+                                        break;
+                                      default:
+                                          break;
+                                  }
+
+                                  is_used = true;
+                                  t_id = inner.trans_id
+                              }
+                        })
+                    })
+
+                    if(selected != "" ){
+
+                        if(selected == tbl.id){
+                            trow += `
+                                <tr>
+                                    <td class="text-capitalize font-weight-bold">${tbl.id}</td>
+                                    <td>${Number(tdta.sfrom) + i}</td>
+                                    <td class="text-uppercase">${tdta.id}</td>
+                                    <td class="text-capitalize"><span class="text-${is_used ? 'success font-weight-bold' : 'danger'}">${ is_used ? 'Used' : 'Unused' }</span></td>
+                                    <td class="text-center">
+                                        ${(!is_used && 
+                                            `<input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox ${is_used ? 'd-none': ''}"> <span class="ml-1">Use</span> `) ||
+                                            `<div class="text-center text-success"><i class="fa fa-check"></i> <a href="#" data-trans_trust_id="${t_id}" class="ml-3 text-success btn-view-trans">View</a></div>`
+                                        }
+                                    </td>
+                                </tr>
+                            `
+                        }
+                        
+                    }else{
+                        trow += `
+                        <tr>
+                            <td class="text-capitalize font-weight-bold">${tbl.id}</td>
+                            <td>${Number(tdta.sfrom) + i}</td>
+                            <td class="text-uppercase">${tdta.id}</td>
+                            <td class="text-capitalize"><span class="text-${is_used ? 'success font-weight-bold' : 'danger'}">${ is_used ? 'Used' : 'Unused' }</span></td>
+                            <td class="text-center">
+                                ${(!is_used && 
+                                    `<input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox ${is_used ? 'd-none': ''}"> <span class="ml-1">Use</span> `) ||
+                                    `<div class="text-center text-success"><i class="fa fa-check"></i> <a href="#" data-trans_trust_id="${t_id}" class="ml-3 text-success btn-view-trans">View</a></div>`
+                                }
+                            </td>
+                        </tr>
+                        `
+                    }
+                }  
+            })
+        })
+
+        $(".tot_coc_used").val(total_coc_used);
+        $(".tot_or_used").val(total_or_used);
+        $(".tot_policy_used").val(total_pol_used)
+
+        if (selected == undefined || selected == ""){
+            $("#table-sorter").html(selectOptions);
+        }
+
+        return trow;
+    }
+
+    var selectedUsed=[];
+
+    $(document).on("change", ".use_checkbox", function (){
+        const thename = $(this).data("name");
+        const serNum = $(this).data("ser_num");
+        const theType = $(this).data("type");
+
+        const selected = $(this)
+
+        if(selected[0].checked){
+            
+            let is_found = false;
+
+            selectedUsed.map(dta => {
+                if(dta.name == thename && dta.type == theType ){
+                    is_found = true;
+                }
+            });
+
+            if(selectedUsed > 3){
+                errorMessage(`you have already selected 3 files`)
+                return;
+            }
+
+           if(is_found){
+                errorMessage(`You have already selected a ${theType.toUpperCase()} for ${thename.toUpperCase()}`)
+                selected[0].checked = false
+                return;
+           }
+
+           selectedUsed.push({
+               name: thename,
+               serNum: serNum,
+               type: theType,
+           })
+           
+        }else{
+            const removeArr = selectedUsed.filter((dta) => (dta.name == thename && dta.type != theType));
+            selectedUsed = removeArr;
+        }
+
+    })
+
+    $(document).on("click", ".btn-view-trans", function(){
+        const trans_id = $(this).data("trans_trust_id");
+
+        window.location.href = `${base_url}admin_agent_policies/view_entries/${trans_id}`;
+    })
+
+    $(".btn-use-submit").click(function(){
+
+        if(selectedUsed.length == 3){
+            alertConfirm("Are you sure to use this form?" , function(){
+                const trust_id = $(".trs-receipt_no").val();
+                const user_id = $(".trs-user_id").val();
+                window.location.href=`${base_url}admin_use_trust?data=${JSON.stringify(selectedUsed)}&trust_id=${trust_id}&user_id=${user_id}`
+            })
+        }else{
+            errorMessage(`Please select COC, POLICY, and OR first before submitting!`)
+        }  
+    })
+
+    $("#table-sorter").on("change", function(){
+        const selected = $(this).val();
+
+        selectedUsed = [];
+
+        table_trust.destroy();
+        const tbres = generateTrustTable(tableGlobalData, selected, tableUsedData)
+    
+        $("#table_trust_list .tbody").html(tbres)
+        table_trust = $("#table_trust_list").DataTable();
+    })
+
+    
+
+    const convertTrustid = (trust_id) => {
+
+        let convertedTrustId = '';
+        const len = trust_id.toString().length;
+
+        if(len > 5){
+            convertedTrustId = trust_id;
+        }else{
+            
+            const maxchar = 4;
+            const toLoop = maxchar - len;
+            
+            for (let index = 0; index < toLoop; index++) {
+                convertedTrustId += "0";
+            }
+            convertedTrustId += trust_id;
+        }
+
+        return convertedTrustId;
+    }
+    
+ 
+    function fill_fields(dta = [], view ="view", $prefix="dta_"){
+        if(dta != undefined){
+            for (const key in dta) {            
+                if(key == "branch"){
+                    $(`.${$prefix}${key}`).val(dta[key].branch_id);
+                }
+                else if(key == "location"){
+                    $(`.${$prefix}${key}`).val(dta[key].loc_id);
+                }else{
+                    $(`.${$prefix}${key}`).val(dta[key]);
+                }
+                
+            }
+        }
+        else{
+            errorMessage("Something wrong!");
+        }
+    }
 
     function getDateFormat(cur_date) {
         let d = new Date(cur_date);
         return `${d.getMonth()}-${d.getDate() + 1}-${d.getFullYear()}`;
     }
 
+    const convertDate = (the_date, get_type = "") => {
+
+        let ret_date;
+        let ddte = new Date(the_date);
+        const month = ddte.toLocaleString('default', { month: 'long' });
+
+        res = `${month} ${ddte.getDate()}, ${ddte.getFullYear()}`;
+        return res;
+    }
+
+    const ucFirst = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
+    }
+    
 })
+
+

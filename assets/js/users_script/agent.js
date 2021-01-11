@@ -57,9 +57,9 @@ $(document).ready(function () {
     $(document).on("click", ".btn_view", function(){
         const id = $(this).data("id");
 
-        
+        eshow(".preloader");
         axios.get(`${base_url}agent/get_trust_details/${id}`).then(res => {
-           ehide(".preloader");
+           
            if(res.data.status == "success"){
 
              if(res.data.data.length > 0){
@@ -85,12 +85,13 @@ $(document).ready(function () {
                         $(".trs-receipt_no").val(convertTrustid(dta.trust_receipt_no))
 
                         const tableResult =  generateTrustTable(tbleData, "", tableUsedData)
+                        
 
                         $("#table_trust_list .tbody").html(tableResult)
                         $("#view_trust_info").modal()
                         table_trust = $("#table_trust_list").DataTable();
                         $("#table-sorter").trigger("change");
-
+                        ehide(".preloader");
                         } catch (error) {
                             errorMessage("Something Wrong!")
                             console.log(error)

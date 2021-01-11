@@ -321,6 +321,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "my_profile",
                 "admin_location",
                 "admin_branches",
+                "admin_use_trust",
                 "admin_archived",
                 "admin_upload",
                 "admin_agents",

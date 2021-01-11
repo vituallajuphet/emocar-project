@@ -23,6 +23,16 @@
     $(".preloader").show();
     $(document).ready(function(){$(".preloader").hide();})
   </script>
+  <script>
+        <?php 
+          if(!empty($trust_data)) {
+            ?>
+              var trust_data = '<?= $trust_data?>';
+            <?php
+          }
+      
+      ?>
+  </script>
 <?php 
 
 if(!empty($this->session->flashdata("flash_data"))){ 
