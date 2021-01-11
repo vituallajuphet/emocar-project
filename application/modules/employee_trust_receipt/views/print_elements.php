@@ -1,5 +1,5 @@
-<div id="print_trust_receipt" style="font-size:14px;display:none;">
-    <div class="cont_logo" style="text-align: center;margin-top:30px;">
+<div id="print_trust_receipt" style="font-size:12px;display:none;">
+    <div class="cont_logo" style="text-align: center;">
         <img src="<?= base_url("assets/images/comp_logo.png"); ?>" style="max-width:300px;width:100%;" alt="logo">
         <h3 style="font-style:italic;">Trust Receipt Agreement</h3>
     </div>
