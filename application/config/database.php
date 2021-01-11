@@ -77,21 +77,9 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-<<<<<<< HEAD
-<<<<<<< HEAD
 	'username' => 'u236571955_user20',
 	'password' => '>drsbc4Rx0H',
 	'database' => 'u236571955_emocardb',
-=======
-	'username' => 'root',
-	'password' => '',
-	'database' => 'emocar_db',
->>>>>>> development
-=======
-	'username' => 'u236571955_user20',
-	'password' => '>drsbc4Rx0H',
-	'database' => 'u236571955_emocardb',
->>>>>>> 1cb1223b7b0d51159a05e6e0d42fd0569b80707a
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
