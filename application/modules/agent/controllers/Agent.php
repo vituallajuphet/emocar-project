@@ -85,4 +85,23 @@ class Agent extends MY_Controller {
 		}
 	}
 
+	public function view_entries($id = 0){
+
+		if($id == 0 ){redirect(base_url("agent"));}
+
+		
+
+		$par["where"] = [ "trans_id" => $id, "status" => 1 ];
+				
+		$res = getData("tbl_trust_agents trust", $par);
+
+		if(empty($res)){ redirect(base_url("agent")); }
+
+		$data["title"] 			="Transaction Details";
+		$data["page_header"] 	= "Transaction Details";
+		$data["trans_data"] = $res;
+		
+		$this->load_agent_page('view_details', $data);
+	}
+
 }

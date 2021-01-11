@@ -73,6 +73,8 @@ $(document).ready(function () {
 
                         tableUsedData = gettrustrow(resData);
 
+                        console.log(tableUsedData)
+
                         const tbleData = JSON.parse(dta.table_data);
 
                         tableGlobalData = tbleData;
@@ -109,7 +111,15 @@ $(document).ready(function () {
 
         if(resData.length > 0){
             resData.map(dta => {
-                ret.push(JSON.parse(dta.trust_data))
+                
+                let thedata = JSON.parse(dta.trust_data);
+
+                const newData = thedata.map(d => {
+                    d.trans_id = dta.trans_id 
+                    return d;
+                })
+
+                ret.push(newData)
             })
         }
 
@@ -132,7 +142,7 @@ $(document).ready(function () {
                 for (let i = 0; i < Number(qtys); i++) {
 
                     let is_used = false;
-
+                    let t_id = 0;
                     usedData.map(used => {
                         used.map(inner => {
                             if(
@@ -141,7 +151,7 @@ $(document).ready(function () {
                                 tdta.id == inner.type
                               ){
                                   is_used = true;
-                                  
+                                  t_id = inner.trans_id
                               }
                         })
                     })
@@ -158,7 +168,7 @@ $(document).ready(function () {
                                     <td class="text-center">
                                         ${(!is_used && 
                                             `<input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox ${is_used ? 'd-none': ''}"> <span class="ml-1">Use</span> `) ||
-                                            `<div class="text-center text-success"><i class="fa fa-check"></i></div>`
+                                            `<div class="text-center text-success"><i class="fa fa-check"></i> <a href="#" data-trans_trust_id="${t_id}" class="ml-3 text-success btn-view-trans">View</a></div>`
                                         }
                                     </td>
                                 </tr>
@@ -175,7 +185,7 @@ $(document).ready(function () {
                             <td class="text-center">
                                 ${(!is_used && 
                                     `<input type="checkbox" data-name="${tbl.id}" data-ser_num="${Number(tdta.sfrom) + i}" data-type="${tdta.id}" class="use_checkbox ${is_used ? 'd-none': ''}"> <span class="ml-1">Use</span> `) ||
-                                    `<div class="text-center text-success"><i class="fa fa-check"></i></div>`
+                                    `<div class="text-center text-success"><i class="fa fa-check"></i> <a href="#" data-trans_trust_id="${t_id}" class="ml-3 text-success btn-view-trans">View</a></div>`
                                 }
                             </td>
                         </tr>
@@ -233,6 +243,12 @@ $(document).ready(function () {
             selectedUsed = removeArr;
         }
 
+    })
+
+    $(document).on("click", ".btn-view-trans", function(){
+        const trans_id = $(this).data("trans_trust_id");
+
+        window.location.href = `${base_url}agent/view_entries/${trans_id}`;
     })
 
     $(".btn-use-submit").click(function(){
