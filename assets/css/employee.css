@@ -93,7 +93,6 @@ a[href^="tel:"] {
 
 .clearfix:before, .clearfix:after {
   content: "";
-  display: table;
   clear: both; }
 
 .clearfix {
@@ -251,7 +250,8 @@ body {
   font-weight: bold;
   font-size: 1.1rem;
   color: #fff;
-  margin: 2rem 0 0; }
+  margin: 2rem 0 0;
+  height: 100%; }
   .nav_userinfo label {
     margin: 0;
     display: block; }
@@ -412,6 +412,16 @@ table[data-tbl='datatable'] tbody tr.row-pending {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   padding: 0 !important; }
+
+.serial_separator {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; }
+  .serial_separator > div:first-child {
+    margin-right: 5px; }
+
+.serialCont {
+  padding: 15px 0 0 !important; }
 
 html {
   font-size: 14px; }

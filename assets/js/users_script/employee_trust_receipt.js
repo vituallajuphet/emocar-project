@@ -26,17 +26,48 @@ $(document).ready(function () {
 
     const calculateTabledata = (trow, dataId) => {
 
-        const serial = trow.find("input[data-id='"+dataId+"'].td-serial").val();
-        const tset   = trow.find("input[data-id='"+dataId+"'].td-set").val();
+        const serialFrom = trow.find("input[data-id='"+dataId+"'].serialFrom").val();
+        const serialTo = trow.find("input[data-id='"+dataId+"'].serialTo").val();
+        const rowType = trow.find("input[data-id='"+dataId+"'].serialTo").data("id");
+        const tname = trow.find("input[data-id='"+dataId+"'].serialTo").data("tname");
+        // const tset   = trow.find("input[data-id='"+dataId+"'].td-set").val();
 
-        if(Number.isNaN(serial)  ||  Number.isNaN(tset)){
+        if(Number.isNaN(serialTo)  ||  Number.isNaN(serialFrom)){
             trow.find("input[data-id='"+dataId+"'].td-quantity").val("");
+            trow.find("input[data-id='"+dataId+"'].td-set").val();
             return;
         }
+        else if(Number(serialTo)  <   Number(serialFrom)){
+            trow.find("input[data-id='"+dataId+"'].td-quantity").val("");
+            trow.find("input[data-id='"+dataId+"'].td-set").val("");
+            return;
+        }
+        
 
-        if((serial != undefined && serial != "") && (tset != undefined && tset != "")){
-            const tQty = Number(serial) + Number(tset);
-            trow.find("input[data-id='"+dataId+"'].td-quantity").val(tQty);
+        if((serialTo != undefined && serialTo != "") && (serialFrom != undefined && serialFrom != "")){
+           
+            let frmdata = new FormData();
+
+            frmdata.append("sfrom", serialFrom)
+            frmdata.append("sto", serialTo)
+            frmdata.append("type", rowType)
+            frmdata.append("trans_type", tname)
+            
+            axios.post(`${base_url}employee_trust_receipt/validate_range/`, frmdata).then(res => {
+                if(res.data.status == "success"){
+                    
+                }
+                else{
+                    trow.find("input[data-id='"+dataId+"'].td-quantity").val("");
+                    trow.find("input[data-id='"+dataId+"'].td-set").val("");
+                    errorMessage(res.data.message)
+                }
+            }).catch(err => {errorMessage("Something Wrong")})
+
+            const totalQty = ((parseInt(serialTo) - parseInt(serialFrom)) + 1 ) 
+            const totalSet = (totalQty / 50);
+            trow.find("input[data-id='"+dataId+"'].td-set").val(totalSet);
+            trow.find("input[data-id='"+dataId+"'].td-quantity").val(totalQty);
         }
     }
 
@@ -65,7 +96,7 @@ $(document).ready(function () {
 
              }
              else{
-                 errorMessage(res.data.message)
+                 
              }
          }).catch(err => {errorMessage("Something Wrong")})
     }
@@ -110,29 +141,7 @@ $(document).ready(function () {
 
     getAllUserData();
     getTrustIdNumber();
-    
-    $(document).on("click", ".btn_restore", function(){
-
-        const trans_id = $(this).data("id");
-
-        alertConfirm("Are you sure to restore this policy?" , function(){
-            let frmdata = new FormData();
-            eshow(".preloader")
-            frmdata.append("trans_id", trans_id )
-
-            axios.post(`${base_url}employee_archived/api_restore_policy/`, frmdata).then(res => {
-               ehide(".preloader");
-                if(res.data.status == "success"){
-                    successMessage("Successfully Restored!");
-                    trans_table.ajax.reload();
-                }
-                else{
-                    errorMessage("something wrong!")
-                }
-            }).catch(err => {ehide(".preloader");errorMessage("Something Wrong")})
-        })
-    })
-
+ 
     $("#formTrustReceipt").submit(function(e){
         e.preventDefault();
 
@@ -143,7 +152,7 @@ $(document).ready(function () {
             return;
         }
 
-        alertConfirm("Are you sure to generate this trust receipt? The Trust Receipt Number will be incremented once you proceed." , function(){
+        alertConfirm("Are you sure to save this trust receipt?" , function(){
 
             const uname = $("#employee_id").val(); 
             const uNameText = $("#employee_id option:selected").data("fullname"); 
@@ -154,13 +163,71 @@ $(document).ready(function () {
             const nameFirst  = (gender == "Female" ? "Mrs." : "Mr.") + ` ${uNameText}`;
             const userLocation = $("#employee_id option:selected").data("address")
             
-            $(".prDate").html(rDate)
-            $(".prName").html(nameFirst)
-            $(".prDearName").html(`Dear ${nameFirst}`)
-            $(".prTreceipt").html(treceipt)
-            $(".prPlace").html(placeIssued)
-            $(".prLocation").html(userLocation)
+            // $(".prDate").html(rDate)
+            // $(".prName").html(nameFirst)
+            // $(".prDearName").html(`Dear ${nameFirst}`)
+            // $(".prTreceipt").html(treceipt)
+            // $(".prPlace").html(placeIssued)
+            // $(".prLocation").html(userLocation)
 
+
+            let frmdata = new FormData();
+
+            frmdata.append("agent_id", uname)
+            frmdata.append("date", rDate)
+            frmdata.append("trust_id", treceipt)
+            frmdata.append("address", userLocation)
+
+            const tableData = [];
+
+            // generate form data
+            $(".tbody-tbl .tr-row").each(function (){
+
+                const dta_id = $(this).data("id");
+                const tcont = $(this).find(".first_td span.d-block");
+                const tserialFrom = $(this).find("input.serialFrom");
+                const tserialTo = $(this).find("input.serialFrom");
+                const tset = $(this).find("input.td-set");
+                const tqty = $(this).find("input.td-quantity");
+
+                const getTabledata = () => {
+                    let res = [];
+                    tcont.map((idx, inp) => {
+                       res.push({
+                           id:inp.getAttribute("data-id"),
+                           sfrom:  tserialFrom[idx].value,
+                           sTo:  tserialTo[idx].value,
+                           set:  tset[idx].value,
+                           qty:  tqty[idx].value,
+                       })
+                    }) 
+                    return res;
+                }
+
+                let rowData = {
+                    id:dta_id,
+                    tble_data: getTabledata()
+                };
+
+                tableData.push(rowData)                             
+            })  
+
+            frmdata.append("tableData", JSON.stringify(tableData)) 
+            
+            axios.post(`${base_url}employee_trust_receipt/save_trust_receive/`, frmdata).then(res => {
+                ehide(".preloader");
+                 if(res.data.status == "success"){
+                     successMessage("Successfully Saved!");
+                     setTimeout(() => {
+                        window.location.href =`${base_url}employee_trust_receipt`;
+                     }, 500);
+                 }
+                 else{
+                     errorMessage("something wrong!")
+                 }
+            }).catch(err => {ehide(".preloader");errorMessage("Something Wrong")})
+
+            return;
             let html = "";
 
             $(".tbody-tbl .tr-row").each(function (){
@@ -233,10 +300,11 @@ $(document).ready(function () {
         })
     })
 
-    $(document).on("change keyup", ".tr-row .td-serial, .tr-row .td-quantity,  .tr-row .td-set", function (){
+    $(document).on("change keyup", ".tr-row .td-serial", function (){
         const trow = $(this).closest(".tr-row");
         const dataId = $(this).data("id");
         calculateTabledata(trow, dataId);
+
     })
 
     $(".trust_receipt .btn-add-row").on("click", function(params) {
@@ -260,17 +328,28 @@ $(document).ready(function () {
                         <span data-id="policy" class='d-block'>Policy</span>
                     </td>
                     <td> 
-                        <div class="td-cont">
-                            <input type="number" min="1" required class="form-control td-serial" data-id='coc'>
-                            <input type="number" min="1" required class="form-control td-serial" data-id='or'>
-                            <input type="number" min="1" required class="form-control td-serial" data-id='policy'>
+                        <div class="td-cont serialCont">  
+                            <div class="serial_separator">
+                                <div>
+                                    <div><strong>From</strong></div>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='coc'>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='or'>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='policy'>            
+                                </div>     
+                                <div>
+                                    <div><strong>To</strong></div>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='coc'>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='or'>
+                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='policy'>            
+                                </div>     
+                            </div>
                         </div>
                     </td>
                     <td> 
                         <div class="td-cont">
-                            <input type="number" min="1" required class="form-control td-set" data-id='coc'>
-                            <input type="number" min="1" required class="form-control td-set" data-id='or'>
-                            <input type="number" min="1" required class="form-control td-set" data-id='policy'>
+                            <input type="number" min="1" readonly required class="form-control td-set" data-id='coc'>
+                            <input type="number" min="1" readonly required class="form-control td-set" data-id='or'>
+                            <input type="number" min="1" readonly required class="form-control td-set" data-id='policy'>
                         </div>
                     </td>
                     <td> 
@@ -311,6 +390,10 @@ $(document).ready(function () {
     $(document).on("change", ".trust_receipt #employee_id", function(){
         
         const id = $(this).val();
+
+        const address = $("#employee_id option:selected").data("address")
+
+        $("input[name='place_issued'").val(address)
 
         $(".trust_receipt .btn-submit").attr("disabled", !(id != undefined && id != ""));
     })

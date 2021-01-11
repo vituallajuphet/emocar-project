@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 gulp.task('connect-sync', function() {
     connect.server({}, function (){
         browserSync({
-            proxy: 'http://emocar.com/'
+            proxy: 'http://localhost/emocar/'
         });
     });
 
