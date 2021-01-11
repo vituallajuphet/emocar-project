@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             "tbl_locations loc" => "loc.loc_id = u_meta.location",
         ];
 
-        if(get_user_type() == 2){
+        if(get_user_type() == 2 || get_user_type() == 4){
             $par["where"] = ["fk_user_id" =>  $user_id];
             $res = getData("employees u_meta", $par);
         }
@@ -67,11 +67,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return $res[0];
     }
 
-    function get_all_users(){
+    function get_all_users($user_id = 2){
 
         $ci = & get_instance();
 
-        $par["where"] = ["user_type" => 2, "usr.status" => 1];
+        $par["where"] = ["user_type" => $user_id, "usr.status" => 1];
         $par["join"]  = [
             "employees emp" => "emp.fk_user_id = usr.user_id",
             "tbl_branches brn" => "brn.branch_id = emp.branch",
@@ -139,6 +139,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $ci = & get_instance();
         $res=  $ci->MY_Model->insert($tbl, $data);
         return $res;
+    }
+
+    function getNextId($tblName ="" ){
+        $ci =& get_instance();
+        $sqlQuery = "SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES
+        WHERE table_name = '$tblName'";
+    
+        $exeQuery =  $ci->db->query($sqlQuery);
+
+        $res = $exeQuery->result_object();
+        
+        return $res[0]->auto_increment;
+
     }
 
     function getDataTables($table, $column_order, $select = "*", $where = "", $join = array(), $limit, $offset, $search, $order,$group = ''){
@@ -310,6 +323,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "admin_branches",
                 "admin_archived",
                 "admin_upload",
+                "admin_agents",
+                "admin_agent_policies",
                 "logout");
 
             $tabs_student = array( 
@@ -317,6 +332,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "employee",
                 "employee_archived",
                 "employee_policies",
+                "employee_trust_receipt",
                 "logout",
                 "register",
                 "global_api",
@@ -324,8 +340,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "my_profile",
                 "api_agent"
             );
-
-       
+            
+            $tabs_agent = array(
+                "home", 
+                "agent", 
+                "my_profile",
+                "global_api",
+                "agent_use_trust",
+                "logout",
+            );
 
             $response = false;
             if ( !empty($ci->session->userdata("user_type"))){
@@ -334,6 +357,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                          $response = true;
                     }
                 }
+
+                else if($ci->session->userdata("user_type") == 4){
+                    if (in_array(strtolower($route), $tabs_agent)) {
+                        $response = true;
+                    }
+                }
+
                 else{
                     if (in_array(strtolower($route), $tabs_student)) {
                         $response = true;

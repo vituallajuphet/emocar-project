@@ -13,7 +13,9 @@ class Home extends MY_Controller {
 			else if($user_type == 2){
 				redirect(base_url("employee"));
 			}
-
+			else if($user_type == 4){
+				redirect(base_url("agent"));
+			}
 		}
 
 }

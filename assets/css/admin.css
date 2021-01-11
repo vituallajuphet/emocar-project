@@ -398,6 +398,9 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   border-radius: 50%;
   overflow: hidden; }
 
+.trust_receipt label {
+  font-weight: bold; }
+
 #trans_table {
   margin-top: 20px; }
 
@@ -409,6 +412,16 @@ table[data-tbl='datatable'] tbody tr.row-pending {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   padding: 0 !important; }
+
+.serial_separator {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; }
+  .serial_separator > div:first-child {
+    margin-right: 5px; }
+
+.serialCont {
+  padding: 15px 0 0 !important; }
 
 .addEmployee {
   text-align: right; }
@@ -425,7 +438,7 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   border-radius: 5px; }
 
 .pop_app_add_Emp {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -435,16 +448,15 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   opacity: -1;
   text-align: left;
   transition: all .8s ease;
-  z-index: 1000; }
+  z-index: 1000;
+  overflow-y: auto; }
 
 .pop_up_inner {
   width: 700px;
   background: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px; }
+  position: relative;
+  padding: 20px;
+  margin: 50px auto; }
 
 #add_emp_admin {
   width: 100%;
