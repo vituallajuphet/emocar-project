@@ -51,12 +51,18 @@
     </div>
     <!-- end ang laay -->
 
-    <div style='margin:20px 0;'>
-        <div style="margin-top:20px"> Hoping to receive everything in order as stated above. </div>
-        <div style="margin-top:23px">Prepared By:</div>
-        <div style="margin-top:23px">Annabelle B. Torino</div>
-        <div style="margin-top:23px">Approved By:</div>
-        <div style="margin-top:23px">Felix R. Secuya</div>
+    <div style='margin:20px 0;display:flex;align-items:top;justify-content:space-between;'>
+        <div>
+            <div style="margin-top:20px"> Hoping to receive everything in order as stated above. </div>
+            <div style="margin-top:23px">Prepared By:</div>
+            <div style="margin-top:15px">Annabelle B. Torino</div>
+            <div style="margin-top:23px">Approved By:</div>
+            <div style="margin-top:15px">Felix R. Secuya</div>
+        </div>
+        <div style="margin-top:40px;">
+            <div style="margin-top:23px">Received By:</div>
+            <div style="margin-top:15px" class="receive_print">Juphet Vitualla</div>
+        </div>
     </div>
     <div style='position:fixed;bottom:-10px;left:0;width:100%;text-align:center'>
         <!-- Main Office: Rm.: 308 Colon Development Corporation (formerly Gorones Bldg.) Osmeña Blvd., Cebu City
