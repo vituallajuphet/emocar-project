@@ -78,6 +78,8 @@
                     <div class="row mt-5">
                         <div class="col-md-12 text-right">
                             <button type='submit' class='btn btn-success btn-submit'><i class='fa fa-check'></i> Save Data</button>
+                        
+                            <button type="button" class="btn-print_here btn btn-primary" ><i class="fa fa-print"></i> Print Trust Receipt</button>
                         </div>
                     </div>  
                 </form>
