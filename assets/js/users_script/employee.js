@@ -88,7 +88,7 @@ $(document).ready(function(){
                     $("input[name='received_from']").val(dta.received_from)
                     $("input[name='premium_sales']").val(dta.premium_sales)
                     $("input[name='misc']").val(dta.misc)
-                    $("input[name='address']").val(dta.address)
+                    $("input[name='address']").val(ucFirst(dta.t_address))
                     $("input[name='docs_stamp']").val(dta.docs_stamp)
                     $("input[name='or_total']").val(dta.or_total)
                     $("input[name='or_date']").val(convertDate(dta.or_date))
@@ -134,7 +134,7 @@ $(document).ready(function(){
 
                     $("#date_trans").html(convertDate(dta.date_issued));
                     $("#trans_rec_from").html(dta.received_from);
-                    $("#trans_address").html(dta.address);
+                    $("#trans_address").html(ucFirst(dta.t_address));
                     $("#trans_amount_text").html(dta.the_sum_of_pesos);
                     $("#trans_amount_of_cov").html(numberWithCommas(amt_of_cov));
                     $("#trans_policy").html(dta.policy_no);
@@ -187,7 +187,7 @@ $(document).ready(function(){
 
                     $("#pcocpolicy").html(dta.policy_no);
                     $("#pcoc_or").html(dta.official_receipt);
-                    $("#pcoc_address").html(dta.address);
+                    $("#pcoc_address").html(ucFirst(dta.t_address));
                     $("#pcoc_receivedfrom").html(dta.received_from);
                     $("#pcoc_date_issued").html(convertDate(dta.date_issued));
                     $("#pcoc_date_from").html(convertDate(dta.date_from));
@@ -231,7 +231,7 @@ $(document).ready(function(){
 
                     $(".ppop_policy").html(dta.policy_no);
                     $(".ppop_name").html(dta.received_from);
-                    $(".ppop_address").html(dta.address);
+                    $(".ppop_address").html(ucFirst(dta.t_address));
                     $(".ppop_dateissued").html(convertDate(dta.date_issued));
                     $(".ppop_or").html(dta.official_receipt);
                     $(".ppop_dfrom").html(convertDate(dta.date_from));
@@ -294,6 +294,11 @@ $(document).ready(function(){
         search_process(search_val, true, tab_value);
 
     })
+
+    const ucFirst = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
+    }
 
     var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];       
     var tomorrow = new Date();
