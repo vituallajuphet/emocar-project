@@ -301,6 +301,9 @@ class Admin extends MY_Controller {
 				$par["join"] = [ 
 					"employees emp" => "emp.fk_user_id = trans.fk_user_id"
 				];
+
+				$par["select"] ="*, trans.address as t_address";
+
 				$res = getData("tbl_transactions trans", $par);
 				if(!empty($res)){
 					$response = ["status" => "success", "data" => $res];
