@@ -32,7 +32,8 @@ class Agent extends MY_Controller {
 			$select       = "*";
 			
 			$where        = array(
-				'status' 		=> 1
+				'status' 		=> 1,
+				'fk_user_id'	=> get_user_id()
 			);
 
 			$group        = array();

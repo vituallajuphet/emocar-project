@@ -1,11 +1,26 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Employee extends MY_Controller {
+class Admin_use_trust extends MY_Controller {
+
+	private $trust_name;
+	private $serial_num;
 
 	public function index(){
-		$data["title"] 		="Employee";
-		$this->load_employee_page('index', $data);
+		$data["title"] 			="Add Entries";
+		$data["modal"] 			= "index";
+		$data["page_header"] 			="Add Entries";
+		
+		if(empty($_GET["data"])){
+			redirect(base_url("agent"));
+		}
+		
+		$getdata = $_GET["data"];
+		$data["trust_data"] = $getdata;
+		$data["trust_id"] = $_GET["trust_id"];
+		$data["fk_user_id"] = $_GET["user_id"];
+
+		$this->load_page('index', $data);
 	}
 
 	public function save_transaction (){
@@ -13,14 +28,18 @@ class Employee extends MY_Controller {
 		$response = ["status"=> "error", "message" => "Something Wrong!"];
 
 		if(is_ajaxs()){
+			
 			$post = $this->input->post();
+
 			if(!empty($post)){
 			
 				$paid_type = $post["paid_type"];
 	
 				$data = array(
-					"fk_user_id" => get_user_id(),
+					"fk_user_id" => $post["fk_user_id"],
 					"trans_type" => ucfirst($post["trans_type"]),
+					"fk_trust_receipt_id" => $post["trust_id"],
+					"trust_data" => $post["trust_info"],
 					"mb_file_no" => $post["mb_file_no"],
 					"trans_option" => "StrongHold",
 					"plate_no" => $post["plate_no"],
@@ -57,82 +76,15 @@ class Employee extends MY_Controller {
 					"check_no" => $post["check_no"],
 					"coc_no" => $post["coc_no"],
 					"series_no" => $post["series_no"]
-					
 				);
 			}
 			
-			$res = insertData("tbl_transactions", $data);
+			$res = insertData("tbl_trust_agents", $data);
 
 			$response = ["status" => "success", "message" => "Saved Successfully!"];
 
 			echo json_encode($response);
 
 		}
-
-	
 	}
-
-	private function is_transaction_exists ($off_rec){
-			
-		$par ["where"] =" official_receipt = '$off_rec'";
-		$res = getData("tbl_transactions", $par);
-	
-		return $res;
-	}
-
-
-	public function search_policy (){
-		
-		if(is_ajaxs()){
-			$response = ["status" => "error", "data" => []];
-
-			if(isset($_GET["search_val"]) && isset($_GET["tab_value"])){
-
-				$search_val = $_GET["search_val"];
-				$tab_value  = $_GET["tab_value"];
-				$par["where"] = " (trans.mb_file_no = '$search_val' OR trans.plate_no = '$search_val') AND trans_type = '$tab_value'";
-			}
-
-
-			if(isset($_GET["search_by_id"])){
-				$search_val = $_GET["search_val"];
-				$par["where"] = " trans.trans_id = $search_val";
-			}
-
-			if(!empty($search_val) ){
-				
-				$par["join"] = [ 
-					"employees emp" => "emp.fk_user_id = trans.fk_user_id"
-				];
-
-				$par["select"] ="*, trans.address as t_address";
-
-				$res = getData("tbl_transactions trans", $par);
-				if(!empty($res)){
-					$response = ["status" => "success", "data" => $res];
-				}
-			}
-
-			echo json_encode($response);
-		}
-	}
-
-	public function api_check_transaction($off_rec){
-		
-		if(is_ajaxs()){
-
-			$resp = ["status"=> "error", "message" => ""];
-
-			if($this->is_transaction_exists($off_rec)){
-				$resp = ["status"=> "error", "message" => "Transaction already recorded. Please contact the administrator!"];
-			}else{
-				$resp = ["status"=> "success", "message" => ""];
-			}
-
-			echo json_encode($resp);
-
-		}
-
-	}
-
 }

@@ -240,7 +240,7 @@ $(document).ready(function () {
                 $(".dta_received_from").val(dta.received_from)
                 $(".dta_premium_sales").val('₱ '+dta.premium_sales)
                 $(".dta_or_misc").val('₱ '+dta.misc)
-                $(".dta_or_address").val(dta.address)
+                $(".dta_or_address").val(dta.t_address)
                 $(".dta_or_doc_stamp").val('₱ '+dta.docs_stamp)
                 $(".dta_or_total").val('₱ '+dta.or_total)
                 $(".dta_or_date").val(convertDate(dta.or_date))
@@ -319,7 +319,7 @@ $(document).ready(function () {
                 $(".dta_edit_received_from").val(dta.received_from)
                 $(".dta_edit_premium_sales").val(dta.premium_sales)
                 $(".dta_edit_or_misc").val(+dta.misc)
-                $(".dta_edit_or_address").val(dta.address)
+                $(".dta_edit_or_address").val(dta.t_address)
                 $(".dta_edit_or_doc_stamp").val(dta.docs_stamp)
                 $(".dta_edit_or_total").val(dta.or_total)
                 $(".dta_edit_or_date").val(convertDate(dta.or_date))
@@ -406,7 +406,7 @@ $(document).ready(function () {
 
                     $("#date_trans").html(convertDate(dta.date_issued));
                     $("#trans_rec_from").html(dta.received_from);
-                    $("#trans_address").html(dta.address);
+                    $("#trans_address").html(dta.t_address);
                     $("#trans_amount_text").html(dta.the_sum_of_pesos);
                     $("#trans_amount_of_cov").html(numberWithCommas(amt_of_cov));
                     $("#trans_policy").html(dta.policy_no);
@@ -460,7 +460,7 @@ $(document).ready(function () {
 
                     $("#pcocpolicy").html(dta.policy_no);
                     $("#pcoc_or").html(dta.official_receipt);
-                    $("#pcoc_address").html(dta.address);
+                    $("#pcoc_address").html(dta.t_address);
                     $("#pcoc_receivedfrom").html(dta.received_from);
                     $("#pcoc_date_issued").html(convertDate(dta.date_issued));
                     $("#pcoc_date_from").html(convertDate(dta.date_from));
@@ -501,7 +501,7 @@ $(document).ready(function () {
 
                     $(".ppop_policy").html(dta.policy_no);
                     $(".ppop_name").html(dta.received_from);
-                    $(".ppop_address").html(dta.address);
+                    $(".ppop_address").html(dta.t_address);
                     $(".ppop_dateissued").html(convertDate(dta.date_issued));
                     $(".ppop_or").html(dta.official_receipt);
                     $(".ppop_dfrom").html(convertDate(dta.date_from));
