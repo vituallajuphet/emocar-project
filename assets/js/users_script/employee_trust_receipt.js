@@ -244,6 +244,11 @@ $(document).ready(function () {
         const nameFirst  = (gender == "Female" ? "Mrs." : "Mr.") + ` ${uNameText}`;
         const userLocation = $("#employee_id option:selected").data("address")
 
+        if(uname == ""  || uname == undefined){
+            errorMessage("Please select a agent first!")
+            return;
+        }
+
         $(".prDate").html(rDate)
         $(".prName").html(nameFirst)
         $(".prDearName").html(`Dear ${nameFirst}`)
