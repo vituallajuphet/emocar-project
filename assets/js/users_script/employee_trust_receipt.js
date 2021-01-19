@@ -250,6 +250,8 @@ $(document).ready(function () {
         $(".prTreceipt").html(treceipt) 
         $(".prPlace").html(placeIssued)
         $(".prLocation").html(userLocation)
+        $(".receive_print").html(uNameText)
+        
 
             $(".tbody-tbl .tr-row").each(function (){
 
