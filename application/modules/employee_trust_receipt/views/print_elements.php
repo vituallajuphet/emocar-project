@@ -1,19 +1,21 @@
-<div id="print_trust_receipt" style="font-size:12px;display:none;">
+<div id="print_trust_receipt" style="font-size:11px;display:none;">
     
     <div class="top_area_print">
         <div class="cont_logo" style="text-align: center;">
-            <img src="<?= base_url("assets/images/comp_logo.png"); ?>" style="max-width:300px;width:100%;" alt="logo">
-            <h3 style="font-style:italic;">Trust Receipt Agreement</h3>
+            <img src="<?= base_url("assets/images/comp_logo.png"); ?>" style="max-width:250px;width:100%;" alt="logo">
+            <h3 style="font-style:italic;font-size:14px;">Trust Receipt Agreement</h3>
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:40px;">
             <div>
                 <div class="prDate">xxxxx</div>
 
-                <div class="prName" style='text-transform:uppercase;margin-top:20px;'>xxxxx</div>
-                <div>c/o LTO-MVIS</div>
-                <div class="prLocation">xxxxxx</div>
+                <div style="line-height:110%;">
+                    <div class="prName" style='text-transform:uppercase;margin-top:17px;'>xxxxx</div>
+                    <div>c/o LTO-MVIS</div>
+                    <div class="prLocation">xxxxxx</div>
+                </div>
 
-                <div class="prDearName" style="margin-top:20px;">xxxxx</div>
+                <div class="prDearName" style="margin-top:17px;">xxxxx</div>
             </div>
             <div>
                 <div>Trust Receipt Form No: <span class="prTreceipt">xxxx</span></div>
@@ -34,7 +36,7 @@
         <div>
             <table style="width:100%;margin-top:30px;font-size:13px;">
                 <thead>
-                    <tr style="font-weight:bold;text-align:left;text-transform:uppercase;font-size:13px">
+                    <tr style="font-weight:bold;text-align:left;text-transform:uppercase;font-size:11px">
                         <th>Description</th>
                         <th>Series Number/s</th>
                         <th>Quantity</th>
@@ -47,7 +49,7 @@
             <div style='text-align:right;margin:20px 0'>
                 Mode of Payment, Condition of Payment
             </div>
-            <div class="font-size:13px">
+            <div class="font-size:9px">
                 <span style='margin-left:100px;'>Undersigned</span> ENTRUSTEE hereby agrees, undertakes and commits to hold in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> the above POLICY, to dispose of or sell them for cash and receive the proceeds thereof in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span>, to turn over and remit the proceeds of the sale of the policy to the ENTRUSTER, or to return the POLICY in the event of the non-sale on or before the above due date or upon demand of the ENTRUSTER. <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> may cancel this trust receipt agreement and take possesion of the above POLICY or of the proceeds realized there from any time upon default or failure of the undersigned ENTRUSTEE to comply with any of the terms and conditions of this trust receipt agreement. It is however, understood that should there be policies remaining unsold the ENTRUSTEE may at his option, extend in writing the operation of this trust receipt agreement to another date under the same terms and conditions. Any court action arising from this agreement, the same shall be bought in the proper court of competent jurisdiction within the City of Cebu.
             </div>
         </div>
@@ -68,7 +70,7 @@
         </div>    
     </div>
 
-    <div id="print_bottom_part" style='position:fixed;bottom:60px;left:0;width:100%;text-align:center'>
+    <div id="print_bottom_part" style='position:fixed;bottom:65px;left:0;width:100%;text-align:center'>
         <!-- Main Office: Rm.: 308 Colon Development Corporation (formerly Gorones Bldg.) Osmeña Blvd., Cebu City
         <div style="display:flex;justify-content:center;margin-top:15px">
             <div style="display:flex;justify-content:flex-start;align-items:center;margin-right:30px">
