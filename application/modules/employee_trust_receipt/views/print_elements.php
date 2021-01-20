@@ -1,70 +1,74 @@
 <div id="print_trust_receipt" style="font-size:12px;display:none;">
-    <div class="cont_logo" style="text-align: center;">
-        <img src="<?= base_url("assets/images/comp_logo.png"); ?>" style="max-width:300px;width:100%;" alt="logo">
-        <h3 style="font-style:italic;">Trust Receipt Agreement</h3>
-    </div>
-    <div style="display:flex;justify-content:space-between;margin-top:40px;">
+    
+    <div class="top_area_print">
+        <div class="cont_logo" style="text-align: center;">
+            <img style="visibility:hidden;" src="<?= base_url("assets/images/comp_logo.png"); ?>" style="max-width:300px;width:100%;" alt="logo">
+            <h3 style="font-style:italic;">Trust Receipt Agreement</h3>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:40px;">
+            <div>
+                <div class="prDate">xxxxx</div>
+
+                <div class="prName" style='text-transform:uppercase;margin-top:20px;'>xxxxx</div>
+                <div>c/o LTO-MVIS</div>
+                <div class="prLocation">xxxxxx</div>
+
+                <div class="prDearName" style="margin-top:20px;">xxxxx</div>
+            </div>
+            <div>
+                <div>Trust Receipt Form No: <span class="prTreceipt">xxxx</span></div>
+                <div>Date Issued: <span class="prDate">xxx</span></div>
+                <div>Place Issued: <span class="prPlace"></span></div>
+            </div>
+        </div>
+
+        <div style='text-align:left;margin-top:25px;'>
+            <span style="display:inline-block;margin-left:100px;">Received in TRUST from </span> <strong style="font-style:italic;">EMOCAR INSURANCE BROKERAGE</strong> from the following insurance policy per order of the indersigned <strong>ENTRUSTEE</strong>.
+        </div>
+
+        <div style="margin-top:30px;">
+            Here's the series of assign policy # for issuance in your office, which are self-explanatory viz;
+        </div>
+
+        <!-- start ang laay -->
         <div>
-            <div class="prDate">xxxxx</div>
-
-            <div class="prName" style='text-transform:uppercase;margin-top:20px;'>xxxxx</div>
-            <div>c/o LTO-MVIS</div>
-            <div class="prLocation">xxxxxx</div>
-
-            <div class="prDearName" style="margin-top:20px;">xxxxx</div>
+            <table style="width:100%;margin-top:30px;font-size:13px;">
+                <thead>
+                    <tr style="font-weight:bold;text-align:left;text-transform:uppercase;font-size:13px">
+                        <th>Description</th>
+                        <th>Series Number/s</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody_trustReceipt"></tbody>
+            </table>
         </div>
         <div>
-            <div>Trust Receipt Form No: <span class="prTreceipt">xxxx</span></div>
-            <div>Date Issued: <span class="prDate">xxx</span></div>
-            <div>Place Issued: <span class="prPlace"></span></div>
+            <div style='text-align:right;margin:20px 0'>
+                Mode of Payment, Condition of Payment
+            </div>
+            <div class="font-size:13px">
+                <span style='margin-left:100px;'>Undersigned</span> ENTRUSTEE hereby agrees, undertakes and commits to hold in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> the above POLICY, to dispose of or sell them for cash and receive the proceeds thereof in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span>, to turn over and remit the proceeds of the sale of the policy to the ENTRUSTER, or to return the POLICY in the event of the non-sale on or before the above due date or upon demand of the ENTRUSTER. <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> may cancel this trust receipt agreement and take possesion of the above POLICY or of the proceeds realized there from any time upon default or failure of the undersigned ENTRUSTEE to comply with any of the terms and conditions of this trust receipt agreement. It is however, understood that should there be policies remaining unsold the ENTRUSTEE may at his option, extend in writing the operation of this trust receipt agreement to another date under the same terms and conditions. Any court action arising from this agreement, the same shall be bought in the proper court of competent jurisdiction within the City of Cebu.
+            </div>
         </div>
+        <!-- end ang laay -->
+
+        <div style='margin:20px 0;display:flex;align-items:top;justify-content:space-between;'>
+            <div>
+                <div style="margin-top:20px"> Hoping to receive everything in order as stated above. </div>
+                <div style="margin-top:23px">Prepared By:</div>
+                <div style="margin-top:15px">Annabelle B. Torino</div>
+                <div style="margin-top:23px">Approved By:</div>
+                <div style="margin-top:15px">Felix R. Secuya</div>
+            </div>
+            <div style="margin-top:40px;">
+                <div style="margin-top:23px">Received By:</div>
+                <div style="margin-top:15px" class="receive_print">Juphet Vitualla</div>
+            </div>
+        </div>    
     </div>
 
-    <div style='text-align:left;margin-top:25px;'>
-        <span style="display:inline-block;margin-left:100px;">Received in TRUST from </span> <strong style="font-style:italic;">EMOCAR INSURANCE BROKERAGE</strong> from the following insurance policy per order of the indersigned <strong>ENTRUSTEE</strong>.
-    </div>
-
-    <div style="margin-top:30px;">
-        Here's the series of assign policy # for issuance in your office, which are self-explanatory viz;
-    </div>
-
-    <!-- start ang laay -->
-    <div>
-        <table style="width:100%;margin-top:30px;font-size:13px;">
-            <thead>
-                <tr style="font-weight:bold;text-align:left;text-transform:uppercase;font-size:13px">
-                    <th>Description</th>
-                    <th>Series Number/s</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
-            <tbody class="tbody_trustReceipt"></tbody>
-        </table>
-    </div>
-    <div>
-        <div style='text-align:right;margin:20px 0'>
-            Mode of Payment, Condition of Payment
-        </div>
-        <div class="font-size:13px">
-            <span style='margin-left:100px;'>Undersigned</span> ENTRUSTEE hereby agrees, undertakes and commits to hold in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> the above POLICY, to dispose of or sell them for cash and receive the proceeds thereof in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span>, to turn over and remit the proceeds of the sale of the policy to the ENTRUSTER, or to return the POLICY in the event of the non-sale on or before the above due date or upon demand of the ENTRUSTER. <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> may cancel this trust receipt agreement and take possesion of the above POLICY or of the proceeds realized there from any time upon default or failure of the undersigned ENTRUSTEE to comply with any of the terms and conditions of this trust receipt agreement. It is however, understood that should there be policies remaining unsold the ENTRUSTEE may at his option, extend in writing the operation of this trust receipt agreement to another date under the same terms and conditions. Any court action arising from this agreement, the same shall be bought in the proper court of competent jurisdiction within the City of Cebu.
-        </div>
-    </div>
-    <!-- end ang laay -->
-
-    <div style='margin:20px 0;display:flex;align-items:top;justify-content:space-between;'>
-        <div>
-            <div style="margin-top:20px"> Hoping to receive everything in order as stated above. </div>
-            <div style="margin-top:23px">Prepared By:</div>
-            <div style="margin-top:15px">Annabelle B. Torino</div>
-            <div style="margin-top:23px">Approved By:</div>
-            <div style="margin-top:15px">Felix R. Secuya</div>
-        </div>
-        <div style="margin-top:40px;">
-            <div style="margin-top:23px">Received By:</div>
-            <div style="margin-top:15px" class="receive_print">Juphet Vitualla</div>
-        </div>
-    </div>
-    <div style='position:fixed;bottom:100px;left:0;width:100%;text-align:center'>
+    <div id="print_bottom_part" style='position:static;bottom:20px;left:0;width:100%;text-align:center'>
         <!-- Main Office: Rm.: 308 Colon Development Corporation (formerly Gorones Bldg.) Osmeña Blvd., Cebu City
         <div style="display:flex;justify-content:center;margin-top:15px">
             <div style="display:flex;justify-content:flex-start;align-items:center;margin-right:30px">
