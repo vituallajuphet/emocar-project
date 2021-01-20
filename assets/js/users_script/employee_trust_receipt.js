@@ -181,7 +181,7 @@ $(document).ready(function () {
                 const dta_id = $(this).data("id");
                 const tcont = $(this).find(".first_td span.d-block");
                 const tserialFrom = $(this).find("input.serialFrom");
-                const tserialTo = $(this).find("input.serialFrom");
+                const tserialTo = $(this).find("input.serialTo");
                 const tset = $(this).find("input.td-set");
                 const tqty = $(this).find("input.td-quantity");
 
@@ -214,7 +214,7 @@ $(document).ready(function () {
                  if(res.data.status == "success"){
                      successMessage("Successfully Saved!");
                      setTimeout(() => {
-                        // printDocument()
+                         printDocument()
                         //window.location.href =`${base_url}employee_trust_receipt`;
                      }, 500);
                  }
@@ -224,7 +224,7 @@ $(document).ready(function () {
             }).catch(err => {ehide(".preloader");errorMessage("Something Wrong")})
         })
 
-        printDocument()
+        // printDocument()
     })
 
 
@@ -335,7 +335,7 @@ $(document).ready(function () {
             }, 2000);
     }
 
-    $(document).on("change keyup", ".tr-row .td-serial", function (){
+    $(document).on("change", ".tr-row .td-serial", function (){
         const trow = $(this).closest(".tr-row");
         const dataId = $(this).data("id");
         calculateTabledata(trow, dataId);

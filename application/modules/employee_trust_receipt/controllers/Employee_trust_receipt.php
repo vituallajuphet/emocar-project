@@ -53,6 +53,7 @@ class Employee_trust_receipt extends MY_Controller {
 		if(is_ajaxs()){
 
 			$post = $this->input->post();
+
 			$response = ["status" => "error", "message" => "Something Wrong!"];
 			if(!empty($post)){
 				
@@ -71,7 +72,10 @@ class Employee_trust_receipt extends MY_Controller {
 								
 								foreach ($tbleDta as $tbl) {
 									if($tbl->id == $post["type"]){
-										if( ((int)$post["sfrom"] <= (int)$tbl->sfrom)){
+										if(
+											(int)$post["sfrom"] >= (int)$tbl->sfrom && (int)$post["sfrom"] <= (int)$tbl->sTo ||
+											(int)$post["sfrom"] < (int)$tbl->sfrom && (int)$post["sfrom"] < (int)$tbl->sTo
+										){
 											$haserr = true;
 										}
 									}
@@ -85,7 +89,9 @@ class Employee_trust_receipt extends MY_Controller {
 					if($haserr){
 						$response = ["status" => "error", "message" => "This range is already assigned"];
 					}
-				}		
+				}else{
+					$response = ["status" => "success", "message" => "no found"];
+				}	
 			}
 
 			echo json_encode($response);
