@@ -232,6 +232,7 @@ $(document).ready(function(){
                     $(".ppop_policy").html(dta.policy_no);
                     $(".ppop_name").html(dta.received_from);
                     $(".ppop_address").html(ucFirst(dta.t_address));
+                    $(".popaddress2").html(ucFirst(dta.t_address));                    
                     $(".ppop_dateissued").html(convertDate(dta.date_issued));
                     $(".ppop_or").html(dta.official_receipt);
                     $(".ppop_dfrom").html(convertDate(dta.date_from));
@@ -256,7 +257,6 @@ $(document).ready(function(){
                     $(".ppop_pop_month").html(dta.policy_month);
                     $(".ppop_pop_year").html(convertDate(dta.policy_year, "year"));
                     
-
                     if(slectab =="PRIVATE CAR (UV - CAR)" || slectab == "COMMERCIAL VEHICLE (TRUCK)"){
                         $("#print_Policy_elem").show();
                         setTimeout(() => {
