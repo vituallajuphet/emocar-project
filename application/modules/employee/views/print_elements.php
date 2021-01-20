@@ -50,17 +50,17 @@
             </div>
         </div>
         <div style="text-align:left;margin-left:-20px;position:relative;top:53px;">
-            <div style="display:inline-block;width:144px;" class="ppop_model">2014</div>
-            <div style="display:inline-block;width:139px;" class="ppop_make">HYUNDAI</div> 
-            <div style="display:inline-block;width:144px;" class="ppop_body">SUB COMPACT</div>
-            <div style="display:inline-block;width:144px;" class="ppop_color">RED</div>
-            <div style="display:inline-block;width:144px;" class="ppop_mv_file">12345-67891</div>    
+            <div style="display:inline-block;width:144px;vertical-align:top;" class="ppop_model">2014</div>
+            <div style="display:inline-block;width:139px;vertical-align:top;" class="ppop_make">HYUNDAI</div> 
+            <div style="display:inline-block;width:144px;vertical-align:top;" class="ppop_body">SUB COMPACT</div>
+            <div style="display:inline-block;width:144px;vertical-align:top;" class="ppop_color">RED SDFSDFSDF SDFSADF</div>
+            <div style="display:inline-block;width:144px;vertical-align:top;" class="ppop_mv_file">12345-67891</div>    
         </div>
 
         <div style="text-align:left;margin-left:-20px;position:relative;top:66px;">
-            <div style="display:inline-block;width:130px;" class="ppop_plate">AAE6626</div>
-            <div style="display:inline-block;width:155px;" class="ppop_serial">A2F1GASH21UY51H51</div>
-            <div style="display:inline-block;width:141px;" class="ppop_motor">6123HSLGS123</div>
+            <div style="display:inline-block;width:130px;vertical-align:top;" class="ppop_plate">AAE6626</div>
+            <div style="display:inline-block;width:155px;vertical-align:top;" class="ppop_serial">A2F1GASH21UY51H51</div>
+            <div style="display:inline-block;width:141px;vertical-align:top;" class="ppop_motor">6123HSLGS123</div>
         </div>
 
         <div style="text-align:right;font-size:16px;">
