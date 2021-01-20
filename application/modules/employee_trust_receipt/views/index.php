@@ -76,6 +76,20 @@
 
                     <hr>
                     <div class="row mt-5">
+                        <div class="col-md-12">
+                            <div class="text-left last_digits" style="display:none;">
+                                <h4 class="Heading_max">Motorcycle</h4>
+                                <div>
+                                    Last Official Receipt Series No: <span class="font-weight-bold max_or">2</span>
+                                </div>
+                                <div>
+                                    Last COC Series No: <span class="font-weight-bold max_coc">2</span>
+                                </div>
+                                <div>
+                                    Last Policy Series No:  <span class="font-weight-bold max_policy">2</span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12 text-right">
                             <button type='submit' class='btn btn-success btn-submit'><i class='fa fa-check'></i> Save Data</button>
                             <?php
