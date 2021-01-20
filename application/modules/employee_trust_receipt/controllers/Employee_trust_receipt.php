@@ -53,6 +53,7 @@ class Employee_trust_receipt extends MY_Controller {
 		if(is_ajaxs()){
 
 			$post = $this->input->post();
+
 			$response = ["status" => "error", "message" => "Something Wrong!"];
 			if(!empty($post)){
 				
@@ -71,7 +72,10 @@ class Employee_trust_receipt extends MY_Controller {
 								
 								foreach ($tbleDta as $tbl) {
 									if($tbl->id == $post["type"]){
-										if( ((int)$post["sfrom"] <= (int)$tbl->sfrom)){
+										if(
+											(int)$post["sfrom"] >= (int)$tbl->sfrom && (int)$post["sfrom"] <= (int)$tbl->sTo ||
+											(int)$post["sfrom"] < (int)$tbl->sfrom && (int)$post["sfrom"] < (int)$tbl->sTo
+										){
 											$haserr = true;
 										}
 									}
@@ -85,9 +89,64 @@ class Employee_trust_receipt extends MY_Controller {
 					if($haserr){
 						$response = ["status" => "error", "message" => "This range is already assigned"];
 					}
-				}		
+				}else{
+					$response = ["status" => "success", "message" => "no found"];
+				}	
 			}
 
+			echo json_encode($response);
+		}
+
+	}
+
+	public function get_last_data($option =""){
+
+		$maxOr = 0;
+		$maxPolicy = 0;
+		$maxCOC = 0;
+
+		if(is_ajaxs()){
+			$response = ["status" => "error", "message" => "Something Wrong!"];
+
+			if(!empty($option)){
+
+				$par["where"] = " table_data like '%$option%' ";
+
+				$result = [];
+
+				$res = getData("tbl_agent_policies", $par);
+
+				if(!empty($res)){
+
+					foreach ($res as $dta) {
+						$tbldata = json_decode($dta["table_data"]);
+
+						foreach ($tbldata as $key) {
+							if($key->id == $option){
+
+								foreach ($key->tble_data as $tdata) {
+									if($tdata->id == "or"){
+										$maxOr = ($maxOr > (int)$tdata->sTo) ? $maxOr : $tdata->sTo;
+									}
+									if($tdata->id == "coc"){
+										$maxCOC = ($maxCOC > (int)$tdata->sTo) ? $maxCOC : $tdata->sTo;
+									}
+									if($tdata->id == "policy"){
+										$maxPolicy = ($maxPolicy > (int)$tdata->sTo) ? $maxPolicy : $tdata->sTo;
+									}
+								}
+
+							}
+						}
+
+					}
+					
+				
+
+				}
+
+				$response = ["status" => "success", "data" => ["or" => $maxOr, "coc" => $maxCOC, "policy" => $maxPolicy]];
+			}
 			echo json_encode($response);
 		}
 

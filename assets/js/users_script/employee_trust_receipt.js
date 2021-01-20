@@ -181,7 +181,7 @@ $(document).ready(function () {
                 const dta_id = $(this).data("id");
                 const tcont = $(this).find(".first_td span.d-block");
                 const tserialFrom = $(this).find("input.serialFrom");
-                const tserialTo = $(this).find("input.serialFrom");
+                const tserialTo = $(this).find("input.serialTo");
                 const tset = $(this).find("input.td-set");
                 const tqty = $(this).find("input.td-quantity");
 
@@ -214,7 +214,7 @@ $(document).ready(function () {
                  if(res.data.status == "success"){
                      successMessage("Successfully Saved!");
                      setTimeout(() => {
-                        // printDocument()
+                         printDocument()
                         //window.location.href =`${base_url}employee_trust_receipt`;
                      }, 500);
                  }
@@ -224,7 +224,7 @@ $(document).ready(function () {
             }).catch(err => {ehide(".preloader");errorMessage("Something Wrong")})
         })
 
-        printDocument()
+        // printDocument()
     })
 
 
@@ -243,6 +243,11 @@ $(document).ready(function () {
         const gender =  $("#employee_id option:selected").data("gender")
         const nameFirst  = (gender == "Female" ? "Mrs." : "Mr.") + ` ${uNameText}`;
         const userLocation = $("#employee_id option:selected").data("address")
+
+        if(uname == ""  || uname == undefined){
+            errorMessage("Please select a agent first!")
+            return;
+        }
 
         $(".prDate").html(rDate)
         $(".prName").html(nameFirst)
@@ -330,7 +335,7 @@ $(document).ready(function () {
             }, 2000);
     }
 
-    $(document).on("change keyup", ".tr-row .td-serial", function (){
+    $(document).on("change", ".tr-row .td-serial", function (){
         const trow = $(this).closest(".tr-row");
         const dataId = $(this).data("id");
         calculateTabledata(trow, dataId);
@@ -348,61 +353,87 @@ $(document).ready(function () {
                 errorMessage(`${sel_converted_val} is already added on the table!`)
                 return;
             }
-            
-            let html = `
-                <tr class="tr-row" data-id="${sel_val}">
-                    <td class="first_td"> 
-                        <strong class="d-block mb-3">${sel_val.toUpperCase()} <span class="removeRow"><a href="javascipt:;"><i class="fa fa-trash"></i></a></span></strong>
-                        <span data-id="or" class='d-block'>Official Receipt</span>
-                        <span data-id="coc" class='d-block'>Confirmation of Cover</span>
-                        <span data-id="policy" class='d-block'>Policy</span>
-                    </td>
-                    <td> 
-                        <div class="td-cont serialCont">  
-                            <div class="serial_separator">
-                                <div>
-                                    <div><strong>From</strong></div>
-                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='or'>
-                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='coc'>
-                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='policy'>            
-                                </div>     
-                                <div>
-                                    <div><strong>To</strong></div>
-                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='or'>
-                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='coc'>
-                                    <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='policy'>            
-                                </div>     
-                            </div>
-                        </div>
-                    </td>
-                    <td> 
-                        <div class="td-cont">
-                        <input type="number" min="1" readonly required class="form-control td-set" data-id='or'>
-                            <input type="number" min="1" readonly required class="form-control td-set" data-id='coc'>
-                            <input type="number" min="1" readonly required class="form-control td-set" data-id='policy'>
-                        </div>
-                    </td>
-                    <td> 
-                        <div class="td-cont">
-                        <input type="number" readonly required class="form-control td-quantity" data-id='or'>
-                            <input type="number" readonly required class="form-control td-quantity" data-id='coc'>
-                            <input type="number" readonly required class="form-control td-quantity" data-id='policy'>
-                        </div>
-                    </td>       
-                    <td class="td-action">
-                    <a class="d-block" data-val="or" href="javascript:;"> <i class='fa fa-trash'></i></a>
-                        <a class="d-block" data-val="coc" href="javascript:;"> <i class='fa fa-trash'></i></a>
-                        <a class="d-block" data-val="policy" href="javascript:;"> <i class='fa fa-trash'></i></a>
-                    </td>
-                </tr>
-            `
+            eshow(".preloader");
+            axios.get(`${base_url}employee_trust_receipt/get_last_data/${sel_val}`).then(res => {
+                ehide(".preloader");
+                const maxdata = res.data.data;
+                 if(res.data.status == "success"){
+                    let html = `
+                        <tr class="tr-row" data-id="${sel_val}">
+                            <td class="first_td"> 
+                                <strong class="d-block mb-3">${sel_val.toUpperCase()} <span class="removeRow"><a href="javascipt:;"><i class="fa fa-trash"></i></a></span></strong>
+                                <span data-id="or" class='d-block'>Official Receipt</span>
+                                <span data-id="coc" class='d-block'>Confirmation of Cover</span>
+                                <span data-id="policy" class='d-block'>Policy</span>
+                            </td>
+                            <td> 
+                                <div class="td-cont serialCont">  
+                                    <div class="serial_separator">
+                                        <div>
+                                            <div><strong>From</strong></div>
+                                            <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='or'>
+                                            <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='coc'>
+                                            <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialFrom" data-id='policy'>            
+                                        </div>     
+                                        <div>
+                                            <div><strong>To</strong></div>
+                                            <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='or'>
+                                            <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='coc'>
+                                            <input type="number" min="1" data-tname="${sel_val}" required class="form-control td-serial serialTo" data-id='policy'>            
+                                        </div>     
+                                    </div>
+                                </div>
+                            </td>
+                            <td> 
+                                <div class="td-cont">
+                                <input type="number" min="1" readonly required class="form-control td-set" data-id='or'>
+                                    <input type="number" min="1" readonly required class="form-control td-set" data-id='coc'>
+                                    <input type="number" min="1" readonly required class="form-control td-set" data-id='policy'>
+                                </div>
+                            </td>
+                            <td> 
+                                <div class="td-cont">
+                                <input type="number" readonly required class="form-control td-quantity" data-id='or'>
+                                    <input type="number" readonly required class="form-control td-quantity" data-id='coc'>
+                                    <input type="number" readonly required class="form-control td-quantity" data-id='policy'>
+                                </div>
+                            </td>       
+                            <td class="td-action">
+                            <a class="d-block" data-val="or" href="javascript:;"> <i class='fa fa-trash'></i></a>
+                                <a class="d-block" data-val="coc" href="javascript:;"> <i class='fa fa-trash'></i></a>
+                                <a class="d-block" data-val="policy" href="javascript:;"> <i class='fa fa-trash'></i></a>
+                            </td>
+                        </tr>
+                    `
 
-            $(".tbody-tbl").append(html);
+                    $(".tbody-tbl").append(html);
+                 
+                    $(".last_digits").show();
+                    $(".last_digits .Heading_max").html(ucFirst(sel_val));
+                    $(".last_digits .max_or").html(maxdata.or);
+                    
+                    $(".last_digits .max_coc").html(maxdata.coc);
+                    $(".last_digits .max_policy").html(maxdata.policy);
+
+                }
+                 else{
+                     errorMessage("something wrong!")
+                 }
+            }).catch(err => {ehide(".preloader");errorMessage("Something Wrong")})
+
+            
+
+
         }else{
             errorMessage("Please select option first!")
         }
 
     })
+
+    const ucFirst = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
+    }
 
     $(document).on("click", ".td-action a", function(){
         const action_val = $(this).data("val");
