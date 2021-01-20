@@ -64,7 +64,7 @@
             <div style="margin-top:15px" class="receive_print">Juphet Vitualla</div>
         </div>
     </div>
-    <div style='position:fixed;bottom:-10px;left:0;width:100%;text-align:center'>
+    <div style='position:fixed;bottom:100px;left:0;width:100%;text-align:center'>
         <!-- Main Office: Rm.: 308 Colon Development Corporation (formerly Gorones Bldg.) Osmeña Blvd., Cebu City
         <div style="display:flex;justify-content:center;margin-top:15px">
             <div style="display:flex;justify-content:flex-start;align-items:center;margin-right:30px">
