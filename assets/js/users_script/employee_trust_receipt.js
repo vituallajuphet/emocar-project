@@ -321,22 +321,21 @@ $(document).ready(function () {
             })
 
             $(".tbody_trustReceipt").html(html)
-
-            
-            $("#print_trust_receipt").show();
             
             const theheight = $(".top_area_print").height();
-            console.log(theheight);
 
             setTimeout(() => {
+                $("#print_trust_receipt").show();
+                $(".printing_loader").show();
                 $("#print_trust_receipt").printElement();
+                $(".printing_loader").hide();
                 $("#print_trust_receipt").hide();
                 incrementTrusTRequestId()
 
                 $("#employee_id").val("")
                 $(".tbody-tbl").html("")
                 getTrustIdNumber()
-            }, 2000);
+            }, 100);
     }
 
     $(document).on("change", ".tr-row .td-serial", function (){

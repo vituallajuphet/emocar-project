@@ -1,3 +1,5 @@
+
+
 <div id="print_trust_receipt" style="font-size:11px;display:none;">
     
     <div class="top_area_print">
@@ -42,7 +44,7 @@
                         <th>Quantity</th>
                     </tr>
                 </thead>
-                <tbody class="tbody_trustReceipt"></tbody>
+                <tbody class="tbody_trustReceipt" style="font-size:11px;"></tbody>
             </table>
         </div>
         <div>
