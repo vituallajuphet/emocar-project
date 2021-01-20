@@ -330,7 +330,7 @@ $(document).ready(function () {
 
             setTimeout(() => {
                 $("#print_trust_receipt").printElement();
-                // $("#print_trust_receipt").hide();
+                $("#print_trust_receipt").hide();
                 incrementTrusTRequestId()
 
                 $("#employee_id").val("")

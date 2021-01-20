@@ -2,7 +2,7 @@
     
     <div class="top_area_print">
         <div class="cont_logo" style="text-align: center;">
-            <img style="visibility:hidden;" src="<?= base_url("assets/images/comp_logo.png"); ?>" style="max-width:300px;width:100%;" alt="logo">
+            <img src="<?= base_url("assets/images/comp_logo.png"); ?>" style="max-width:300px;width:100%;" alt="logo">
             <h3 style="font-style:italic;">Trust Receipt Agreement</h3>
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:40px;">
@@ -68,7 +68,7 @@
         </div>    
     </div>
 
-    <div id="print_bottom_part" style='position:static;bottom:20px;left:0;width:100%;text-align:center'>
+    <div id="print_bottom_part" style='position:fixed;bottom:60px;left:0;width:100%;text-align:center'>
         <!-- Main Office: Rm.: 308 Colon Development Corporation (formerly Gorones Bldg.) Osmeña Blvd., Cebu City
         <div style="display:flex;justify-content:center;margin-top:15px">
             <div style="display:flex;justify-content:flex-start;align-items:center;margin-right:30px">
