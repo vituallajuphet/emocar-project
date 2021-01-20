@@ -7,7 +7,7 @@
             <img src="<?= base_url("assets/images/comp_logo.png"); ?>" style="max-width:250px;width:100%;" alt="logo">
             <h3 style="font-style:italic;font-size:14px;">Trust Receipt Agreement</h3>
         </div>
-        <div style="display:flex;justify-content:space-between;margin-top:40px;">
+        <div style="display:flex;justify-content:space-between;margin-top:25px;">
             <div>
                 <div class="prDate">xxxxx</div>
 
@@ -30,13 +30,13 @@
             <span style="display:inline-block;margin-left:100px;">Received in TRUST from </span> <strong style="font-style:italic;">EMOCAR INSURANCE BROKERAGE</strong> from the following insurance policy per order of the indersigned <strong>ENTRUSTEE</strong>.
         </div>
 
-        <div style="margin-top:30px;">
+        <div style="margin-top:20px;">
             Here's the series of assign policy # for issuance in your office, which are self-explanatory viz;
         </div>
 
         <!-- start ang laay -->
         <div>
-            <table style="width:100%;margin-top:30px;font-size:13px;">
+            <table style="width:100%;margin-top:20px;font-size:13px;">
                 <thead>
                     <tr style="font-weight:bold;text-align:left;text-transform:uppercase;font-size:11px">
                         <th>Description</th>
@@ -48,7 +48,8 @@
             </table>
         </div>
         <div>
-            <div style='text-align:right;margin:20px 0'>
+             
+            <div style='text-align:right;margin:10px 0 20px'>
                 Mode of Payment, Condition of Payment
             </div>
             <div class="font-size:9px">
@@ -57,9 +58,9 @@
         </div>
         <!-- end ang laay -->
 
-        <div style='margin:20px 0;display:flex;align-items:top;justify-content:space-between;'>
+        <div style='margin:10px 0;display:flex;align-items:top;justify-content:space-between;'>
             <div>
-                <div style="margin-top:20px"> Hoping to receive everything in order as stated above. </div>
+                <div style="margin-top:10px"> Hoping to receive everything in order as stated above. </div>
                 <div style="margin-top:23px">Prepared By:</div>
                 <div style="margin-top:15px">Annabelle B. Torino</div>
                 <div style="margin-top:23px">Approved By:</div>
