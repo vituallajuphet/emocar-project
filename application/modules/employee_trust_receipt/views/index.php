@@ -91,16 +91,16 @@
                             </div>
                         </div>
                         <div class="col-md-12 text-right">
-                            <button type='submit' class='btn btn-success btn-submit'><i class='fa fa-check'></i> Save Data</button>
                             <?php
                                if(!empty(getUserData()["location"])){
                                    if(getUserData()["location"] == 1){ ?>
                                         <button type="button" class="btn-print_here btn btn-primary" ><i class="fa fa-print"></i> Print Trust Receipt</button>
                                    <?php
                                    }
-                               }
-                            
-                            ?>
+                                }
+                                
+                                ?>
+                            <button type='submit' class='btn btn-success btn-submit'><i class='fa fa-check'></i> Save Data</button>
                             
                         </div>
                     </div>  
