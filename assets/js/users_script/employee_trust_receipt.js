@@ -343,10 +343,10 @@ $(document).ready(function () {
                 $("#print_bottom_part").css("bottom", "65px")
             }
             else if(psize == "short"){
-                $("#print_bottom_part").css("bottom", "-14px")
+                $("#print_bottom_part").css("bottom", "-12px")
             }
             else if(psize == "a4"){
-                $("#print_bottom_part").css("bottom", "-14px")
+                $("#print_bottom_part").css("bottom", "-12px")
             }
 
            
