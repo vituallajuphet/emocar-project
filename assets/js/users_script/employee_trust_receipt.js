@@ -257,7 +257,7 @@ $(document).ready(function () {
         $(".prLocation").html(userLocation)
         $(".receive_print").html(uNameText)
         
-
+        let totalqtyvalue = 0;
             $(".tbody-tbl .tr-row").each(function (){
 
                 const dta_id = $(this).data("id");
@@ -289,10 +289,13 @@ $(document).ready(function () {
                     return res;
                 }
 
+                
                 const qtyCont = () => {
                     let res = '';
                     tqty.map((idx, inp) => {
                         res += `<div>${inp.value} = ${tset[idx].value} Sets</div>`
+
+                        totalqtyvalue += parseInt(inp.value);
                     }) 
                     return res;
                 }
@@ -321,7 +324,33 @@ $(document).ready(function () {
             })
 
             $(".tbody_trustReceipt").html(html)
-            
+
+            let totalQty =`
+                <tr>
+                    <td colspan="3">
+                        <div style='text-align:right;margin-right:75px;'>
+                            Total Quantity: <span>${totalqtyvalue} pcs.</span>
+                        </div>
+                    </td>
+                </tr>
+            `
+
+            $(".tbody_trustReceipt").append(totalQty)
+
+            const psize = $("#paper_size").val();
+
+            if(psize == "long"){
+                $("#print_bottom_part").css("bottom", "65px")
+            }
+            else if(psize == "short"){
+                $("#print_bottom_part").css("bottom", "35px")
+            }
+            else if(psize == "a4"){
+                $("#print_bottom_part").css("bottom", "35px")
+            }
+
+           
+
             const theheight = $(".top_area_print").height();
 
             setTimeout(() => {

@@ -24,6 +24,14 @@
                             <label for="">Select Agent</label>
                             <select name="employee_id" required id="employee_id" class='form-control'> </select>
                         </div>
+                        <div class="col-md-3">
+                            <label for="">Paper Size</label>
+                            <select required id="paper_size" class='form-control'>
+                                <option value="long">Long</option>
+                                <option value="short">Short</option>
+                                <option value="a4">A4</option>
+                            </select>
+                        </div>
                         <div class="col-md-12 mb-3"></div>
                         <div class="col-md-3">
                             <label for="">Date</label>
