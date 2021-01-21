@@ -355,9 +355,9 @@ $(document).ready(function () {
 
             setTimeout(() => {
                 $("#print_trust_receipt").show();
-                // $(".printing_loader").show();
+                $(".printing_loader").show();
                 $("#print_trust_receipt").printElement();
-                // $(".printing_loader").hide();
+                $(".printing_loader").hide();
                 $("#print_trust_receipt").hide();
                 incrementTrusTRequestId()
 
