@@ -1,11 +1,11 @@
 
 
-<div id="print_trust_receipt" style="font-size:13px;display:none;">
+<div id="print_trust_receipt" style="font-size:14px;display:none;">
     
     <div class="top_area_print">
         <div class="cont_logo" style="text-align: center;">
             <img src="<?= base_url("assets/images/comp_logo.png"); ?>" style="max-width:460px;width:100%;" alt="logo">
-            <h3 style="font-style:italic;font-size:23px;">Trust Receipt Agreement</h3>
+            <h3 style="font-style:italic;font-size:24px;">Trust Receipt Agreement</h3>
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:25px;">
             <div>
@@ -16,7 +16,7 @@
 
                 <div style="line-height:110%;">
                     <div class="prName" style='text-transform:uppercase;margin-top:17px;'>xxxxx</div>
-                    <div>c/o LTO-MVIS</div>
+                    <div style="margin-top: 4px;">c/o LTO-MVIS</div>
                     <div class="prLocation">xxxxxx</div>
                 </div>
 
@@ -56,13 +56,13 @@
         <div style='margin:20px 0;display:flex;align-items:top;justify-content:space-between;'>
             <div>
                 <div style="margin-top:15px">Prepared By:</div>
-                <div style="margin-top:3px;margin-left: 80px;width: 200px;">Annabelle B. Torino</div>
-                <div style="margin-top:15px">Approved By:</div>
-                <div style="margin-top:3px;margin-left: 80px;width: 200px;">Felix R. Secuya</div>
+                <div style="margin-top:3px;margin-left: 100px;width: 200px;">Annabelle B. Torino</div>
+                <div style="margin-top:30px">Approved By:</div>
+                <div style="margin-top:3px;margin-left: 100px;width: 200px;">Felix R. Secuya</div>
             </div>
-            <div style="margin:40px 200px 0;">
+            <div style="margin:90px 200px 0;">
                 <div style="margin-top:23px">Received By:</div>
-                <div style="margin-top:3px;margin-left: 80px;width: 200px;" class="receive_print">Juphet Vitualla</div>
+                <div style="margin-top:3px;margin-left: 100px;width: 200px;" class="receive_print">Juphet Vitualla</div>
             </div>
         </div>    
     </div>
