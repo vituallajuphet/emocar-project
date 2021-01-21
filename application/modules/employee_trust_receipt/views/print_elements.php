@@ -45,7 +45,7 @@
         <div>
              
             <div style='text-align:right;margin:10px 0 20px'>
-                <span style="display: inline-block;width: 200px;text-align: left;">DUE DATE <strong>TBA</strong></span>
+                <span style="display: inline-block;width: 230px;text-align: left;">DUE DATE <strong>TBA</strong></span>
             </div>
             <div class="font-size:10px">
                 <span style='margin-left:60px;'>Undersigned</span> ENTRUSTEE hereby agrees, undertakes and commits to hold in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> the above POLICY, to dispose of or sell them for cash and receive the proceeds thereof in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span>, to turn over and remit the proceeds of the sale of the policy to the ENTRUSTER, or to return the POLICY in the event of the non-sale on or before the above due date or upon demand of the ENTRUSTER. <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> may cancel this trust receipt agreement and take possesion of the above POLICY or of the proceeds realized there from any time upon default or failure of the undersigned ENTRUSTEE to comply with any of the terms and conditions of this trust receipt agreement. It is however, understood that should there be policies remaining unsold the ENTRUSTEE may at his option, extend in writing the operation of this trust receipt agreement to another date under the same terms and conditions. Any court action arising from this agreement, the same shall be bought in the proper court of competent jurisdiction within Cebu City.
@@ -53,11 +53,11 @@
         </div>
         <!-- end ang laay -->
 
-        <div style='margin:20px 0;display:flex;align-items:top;justify-content:space-between;'>
+        <div style='margin:35px 0 0;display:flex;align-items:top;justify-content:space-between;'>
             <div>
                 <div style="margin-top:15px">Prepared By:</div>
                 <div style="margin-top:3px;margin-left: 100px;width: 200px;">Annabelle B. Torino</div>
-                <div style="margin-top:30px">Approved By:</div>
+                <div style="margin-top:40px">Approved By:</div>
                 <div style="margin-top:3px;margin-left: 100px;width: 200px;">Felix R. Secuya</div>
             </div>
             <div style="margin:90px 200px 0;">
