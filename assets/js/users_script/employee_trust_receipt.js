@@ -327,7 +327,7 @@ $(document).ready(function () {
 
             let totalQty =`
                 <tr>
-                    <td colspan="3">
+                    <td colspan="4">
                         <div style='text-align:right;margin-right:75px;'>
                             Total Quantity: <span>${totalqtyvalue} pcs.</span>
                         </div>
