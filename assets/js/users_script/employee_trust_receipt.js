@@ -274,7 +274,7 @@ $(document).ready(function () {
                     let res = '';
                     tcont.map((idx, inp) => {
                         res += `<div style='text-transform: uppercase;
-                        '>${getHeading(inp.getAttribute("data-id"))} #</div>`
+                        '>${getHeading(inp.getAttribute("data-id"))}</div>`
                     }) 
                     return res;
                 }
