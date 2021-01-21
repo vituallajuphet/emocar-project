@@ -53,7 +53,7 @@
         </div>
         <!-- end ang laay -->
 
-        <div style='margin:10px 0;display:flex;align-items:top;justify-content:space-between;'>
+        <div style='margin:20px 0;display:flex;align-items:top;justify-content:space-between;'>
             <div>
                 <div style="margin-top:15px">Prepared By:</div>
                 <div style="margin-top:3px;margin-left: 80px;width: 200px;">Annabelle B. Torino</div>
