@@ -1,15 +1,18 @@
 
 
-<div id="print_trust_receipt" style="font-size:11px;display:none;">
+<div id="print_trust_receipt" style="font-size:13px;display:none;">
     
     <div class="top_area_print">
         <div class="cont_logo" style="text-align: center;">
-            <img src="<?= base_url("assets/images/comp_logo.png"); ?>" style="max-width:250px;width:100%;" alt="logo">
-            <h3 style="font-style:italic;font-size:14px;">Trust Receipt Agreement</h3>
+            <img src="<?= base_url("assets/images/comp_logo.png"); ?>" style="max-width:450px;width:100%;" alt="logo">
+            <h3 style="font-style:italic;font-size:20px;">Trust Receipt Agreement</h3>
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:25px;">
             <div>
-                <div class="prDate">xxxxx</div>
+                <div>
+                    <div>Date Issued: <span class="prDate">xxx</span></div>
+                    <div>Trust Receipt Form No: <span class="prTreceipt">xxxx</span></div>
+                </div>
 
                 <div style="line-height:110%;">
                     <div class="prName" style='text-transform:uppercase;margin-top:17px;'>xxxxx</div>
@@ -17,58 +20,49 @@
                     <div class="prLocation">xxxxxx</div>
                 </div>
 
-                <div class="prDearName" style="margin-top:17px;">xxxxx</div>
+                <!-- <div class="prDearName" style="margin-top:17px;">xxxxx</div> -->
             </div>
-            <div>
-                <div>Trust Receipt Form No: <span class="prTreceipt">xxxx</span></div>
-                <div>Date Issued: <span class="prDate">xxx</span></div>
-                <div>Place Issued: <span class="prPlace"></span></div>
-            </div>
+            <div></div>
         </div>
 
-        <div style='text-align:left;margin-top:25px;'>
-            <span style="display:inline-block;margin-left:100px;">Received in TRUST from </span> <strong style="font-style:italic;">EMOCAR INSURANCE BROKERAGE</strong> from the following insurance policy per order of the indersigned <strong>ENTRUSTEE</strong>.
-        </div>
-
-        <div style="margin-top:20px;">
-            Here's the series of assign policy # for issuance in your office, which are self-explanatory viz;
+        <div style='text-align:left;margin-top:15px;'>
+            <span style="display:inline-block;margin-left:60px;">Received in TRUST from </span> <strong style="font-style:italic;">EMOCAR INSURANCE BROKERAGE</strong> from the following insurance policy per order of the indersigned <strong>ENTRUSTEE</strong>.
         </div>
 
         <!-- start ang laay -->
         <div>
-            <table style="width:100%;margin-top:20px;font-size:13px;">
+            <table style="width:100%;margin-top:15px;font-size:13px;">
                 <thead>
                     <tr style="font-weight:bold;text-align:left;text-transform:uppercase;font-size:11px">
-                        <th>Description</th>
-                        <th>Series Number/s</th>
-                        <th>Quantity</th>
+                        <th style="width: 40%;">Description</th>
+                        <th style="width: 30%;text-align: center;">Series Number/s</th>
+                        <th style="width: 30%;text-align: center;">Quantity</th>
                     </tr>
                 </thead>
-                <tbody class="tbody_trustReceipt" style="font-size:11px;"></tbody>
+                <tbody class="tbody_trustReceipt" style="font-size:12px;"></tbody>
             </table>
         </div>
         <div>
              
             <div style='text-align:right;margin:10px 0 20px'>
-                Mode of Payment, Condition of Payment
+                <span style="display: inline-block;width: 400px;text-align: left;">DUE DATE <strong>TBA</strong></span>
             </div>
             <div class="font-size:9px">
-                <span style='margin-left:100px;'>Undersigned</span> ENTRUSTEE hereby agrees, undertakes and commits to hold in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> the above POLICY, to dispose of or sell them for cash and receive the proceeds thereof in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span>, to turn over and remit the proceeds of the sale of the policy to the ENTRUSTER, or to return the POLICY in the event of the non-sale on or before the above due date or upon demand of the ENTRUSTER. <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> may cancel this trust receipt agreement and take possesion of the above POLICY or of the proceeds realized there from any time upon default or failure of the undersigned ENTRUSTEE to comply with any of the terms and conditions of this trust receipt agreement. It is however, understood that should there be policies remaining unsold the ENTRUSTEE may at his option, extend in writing the operation of this trust receipt agreement to another date under the same terms and conditions. Any court action arising from this agreement, the same shall be bought in the proper court of competent jurisdiction within the City of Cebu.
+                <span style='margin-left:60px;'>Undersigned</span> ENTRUSTEE hereby agrees, undertakes and commits to hold in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> the above POLICY, to dispose of or sell them for cash and receive the proceeds thereof in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span>, to turn over and remit the proceeds of the sale of the policy to the ENTRUSTER, or to return the POLICY in the event of the non-sale on or before the above due date or upon demand of the ENTRUSTER. <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> may cancel this trust receipt agreement and take possesion of the above POLICY or of the proceeds realized there from any time upon default or failure of the undersigned ENTRUSTEE to comply with any of the terms and conditions of this trust receipt agreement. It is however, understood that should there be policies remaining unsold the ENTRUSTEE may at his option, extend in writing the operation of this trust receipt agreement to another date under the same terms and conditions. Any court action arising from this agreement, the same shall be bought in the proper court of competent jurisdiction within Cebu City.
             </div>
         </div>
         <!-- end ang laay -->
 
         <div style='margin:10px 0;display:flex;align-items:top;justify-content:space-between;'>
             <div>
-                <div style="margin-top:10px"> Hoping to receive everything in order as stated above. </div>
-                <div style="margin-top:23px">Prepared By:</div>
-                <div style="margin-top:15px">Annabelle B. Torino</div>
-                <div style="margin-top:23px">Approved By:</div>
-                <div style="margin-top:15px">Felix R. Secuya</div>
+                <div style="margin-top:15px">Prepared By:</div>
+                <div style="margin-top:3px;margin-left: 80px;width: 400px;">Annabelle B. Torino</div>
+                <div style="margin-top:15px">Approved By:</div>
+                <div style="margin-top:3px;margin-left: 80px;width: 400px;">Felix R. Secuya</div>
             </div>
-            <div style="margin-top:40px;">
+            <div style="margin:40px 200px 0;">
                 <div style="margin-top:23px">Received By:</div>
-                <div style="margin-top:15px" class="receive_print">Juphet Vitualla</div>
+                <div style="margin-top:3px;margin-left: 80px;width: 400px;" class="receive_print">Juphet Vitualla</div>
             </div>
         </div>    
     </div>

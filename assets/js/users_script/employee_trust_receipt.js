@@ -303,19 +303,19 @@ $(document).ready(function () {
                 let tcontDta = ""
                 html += `
                     <tr>
-                        <td style='padding: 15px 0 0; '>
-                            <div><strong style='text-transform: capitalize;
-                            '>${dta_id} Policy</strong></div> 
+                        <td style='padding: 7px 0 0;width: 40%;'>
+                            <div><strong style='text-transform: uppercase;
+                            '>${dta_id}</strong></div> 
                             ${headerCol()}
                         </td>
-                        <td>
-                            <div style="visibility:hidden;"><strong style='text-transform: capitalize;
-                        '>${dta_id} Policy</strong></div> 
+                        <td style="text-align: center; width: 30%;">
+                            <div style="visibility:hidden;"><strong style='text-transform: uppercase;
+                        '>${dta_id}</strong></div> 
                             ${serialCont()}
                         </td>
-                        <td>
-                            <div style="visibility:hidden;"><strong style='text-transform: capitalize;
-                        '>${dta_id} Policy</strong></div> 
+                        <td style="text-align: center; width: 30%;">
+                            <div style="visibility:hidden;"><strong style='text-transform: uppercase;
+                        '>${dta_id}</strong></div> 
                             ${qtyCont()}
                         </td>
                     </tr>
@@ -355,9 +355,9 @@ $(document).ready(function () {
 
             setTimeout(() => {
                 $("#print_trust_receipt").show();
-                $(".printing_loader").show();
+                // $(".printing_loader").show();
                 $("#print_trust_receipt").printElement();
-                $(".printing_loader").hide();
+                // $(".printing_loader").hide();
                 $("#print_trust_receipt").hide();
                 incrementTrusTRequestId()
 
