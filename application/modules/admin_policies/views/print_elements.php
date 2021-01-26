@@ -41,7 +41,7 @@
         <div style="text-align:right;">
             <div style="width:190px;text-align:left;display:inline-block;margin-top:108px;" class="ppop_policy">------</div>  
         </div>
-       <div class="ppop_name" style="line-height:20px;margin-left:-20px;margin-top:17px;position:relative;top:10px;">------<span class="ppop_address" style="display:block;">----</span></div>
+        <div  style="line-height:20px;margin-left:-20px;margin-top:17px;position:relative;top:10px;"><span class="ppop_name"></span><span class="ppop_address" style="display:block;">----</span></div>
         <div style="text-align:right">
             <div style="width:363px;display:inline-block;text-align:left;">
                 <div style="position:relative;top: -18px;" ><span class="ppop_dateissued" style="width:185px;display:inline-block;">-----</span><span class="ppop_or" style="display:inline-block">-----</span></div>
