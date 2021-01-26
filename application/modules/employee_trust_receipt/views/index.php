@@ -34,7 +34,9 @@
                         </div>
                         <div class="col-md-2">
                             <label for="">Due Date</label>
-                            <input id="due_date_field" type="date" required class="form-control">
+                            <div class="date_dues">
+                                <input id="due_date_field" type="text" required class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-12 mb-3"></div>
                         <div class="col-md-3">

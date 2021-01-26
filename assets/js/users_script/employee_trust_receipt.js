@@ -24,6 +24,13 @@ $(document).ready(function () {
     }
 
 
+    (function(){
+        const due_date = new Date()
+        $("#due_date_field").val(convertDate(due_date))
+    })()
+
+    
+
     const calculateTabledata = (trow, dataId) => {
 
         const serialFrom = trow.find("input[data-id='"+dataId+"'].serialFrom").val();
@@ -250,7 +257,7 @@ $(document).ready(function () {
             return;
         }
 
-        const due_date = $("#due_date_field").val();
+        const due_date  = $("#due_date_field").val();
 
         if(due_date == "" || due_date == undefined){
             errorMessage("Please add due date!")
@@ -264,7 +271,7 @@ $(document).ready(function () {
         $(".prPlace").html(placeIssued)
         $(".prLocation").html(userLocation)
         $(".receive_print").html(uNameText)
-        $(".print_due_date").html(convertDate(due_date))
+        $(".print_due_date").html(due_date)
 
         
         let totalqtyvalue = 0;
