@@ -45,9 +45,7 @@
         <div>
              
             <div style='text-align:right;margin:10px 0 20px'>
-                <span style="display: inline-block;width: 230px;text-align: left;">DUE DATE <strong>TBA</strong></span>
-                <br>
-                <span style="display: inline-block;width: 230px;text-align: left;" class="print_due_date"></span>
+                <span style="display: inline-block;width: 230px;text-align: left;">DUE DATE: <span class="print_due_date">TBA</span></span>
             </div>
             <div class="font-size:10px">
                 <span style='margin-left:60px;'>Undersigned</span> ENTRUSTEE hereby agrees, undertakes and commits to hold in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> the above POLICY, to dispose of or sell them for cash and receive the proceeds thereof in trust for <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span>, to turn over and remit the proceeds of the sale of the policy to the ENTRUSTER, or to return the POLICY in the event of the non-sale on or before the above due date or upon demand of the ENTRUSTER. <span style="font-style:italic;text-transform:uppercase">Emocar Insurance Brokerage</span> may cancel this trust receipt agreement and take possesion of the above POLICY or of the proceeds realized there from any time upon default or failure of the undersigned ENTRUSTEE to comply with any of the terms and conditions of this trust receipt agreement. It is however, understood that should there be policies remaining unsold the ENTRUSTEE may at his option, extend in writing the operation of this trust receipt agreement to another date under the same terms and conditions. Any court action arising from this agreement, the same shall be bought in the proper court of competent jurisdiction within Cebu City.
