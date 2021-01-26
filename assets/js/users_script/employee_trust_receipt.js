@@ -244,8 +244,16 @@ $(document).ready(function () {
         const nameFirst  = (gender == "Female" ? "Mrs." : "Mr.") + ` ${uNameText}`;
         const userLocation = $("#employee_id option:selected").data("address")
 
+        
         if(uname == ""  || uname == undefined){
             errorMessage("Please select a agent first!")
+            return;
+        }
+
+        const due_date = $("#due_date_field").val();
+
+        if(due_date == "" || due_date == undefined){
+            errorMessage("Please add due date!")
             return;
         }
 
@@ -256,6 +264,8 @@ $(document).ready(function () {
         $(".prPlace").html(placeIssued)
         $(".prLocation").html(userLocation)
         $(".receive_print").html(uNameText)
+        $(".print_due_date").html(convertDate(due_date))
+
         
         let totalqtyvalue = 0;
             $(".tbody-tbl .tr-row").each(function (){
