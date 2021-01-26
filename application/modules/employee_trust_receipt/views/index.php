@@ -24,13 +24,17 @@
                             <label for="">Select Agent</label>
                             <select name="employee_id" required id="employee_id" class='form-control'> </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="">Paper Size</label>
                             <select required id="paper_size" class='form-control'>
-                                <option value="long">Long</option>
+                                <option value="long">Long</option>\
                                 <option value="short">Short</option>
                                 <option value="a4">A4</option>
                             </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Due Date</label>
+                            <input id="due_date_field" type="date" required class="form-control">
                         </div>
                         <div class="col-md-12 mb-3"></div>
                         <div class="col-md-3">
