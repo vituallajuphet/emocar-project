@@ -933,3 +933,37 @@ table tr {
   margin: 0 0 2em; }
   .footer ul {
     font-size: 1.2em; }
+
+
+.date_dues{
+      position: relative;
+     
+  }
+
+  /* #due_date_field2{
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    border: none;
+    width: 100%;
+    font-size: 13px;
+    height: 100%;
+
+}
+  
+#due_date_field2:focus{
+  outline: 0;
+  outline: none;
+  background: #fff;
+  color: #fff;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */ 
+}
+   */
