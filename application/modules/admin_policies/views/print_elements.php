@@ -10,7 +10,7 @@
             <div style="margin-left:70px;" id="trans_rec_from"></div>
             <div style="margin-top:5px;margin-left:5px;" id="trans_address"></div>
             <div style="margin-top:20px;margin-left:60px;" id="trans_amount_text"></div>
-            <div style="position:absolute; top: 163px; left: 60px;" id="trans_amount_of_cov"></div>
+            <!-- <div style="position:absolute; top: 163px; left: 60px;" id="trans_amount_of_cov"></div> -->
             <div style="margin-top:60px;margin-left:105px;" id="trans_policy">123567</div>
             <div style="margin-top:30px;margin-left:60px;"><span style="width:66px;display:inline-block;" id="trans_date_from_month">November
             </span> <span id="trans_date_from_day">14,</span> <span style="margin-left:55px" id="trans_date_from_year">20</span></div>
