@@ -48,8 +48,9 @@
                 </div>
               </div>
               <div class="col-md-4">
-                <div class="form-group">
+                <div class="form-group custdd">
                     <label for="recipient-name" class="col-form-label">FROM 12:00 NN</label>
+                    <input type="date" class="form-control dd_datefrm_cust">
                     <input type="text" readonly  class="form-control dta_edit_date_from">
                 </div>
               </div>
