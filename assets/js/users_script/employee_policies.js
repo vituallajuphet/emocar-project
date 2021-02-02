@@ -327,6 +327,7 @@ $(document).ready(function () {
                     $("#pcoc_plate_no").html(dta.plate_no);
                     $("#pcoc_serial").html(dta.serial_chassis);
                     $("#pcoc_motor").html(dta.motor_no);
+                    $("#pcocplate").html(dta.plate_no);
                    
                     setTimeout(() => {
                         $("#printCOC_elem").printElement();
