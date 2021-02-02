@@ -551,7 +551,17 @@ $(document).ready(function () {
             errorMessage("Please search a policy first!")
         }  
     })
-
+    $(".dd_datefrm_cust").change(function(){
+        var string = $(this).val();
+        var sp_strong = string.split('-');
+        var sp_date = sp_strong[1];
+        var sp_year = sp_strong[0];
+        var sponeyear = parseInt(sp_year) + 1;
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      
+        $('.dta_edit_date_from').val(months[sp_date - 1] + ' ' + sp_strong[2] + ', ' + sp_strong[0]);
+        $('.dta_edit_date_to').val(months[sp_date - 1] + ' ' + sp_strong[2] + ', ' + sponeyear);
+    })
 
     function numberWithCommas(num) {
         let res = num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");

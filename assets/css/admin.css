@@ -634,3 +634,12 @@ table tr {
 
 #print_OR {
   display: none; }
+
+
+  .customfff, .custdd{position: relative;}
+.dd_datefrm_cust{position: absolute;
+  left: 0;
+  width: 100%!important;
+  display: block!important;
+  bottom: 0;
+  opacity: 0;}
