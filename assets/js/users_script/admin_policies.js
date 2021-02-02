@@ -422,6 +422,7 @@ $(document).ready(function () {
                     $("#trans_tax").html(numberWithCommas(dta.lg_tax));
                     $("#trans_misc").html(numberWithCommas(dta.misc));
                     $("#trans_total").html(numberWithCommas(dta.or_total));
+                    $("#pcocplate").html(dta.plate_no);
                     
                     let html_elm = `<div style="font-size:18px;margin-top:35px">&check;</div>`;
 
