@@ -166,7 +166,7 @@ $(document).ready(function () {
                  ehide(".preloader");
                 if(res.data.status == "success"){
                     successMessage("Successfully Deleted!");
-                    trans_table.ajax.reload();
+                    employee_table.ajax.reload();
                 }
                 else{
                     errorMessage("Something wrong!")

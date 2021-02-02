@@ -312,7 +312,7 @@ $(document).ready(function () {
                     tqty.map((idx, inp) => {
                         res += `<div>${inp.value} = ${tset[idx].value} Sets</div>`
 
-                        totalqtyvalue += parseInt(inp.value);
+                        totalqtyvalue = parseInt(inp.value);
                     }) 
                     return res;
                 }

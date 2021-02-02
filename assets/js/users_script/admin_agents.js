@@ -166,12 +166,12 @@ $(document).ready(function () {
                  ehide(".preloader");
                 if(res.data.status == "success"){
                     successMessage("Successfully Deleted!");
-                    trans_table.ajax.reload();
+                    employee_table.ajax.reload();
                 }
                 else{
                     errorMessage("Something wrong!")
                 }
-            }).catch(err => {  ehide(".preloader");errorMessage("Something Wrong!")})
+            }).catch(err => { console.log(err); ehide(".preloader");errorMessage("Something Wrong!")})
         })
     })
 

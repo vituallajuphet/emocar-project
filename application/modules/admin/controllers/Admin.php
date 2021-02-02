@@ -318,8 +318,18 @@ class Admin extends MY_Controller {
 	public function api_delete_employee (){
 
 		if(is_ajaxs()){
-			$response = ["status" => "error", "data" => []];		
-			// echo json_encode($response);
+			$response = ["status" => "error", "message" => "Something Wrong!"];	
+			
+			if(!empty($_POST["user_id"])){
+				$where = [
+					"user_id" => $_POST["user_id"]
+				];
+
+				updateData("users", ["status"=> 2 ], $where);
+				$response = ["status" => "success", "message" => "Success"];	
+			}
+			
+			echo json_encode($response);
 		}
 	}
 

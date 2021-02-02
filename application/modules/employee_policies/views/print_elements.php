@@ -150,6 +150,7 @@
 <div id="printCOC_elem" style="font-size:14px;text-transform:uppercase;">
     <div style="width:720px">
         <div style="text-align:right;">
+            <div style="width:190px;text-align:left;text-transform:uppercase;position:absolute;top:130px;right:0" id="pcocplate">asdasd</div>
             <div style="width:190px;text-align:left;display:inline-block;margin-top:150px;" id="pcocpolicy">-----</div>  
         </div>
         <div style="text-align:right;margin-top:9px;">  
