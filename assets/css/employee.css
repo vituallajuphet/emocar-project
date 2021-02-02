@@ -940,7 +940,17 @@ table tr {
      
   }
 
-  /* #due_date_field2{
+
+.customfff, .custdd{position: relative;}
+.dd_datefrm_cust{position: absolute;
+  left: 0;
+  width: 100%;
+  display: block;
+  bottom: 0;
+  opacity: 0;}
+
+  
+   /* #due_date_field2{
     background: transparent;
     color: transparent;
     cursor: pointer;
@@ -961,9 +971,8 @@ table tr {
   outline: none;
   background: #fff;
   color: #fff;
-  -webkit-user-select: none;  /* Chrome all / Safari all */
-  -moz-user-select: none;     /* Firefox all */
-  -ms-user-select: none;      /* IE 10+ */
-  user-select: none;          /* Likely future */ 
-}
-   */
+  -webkit-user-select: none; 
+  /* -moz-user-select: none;   
+  -ms-user-select: none;      
+  user-select: none;          
+}  */

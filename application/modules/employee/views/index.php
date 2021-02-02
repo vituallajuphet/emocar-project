@@ -82,10 +82,10 @@
 								<input type="date" name="date_issued" placeholder="" class="date_issued" readonly>
 								<input type="text" name="date_issued" class="dummy_date_text" id="date_final_get" readonly>
 							</div>
-							<div class="main_frm_fields">
+							<div class="main_frm_fields customfff">
 								<label for="FROM 12:00 NN">FROM 12:00 NN</label>
-								<input type="date" name="date_from" placeholder="" class="date_issued1">
-								<input type="text" name="date_from" class="dummy_date_text1" id="date_nn">
+								<input type="date" id="frmdd"  name="date_from" placeholder="" class="date_issued1">
+								<input type="text" for="date_nn" name="date_from" class="dummy_date_text1" id="date_nn">
 							</div>
 							<div class="main_frm_fields">
 								<label for="TO 12:00 NN">TO 12:00 NN</label>
