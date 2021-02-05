@@ -3,7 +3,7 @@
     <div class="print_cont" style="width:480px;">
         <div style="text-align:right;position:relative">
             <div style="text-align:left;margin-top:105px;font-size:13px;width:190px;display:inline-block;">
-                <div style="width:190px;text-align:left;text-transform:uppercase;position:absolute;top:65px;right:0" id="pcocplate">asdasd</div>
+                <div style="width:190px;text-align:right;text-transform:uppercase;position:absolute;top: -21px;right:0" id="pcocplate">asdasd</div>
                 <div id="date_trans">December 1, 2020</div>    
             </div>
         </div>
@@ -11,7 +11,7 @@
             <div style="margin-left:80px;text-transform:uppercase;margin-top:5px;" id="trans_rec_from"></div>
             <div style="margin-top:15px;margin-left:5px;text-transform:uppercase;" id="trans_address"></div>
             <div style="margin-top:20px;margin-left:60px;text-transform:uppercase;" id="trans_amount_text"></div>
-            <div style="position:absolute; top: 72px; right: 0px;text-transform:uppercase;width:190px;" id="trans_amount_of_cov">toal123</div>
+            <!-- <div style="position:absolute; top: 72px; right: 0px;text-transform:uppercase;width:190px;" id="trans_amount_of_cov">toal123</div> -->
             <div style="margin-top:60px;margin-left:105px;text-transform:uppercase;" id="trans_policy">123567</div>
             <div style="margin-top:30px;margin-left:60px;text-transform:uppercase;"><span style="width:66px;display:inline-block;text-transform:uppercase;" id="trans_date_from_month">November
             </span> <span id="trans_date_from_day">14,</span> <span style="margin-left:55px;text-transform:uppercase;" id="trans_date_from_year">20</span></div>
