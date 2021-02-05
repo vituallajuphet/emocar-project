@@ -3,7 +3,7 @@
     <div class="print_cont" style="width:480px;">
         <div style="text-align:right;position:relative">
             <div style="text-align:left;margin-top:105px;font-size:13px;width:190px;display:inline-block;">
-                <div style="width:150px;padding-left: 100px;text-align:left;text-transform:uppercase;position:absolute;top: 0;right:0" id="pcocplate">asdasd</div>
+                <div style="width:150px;padding-left: 100px;text-align:left;text-transform:uppercase;position:absolute;top: 30px;right:0" id="pcocplate">asdasd</div>
                 <div id="date_trans">December 1, 2020</div>    
             </div>
         </div>
