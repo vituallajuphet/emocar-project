@@ -56,6 +56,17 @@ $(document).ready(function(){
         $('.dummy_date_text2').val(months[sp_date - 1] + ' ' + sp_strong[2] + ', ' + sponeyear);
     });
 
+    $('.date_issued2').change(function(){
+        var string = $(this).val();
+        var sp_strong = string.split('-');
+        var sp_date = sp_strong[1];
+        var sp_year = sp_strong[0];
+        var sponeyear = parseInt(sp_year) + 1;
+        var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        $('.dummy_date_text2').val(months[sp_date - 1] + ' ' + sp_strong[2] + ', ' + sp_strong[0]);
+    });
+
     // $('.date_issued2').change(function(){
     //     var string = $(this).val();
     //     var sp_strong = string.split('-');

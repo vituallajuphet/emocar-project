@@ -87,9 +87,9 @@
 								<input type="date" id="frmdd"  name="date_from" placeholder="" class="date_issued1">
 								<input type="text" for="date_nn" name="date_from" class="dummy_date_text1" id="date_nn">
 							</div>
-							<div class="main_frm_fields">
+							<div class="main_frm_fields customfff">
 								<label for="TO 12:00 NN">TO 12:00 NN</label>
-								<input type="date" name="date_to" placeholder="" class="date_issued2" readonly>
+								<input type="date" name="date_to" placeholder="" class="date_issued2" >
 								<input type="text" name="date_to" class="dummy_date_text2" id="date_end" readonly>
 							</div>
 							<div class="main_frm_fields">
