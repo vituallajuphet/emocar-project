@@ -141,7 +141,7 @@ $(document).ready(function(){
             $('#or_misc').val('200');
             $('#or_total').val('1550');
             $('#or_total_text').text('ONE THOUSAND FIVE HUNDRED FIFTY ONLY');
-            $('#pol_others').val('300');
+            $('#pol_others').val('250');
             $('#pol_docs_stamp').val('50');
             $('#pol_lgt').val('50');
         }
