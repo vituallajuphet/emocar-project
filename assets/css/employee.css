@@ -734,6 +734,9 @@ main {
 
 .opacity_formed {
   opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .print_or {
