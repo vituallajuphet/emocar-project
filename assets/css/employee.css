@@ -732,6 +732,10 @@ main {
   width: 85% !important;
 }
 
+.opacity_formed {
+  opacity: 0;
+}
+
 .print_or {
   text-align: right;
   padding: 0 30px 30px; }
