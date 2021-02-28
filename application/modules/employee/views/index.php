@@ -79,7 +79,7 @@
 						<div class="form_sec">
 							<div class="main_frm_fields">
 								<label for="DATE ISSUED">DATE ISSUED</label>
-								<input type="date" name="date_issued" placeholder="" class="date_issued" readonly>
+								<input type="date" class="opacity_formed" name="date_issued" placeholder="" class="date_issued" readonly>
 								<input type="text" name="date_issued" class="dummy_date_text" id="date_final_get" readonly>
 							</div>
 							<div class="main_frm_fields customfff">
