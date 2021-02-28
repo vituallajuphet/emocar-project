@@ -724,7 +724,13 @@ main {
   bottom: 0;
   left: 0;
   right: 0;
-  opacity: 0; }
+  }
+
+.dummy_date_text1, .dummy_date_text2 {
+  position: relative;
+  z-index: 45;
+  width: 85% !important;
+}
 
 .print_or {
   text-align: right;
