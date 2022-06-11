@@ -61,9 +61,9 @@ class Employee extends MY_Controller {
 				);
 			}
 			
-			$res = insertData("tbl_transactions", $data);
+			$id = insertData("tbl_transactions", $data);
 
-			$response = ["status" => "success", "message" => "Saved Successfully!"];
+			$response = ["status" => "success", "message" => "Saved Successfully!", "id" =>$id ];
 
 			echo json_encode($response);
 
@@ -79,6 +79,7 @@ class Employee extends MY_Controller {
 	
 		return $res;
 	}
+
 
 
 	public function search_policy (){

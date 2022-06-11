@@ -2,8 +2,21 @@
 function alertConfirm(msg, confirmed ){
     alertify.confirm(msg,
     function(){
-        confirmed()
+      confirmed()
     }).setHeader("<i class='fa fa-question-circle'></i> Confirmation")
+}
+
+function printSaveConfirm(msg, callback ){
+    alertify.alert("",function(){
+        callback()
+    })
+    .setHeader("<i class='fa fa-question-circle'></i> Confirmation")
+    .setContent(`
+        <div class='entryBtnDiv'>
+        <button class='entryBtn' id="printSaveBtn"><i class="fa fa-save"></i> Save and Print</button>
+        <button class='entryBtn' id="printOnlyBtn"> <i class="fa fa-print"></i> Print Only</button>
+        </div>
+    `).show()
 }
 
 function successMessage(msg){

@@ -120,8 +120,14 @@ $(document).ready(function(){
 
     $("#printOr").click(function(){
 
-        const trans_id = $(".hidden_trans_id").val();
+        let printing = true;
 
+        printSaveConfirm("", function(){ printing = false })        
+        
+    })
+
+    function printOR (useTransId=true, tr_id=0) {
+        const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
         if(trans_id != 0 && trans_id != undefined) {
 
             axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1`).then(res => {
@@ -163,6 +169,7 @@ $(document).ready(function(){
                     setTimeout(() => {
                         $("#print_OR").printElement();
                         $("#print_OR").hide();
+                        alertify.alert().close()
                     }, 1000);
                 }
                 
@@ -171,8 +178,9 @@ $(document).ready(function(){
         else{
             errorMessage("Please search a policy first!")
         }
-        
-    })
+    }
+
+    
 
     $("#printCOC").click(function(){
 
@@ -219,8 +227,6 @@ $(document).ready(function(){
     $("#printPolicy").click(function(){
         
         let  slectab =  $(".mn_heading_tabs ul li.active").html();
-
-        console.log(slectab)
 
         const trans_id = $(".hidden_trans_id").val();
 
@@ -282,6 +288,19 @@ $(document).ready(function(){
         }  
     })
 
+    $(document).on('click', '#printSaveBtn', () =>{
+        $(".form_field_emocar input[type='submit']").trigger('click');
+    })
+
+    $(".form_field_emocar").submit(function(e){
+        const options={saveOnly:true, callback: printOR}
+        submitGlobal(e,options)
+    })
+    $(document).on('click', '#printOnlyBtn', () =>{
+        printOR(true);
+        alertify.alert().close()
+    })
+
 
     $(".buttonSearch").click(function(){
         
@@ -306,5 +325,8 @@ $(document).ready(function(){
     var tomorrow = new Date();
     tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));       
     document.getElementById("spanDate").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate()+ ", " + tomorrow.getFullYear();
+
+    
+
 
 })

@@ -135,10 +135,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return $res;
     }
 
-    function insertData($tbl ="", $data = array()){
+    function insertData($tbl ="", $data = array(), $getID = false){
         $ci = & get_instance();
         $res=  $ci->MY_Model->insert($tbl, $data);
-        return $res;
+        $latestID = $ci->db->insert_id();
+        
+        return $getID ? $latestID : $res;
+
     }
 
     function getNextId($tblName ="" ){
