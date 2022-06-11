@@ -6,15 +6,15 @@ function alertConfirm(msg, confirmed ){
     }).setHeader("<i class='fa fa-question-circle'></i> Confirmation")
 }
 
-function printSaveConfirm(msg, callback ){
+function printSaveConfirm(msg, callback, headerContent="", customID={id1:'printSaveBtn', id2:'printOnlyBtn'} ){
     alertify.alert("",function(){
         callback()
     })
-    .setHeader("<i class='fa fa-question-circle'></i> Confirmation")
+    .setHeader(!!headerContent ? headerContent : "<i class='fa fa-question-circle'></i> Confirmation")
     .setContent(`
         <div class='entryBtnDiv'>
-        <button class='entryBtn' id="printSaveBtn"><i class="fa fa-save"></i> Save and Print</button>
-        <button class='entryBtn' id="printOnlyBtn"> <i class="fa fa-print"></i> Print Only</button>
+        <button class='entryBtn' id="${customID.id1}"><i class="fa fa-save"></i> Save and Print</button>
+        <button class='entryBtn' id="${customID.id2}"> <i class="fa fa-print"></i> Print Only</button>
         </div>
     `).show()
 }

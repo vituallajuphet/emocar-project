@@ -1,6 +1,8 @@
 
 $(document).ready(function(){
 
+    let selectedPrinting = ''
+
     function convertDate(the_date, get_type = ""){
 
         let ret_date;
@@ -119,11 +121,8 @@ $(document).ready(function(){
     }
 
     $("#printOr").click(function(){
-
-        let printing = true;
-
-        printSaveConfirm("", function(){ printing = false })        
-        
+        selectedPrinting = "OR"
+        printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print OR Confirmation")        
     })
 
     function printOR (useTransId=true, tr_id=0) {
@@ -183,8 +182,12 @@ $(document).ready(function(){
     
 
     $("#printCOC").click(function(){
+        selectedPrinting = "COC"
+        printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print COC Confirmation", {id1: "printSaveBtnCOC", id2: 'printOnlyBtnCOC'})        
+    })
 
-        const trans_id = $(".hidden_trans_id").val();
+    function printCOC (useTransId=true, tr_id=0) {
+        const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
 
         if(trans_id != 0 && trans_id != undefined) {
 
@@ -214,6 +217,7 @@ $(document).ready(function(){
                     setTimeout(() => {
                         $("#printCOC_elem").printElement();
                         $("#printCOC_elem").hide();
+                        alertify.alert().close()
                     }, 1000);
                 }
                 
@@ -222,13 +226,19 @@ $(document).ready(function(){
         else{
             errorMessage("Please search a policy first!")
         }
-    })
+    }
 
     $("#printPolicy").click(function(){
-        
+        selectedPrinting = "POLICY"
+        printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print Policy Confirmation", {id1: "printSaveBtnPolicy", id2: 'printOnlyBtnPolicy'})        
+    })
+
+
+    function printPolicy (useTransId=true, tr_id=0) {
+            
         let  slectab =  $(".mn_heading_tabs ul li.active").html();
 
-        const trans_id = $(".hidden_trans_id").val();
+        const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
 
         if(trans_id != 0 && trans_id != undefined) {
 
@@ -270,6 +280,7 @@ $(document).ready(function(){
                         setTimeout(() => {
                             $("#print_Policy_elem").printElement();
                             $("#print_Policy_elem").hide();
+                            alertify.alert().close()
                         }, 1000);
                     }
                     else if(slectab =="MOTORCYCLE (MC)" || slectab == "TRICYCLE (TC-Hire)" || slectab == "TRAILER"){
@@ -277,6 +288,7 @@ $(document).ready(function(){
                         setTimeout(() => {
                             $("#print_Policy_elem_motor").printElement();
                             $("#print_Policy_elem_motor").hide();
+                            alertify.alert().close()
                         }, 1000);
                     }  
                 }
@@ -286,18 +298,53 @@ $(document).ready(function(){
         else{
             errorMessage("Please search a policy first!")
         }  
-    })
+    }
 
     $(document).on('click', '#printSaveBtn', () =>{
         $(".form_field_emocar input[type='submit']").trigger('click');
     })
 
+    //submit print and save for OR
+
     $(".form_field_emocar").submit(function(e){
-        const options={saveOnly:true, callback: printOR}
+        let callback = undefined
+        switch (selectedPrinting) {
+            case "COC":
+                callback = printCOC
+                break;
+            case "OR":
+                callback = printOR
+                break;
+            case "POLICY":
+                callback = printPolicy
+                    break;
+            default:
+                callback = undefined
+                break;
+        }
+        const options={saveOnly:true, callback: callback}
         submitGlobal(e,options)
     })
     $(document).on('click', '#printOnlyBtn', () =>{
         printOR(true);
+        alertify.alert().close()
+    })
+
+    $(document).on('click', '#printSaveBtnCOC', () =>{
+        $(".form_field_emocar input[type='submit']").trigger('click');
+    })
+
+    $(document).on('click', '#printOnlyBtnCOC', () =>{
+        printCOC(true);
+        alertify.alert().close()
+    })
+
+    $(document).on('click', '#printSaveBtnPolicy', () =>{
+        $(".form_field_emocar input[type='submit']").trigger('click');
+    })
+
+    $(document).on('click', '#printOnlyBtnPolicy', () =>{
+        printPolicy(true);
         alertify.alert().close()
     })
 
