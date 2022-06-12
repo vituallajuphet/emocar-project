@@ -133,6 +133,7 @@
 							</div>
 							<div class="form_box">
 								<input type="submit" name="submit" value="Submit">
+								<button type='submit'>Submit</button>
 							</div>
 						</form>
 					</div>
