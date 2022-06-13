@@ -76,7 +76,6 @@ class Employee extends MY_Controller {
 			
 		$par ["where"] =" official_receipt = '$off_rec'";
 		$res = getData("tbl_transactions", $par);
-	
 		return $res;
 	}
 
@@ -94,11 +93,11 @@ class Employee extends MY_Controller {
 				$par["where"] = " (trans.mb_file_no = '$search_val' OR trans.plate_no = '$search_val') AND trans_type = '$tab_value'";
 			}
 
-
 			if(isset($_GET["search_by_id"])){
 				$search_val = $_GET["search_val"];
 				$par["where"] = " trans.trans_id = $search_val";
 			}
+			
 
 			if(!empty($search_val) ){
 				
@@ -110,12 +109,22 @@ class Employee extends MY_Controller {
 
 				$res = getData("tbl_transactions trans", $par);
 				if(!empty($res)){
-					$response = ["status" => "success", "data" => $res];
+					
+					$counts = $this->get_print_counts($res[0]["trans_id"]);
+					$response = ["status" => "success", "data" => $res, "counts" => $counts ];
 				}
 			}
 
 			echo json_encode($response);
 		}
+	}
+
+	private function get_print_counts ($trans_id) {
+		$par["select"] ="*";
+		$par["where"] = ["trans_id" => $trans_id, "status" => 1];
+
+		$res = getData("tbl_print_counts print", $par);
+		return $res;
 	}
 
 	public function api_check_transaction($off_rec){

@@ -201,6 +201,9 @@
 						<div class="check_field">
 							<input type="text" name="check_no" placeholder="Check Number" required>
 						</div>
+						<div class='counter-div'>
+							Print Counter: <span class='counter-value'>0</span>
+						</div>
 					</div>
 					<!-- end -->
 					<div class="print_sec">

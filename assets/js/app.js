@@ -168,8 +168,6 @@ $(document).ready(function(){
         
         let frmdata = $(".form_field_emocar").serialize();
 
-        console.log(options);
-
         alertConfirm("Are you sure to save this transaction?" , function(){
             axios.post(base_url+"employee/save_transaction/", frmdata).then(res =>{
                 ehide(".preloader");

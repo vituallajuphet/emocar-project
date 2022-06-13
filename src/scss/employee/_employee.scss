@@ -161,4 +161,15 @@ main {padding: 30px 20px;}
     }
 } 
 
-
+.counter-div{
+    display: flex;
+    
+    align-items: center;
+    font-size: 2rem;
+    margin: 3rem 0 0;
+    span{
+        font-size: 2rem;
+        color: #004001;
+        margin-left: 1rem;
+    }
+}
