@@ -821,6 +821,12 @@ main {
   display: none;
   margin: 5px 0 0; }
 
+.entryBtn {
+  padding: .7rem 1rem;
+  background-color: green;
+  color: #fff;
+  border: none; }
+
 .header_form {
   display: flex;
   justify-content: space-between; }

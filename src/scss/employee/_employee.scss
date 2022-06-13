@@ -116,6 +116,13 @@ main {padding: 30px 20px;}
 
 .check_field{display: none;margin: 5px 0 0;}
 
+.entryBtn{
+    padding: .7rem 1rem;
+    background-color: green;
+    color:#fff;
+    border: none;
+}
+
 .header_form{display: flex;justify-content: space-between;}
 .search_bar_cont{}
 .search_bar_cont input{display: block; width: 241px; border: 1px solid gray; font-family: inherit; padding: 5px; font-size: 15px;}

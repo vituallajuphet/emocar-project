@@ -145,20 +145,4 @@ class Employee extends MY_Controller {
 
 	}
 
-	public function api_check_printcounts($id){
-		
-		if(is_ajaxs()){
-
-			$resp = ["status"=> "error", "message" => ""];
-
-			$par["where"] = ["trans_id" => $id, "status" => 1];
-
-			$res=getData("tbl_print_counts", $par, "obj");
-
-			echo json_encode($res);
-
-		}
-
-	}
-
 }
