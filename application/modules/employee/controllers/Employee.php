@@ -62,18 +62,14 @@ class Employee extends MY_Controller {
 			}
 			
 			$id = insertData("tbl_transactions", $data);
-
 			$response = ["status" => "success", "message" => "Saved Successfully!", "id" =>$id ];
-
 			echo json_encode($response);
-
 		}
 
 	
 	}
 
 	private function is_transaction_exists ($off_rec){
-			
 		$par ["where"] =" official_receipt = '$off_rec'";
 		$res = getData("tbl_transactions", $par);
 		return $res;
@@ -108,9 +104,24 @@ class Employee extends MY_Controller {
 				$par["select"] ="*, trans.address as t_address";
 
 				$res = getData("tbl_transactions trans", $par);
+				
+				if(!empty($_GET["print"])){
+					$printData = [
+						"trans_id"=> $res[0]["trans_id"],
+						"print_counts" => 1,
+						"status" => 1,
+						"print_data" => json_encode([
+							"user_id" => $res[0]["fk_user_id"]
+						])
+					];
+					
+					$id = insertData("tbl_print_counts", $printData);
+				}
+				
 				if(!empty($res)){
 					
 					$counts = $this->get_print_counts($res[0]["trans_id"]);
+					
 					$response = ["status" => "success", "data" => $res, "counts" => $counts ];
 				}
 			}
@@ -130,9 +141,7 @@ class Employee extends MY_Controller {
 	public function api_check_transaction($off_rec){
 		
 		if(is_ajaxs()){
-
 			$resp = ["status"=> "error", "message" => ""];
-
 			if($this->is_transaction_exists($off_rec)){
 				$resp = ["status"=> "error", "message" => "Transaction already recorded. Please contact the administrator!"];
 			}else{

@@ -97,6 +97,7 @@ $(document).ready(function(){
                     $("input[name='lg_tax']").val(dta.lg_tax)
                     $("input[name='series_no']").val(dta.series_no)
                     $("textarea[name='the_sum_of_pesos']").val(dta.the_sum_of_pesos)
+                    $(".counter-value").html(res.data.counts.length)
                 }
                 else{
                     $(".hidden_trans_id").val(0)
@@ -129,49 +130,51 @@ $(document).ready(function(){
         const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
         if(trans_id != 0 && trans_id != undefined) {
 
-            axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1`).then(res => {
-                $("#print_OR").show();
-
-                if(res.data.status == "success"){
-                    const dta = res.data.data[0];
-
-                    const amt_of_cov = 100000;
-
-                    $("#date_trans").html(convertDate(dta.date_issued));
-                    $("#trans_rec_from").html(dta.received_from);
-                    $("#trans_address").html(ucFirst(dta.t_address));
-                    $("#trans_amount_text").html(dta.the_sum_of_pesos);
-                    $("#trans_amount_of_cov").html(numberWithCommas(amt_of_cov));
-                    $("#trans_policy").html(dta.policy_no);
-                    $("#trans_date_from_month").html(convertDate(dta.date_from, "month"));
-                    $("#trans_date_from_day").html(convertDate(dta.date_from, "day")  +", ");
-                    $("#trans_date_from_year").html(convertDate(dta.date_from, "year"));
-                    $("#trans_date_to_month").html(convertDate(dta.date_to, "month"));
-                    $("#trans_date_to_day").html(convertDate(dta.date_to, "day") +", ");
-                    $("#trans_date_to_year").html(convertDate(dta.date_to, "year"));
-
-                    $("#trans_prem").html(numberWithCommas(dta.premium_sales));
-                    $("#trans_doc_stamp").html(numberWithCommas(dta.docs_stamp));
-                    $("#trans_tax").html(numberWithCommas(dta.lg_tax));
-                    $("#trans_misc").html(numberWithCommas(dta.misc));
-                    $("#trans_total").html(numberWithCommas(dta.or_total));
-                    $("#pcocplate").html(dta.plate_no);
-                    
-                    let html_elm = `<div style="font-size:18px;margin-top:35px">&check;</div>`;
-
-                    if(dta.paid_type == "Check"){
-                        html_elm = `<div style="margin-left:90px;font-size:12px;margin-top:40px">${dta.check_no}</div>`;
-                    }
-            
-                    $("#trans_paid_type").html(html_elm)
-                    
-                    setTimeout(() => {
-                        $("#print_OR").printElement();
-                        $("#print_OR").hide();
-                        alertify.alert().close()
-                    }, 1000);
-                }
+            alertConfirm("It will add print count once printed, do you want to proceed?", function (){
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+                    $("#print_OR").show();
+    
+                    if(res.data.status == "success"){
+                        const dta = res.data.data[0];
+    
+                        const amt_of_cov = 100000;
+    
+                        $("#date_trans").html(convertDate(dta.date_issued));
+                        $("#trans_rec_from").html(dta.received_from);
+                        $("#trans_address").html(ucFirst(dta.t_address));
+                        $("#trans_amount_text").html(dta.the_sum_of_pesos);
+                        $("#trans_amount_of_cov").html(numberWithCommas(amt_of_cov));
+                        $("#trans_policy").html(dta.policy_no);
+                        $("#trans_date_from_month").html(convertDate(dta.date_from, "month"));
+                        $("#trans_date_from_day").html(convertDate(dta.date_from, "day")  +", ");
+                        $("#trans_date_from_year").html(convertDate(dta.date_from, "year"));
+                        $("#trans_date_to_month").html(convertDate(dta.date_to, "month"));
+                        $("#trans_date_to_day").html(convertDate(dta.date_to, "day") +", ");
+                        $("#trans_date_to_year").html(convertDate(dta.date_to, "year"));
+    
+                        $("#trans_prem").html(numberWithCommas(dta.premium_sales));
+                        $("#trans_doc_stamp").html(numberWithCommas(dta.docs_stamp));
+                        $("#trans_tax").html(numberWithCommas(dta.lg_tax));
+                        $("#trans_misc").html(numberWithCommas(dta.misc));
+                        $("#trans_total").html(numberWithCommas(dta.or_total));
+                        $("#pcocplate").html(dta.plate_no);
+                        
+                        let html_elm = `<div style="font-size:18px;margin-top:35px">&check;</div>`;
+    
+                        if(dta.paid_type == "Check"){
+                            html_elm = `<div style="margin-left:90px;font-size:12px;margin-top:40px">${dta.check_no}</div>`;
+                        }
                 
+                        $("#trans_paid_type").html(html_elm)
+                        
+                        setTimeout(() => {
+                            $("#print_OR").printElement();
+                            $("#print_OR").hide();
+                            alertify.alert().close()
+                        }, 1000);
+                    }
+                    
+                })
             })
         }
         else{
