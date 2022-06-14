@@ -138,6 +138,16 @@ class Employee extends MY_Controller {
 		return $res;
 	}
 
+	public function send_code (){
+		if(is_ajaxs()){
+			$id = get_user_id();
+			
+			$res = ["id" => $id, "code" => rand(100000, 999999)];
+
+			echo json_encode($res);
+		}
+	}
+
 	public function api_check_transaction($off_rec){
 		
 		if(is_ajaxs()){

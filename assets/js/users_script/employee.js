@@ -121,6 +121,7 @@ $(document).ready(function(){
         return res;
     }
 
+    
     $("#printOr").click(function(){
         selectedPrinting = "OR"
         printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print OR Confirmation")        
@@ -128,11 +129,15 @@ $(document).ready(function(){
 
     function printOR (useTransId=true, tr_id=0) {
         const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
+        $("#modal_code").modal();
+
+       return
         if(trans_id != 0 && trans_id != undefined) {
 
             alertConfirm("It will add print count once printed, do you want to proceed?", function (){
                 axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
                     $("#print_OR").show();
+                    
     
                     if(res.data.status == "success"){
                         const dta = res.data.data[0];
@@ -364,6 +369,13 @@ $(document).ready(function(){
         
         search_process(search_val, true, tab_value);
 
+    })
+
+
+    $("#btnSendCode").on('click', function(){
+        axios.post(`${base_url}employee/send_code`).then(res => {
+            console.log(res);
+        })
     })
 
     const ucFirst = (s) => {

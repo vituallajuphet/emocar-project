@@ -101,7 +101,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if($ci->session->has_userdata("user_id")){
             return $ci->session->userdata("user_id");
         }
-        exit;
     }
 
     function get_post(){

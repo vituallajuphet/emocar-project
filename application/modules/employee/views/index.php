@@ -1,5 +1,6 @@
 <?php
 	$this->load->view("print_elements");
+	$this->load->view("modal/modal");
 ?>
 <main>
 		<div class="main_area">
