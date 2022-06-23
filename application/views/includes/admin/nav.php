@@ -18,6 +18,7 @@
 			<li class="<?= ($route == "admin_location") ? 'active' :''  ?>"><a href="<?=base_url("admin_location")?>"><i class="fa fa-map-marker"></i> Locations</a></li>
 			<li class="<?= ($route == "admin_branches") ? 'active' :''  ?>"><a href="<?=base_url("admin_branches")?>"><i class="fa fa-map"></i> Branches</a></li>
 			<li class="<?= ($route == "admin_agent_policies") ? 'active' :''  ?>"><a href="<?=base_url("admin_agent_policies")?>"><i class="fa fa-list"></i> Agent Policies</a></li>
+			<li class="<?= ($route == "admin_verification") ? 'active' :''  ?>"><a href="<?=base_url("admin_verification")?>"><i class="fa fa-code"></i> Verification Code</a></li>
 		</ul>
 	</nav>
 	<div class="nav_userinfo">

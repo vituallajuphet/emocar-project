@@ -322,6 +322,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "admin_policies",
                 "my_profile",
                 "admin_location",
+                "admin_verification",
                 "admin_branches",
                 "admin_use_trust",
                 "admin_archived",
@@ -341,7 +342,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "global_api",
                 "process_register",
                 "my_profile",
-                "api_agent"
+                "api_generate_code"
             );
             
             $tabs_agent = array(

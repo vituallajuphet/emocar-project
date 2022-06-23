@@ -649,3 +649,19 @@ table tr {
 
 #print_OR {
   display: none; }
+
+.verification_cont {
+  padding: 2rem; }
+  .verification_cont .btnContainer {
+    display: flex;
+    justify-content: flex-end; }
+  .verification_cont .the_code_cont {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem; }
+  .verification_cont .code_cont span {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #6cc00c; }

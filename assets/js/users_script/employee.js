@@ -373,8 +373,10 @@ $(document).ready(function(){
 
 
     $("#btnSendCode").on('click', function(){
-        axios.post(`${base_url}employee/send_code`).then(res => {
-            console.log(res);
+        axios.post(`${base_url}api_generate_code`).then(res => {
+            if(res.data.status == 'success'){
+                successMessage("Successfully Sent!");
+            }
         })
     })
 

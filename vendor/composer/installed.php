@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'db189a5135819f6fc3087fb8ee7179b804c37351',
+    'reference' => 'aa2d87ae20a0b24de4c73d555453a6ac9d14596b',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'db189a5135819f6fc3087fb8ee7179b804c37351',
+      'reference' => 'aa2d87ae20a0b24de4c73d555453a6ac9d14596b',
     ),
     'firebase/php-jwt' => 
     array (
@@ -28,6 +28,15 @@
       array (
       ),
       'reference' => 'feb0e820b8436873675fd3aca04f3728eb2185cb',
+    ),
+    'twilio/sdk' => 
+    array (
+      'pretty_version' => '6.37.3',
+      'version' => '6.37.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '91f1d939596ba8976b4be09ea634a1bab3a4cb7f',
     ),
   ),
 );
