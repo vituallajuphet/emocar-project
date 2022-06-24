@@ -55,7 +55,7 @@ class Admin_verification extends MY_Controller {
 
 
 	private function generate_code($length) {
-		$characters = '0123456789abcdefghijklmnopqrs092u3tuvwxyzaskdhfhf9882323ABCDEFGHIJKLMNksadf9044OPQRSTUVWXYZ';
+		$characters = '0123456789';
 		$charactersLength = strlen($characters);
 		$randomString = '';
 		for ($i = 0; $i < $length; $i++) {

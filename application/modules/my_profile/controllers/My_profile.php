@@ -31,6 +31,7 @@ class My_profile extends MY_Controller {
 						"last_name"		=> ucfirst($post->lname),
 						"address"		=> ucfirst($post->address),
 						"birth_date"	=> $post->bday,
+						"contact_no"	=> $post->contact_no,
 						"gender"		=> $post->gender,
 					);
 					$where	= array("fk_user_id" => $user_id);

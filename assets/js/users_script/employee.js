@@ -2,6 +2,7 @@
 $(document).ready(function(){
 
     let selectedPrinting = ''
+    let printCount = 0;
 
     function convertDate(the_date, get_type = ""){
 
@@ -51,7 +52,7 @@ $(document).ready(function(){
     function search_process (search_val, show_err = false, tab_value=""){
         if( (search_val != "" && search_val != undefined) &&
             tab_value != "" && tab_value != undefined){
-
+            printCount =0;
             const url_value = `?search_val=${search_val}&tab_value=${tab_value}`;
 
             axios.get(`${base_url}employee/search_policy${url_value}`).then(res => {
@@ -98,6 +99,7 @@ $(document).ready(function(){
                     $("input[name='series_no']").val(dta.series_no)
                     $("textarea[name='the_sum_of_pesos']").val(dta.the_sum_of_pesos)
                     $(".counter-value").html(res.data.counts.length)
+                    printCount = res.data.counts.length; 
                 }
                 else{
                     $(".hidden_trans_id").val(0)
@@ -129,9 +131,11 @@ $(document).ready(function(){
 
     function printOR (useTransId=true, tr_id=0) {
         const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
-        $("#modal_code").modal();
+        if(printCount !== 0 ){
+            $("#modal_code").modal();
+            return false;
+        }
 
-       return
         if(trans_id != 0 && trans_id != undefined) {
 
             alertConfirm("It will add print count once printed, do you want to proceed?", function (){
@@ -196,6 +200,11 @@ $(document).ready(function(){
 
     function printCOC (useTransId=true, tr_id=0) {
         const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
+
+        if(printCount !== 0 ){
+            $("#modal_code").modal();
+            return false;
+        }
 
         if(trans_id != 0 && trans_id != undefined) {
 
@@ -371,11 +380,61 @@ $(document).ready(function(){
 
     })
 
+    let btnState = 'success';
 
     $("#btnSendCode").on('click', function(){
-        axios.post(`${base_url}api_generate_code`).then(res => {
+        let self = $(this);
+        if(btnState ==="success"){
+            btnState = "loading"
+            axios.post(`${base_url}api_generate_code`).then(res => {
+                if(res.data.status == 'success'){
+                    successMessage("Successfully Sent!");
+                    $(".form-verification").show()
+                    let sec = 15;
+                    const times = setInterval(() => {
+                        self.html("<i class='fa fa-send'></i> Resend in "+sec)
+                        sec -= 1;
+                        if(sec === 0 || btnState === 'success'){
+                            clearInterval(times)
+                            self.html("<i class='fa fa-send'></i> Resend Code ")
+                            btnState = "success"
+                        }
+                    }, 1000)
+                }
+            })
+        }
+        
+    })
+
+    $("#form_verification_code").submit((e) => {
+        e.preventDefault();
+        const frmdata = new FormData()
+        frmdata.append("code", $(".code-inputfield").val())
+
+        axios.post(`${base_url}api_generate_code/verify_code`, frmdata).then(res => {
             if(res.data.status == 'success'){
-                successMessage("Successfully Sent!");
+                $("#btnSendCode").html("<i class='fa fa-send'></i> Send Code to Admin ")
+                $(".form-verification").hide()
+                $("#modal_code").modal('hide')
+                alertify.alert().close(); 
+                btnState ='success'
+                successMessage("Verified");
+                printCount = 0;
+                switch (selectedPrinting) {
+                    case "COC":
+                        printCOC(true)
+                        break;
+                    case "OR":
+                        printOR(true)
+                        break;
+                    case "POLICY":
+                        printPolicy(true)
+                            break;
+                    default:
+                        break;
+                }
+            }else{
+                errorMessage("Not Verified!");
             }
         })
     })

@@ -17,6 +17,7 @@ class Api_generate_code extends MY_Controller {
     public function __construct(){
         
         parent::__construct();
+        $this->formatNumber(get_user_contact(true));
 
     }
 
@@ -25,7 +26,25 @@ class Api_generate_code extends MY_Controller {
          $this->generate_newcode();
     }
 
-    public function generate_newcode(){
+    public function verify_code(){
+        if(is_ajaxs()){
+            $response = ["status" => "error"];
+            if(!empty($_POST["code"])){
+                $par["select"] ="*";
+                $par["order"] = "id DESC";
+                $par["limit2"] = [1];
+                $res = getData("tbl_verification_code", $par);
+                if($res[0]['code'] == $_POST["code"]){
+                    $response = ["status" => "success"];
+                    $this->generate_newcode(false);
+                }
+            }
+            
+            echo json_encode($response);
+        }
+    }
+
+    public function generate_newcode($sendMessage =true){
 
         $code = $this->generate_code(6);
 
@@ -40,25 +59,22 @@ class Api_generate_code extends MY_Controller {
         $res = insertData("tbl_verification_code",  $data);
 
         $account_sid = 'AC3d5057fe0d7540e730a0a6a3b60f56a8';
-        $auth_token = '653a2866a09c094e19296d9aa412a26b';
-        // In production, these should be environment variables. E.g.:
-        // $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
-
-        // A Twilio number you own with SMS capabilities
+        $auth_token = '1bffbb550e024649008ce24c5144a929';
         $twilio_number = "+19785413794";
 
-        $client = new Client($account_sid, $auth_token);
-        $client->messages->create(
-            // Where to send a text message (your cell phone?)
-            '+639058927403',
-            array(
-                'from' => $twilio_number,
-                'body' => 'verification code is: '.$code.'           from: emocarinsurancebrokerage.com'
-            )
-        );
-
-        $response = ["status" => "success"];
-        echo json_encode($response);
+        if($sendMessage){
+            $client = new Client($account_sid, $auth_token);
+            $client->messages->create(
+                // Where to send a text message (your cell phone?)
+                $this->formatNumber(get_user_contact())."",
+                array(
+                    'from' => $twilio_number,
+                    'body' => 'verification code is: '.$code.'           from: emocarinsurancebrokerage.com'
+                )
+            );
+            $response = ["status" => "success"];
+            echo json_encode($response);    
+        }
         
 	}
 
@@ -72,5 +88,15 @@ class Api_generate_code extends MY_Controller {
 		return $randomString;
 	}
 
+
+    private function formatNumber($number) {
+        if(!empty($number)){
+            if(empty(strpos($number, '+63'))){
+                return "+63".substr($number, 1);
+            }
+        }
+        return $number;
+
+    }
     
 }

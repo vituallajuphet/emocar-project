@@ -478,6 +478,12 @@ nav ul li a:hover {
 nav ul li.active a {
   background: #004001; }
 
+.code-inputfield {
+  padding: 0.3rem;
+  max-width: 300px;
+  border: 1px solid green;
+  border-radius: 5px; }
+
 #dash_right_info {
   width: calc(100% - 250px);
   margin-left: 250px; }
@@ -949,3 +955,6 @@ table tr {
   margin: 0 0 2em; }
   .footer ul {
     font-size: 1.2em; }
+
+.form-verification {
+  display: none; }

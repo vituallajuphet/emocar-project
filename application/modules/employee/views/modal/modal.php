@@ -18,14 +18,11 @@
             <div class='text-center'>
                 <Button id="btnSendCode" class="btn btn-success"><i class='fa fa-send'></i> Send Code to Admin</Button>
             </div>
-            <div class=''>
-                <div class='mt-4'>
-                  <p class='text-center text-lg text-success'>Successfully Sent</p>
-                </div>
-                <form action="#" class='mt-4'>
+            <div class='form-verification'>
+                <form id="form_verification_code" action="#" class='mt-4'>
                   <div class='text-center'>
-                  <input class='code-inputfield' type="text" class='form-control'>
-                  <Button class='btn btn-success'><i class='fa fa-check'></i> Verify Code</Button>
+                  <input class='code-inputfield' required type="text" class='form-control'>
+                  <Button class='btn btn-success btnVerifyCode' type="submit"><i class='fa fa-check'></i> Verify Code</Button>
                   </div>
                 </form>
             </div>

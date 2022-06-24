@@ -12,6 +12,7 @@ var app = new Vue({
             gender:"",
             username:"",
             password:"",
+            contact_no:"",
             con_password:"",
             user_type:2,
           },
@@ -95,6 +96,7 @@ var app = new Vue({
                 self.frmdata.username   = dta.username;
                 self.frmdata.user_id    = dta.fk_user_id;
                 self.frmdata.user_type  = dta.user_type;
+                self.frmdata.contact_no = dta.contact_no;
                 self.frmdata.password   = "";
                 self.profile_picture       = dta.profile_name;
 

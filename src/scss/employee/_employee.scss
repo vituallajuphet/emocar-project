@@ -19,8 +19,10 @@ nav ul li a:hover {background: #004001;}
 nav ul li.active a {background: #004001;}
 
 .code-inputfield{
-    padding: 1rem;
+    padding: 0.3rem;
     max-width: 300px;
+    border: 1px solid green;
+    border-radius: 5px;
 }
 
 #dash_right_info {width: calc(100% - 250px);margin-left: 250px;}

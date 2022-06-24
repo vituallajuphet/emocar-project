@@ -36,6 +36,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
     }
 
+    function get_user_contact($admin=false) {
+        $ci = & get_instance();
+        if($admin){
+            return $ci->session->userdata("contact_no");
+        }else{
+            $par["where"] = "fk_user_id =1";
+            $res = getData("user_meta u_meta", $par);
+
+            return $res[0]["contact_no"];
+        }
+    }
+
     function getUserData($show_pass = false){
         $ci = & get_instance();
         
