@@ -4,8 +4,8 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: *");
 header("Access-Control-Allow-Headers: *");
 
-require($_SERVER["DOCUMENT_ROOT"] . '/emocar/vendor/autoload.php');
-use Twilio\Rest\Client;
+// require($_SERVER["DOCUMENT_ROOT"] . '/emocar/vendor/autoload.php');
+// use Twilio\Rest\Client;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
