@@ -63,15 +63,15 @@ class Api_generate_code extends MY_Controller {
         $twilio_number = "+19785413794";
 
         if($sendMessage){
-            $client = new Client($account_sid, $auth_token);
-            $client->messages->create(
-                // Where to send a text message (your cell phone?)
-                $this->formatNumber(get_user_contact())."",
-                array(
-                    'from' => $twilio_number,
-                    'body' => 'verification code is: '.$code.'           from: emocarinsurancebrokerage.com'
-                )
-            );
+            // $client = new Client($account_sid, $auth_token);
+            // $client->messages->create(
+            //     // Where to send a text message (your cell phone?)
+            //     $this->formatNumber(get_user_contact())."",
+            //     array(
+            //         'from' => $twilio_number,
+            //         'body' => 'verification code is: '.$code.'           from: emocarinsurancebrokerage.com'
+            //     )
+            // );
             $response = ["status" => "success"];
             echo json_encode($response);    
         }
