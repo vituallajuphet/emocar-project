@@ -56,15 +56,20 @@
                         <input name="username" v-model="frmdata.username" required type="text" class="form-control">
                     </div>
                     <div class="col-md-4">
-                        <label for="">Old Password</label>
-                        <input name="password" v-model="frmdata.password" required type="password" class="form-control">
+                        <label for="">Phone Number</label>
+                        <input name="contact_no" v-model="frmdata.contact_no" required type="text" class="form-control">
                     </div>
                 </div>
                 <div class="row">
+                <div class="col-md-4">
+                        <label for="">Old Password</label>
+                        <input name="password" v-model="frmdata.password" required type="password" class="form-control">
+                    </div>
                     <div class="col-md-4">
                         <label for="">New Password</label>
                         <input name="con_password" v-model="frmdata.con_password" required type="password" class="form-control">
                     </div>
+
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12 text-right">

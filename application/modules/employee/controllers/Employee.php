@@ -61,24 +61,20 @@ class Employee extends MY_Controller {
 				);
 			}
 			
-			$res = insertData("tbl_transactions", $data);
-
-			$response = ["status" => "success", "message" => "Saved Successfully!"];
-
+			$id = insertData("tbl_transactions", $data);
+			$response = ["status" => "success", "message" => "Saved Successfully!", "id" =>$id ];
 			echo json_encode($response);
-
 		}
 
 	
 	}
 
 	private function is_transaction_exists ($off_rec){
-			
 		$par ["where"] =" official_receipt = '$off_rec'";
 		$res = getData("tbl_transactions", $par);
-	
 		return $res;
 	}
+
 
 
 	public function search_policy (){
@@ -93,11 +89,11 @@ class Employee extends MY_Controller {
 				$par["where"] = " (trans.mb_file_no = '$search_val' OR trans.plate_no = '$search_val') AND trans_type = '$tab_value'";
 			}
 
-
 			if(isset($_GET["search_by_id"])){
 				$search_val = $_GET["search_val"];
 				$par["where"] = " trans.trans_id = $search_val";
 			}
+			
 
 			if(!empty($search_val) ){
 				
@@ -108,8 +104,25 @@ class Employee extends MY_Controller {
 				$par["select"] ="*, trans.address as t_address";
 
 				$res = getData("tbl_transactions trans", $par);
+				
+				if(!empty($_GET["print"])){
+					$printData = [
+						"trans_id"=> $res[0]["trans_id"],
+						"print_counts" => 1,
+						"status" => 1,
+						"print_data" => json_encode([
+							"user_id" => $res[0]["fk_user_id"]
+						])
+					];
+					
+					$id = insertData("tbl_print_counts", $printData);
+				}
+				
 				if(!empty($res)){
-					$response = ["status" => "success", "data" => $res];
+					
+					$counts = $this->get_print_counts($res[0]["trans_id"]);
+					
+					$response = ["status" => "success", "data" => $res, "counts" => $counts ];
 				}
 			}
 
@@ -117,12 +130,28 @@ class Employee extends MY_Controller {
 		}
 	}
 
+	private function get_print_counts ($trans_id) {
+		$par["select"] ="*";
+		$par["where"] = ["trans_id" => $trans_id, "status" => 1];
+
+		$res = getData("tbl_print_counts print", $par);
+		return $res;
+	}
+
+	public function send_code (){
+		if(is_ajaxs()){
+			$id = get_user_id();
+			
+			$res = ["id" => $id, "code" => rand(100000, 999999)];
+
+			echo json_encode($res);
+		}
+	}
+
 	public function api_check_transaction($off_rec){
 		
 		if(is_ajaxs()){
-
 			$resp = ["status"=> "error", "message" => ""];
-
 			if($this->is_transaction_exists($off_rec)){
 				$resp = ["status"=> "error", "message" => "Transaction already recorded. Please contact the administrator!"];
 			}else{

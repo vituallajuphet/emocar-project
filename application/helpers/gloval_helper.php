@@ -36,6 +36,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
     }
 
+    function get_user_contact($admin=false) {
+        $ci = & get_instance();
+        if($admin){
+            return $ci->session->userdata("contact_no");
+        }else{
+            $par["where"] = "fk_user_id =1";
+            $res = getData("user_meta u_meta", $par);
+
+            return $res[0]["contact_no"];
+        }
+    }
+
     function getUserData($show_pass = false){
         $ci = & get_instance();
         
@@ -101,7 +113,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if($ci->session->has_userdata("user_id")){
             return $ci->session->userdata("user_id");
         }
-        exit;
     }
 
     function get_post(){
@@ -135,10 +146,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return $res;
     }
 
-    function insertData($tbl ="", $data = array()){
+    function insertData($tbl ="", $data = array(), $getID = false){
         $ci = & get_instance();
         $res=  $ci->MY_Model->insert($tbl, $data);
-        return $res;
+        $latestID = $ci->db->insert_id();
+        
+        return $getID ? $latestID : $res;
+
     }
 
     function getNextId($tblName ="" ){
@@ -320,6 +334,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "admin_policies",
                 "my_profile",
                 "admin_location",
+                "admin_verification",
                 "admin_branches",
                 "admin_use_trust",
                 "admin_archived",
@@ -339,7 +354,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "global_api",
                 "process_register",
                 "my_profile",
-                "api_agent"
+                "api_generate_code"
             );
             
             $tabs_agent = array(

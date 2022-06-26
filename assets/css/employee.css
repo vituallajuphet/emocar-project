@@ -478,6 +478,12 @@ nav ul li a:hover {
 nav ul li.active a {
   background: #004001; }
 
+.code-inputfield {
+  padding: 0.3rem;
+  max-width: 300px;
+  border: 1px solid green;
+  border-radius: 5px; }
+
 #dash_right_info {
   width: calc(100% - 250px);
   margin-left: 250px; }
@@ -724,20 +730,7 @@ main {
   bottom: 0;
   left: 0;
   right: 0;
-  }
-
-.dummy_date_text1, .dummy_date_text2 {
-  position: relative;
-  z-index: 45;
-  width: 85% !important;
-}
-
-.opacity_formed {
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+  opacity: 0; }
 
 .print_or {
   text-align: right;
@@ -834,6 +827,12 @@ main {
   display: none;
   margin: 5px 0 0; }
 
+.entryBtn {
+  padding: .7rem 1rem;
+  background-color: green;
+  color: #fff;
+  border: none; }
+
 .header_form {
   display: flex;
   justify-content: space-between; }
@@ -896,6 +895,16 @@ main {
   display: inline-block;
   margin-left: 5px; }
 
+.counter-div {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  margin: 3rem 0 0; }
+  .counter-div span {
+    font-size: 2rem;
+    color: #004001;
+    margin-left: 1rem; }
+
 #printCOC_elem {
   display: none; }
 
@@ -947,45 +956,5 @@ table tr {
   .footer ul {
     font-size: 1.2em; }
 
-
-.date_dues{
-      position: relative;
-     
-  }
-
-
-.customfff, .custdd{position: relative;}
-.dd_datefrm_cust{position: absolute;
-  left: 0;
-  width: 100%;
-  display: block;
-  bottom: 0;
-  opacity: 0;}
-
-  
-   /* #due_date_field2{
-    background: transparent;
-    color: transparent;
-    cursor: pointer;
-    height: auto;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: auto;
-    border: none;
-    width: 100%;
-    font-size: 13px;
-    height: 100%;
-
-}
-  
-#due_date_field2:focus{
-  outline: 0;
-  outline: none;
-  background: #fff;
-  color: #fff;
-  -webkit-user-select: none; 
-  /* -moz-user-select: none;   
-  -ms-user-select: none;      
-  user-select: none;          
-}  */
+.form-verification {
+  display: none; }

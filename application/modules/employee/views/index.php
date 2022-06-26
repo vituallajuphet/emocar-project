@@ -1,5 +1,6 @@
 <?php
 	$this->load->view("print_elements");
+	$this->load->view("modal/modal");
 ?>
 <main>
 		<div class="main_area">
@@ -200,6 +201,9 @@
 						<input type="radio" id="paid_type_check" name="paid_type" value="Check">
 						<div class="check_field">
 							<input type="text" name="check_no" placeholder="Check Number" required>
+						</div>
+						<div class='counter-div'>
+							Print Counter: <span class='counter-value'>0</span>
 						</div>
 					</div>
 					<!-- end -->

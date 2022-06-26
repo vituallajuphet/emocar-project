@@ -58,6 +58,7 @@ class Login extends MY_Controller {
 					"user_type" => $res[0]->user_type,
 					"username" => $res[0]->username,
 					"status" => $res[0]->status,
+					"contact_no" => $userdata[0]->contact_no,
 					"is_logged" => true
 				);
 

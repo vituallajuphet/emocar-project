@@ -529,6 +529,21 @@ table[data-tbl='datatable'] tbody tr.row-pending {
   background: #002900;
   color: #fff; }
 
+#add_emp_admin .form_box button[type="submit"] {
+  font-size: 16px;
+  background: #006001;
+  height: 45px;
+  border: none;
+  color: #fff;
+  width: 100%;
+  margin-top: 30px;
+  text-transform: uppercase;
+  transition: 0.5s ease; }
+
+#add_emp_admin .form_box button[type="submit"]:hover {
+  background: #002900;
+  color: #fff; }
+
 .close_pop_up {
   position: absolute;
   top: 0;
@@ -635,11 +650,18 @@ table tr {
 #print_OR {
   display: none; }
 
-
-  .customfff, .custdd{position: relative;}
-.dd_datefrm_cust{position: absolute;
-  left: 0;
-  width: 100%!important;
-  display: block!important;
-  bottom: 0;
-  opacity: 0;}
+.verification_cont {
+  padding: 2rem; }
+  .verification_cont .btnContainer {
+    display: flex;
+    justify-content: flex-end; }
+  .verification_cont .the_code_cont {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem; }
+  .verification_cont .code_cont span {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #6cc00c; }

@@ -18,7 +18,12 @@ nav ul li a {display: block;padding: 10px 20px;font-size: 16px;font-weight: 300;
 nav ul li a:hover {background: #004001;}
 nav ul li.active a {background: #004001;}
 
-
+.code-inputfield{
+    padding: 0.3rem;
+    max-width: 300px;
+    border: 1px solid green;
+    border-radius: 5px;
+}
 
 #dash_right_info {width: calc(100% - 250px);margin-left: 250px;}
 .dash_intro {text-align: right;height: 55px;border-bottom: 1px solid #008001;padding-right: 20px;position: relative;}
@@ -116,6 +121,13 @@ main {padding: 30px 20px;}
 
 .check_field{display: none;margin: 5px 0 0;}
 
+.entryBtn{
+    padding: .7rem 1rem;
+    background-color: green;
+    color:#fff;
+    border: none;
+}
+
 .header_form{display: flex;justify-content: space-between;}
 .search_bar_cont{}
 .search_bar_cont input{display: block; width: 241px; border: 1px solid gray; font-family: inherit; padding: 5px; font-size: 15px;}
@@ -161,4 +173,15 @@ main {padding: 30px 20px;}
     }
 } 
 
-
+.counter-div{
+    display: flex;
+    
+    align-items: center;
+    font-size: 2rem;
+    margin: 3rem 0 0;
+    span{
+        font-size: 2rem;
+        color: #004001;
+        margin-left: 1rem;
+    }
+}

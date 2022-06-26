@@ -18,6 +18,9 @@
 #add_emp_admin .form_box input[type="submit"] {font-size: 16px;background:  #006001;height: 45px;border: none;color: #fff;width: 100%;margin-top: 30px;text-transform: uppercase;transition: 0.5s ease;}
 #add_emp_admin .form_box input[type="submit"]:hover {background: #002900;color: #fff;}
 
+#add_emp_admin .form_box button[type="submit"] {font-size: 16px;background:  #006001;height: 45px;border: none;color: #fff;width: 100%;margin-top: 30px;text-transform: uppercase;transition: 0.5s ease;}
+#add_emp_admin .form_box button[type="submit"]:hover {background: #002900;color: #fff;}
+
 .close_pop_up {position: absolute;top: 0;right: 0;font-size: 25px;color: #000;font-weight: 600;cursor: pointer;padding: 20px;}
 .active_popup {visibility: visible; opacity: 1;}
 

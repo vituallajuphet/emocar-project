@@ -1,6 +1,9 @@
 
 $(document).ready(function(){
 
+    let selectedPrinting = ''
+    let printCount = 0;
+
     function convertDate(the_date, get_type = ""){
 
         let ret_date;
@@ -49,7 +52,7 @@ $(document).ready(function(){
     function search_process (search_val, show_err = false, tab_value=""){
         if( (search_val != "" && search_val != undefined) &&
             tab_value != "" && tab_value != undefined){
-
+            printCount =0;
             const url_value = `?search_val=${search_val}&tab_value=${tab_value}`;
 
             axios.get(`${base_url}employee/search_policy${url_value}`).then(res => {
@@ -95,6 +98,8 @@ $(document).ready(function(){
                     $("input[name='lg_tax']").val(dta.lg_tax)
                     $("input[name='series_no']").val(dta.series_no)
                     $("textarea[name='the_sum_of_pesos']").val(dta.the_sum_of_pesos)
+                    $(".counter-value").html(res.data.counts.length)
+                    printCount = res.data.counts.length; 
                 }
                 else{
                     $(".hidden_trans_id").val(0)
@@ -118,65 +123,88 @@ $(document).ready(function(){
         return res;
     }
 
+    
     $("#printOr").click(function(){
+        selectedPrinting = "OR"
+        printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print OR Confirmation")        
+    })
 
-        const trans_id = $(".hidden_trans_id").val();
+    function printOR (useTransId=true, tr_id=0) {
+        const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
+        if(printCount !== 0 ){
+            $("#modal_code").modal();
+            return false;
+        }
 
         if(trans_id != 0 && trans_id != undefined) {
 
-            axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1`).then(res => {
-                $("#print_OR").show();
-
-                if(res.data.status == "success"){
-                    const dta = res.data.data[0];
-
-                    const amt_of_cov = 100000;
-
-                    $("#date_trans").html(convertDate(dta.date_issued));
-                    $("#trans_rec_from").html(dta.received_from);
-                    $("#trans_address").html(ucFirst(dta.t_address));
-                    $("#trans_amount_text").html(dta.the_sum_of_pesos);
-                    $("#trans_amount_of_cov").html(numberWithCommas(amt_of_cov));
-                    $("#trans_policy").html(dta.policy_no);
-                    $("#trans_date_from_month").html(convertDate(dta.date_from, "month"));
-                    $("#trans_date_from_day").html(convertDate(dta.date_from, "day")  +", ");
-                    $("#trans_date_from_year").html(convertDate(dta.date_from, "year"));
-                    $("#trans_date_to_month").html(convertDate(dta.date_to, "month"));
-                    $("#trans_date_to_day").html(convertDate(dta.date_to, "day") +", ");
-                    $("#trans_date_to_year").html(convertDate(dta.date_to, "year"));
-
-                    $("#trans_prem").html(numberWithCommas(dta.premium_sales));
-                    $("#trans_doc_stamp").html(numberWithCommas(dta.docs_stamp));
-                    $("#trans_tax").html(numberWithCommas(dta.lg_tax));
-                    $("#trans_misc").html(numberWithCommas(dta.misc));
-                    $("#trans_total").html(numberWithCommas(dta.or_total));
-                    $("#pcocplate").html(dta.plate_no);
+            alertConfirm("It will add print count once printed, do you want to proceed?", function (){
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+                    $("#print_OR").show();
                     
-                    let html_elm = `<div style="font-size:18px;margin-top:35px">&check;</div>`;
-
-                    if(dta.paid_type == "Check"){
-                        html_elm = `<div style="margin-left:90px;font-size:12px;margin-top:40px">${dta.check_no}</div>`;
-                    }
-            
-                    $("#trans_paid_type").html(html_elm)
-                    
-                    setTimeout(() => {
-                        $("#print_OR").printElement();
-                        $("#print_OR").hide();
-                    }, 1000);
-                }
+    
+                    if(res.data.status == "success"){
+                        const dta = res.data.data[0];
+    
+                        const amt_of_cov = 100000;
+    
+                        $("#date_trans").html(convertDate(dta.date_issued));
+                        $("#trans_rec_from").html(dta.received_from);
+                        $("#trans_address").html(ucFirst(dta.t_address));
+                        $("#trans_amount_text").html(dta.the_sum_of_pesos);
+                        $("#trans_amount_of_cov").html(numberWithCommas(amt_of_cov));
+                        $("#trans_policy").html(dta.policy_no);
+                        $("#trans_date_from_month").html(convertDate(dta.date_from, "month"));
+                        $("#trans_date_from_day").html(convertDate(dta.date_from, "day")  +", ");
+                        $("#trans_date_from_year").html(convertDate(dta.date_from, "year"));
+                        $("#trans_date_to_month").html(convertDate(dta.date_to, "month"));
+                        $("#trans_date_to_day").html(convertDate(dta.date_to, "day") +", ");
+                        $("#trans_date_to_year").html(convertDate(dta.date_to, "year"));
+    
+                        $("#trans_prem").html(numberWithCommas(dta.premium_sales));
+                        $("#trans_doc_stamp").html(numberWithCommas(dta.docs_stamp));
+                        $("#trans_tax").html(numberWithCommas(dta.lg_tax));
+                        $("#trans_misc").html(numberWithCommas(dta.misc));
+                        $("#trans_total").html(numberWithCommas(dta.or_total));
+                        $("#pcocplate").html(dta.plate_no);
+                        
+                        let html_elm = `<div style="font-size:18px;margin-top:35px">&check;</div>`;
+    
+                        if(dta.paid_type == "Check"){
+                            html_elm = `<div style="margin-left:90px;font-size:12px;margin-top:40px">${dta.check_no}</div>`;
+                        }
                 
+                        $("#trans_paid_type").html(html_elm)
+                        
+                        setTimeout(() => {
+                            $("#print_OR").printElement();
+                            $("#print_OR").hide();
+                            alertify.alert().close()
+                        }, 1000);
+                    }
+                    
+                })
             })
         }
         else{
             errorMessage("Please search a policy first!")
         }
-        
-    })
+    }
+
+    
 
     $("#printCOC").click(function(){
+        selectedPrinting = "COC"
+        printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print COC Confirmation", {id1: "printSaveBtnCOC", id2: 'printOnlyBtnCOC'})        
+    })
 
-        const trans_id = $(".hidden_trans_id").val();
+    function printCOC (useTransId=true, tr_id=0) {
+        const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
+
+        if(printCount !== 0 ){
+            $("#modal_code").modal();
+            return false;
+        }
 
         if(trans_id != 0 && trans_id != undefined) {
 
@@ -206,6 +234,7 @@ $(document).ready(function(){
                     setTimeout(() => {
                         $("#printCOC_elem").printElement();
                         $("#printCOC_elem").hide();
+                        alertify.alert().close()
                     }, 1000);
                 }
                 
@@ -214,15 +243,19 @@ $(document).ready(function(){
         else{
             errorMessage("Please search a policy first!")
         }
-    })
+    }
 
     $("#printPolicy").click(function(){
-        
+        selectedPrinting = "POLICY"
+        printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print Policy Confirmation", {id1: "printSaveBtnPolicy", id2: 'printOnlyBtnPolicy'})        
+    })
+
+
+    function printPolicy (useTransId=true, tr_id=0) {
+            
         let  slectab =  $(".mn_heading_tabs ul li.active").html();
 
-        console.log(slectab)
-
-        const trans_id = $(".hidden_trans_id").val();
+        const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
 
         if(trans_id != 0 && trans_id != undefined) {
 
@@ -264,6 +297,7 @@ $(document).ready(function(){
                         setTimeout(() => {
                             $("#print_Policy_elem").printElement();
                             $("#print_Policy_elem").hide();
+                            alertify.alert().close()
                         }, 1000);
                     }
                     else if(slectab =="MOTORCYCLE (MC)" || slectab == "TRICYCLE (TC-Hire)" || slectab == "TRAILER"){
@@ -271,6 +305,7 @@ $(document).ready(function(){
                         setTimeout(() => {
                             $("#print_Policy_elem_motor").printElement();
                             $("#print_Policy_elem_motor").hide();
+                            alertify.alert().close()
                         }, 1000);
                     }  
                 }
@@ -280,6 +315,54 @@ $(document).ready(function(){
         else{
             errorMessage("Please search a policy first!")
         }  
+    }
+
+    $(document).on('click', '#printSaveBtn', () =>{
+        $(".form_field_emocar input[type='submit']").trigger('click');
+    })
+
+    //submit print and save for OR
+
+    $(".form_field_emocar").submit(function(e){
+        let callback = undefined
+        switch (selectedPrinting) {
+            case "COC":
+                callback = printCOC
+                break;
+            case "OR":
+                callback = printOR
+                break;
+            case "POLICY":
+                callback = printPolicy
+                    break;
+            default:
+                callback = undefined
+                break;
+        }
+        const options={saveOnly:true, callback: callback}
+        submitGlobal(e,options)
+    })
+    $(document).on('click', '#printOnlyBtn', () =>{
+        printOR(true);
+        alertify.alert().close()
+    })
+
+    $(document).on('click', '#printSaveBtnCOC', () =>{
+        $(".form_field_emocar input[type='submit']").trigger('click');
+    })
+
+    $(document).on('click', '#printOnlyBtnCOC', () =>{
+        printCOC(true);
+        alertify.alert().close()
+    })
+
+    $(document).on('click', '#printSaveBtnPolicy', () =>{
+        $(".form_field_emocar input[type='submit']").trigger('click');
+    })
+
+    $(document).on('click', '#printOnlyBtnPolicy', () =>{
+        printPolicy(true);
+        alertify.alert().close()
     })
 
 
@@ -297,6 +380,65 @@ $(document).ready(function(){
 
     })
 
+    let btnState = 'success';
+
+    $("#btnSendCode").on('click', function(){
+        let self = $(this);
+        if(btnState ==="success"){
+            btnState = "loading"
+            axios.post(`${base_url}api_generate_code`).then(res => {
+                if(res.data.status == 'success'){
+                    successMessage("Successfully Sent!");
+                    $(".form-verification").show()
+                    let sec = 15;
+                    const times = setInterval(() => {
+                        self.html("<i class='fa fa-send'></i> Resend in "+sec)
+                        sec -= 1;
+                        if(sec === 0 || btnState === 'success'){
+                            clearInterval(times)
+                            self.html("<i class='fa fa-send'></i> Resend Code ")
+                            btnState = "success"
+                        }
+                    }, 1000)
+                }
+            })
+        }
+        
+    })
+
+    $("#form_verification_code").submit((e) => {
+        e.preventDefault();
+        const frmdata = new FormData()
+        frmdata.append("code", $(".code-inputfield").val())
+
+        axios.post(`${base_url}api_generate_code/verify_code`, frmdata).then(res => {
+            if(res.data.status == 'success'){
+                $("#btnSendCode").html("<i class='fa fa-send'></i> Send Code to Admin ")
+                $(".form-verification").hide()
+                $("#modal_code").modal('hide')
+                alertify.alert().close(); 
+                btnState ='success'
+                successMessage("Verified");
+                printCount = 0;
+                switch (selectedPrinting) {
+                    case "COC":
+                        printCOC(true)
+                        break;
+                    case "OR":
+                        printOR(true)
+                        break;
+                    case "POLICY":
+                        printPolicy(true)
+                            break;
+                    default:
+                        break;
+                }
+            }else{
+                errorMessage("Not Verified!");
+            }
+        })
+    })
+
     const ucFirst = (s) => {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1)
@@ -306,5 +448,8 @@ $(document).ready(function(){
     var tomorrow = new Date();
     tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));       
     document.getElementById("spanDate").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate()+ ", " + tomorrow.getFullYear();
+
+    
+
 
 })

@@ -1,3 +1,5 @@
+var submitGlobal = undefined
+
 $(document).ready(function(){
 
     function _init(){
@@ -161,27 +163,34 @@ $(document).ready(function(){
 
     });
 
-    $(".form_field_emocar").submit(function(e){
+    submitGlobal = (event, options={saveOnly:true, callback}) => {
+        event.preventDefault();
         
-        e.preventDefault();
-
         let frmdata = $(".form_field_emocar").serialize();
 
         alertConfirm("Are you sure to save this transaction?" , function(){
             axios.post(base_url+"employee/save_transaction/", frmdata).then(res =>{
                 ehide(".preloader");
                 if(res.data.status == "success"){
-                    successMessage("Saved successfully!")
-                    reset_fields();        
-                    _init();
-                    setCheck();
+                    
+                    if(options.callback!== undefined){
+                        options.callback(false, res.data.id)
+                    }
+                    if(options.saveOnly){
+                        successMessage("Saved successfully!")
+                        reset_fields();        
+                        _init();
+                        setCheck();
+                    }
+
                 }else{
                     errorMessage(res.data.message);
                 }
-            }).catch(err => {ehide(".preloader");errorMessage("Something Wrong!")})
+            }).catch(err => {ehide(".preloader");errorMessage("Something Wrongs!")})
         })
+    } 
 
-    })
+    
 
     $("input[name='paid_type']").change(function(){
         let val = $(this).val();
