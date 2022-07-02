@@ -6,7 +6,7 @@ class MY_Controller extends MX_Controller {
 	public function __construct(){
 		$route = $this->router->fetch_class();
 
-		if($route  == "api_generate_code"){
+		if($route  == "api_generate_code" || $route == "api_mobile"){
 			
 		} else{
 			if($route == 'login'){

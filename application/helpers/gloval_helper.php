@@ -354,7 +354,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "global_api",
                 "process_register",
                 "my_profile",
-                "api_generate_code"
+                "api_generate_code",
+                "api_mobile",
             );
             
             $tabs_agent = array(
