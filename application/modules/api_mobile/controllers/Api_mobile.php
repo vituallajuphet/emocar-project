@@ -22,10 +22,13 @@ class Api_mobile extends MY_Controller {
         $this->auth_user();
     }
 
+    public function get_verification_code() {
+        if(is_ajaxs()){
+           echo  json_encode(['status' => "success", "code" => "123566"]);
+        }
+    }
+
     public function auth_user(){
-
-        
-
         if(getReqMethod() == "POST"){
 
             if(is_ajaxs()){
