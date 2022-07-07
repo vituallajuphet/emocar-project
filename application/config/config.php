@@ -38,7 +38,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $is_production = false;
 
 if(!$is_production){
-  $config['base_url'] = 'http://localhost/emocar/';
+  $ip = !empty($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'localhost';
+  echo $ip;
+  $config['base_url'] = "http://$ip/emocar/";
 }
 
 

@@ -22,11 +22,26 @@ class Api_mobile extends MY_Controller {
         $this->auth_user();
     }
 
-    public function get_verification_code() {
-        if(is_ajaxs()){
-           echo  json_encode(['status' => "success", "code" => "123566"]);
-        }
-    }
+    public function get_verification_code($direct = true){
+		if(is_ajaxs()){
+			$par["select"] ="*";
+			$par["order"] = "id DESC";
+			$par["limit2"] = [1];
+			$response = ["status" => "error", "data" => []];
+			$res = getData("tbl_verification_code", $par);
+			if(!empty($res)){
+				$response = ["status" => "success", "data" => $res];
+			}
+
+			if (!$direct) {
+				return $res;
+			}
+
+			else{
+				echo json_encode($response);
+			}
+		}
+	}
 
     public function auth_user(){
         if(getReqMethod() == "POST"){
