@@ -31,7 +31,7 @@ class Employee_policies extends MY_Controller {
 			);
 
 			$join         = array(
-				"employees emp" => "emp.fk_user_id = trans.fk_user_id",
+				"employees emp" => "emp.fk_user_id = trans.fk_user_id"
 			);
 			$select       = "*";
 			$where        = array(
@@ -40,16 +40,31 @@ class Employee_policies extends MY_Controller {
 			);
 			$group        = array();
 			$list         = getDataTables('tbl_transactions trans',$column_order, $select, $where, $join, $limit, $offset ,$search, $order, $group);
-			
+			$newData = [];
+			if(!empty($list['data'])){
+				foreach($list['data'] as $val) {
+					$val->print_counts = $this->getPrintCounts($val->trans_id);
+					array_push($newData, $val);
+				}
+			}
+
 			$list_array = array(
 				"draw" => $draw,
 				"recordsTotal" => $list['count_all'],
 				"recordsFiltered" => $list['count'],
-				"data" => $list['data']
+				"data" => $newData
 			);
+			
 			echo json_encode($list_array);
 
 		}
+	}
+
+	public function getPrintCounts($trans_id){
+		$par["where"]= "trans_id = $trans_id";
+
+		$res = getData('tbl_print_counts', $par);
+		return $res ? count($res) : '0';
 	}
 
 	public function get_trans_info($id){
@@ -63,6 +78,7 @@ class Employee_policies extends MY_Controller {
 				];
 				$par["select"] ="*, trans.address as t_address";
 				$res = getData("tbl_transactions trans", $par);
+				$res[0]["print_counts"] = $this->getPrintCounts($id);
 
 
 				if(!empty($res)){

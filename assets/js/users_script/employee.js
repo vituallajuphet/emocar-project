@@ -207,38 +207,40 @@ $(document).ready(function(){
         }
 
         if(trans_id != 0 && trans_id != undefined) {
-
-            axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1`).then(res => {
-                $("#printCOC_elem").show();
-
-                if(res.data.status == "success"){
-                    const dta = res.data.data[0];
-
-                    $("#pcocpolicy").html(dta.policy_no);
-                    $("#pcoc_or").html(dta.official_receipt);
-                    $("#pcoc_address").html(ucFirst(dta.t_address));
-                    $("#pcoc_receivedfrom").html(dta.received_from);
-                    $("#pcoc_date_issued").html(convertDate(dta.date_issued));
-                    $("#pcoc_date_from").html(convertDate(dta.date_from));
-                    $("#pcoc_date_to").html(convertDate(dta.date_to));
-                    $("#pcoc_model").html(dta.model_no);
-                    $("#pcoc_make").html(dta.make);
-                    $("#pcoc_body").html(dta.type_of_body);
-                    $("#pcoc_color").html(dta.color);
-                    $("#pcoc_mv_file").html(dta.mb_file_no);
-                    $("#pcoc_plate_no").html(dta.plate_no);
-                    $("#pcoc_serial").html(dta.serial_chassis);
-                    $("#pcoc_motor").html(dta.motor_no);
+            alertConfirm("It will add print count once printed, do you want to proceed?", function (){ 
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+                    $("#printCOC_elem").show();
+    
+                    if(res.data.status == "success"){
+                        const dta = res.data.data[0];
+    
+                        $("#pcocpolicy").html(dta.policy_no);
+                        $("#pcoc_or").html(dta.official_receipt);
+                        $("#pcoc_address").html(ucFirst(dta.t_address));
+                        $("#pcoc_receivedfrom").html(dta.received_from);
+                        $("#pcoc_date_issued").html(convertDate(dta.date_issued));
+                        $("#pcoc_date_from").html(convertDate(dta.date_from));
+                        $("#pcoc_date_to").html(convertDate(dta.date_to));
+                        $("#pcoc_model").html(dta.model_no);
+                        $("#pcoc_make").html(dta.make);
+                        $("#pcoc_body").html(dta.type_of_body);
+                        $("#pcoc_color").html(dta.color);
+                        $("#pcoc_mv_file").html(dta.mb_file_no);
+                        $("#pcoc_plate_no").html(dta.plate_no);
+                        $("#pcoc_serial").html(dta.serial_chassis);
+                        $("#pcoc_motor").html(dta.motor_no);
+                        
+                        
+                        setTimeout(() => {
+                            $("#printCOC_elem").printElement();
+                            $("#printCOC_elem").hide();
+                            alertify.alert().close()
+                        }, 1000);
+                    }
                     
-                    
-                    setTimeout(() => {
-                        $("#printCOC_elem").printElement();
-                        $("#printCOC_elem").hide();
-                        alertify.alert().close()
-                    }, 1000);
-                }
-                
+                })
             })
+            
         }
         else{
             errorMessage("Please search a policy first!")
@@ -258,8 +260,8 @@ $(document).ready(function(){
         const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
 
         if(trans_id != 0 && trans_id != undefined) {
-
-            axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1`).then(res => {
+            alertConfirm("It will add print count once printed, do you want to proceed?", function (){
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
 
                 if(res.data.status == "success"){
                     const dta = res.data.data[0];
@@ -311,6 +313,8 @@ $(document).ready(function(){
                 }
 
             })
+            })
+            
         }
         else{
             errorMessage("Please search a policy first!")

@@ -35,6 +35,7 @@
                         <th>Transaction Type</th>
                         <th>MV File No.</th>
                         <th>Plate No.</th>
+                        <th>Print Count</th>
                         <th>Status</th>
                         <th>Date Issued</th>
                         <th>Action</th>

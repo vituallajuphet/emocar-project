@@ -39,7 +39,11 @@ $is_production = false;
 
 if(!$is_production){
   $ip = !empty($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'localhost';
-  echo $ip;
+
+  if($ip == '127.0.0.1'){
+    $ip = 'localhost';
+  }
+
   $config['base_url'] = "http://$ip/emocar/";
 }
 
