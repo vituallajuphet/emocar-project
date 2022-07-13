@@ -10,13 +10,13 @@ class Admin_policies extends MY_Controller {
 		$this->load_page('index', $data);
 	}
 
-	// public function insert_print() {
-	// 	$res = getData("tbl_transactions trans");
-	// 	foreach ($res as $val){
-	// 		$data = ["trans_id" => $val['trans_id'], "print_counts" => "1", "print_data" =>  '{"user_id":"12"}', "status" => 1 ];
-	// 		insertData("tbl_print_counts", $data);
-	// 	}
-	// }
+	public function insert_print() {
+		$res = getData("tbl_transactions trans");
+		foreach ($res as $val){
+			$data = ["trans_id" => $val['trans_id'], "print_counts" => "1", "print_data" =>  '{"user_id":"12"}', "status" => 1 ];
+			insertData("tbl_print_counts", $data);
+		}
+	}
 
 	public function get_transaction_data(){
 
@@ -27,7 +27,7 @@ class Admin_policies extends MY_Controller {
 			$search       = $this->input->post('search');
 			$order        = $this->input->post('order');
 			$draw         = $this->input->post('draw');
-			$sorted         = $this->input->post('sortby');
+			$sorted       = $this->input->post('sortby');
 			
 			$column_order = array(
 				'trans.trans_id',
