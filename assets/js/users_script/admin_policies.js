@@ -131,6 +131,7 @@ $(document).ready(function () {
             { "data": "trans_type" },
             { "data": "mb_file_no" },
             { "data": "plate_no" },
+            { "data": "print_counts" },
             // {
             //     "data": "published_status", "render": function (data, type, row, meta) {
             //         return row.published_status == 1 ? "Approved" : "Pending";

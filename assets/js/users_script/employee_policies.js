@@ -1,6 +1,9 @@
 
 $(document).ready(function () {
 
+    let printCount = 0;
+    let selectedPrinting = ''
+
     function convertDate(the_date, get_type = ""){
         let ret_date;
         let ddte = new Date(the_date);
@@ -48,6 +51,7 @@ $(document).ready(function () {
             { "data": "trans_type" },
             { "data": "mb_file_no" },
             { "data": "plate_no" },
+            { "data": "print_counts" },
             {
                 "data": "published_status", "render": function (data, type, row, meta) {
                     return row.published_status == 1 ? "Approved" : "Pending";
@@ -75,10 +79,12 @@ $(document).ready(function () {
         ]
     });
     
+    let trans_selected_trans_id = 0;
 
     $(document).on("click", ".btn_view" , function(){
         let trans_id = $(this).data("id");
         $(".preloader").show();
+        printCount =0;
 
         axios.get(`${base_url}/employee_policies/get_trans_info/${trans_id}`).then(res => {
             $("#view_policy_modal").modal();
@@ -121,6 +127,7 @@ $(document).ready(function () {
                 $(".dta_lg_tax").val('₱ '+dta.lg_tax)
                 $(".dta_sum_pesos").val(dta.the_sum_of_pesos)
                 $(".policy_type").html(capitalize(dta.trans_type))
+                printCount =  dta.print_counts;
                 const published_status = (dta.published_status == 1 ? "Approved" : "Pending")
 
                 $(".policy_status").html(published_status).addClass(published_status.toLocaleLowerCase())
@@ -134,6 +141,7 @@ $(document).ready(function () {
     $("#datatable_sorter_select").on("change", function(){
         trans_table.search($(this).val()).draw() ;
     })
+
 
     $(document).on("click", ".btn_edit", function (e){
         
@@ -242,8 +250,210 @@ $(document).ready(function () {
         })
     });
 
+    // $("#btnPrintOR").click(function(){
+    //     selectedPrinting = "OR"
+    //     printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print OR Confirmation")        
+    // })
+
     // added new functions here...
+
+    function printOR (useTransId=true, tr_id=0) {
+        const trans_id = useTransId ? $(".vtrans_id").val() : tr_id;
+        if(printCount !== 0 ){
+            $("#modal_code").modal();
+            return false;
+        }
+
+        if(trans_id != 0 && trans_id != undefined) {
+
+            alertConfirm("It will add print count once printed, do you want to proceed?", function (){
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+                    $("#print_OR").show();
+                    
+    
+                    if(res.data.status == "success"){
+                        const dta = res.data.data[0];
+    
+                        const amt_of_cov = 100000;
+    
+                        $("#date_trans").html(convertDate(dta.date_issued));
+                        $("#trans_rec_from").html(dta.received_from);
+                        $("#trans_address").html(ucFirst(dta.t_address));
+                        $("#trans_amount_text").html(dta.the_sum_of_pesos);
+                        $("#trans_amount_of_cov").html(numberWithCommas(amt_of_cov));
+                        $("#trans_policy").html(dta.policy_no);
+                        $("#trans_date_from_month").html(convertDate(dta.date_from, "month"));
+                        $("#trans_date_from_day").html(convertDate(dta.date_from, "day")  +", ");
+                        $("#trans_date_from_year").html(convertDate(dta.date_from, "year"));
+                        $("#trans_date_to_month").html(convertDate(dta.date_to, "month"));
+                        $("#trans_date_to_day").html(convertDate(dta.date_to, "day") +", ");
+                        $("#trans_date_to_year").html(convertDate(dta.date_to, "year"));
+    
+                        $("#trans_prem").html(numberWithCommas(dta.premium_sales));
+                        $("#trans_doc_stamp").html(numberWithCommas(dta.docs_stamp));
+                        $("#trans_tax").html(numberWithCommas(dta.lg_tax));
+                        $("#trans_misc").html(numberWithCommas(dta.misc));
+                        $("#trans_total").html(numberWithCommas(dta.or_total));
+                        $("#pcocplate").html(dta.plate_no);
+                        
+                        let html_elm = `<div style="font-size:18px;margin-top:35px">&check;</div>`;
+    
+                        if(dta.paid_type == "Check"){
+                            html_elm = `<div style="margin-left:90px;font-size:12px;margin-top:40px">${dta.check_no}</div>`;
+                        }
+                
+                        $("#trans_paid_type").html(html_elm)
+                        
+                        setTimeout(() => {
+                            $("#print_OR").printElement();
+                            $("#print_OR").hide();
+                            alertify.alert().close()
+                        }, 1000);
+                    }
+                    
+                })
+            })
+        }
+        else{
+            errorMessage("Please search a policy first!")
+        }
+    }
+
+    function printPolicy (useTransId=true, tr_id=0) {
+            
+        const slectab = $(".vtrans_type").val().toLocaleLowerCase();
+
+        const trans_id = useTransId ? $(".vtrans_id").val() : tr_id;
+
+        if(printCount !== 0 ){
+            $("#modal_code").modal();
+            return false;
+        }
+
+        if(trans_id != 0 && trans_id != undefined) {
+            alertConfirm("It will add print count once printed, do you want to proceed?", function (){
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+
+                    if(res.data.status == "success"){
+                        const dta = res.data.data[0];
+                        $(".ppop_policy").html(dta.policy_no);
+                        $(".ppop_name").html(dta.received_from);
+                        $(".ppop_address").html(dta.t_address);
+                        $(".ppop_dateissued").html(convertDate(dta.date_issued));
+                        $(".ppop_or").html(dta.official_receipt);
+                        $(".ppop_dfrom").html(convertDate(dta.date_from));
+                        $(".ppop_dto").html(convertDate(dta.date_to));
+                        $(".ppop_model").html(dta.model_no);
+                        $(".ppop_make").html(dta.make);
+                        $(".ppop_body").html(dta.type_of_body);
+                        $(".ppop_color").html(dta.color);
+                        $(".ppop_mv_file").html(dta.mb_file_no);
+                        $(".ppop_plate").html(dta.plate_no);
+                        $(".ppop_serial").html(dta.serial_chassis);
+                        $(".ppop_motor").html(dta.motor_no);
+    
+                        $(".ppop_prem_paid").html(numberWithCommas(dta.premium_sales));
+                        $(".ppop_docstamp").html(numberWithCommas(dta.pol_docs_stamp));
+                        $(".ppop_vattax").html(numberWithCommas(dta.others));
+                        $(".ppop_lgtax").html(numberWithCommas(dta.lg_tax));
+                        $(".ppop_total_amount_due").html(numberWithCommas(dta.or_total));
+                        
+                        $(".ppop_place").html(dta.place);
+                        $(".ppop_pop_day").html(dta.policy_day);
+                        $(".ppop_pop_month").html(dta.policy_month);
+                        $(".ppop_pop_year").html(convertDate(dta.policy_year, "year"));
+                        
+    
+                        if(slectab =="private" || slectab == "commercial"){
+                            $("#print_Policy_elem").show();
+                            setTimeout(() => {
+                                $("#print_Policy_elem").printElement();
+                                $("#print_Policy_elem").hide();
+                            }, 1000);
+                        }
+                        else if(slectab =="motorcycle" || slectab == "tricycle" || slectab == "trailer"){
+                            $("#print_Policy_elem_motor").show();
+                            setTimeout(() => {
+                                $("#print_Policy_elem_motor").printElement();
+                                $("#print_Policy_elem_motor").hide();
+                            }, 1000);
+    
+                        }  
+                    }
+    
+                })
+            })
+           
+        }
+        else{
+            errorMessage("Please search a policy first!")
+        }  
+    }
+
+    let btnState = 'success';
+
+    $("#btnSendCode").on('click', function(){
+        let self = $(this);
+        if(btnState ==="success"){
+            btnState = "loading"
+            axios.post(`${base_url}api_generate_code`).then(res => {
+                if(res.data.status == 'success'){
+                    successMessage("Successfully Sent!");
+                    $(".form-verification").show()
+                    let sec = 15;
+                    const times = setInterval(() => {
+                        self.html("<i class='fa fa-send'></i> Resend in "+sec)
+                        sec -= 1;
+                        if(sec === 0 || btnState === 'success'){
+                            clearInterval(times)
+                            self.html("<i class='fa fa-send'></i> Resend Code ")
+                            btnState = "success"
+                        }
+                    }, 1000)
+                }
+            })
+        }
+        
+    })
+
+    $("#form_verification_code").submit((e) => {
+        e.preventDefault();
+        const frmdata = new FormData()
+        frmdata.append("code", $(".code-inputfield").val())
+
+        axios.post(`${base_url}api_generate_code/verify_code`, frmdata).then(res => {
+            if(res.data.status == 'success'){
+                $("#btnSendCode").html("<i class='fa fa-send'></i> Send Code to Admin ")
+                $(".form-verification").hide()
+                $("#modal_code").modal('hide')
+                alertify.alert().close(); 
+                btnState ='success'
+                successMessage("Verified");
+                printCount = 0;
+                switch (selectedPrinting) {
+                    case "COC":
+                        printCOC(true)
+                        break;
+                    case "OR":
+                        printOR(true)
+                        break;
+                    case "POLICY":
+                        printPolicy(true)
+                            break;
+                    default:
+                        break;
+                }
+            }else{
+                errorMessage("Not Verified!");
+            }
+        })
+    })
+
     $("#btnPrintOR").click(function(){
+        selectedPrinting = "OR"
+        printOR(true);
+
+        return
 
         const trans_id = $(".vtrans_id").val();
         const trans_type = $(".vtrans_type").val();
@@ -300,7 +510,60 @@ $(document).ready(function () {
         
     })
 
+    function printCOC (useTransId=true, tr_id=0) {
+        const trans_id = useTransId ? $(".vtrans_id").val() : tr_id;
+
+        if(printCount !== 0 ){
+            $("#modal_code").modal();
+            return false;
+        }
+
+        if(trans_id != 0 && trans_id != undefined) {
+            alertConfirm("It will add print count once printed, do you want to proceed?", function (){ 
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+                    $("#printCOC_elem").show();
+    
+                    if(res.data.status == "success"){
+                        const dta = res.data.data[0];
+    
+                        $("#pcocpolicy").html(dta.policy_no);
+                        $("#pcoc_or").html(dta.official_receipt);
+                        $("#pcoc_address").html(dta.t_address);
+                        $("#pcoc_receivedfrom").html(dta.received_from);
+                        $("#pcoc_date_issued").html(convertDate(dta.date_issued));
+                        $("#pcoc_date_from").html(convertDate(dta.date_from));
+                        $("#pcoc_date_to").html(convertDate(dta.date_to));
+                        $("#pcoc_model").html(dta.model_no);
+                        $("#pcoc_make").html(dta.make);
+                        $("#pcoc_body").html(dta.type_of_body);
+                        $("#pcoc_color").html(dta.color);
+                        $("#pcoc_mv_file").html(dta.mb_file_no);
+                        $("#pcoc_plate_no").html(dta.plate_no);
+                        $("#pcoc_serial").html(dta.serial_chassis);
+                        $("#pcoc_motor").html(dta.motor_no);
+                        
+                        
+                        setTimeout(() => {
+                            $("#printCOC_elem").printElement();
+                            $("#printCOC_elem").hide();
+                            alertify.alert().close()
+                        }, 1000);
+                    }
+                    
+                })
+            })
+            
+        }
+        else{
+            errorMessage("Please search a policy first!")
+        }
+    }
+
     $("#btnPrintCoc").click(function(){
+
+        selectedPrinting = "COC"
+        printCOC(true);
+        return
 
         const trans_id = $(".vtrans_id").val();
         const trans_type = $(".vtrans_type").val();
@@ -344,9 +607,14 @@ $(document).ready(function () {
     })
 
     $("#btnPrintPolicy").click(function(){
+
+        selectedPrinting = "POLICY"
+        printPolicy(true);
+        return
         
         const trans_id = $(".vtrans_id").val();
         const slectab = $(".vtrans_type").val().toLocaleLowerCase();
+        
 
         if(trans_id != 0 && trans_id != undefined) {
 
@@ -428,6 +696,11 @@ $(document).ready(function () {
         }
 
         return res;
+    }
+
+    const ucFirst = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
     }
 
     function convertDate(the_date, get_type = ""){

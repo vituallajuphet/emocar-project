@@ -10,6 +10,14 @@ class Admin_policies extends MY_Controller {
 		$this->load_page('index', $data);
 	}
 
+	public function insert_print() {
+		$res = getData("tbl_transactions trans");
+		foreach ($res as $val){
+			$data = ["trans_id" => $val['trans_id'], "print_counts" => "1", "print_data" =>  '{"user_id":"12"}', "status" => 1 ];
+			insertData("tbl_print_counts", $data);
+		}
+	}
+
 	public function get_transaction_data(){
 
 		if(is_ajaxs()){
@@ -19,7 +27,7 @@ class Admin_policies extends MY_Controller {
 			$search       = $this->input->post('search');
 			$order        = $this->input->post('order');
 			$draw         = $this->input->post('draw');
-			$sorted         = $this->input->post('sortby');
+			$sorted       = $this->input->post('sortby');
 			
 			$column_order = array(
 				'trans.trans_id',
@@ -60,15 +68,31 @@ class Admin_policies extends MY_Controller {
 			$group        = array();
 			$list         = getDataTables('tbl_transactions trans',$column_order, $select, $where, $join, $limit, $offset ,$search, $order, $group);
 			
+			$newData = [];
+			if(!empty($list['data'])){
+				foreach($list['data'] as $val) {
+					$val->print_counts = $this->getPrintCounts($val->trans_id);
+					array_push($newData, $val);
+				}
+			}
+
 			$list_array = array(
 				"draw" => $draw,
 				"recordsTotal" => $list['count_all'],
 				"recordsFiltered" => $list['count'],
-				"data" => $list['data']
+				"data" => $newData
 			);
+			
 			echo json_encode($list_array);
 
 		}
+	}
+
+	public function getPrintCounts($trans_id){
+		$par["where"]= "trans_id = $trans_id";
+
+		$res = getData('tbl_print_counts', $par);
+		return $res ? count($res) : '0';
 	}
 
 	public function get_trans_info($id){
