@@ -203,7 +203,13 @@
 							<input type="text" name="check_no" placeholder="Check Number" required>
 						</div>
 						<div class='counter-div'>
-							Print Counter: <span class='counter-value'>0</span>
+							Print Counter
+							
+						</div>
+						<div>
+						<div> OR Print Count: <span class='or_count count_val'></span></div>
+							<div> COC Print Count: <span class='coc_count count_val'></span></div>
+							<div> POLICY Print Count: <span class='policy_count count_val'></span></div>
 						</div>
 					</div>
 					<!-- end -->

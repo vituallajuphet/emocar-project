@@ -3,6 +3,9 @@ $(document).ready(function(){
 
     let selectedPrinting = ''
     let printCount = 0;
+    let orCount = 0;
+    let cocCount = 0;
+    let policyCount = 0;
 
     function convertDate(the_date, get_type = ""){
 
@@ -50,6 +53,11 @@ $(document).ready(function(){
     })
 
     function search_process (search_val, show_err = false, tab_value=""){
+
+        orCount = 0;
+        cocCount = 0;
+        policyCount = 0;
+
         if( (search_val != "" && search_val != undefined) &&
             tab_value != "" && tab_value != undefined){
             printCount =0;
@@ -98,8 +106,19 @@ $(document).ready(function(){
                     $("input[name='lg_tax']").val(dta.lg_tax)
                     $("input[name='series_no']").val(dta.series_no)
                     $("textarea[name='the_sum_of_pesos']").val(dta.the_sum_of_pesos)
-                    $(".counter-value").html(res.data.counts.length)
-                    printCount = res.data.counts.length; 
+                    // $(".counter-value").html(res.data.counts.length)
+          
+                    
+                    // res.data.counts.map(item => {
+                    //     if(item.print_type ==='OR'){ orCount +=1; }
+                    //     else if (item.print_type ==='COC') cocCount +=1;
+                    //     else if (item.print_type ==='POLICY') policyCount +=1;
+                    // })
+                    // printCount = res.data.counts.length; 
+                    // $(".or_count").html(orCount)
+                    // $(".coc_count").html(cocCount)
+                    // $(".policy_count").html(policyCount)
+                    
                 }
                 else{
                     $(".hidden_trans_id").val(0)
@@ -125,21 +144,29 @@ $(document).ready(function(){
 
     
     $("#printOr").click(function(){
+
+        printOR()
+        return 
         selectedPrinting = "OR"
-        printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print OR Confirmation")        
+        const hasSearch =$(".hidden_trans_id").val()
+        if(!hasSearch){
+            printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print OR Confirmation")        
+        }else{
+            printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print OR Confirmation" , true)      
+        }
     })
 
     function printOR (useTransId=true, tr_id=0) {
         const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
-        if(printCount !== 0 ){
-            $("#modal_code").modal();
-            return false;
-        }
+        // if(printCount !== 0 ){
+        //     $("#modal_code").modal();
+        //     return false;
+        // }
 
         if(trans_id != 0 && trans_id != undefined) {
 
-            alertConfirm("It will add print count once printed, do you want to proceed?", function (){
-                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+            // alertConfirm("It will add print count once printed, do you want to proceed?", function (){
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=OR`).then(res => {
                     $("#print_OR").show();
                     
     
@@ -184,7 +211,7 @@ $(document).ready(function(){
                     }
                     
                 })
-            })
+            // })
         }
         else{
             errorMessage("Please search a policy first!")
@@ -194,21 +221,30 @@ $(document).ready(function(){
     
 
     $("#printCOC").click(function(){
+
+        printCOC()
+        return;
         selectedPrinting = "COC"
-        printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print COC Confirmation", {id1: "printSaveBtnCOC", id2: 'printOnlyBtnCOC'})        
+        const hasSearch =$(".hidden_trans_id").val()
+        if(!hasSearch){
+            printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print COC Confirmation", false, {id1: "printSaveBtnCOC", id2: 'printOnlyBtnCOC'})          
+        }else{
+            printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print COC Confirmation", true, {id1: "printSaveBtnCOC", id2: 'printOnlyBtnCOC'})   
+        }
+             
     })
 
     function printCOC (useTransId=true, tr_id=0) {
         const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
 
-        if(printCount !== 0 ){
-            $("#modal_code").modal();
-            return false;
-        }
+        // if(printCount !== 0 ){
+        //     $("#modal_code").modal();
+        //     return false;
+        // }
 
         if(trans_id != 0 && trans_id != undefined) {
-            alertConfirm("It will add print count once printed, do you want to proceed?", function (){ 
-                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+            // alertConfirm("It will add print count once printed, do you want to proceed?", function (){ 
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=COC`).then(res => {
                     $("#printCOC_elem").show();
     
                     if(res.data.status == "success"){
@@ -239,7 +275,7 @@ $(document).ready(function(){
                     }
                     
                 })
-            })
+            // })
             
         }
         else{
@@ -248,8 +284,17 @@ $(document).ready(function(){
     }
 
     $("#printPolicy").click(function(){
+
+        printPolicy();
+        return;
         selectedPrinting = "POLICY"
-        printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print Policy Confirmation", {id1: "printSaveBtnPolicy", id2: 'printOnlyBtnPolicy'})        
+        const hasSearch =$(".hidden_trans_id").val()
+        if(!hasSearch){
+            printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print Policy Confirmation", {id1: "printSaveBtnPolicy", id2: 'printOnlyBtnPolicy'})       
+        }else{
+            printSaveConfirm("", function(){ printing = false }, "<i class='fa fa-question-circle'></i> Save or Print Policy Confirmation", {id1: "printSaveBtnPolicy", id2: 'printOnlyBtnPolicy'}, true)       
+        }
+             
     })
 
 
@@ -260,8 +305,8 @@ $(document).ready(function(){
         const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
 
         if(trans_id != 0 && trans_id != undefined) {
-            alertConfirm("It will add print count once printed, do you want to proceed?", function (){
-                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+            // alertConfirm("It will add print count once printed, do you want to proceed?", function (){
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=POLICY`).then(res => {
 
                 if(res.data.status == "success"){
                     const dta = res.data.data[0];
@@ -313,7 +358,7 @@ $(document).ready(function(){
                 }
 
             })
-            })
+            // })
             
         }
         else{
