@@ -109,15 +109,15 @@ $(document).ready(function(){
                     // $(".counter-value").html(res.data.counts.length)
           
                     
-                    // res.data.counts.map(item => {
-                    //     if(item.print_type ==='OR'){ orCount +=1; }
-                    //     else if (item.print_type ==='COC') cocCount +=1;
-                    //     else if (item.print_type ==='POLICY') policyCount +=1;
-                    // })
-                    // printCount = res.data.counts.length; 
-                    // $(".or_count").html(orCount)
-                    // $(".coc_count").html(cocCount)
-                    // $(".policy_count").html(policyCount)
+                    res.data.counts.map(item => {
+                        if(item.print_type ==='OR'){ orCount +=1; }
+                        else if (item.print_type ==='COC') cocCount +=1;
+                        else if (item.print_type ==='POLICY') policyCount +=1;
+                    })
+                    printCount = res.data.counts.length; 
+                    $(".or_count").html(orCount)
+                    $(".coc_count").html(cocCount)
+                    $(".policy_count").html(policyCount)
                     
                 }
                 else{
@@ -144,9 +144,6 @@ $(document).ready(function(){
 
     
     $("#printOr").click(function(){
-
-        printOR()
-        return 
         selectedPrinting = "OR"
         const hasSearch =$(".hidden_trans_id").val()
         if(!hasSearch){
@@ -158,14 +155,14 @@ $(document).ready(function(){
 
     function printOR (useTransId=true, tr_id=0) {
         const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
-        // if(printCount !== 0 ){
-        //     $("#modal_code").modal();
-        //     return false;
-        // }
+        if(printCount !== 0 ){
+            $("#modal_code").modal();
+            return false;
+        }
 
         if(trans_id != 0 && trans_id != undefined) {
 
-            // alertConfirm("It will add print count once printed, do you want to proceed?", function (){
+            alertConfirm("It will add print count once printed, do you want to proceed?", function (){
                 axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=OR`).then(res => {
                     $("#print_OR").show();
                     
@@ -211,7 +208,7 @@ $(document).ready(function(){
                     }
                     
                 })
-            // })
+            })
         }
         else{
             errorMessage("Please search a policy first!")
@@ -221,9 +218,6 @@ $(document).ready(function(){
     
 
     $("#printCOC").click(function(){
-
-        printCOC()
-        return;
         selectedPrinting = "COC"
         const hasSearch =$(".hidden_trans_id").val()
         if(!hasSearch){
@@ -237,13 +231,13 @@ $(document).ready(function(){
     function printCOC (useTransId=true, tr_id=0) {
         const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
 
-        // if(printCount !== 0 ){
-        //     $("#modal_code").modal();
-        //     return false;
-        // }
+        if(printCount !== 0 ){
+            $("#modal_code").modal();
+            return false;
+        }
 
         if(trans_id != 0 && trans_id != undefined) {
-            // alertConfirm("It will add print count once printed, do you want to proceed?", function (){ 
+            alertConfirm("It will add print count once printed, do you want to proceed?", function (){ 
                 axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=COC`).then(res => {
                     $("#printCOC_elem").show();
     
@@ -275,7 +269,7 @@ $(document).ready(function(){
                     }
                     
                 })
-            // })
+            })
             
         }
         else{
@@ -284,9 +278,6 @@ $(document).ready(function(){
     }
 
     $("#printPolicy").click(function(){
-
-        printPolicy();
-        return;
         selectedPrinting = "POLICY"
         const hasSearch =$(".hidden_trans_id").val()
         if(!hasSearch){
@@ -305,7 +296,7 @@ $(document).ready(function(){
         const trans_id = useTransId ? $(".hidden_trans_id").val() : tr_id;
 
         if(trans_id != 0 && trans_id != undefined) {
-            // alertConfirm("It will add print count once printed, do you want to proceed?", function (){
+            alertConfirm("It will add print count once printed, do you want to proceed?", function (){
                 axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=POLICY`).then(res => {
 
                 if(res.data.status == "success"){
@@ -358,7 +349,7 @@ $(document).ready(function(){
                 }
 
             })
-            // })
+            })
             
         }
         else{

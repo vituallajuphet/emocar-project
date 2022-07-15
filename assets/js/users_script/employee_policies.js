@@ -127,7 +127,7 @@ $(document).ready(function () {
                 $(".dta_lg_tax").val('₱ '+dta.lg_tax)
                 $(".dta_sum_pesos").val(dta.the_sum_of_pesos)
                 $(".policy_type").html(capitalize(dta.trans_type))
-                printCount =  dta.print_counts;
+                // printCount =  dta.print_counts;
                 const published_status = (dta.published_status == 1 ? "Approved" : "Pending")
 
                 $(".policy_status").html(published_status).addClass(published_status.toLocaleLowerCase())
@@ -258,15 +258,16 @@ $(document).ready(function () {
     // added new functions here...
 
     function printOR (useTransId=true, tr_id=0) {
-        const trans_id = useTransId ? $(".vtrans_id").val() : tr_id;
-        if(printCount !== 0 ){
-            $("#modal_code").modal();
-            return false;
-        }
+        // const trans_id = useTransId ? $(".vtrans_id").val() : tr_id;
+        const trans_id = $(".vtrans_id").val()
+        // if(printCount !== 0 ){
+        //     $("#modal_code").modal();
+        //     return false;
+        // }
 
         if(trans_id != 0 && trans_id != undefined) {
 
-            alertConfirm("It will add print count once printed, do you want to proceed?", function (){
+            // alertConfirm("It will add print count once printed, do you want to proceed?", function (){
                 axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=OR`).then(res => {
                     $("#print_OR").show();
                     
@@ -312,7 +313,7 @@ $(document).ready(function () {
                     }
                     
                 })
-            })
+            // })
         }
         else{
             errorMessage("Please search a policy first!")
@@ -323,15 +324,16 @@ $(document).ready(function () {
             
         const slectab = $(".vtrans_type").val().toLocaleLowerCase();
 
-        const trans_id = useTransId ? $(".vtrans_id").val() : tr_id;
+        const trans_id = $(".vtrans_id").val();
+        // const trans_id = useTransId ? $(".vtrans_id").val() : tr_id;
 
-        if(printCount !== 0 ){
-            $("#modal_code").modal();
-            return false;
-        }
+        // if(printCount !== 0 ){
+        //     $("#modal_code").modal();
+        //     return false;
+        // }
 
         if(trans_id != 0 && trans_id != undefined) {
-            alertConfirm("It will add print count once printed, do you want to proceed?", function (){
+            // alertConfirm("It will add print count once printed, do you want to proceed?", function (){
                 axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=POLICY`).then(res => {
 
                     if(res.data.status == "success"){
@@ -382,7 +384,7 @@ $(document).ready(function () {
                     }
     
                 })
-            })
+            // })
            
         }
         else{
@@ -451,7 +453,7 @@ $(document).ready(function () {
 
     $("#btnPrintOR").click(function(){
         selectedPrinting = "OR"
-        printOR(true);
+        printOR(false);
 
         return
 
@@ -510,16 +512,17 @@ $(document).ready(function () {
         
     })
 
-    function printCOC (useTransId=true, tr_id=0) {
-        const trans_id = useTransId ? $(".vtrans_id").val() : tr_id;
+    function printCOC (useTransId=false, tr_id=0) {
+        // const trans_id = useTransId ? $(".vtrans_id").val() : tr_id;
+        const trans_id = $(".vtrans_id").val()
 
-        if(printCount !== 0 ){
-            $("#modal_code").modal();
-            return false;
-        }
+        // if(printCount !== 0 ){
+        //     $("#modal_code").modal();
+        //     return false;
+        // }
 
         if(trans_id != 0 && trans_id != undefined) {
-            alertConfirm("It will add print count once printed, do you want to proceed?", function (){ 
+            // alertConfirm("It will add print count once printed, do you want to proceed?", function (){ 
                 axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=COC`).then(res => {
                     $("#printCOC_elem").show();
     
@@ -551,7 +554,7 @@ $(document).ready(function () {
                     }
                     
                 })
-            })
+            // })
             
         }
         else{
@@ -562,11 +565,12 @@ $(document).ready(function () {
     $("#btnPrintCoc").click(function(){
 
         selectedPrinting = "COC"
-        printCOC(true);
-        return
+        printCOC(false);
+      
 
-        const trans_id = $(".vtrans_id").val();
-        const trans_type = $(".vtrans_type").val();
+        // const trans_id = $(".vtrans_id").val();
+        // const trans_type = $(".vtrans_type").val();
+        return
 
         if(trans_id != 0 && trans_id != undefined) {
 
