@@ -267,7 +267,7 @@ $(document).ready(function () {
         if(trans_id != 0 && trans_id != undefined) {
 
             alertConfirm("It will add print count once printed, do you want to proceed?", function (){
-                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=OR`).then(res => {
                     $("#print_OR").show();
                     
     
@@ -332,7 +332,7 @@ $(document).ready(function () {
 
         if(trans_id != 0 && trans_id != undefined) {
             alertConfirm("It will add print count once printed, do you want to proceed?", function (){
-                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=POLICY`).then(res => {
 
                     if(res.data.status == "success"){
                         const dta = res.data.data[0];
@@ -520,7 +520,7 @@ $(document).ready(function () {
 
         if(trans_id != 0 && trans_id != undefined) {
             alertConfirm("It will add print count once printed, do you want to proceed?", function (){ 
-                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1`).then(res => {
+                axios.get(`${base_url}employee/search_policy?search_val=${trans_id}&search_by_id=1&print=1&print_type=COC`).then(res => {
                     $("#printCOC_elem").show();
     
                     if(res.data.status == "success"){

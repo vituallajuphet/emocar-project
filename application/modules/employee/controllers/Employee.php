@@ -110,6 +110,7 @@ class Employee extends MY_Controller {
 						"trans_id"=> $res[0]["trans_id"],
 						"print_counts" => 1,
 						"status" => 1,
+						"print_type" => $_GET['print_type'],
 						"print_data" => json_encode([
 							"user_id" => $res[0]["fk_user_id"]
 						])
