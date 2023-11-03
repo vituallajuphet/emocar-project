@@ -1,6 +1,0 @@
-todos:
-- fix transction
-- print
-- approved transaction
-- modifiy admin user
-- sign function
