@@ -73,13 +73,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'u236571955_user20',
-	'password' => '>drsbc4Rx0H',
-	'database' => 'u236571955_emocardb',
+	'hostname' => DB_CONFIG['host'],
+	'username' => DB_CONFIG['username'],
+	'password' => DB_CONFIG['password'],
+	'database' => DB_CONFIG['database_name'],
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
