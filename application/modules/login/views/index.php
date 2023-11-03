@@ -31,14 +31,18 @@
                         <button class="warning-btn-close">x</button>
                     </div>
                     <div class="warning_alert_content">
-                        <p>Good day! I would like to inform you Maam/Sir na ma expire na ang atong website domain
-                            (<strong>emocarinsurancebrokerage.com</strong>) this coming
-                            <strong>November 21, 2023</strong> please ko pa renew sa domain para ma accessable gihapon
-                            atong website application kay basin ma pending ang inyo transactions if dli ma renew. Please
-                            lang contact ni <strong>Sir Jessie</strong> sa pag renew or pwede rasad ako, mo anha lang ko
-                            sa office before
-                            that date. And ang web hosting is next year pa ma expire. Please lang ko view sa attached
-                            screenshots images provided sa link below.
+                        <p>Good day! I would like to inform you, Ma'am/Sir, that our website domain
+                            <strong>(emocarinsurancebrokerage.com)</strong> will expire on <strong>November 21,
+                                2023</strong>. I kindly
+                            request the
+                            renewal of the domain to ensure that our website application remains accessible. It's
+                            possible that your transactions might be pending if the domain is not renewed. Please
+                            contact <strong>Sir Jessie</strong> or you can contact me for the renewal and I am available
+                            to handle it. I
+                            will come to the
+                            office before that date. Please also inform <strong>Kuya JR</strong>. The web hosting is set
+                            to expire next
+                            year. Kindly take a look at the attached screenshot images provided in the link below.
                         </p>
                         <a href="https://drive.google.com/drive/folders/1YFq3WWvK-xHzKSh4tEu2KPV2sAsfyAau?usp=sharing"
                             target="_blank">
@@ -47,7 +51,7 @@
                     </div>
                     <div class="warning_footer">
                         <div>
-                            <p>From Programmer:</p>
+                            <p>Your Web Programmer</p>
                             <p><strong>Juphet Vitualla</strong></p>
                             <p>09058927403</p>
                         </div>
