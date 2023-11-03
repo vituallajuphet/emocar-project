@@ -54,6 +54,24 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	define('ENVIRONMENT', "development");
+	define('SHOW_WARNING', true);
+
+
+	define('DB_CONFIG', ENVIRONMENT === 'development'  ? 
+	[
+		"host"=> 'localhost',
+		"username"=> 'root',
+		"password"=> '',
+		"database_name"=> 'emocar_db',
+	]
+	: 
+	[
+		"host"=> 'localhost',
+		"username"=> 'u236571955_user20',
+		"password"=> '>drsbc4Rx0H',
+		"database_name"=> 'u236571955_emocardb',
+	]
+	);
 
 /*
  *---------------------------------------------------------------
@@ -68,8 +86,8 @@
 switch (ENVIRONMENT)
 {
 	case 'development':
-		error_reporting(-1);
-		ini_set('display_errors', 1);
+		// error_reporting(-1);
+		// ini_set('display_errors', 1);
 	break;
 
 	case 'testing':
